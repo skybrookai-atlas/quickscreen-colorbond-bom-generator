@@ -17,48 +17,98 @@ if (!serviceRoleKey) {
 const supabase = createClient(supabaseUrl, serviceRoleKey);
 
 async function main() {
-  const { data: org } = await supabase
+  const { data: goOrg } = await supabase
     .from("organisations")
     .select("id")
     .eq("slug", "glass-outlet")
     .single();
 
-  if (!org) throw new Error("Org not found (did you run your SQL seed first?)");
+  if (!goOrg) throw new Error("glass-outlet org not found");
 
-  // ── Regular test user ────────────────────────────────────────────────────────
+  const { data: afOrg } = await supabase
+    .from("organisations")
+    .select("id")
+    .eq("slug", "amazing-fencing")
+    .single();
+
+  if (!afOrg) {
+    console.warn("amazing-fencing org not found, skipping amazing-fencing users");
+  }
+
+  // ── Glass Outlet Users ────────────────────────────────────────────────────────
   await supabase.auth.admin.createUser({
     email: "test@glass-outlet.com",
     password: "123456",
     email_confirm: true,
-    app_metadata: { org_id: org.id },
+    app_metadata: { org_id: goOrg.id },
   });
 
-  // ── Admin user (needed for v3 trace panel at /calculator) ───────────────────
-  const { data: adminUserData } = await supabase.auth.admin.createUser({
+  const { data: goAdminUserData } = await supabase.auth.admin.createUser({
     email: "admin@glass-outlet.com",
     password: "123456",
     email_confirm: true,
-    app_metadata: { org_id: org.id },
+    app_metadata: { org_id: goOrg.id },
   });
 
-  // Wait for the signup trigger to create the profile row
-  await new Promise((r) => setTimeout(r, 500));
+  // ── Amazing Fencing Users ─────────────────────────────────────────────────────
+  let afTestUserData = null;
+  let afAdminUserData = null;
+  if (afOrg) {
+    const { data: testData } = await supabase.auth.admin.createUser({
+      email: "test@amazing-fencing.com",
+      password: "123456",
+      email_confirm: true,
+      app_metadata: { org_id: afOrg.id },
+    });
+    afTestUserData = testData;
 
-  // Promote admin@glass-outlet.com to role = 'admin' using the user ID from createUser
-  const adminId = adminUserData?.user?.id;
-  if (adminId) {
+    const { data: adminData } = await supabase.auth.admin.createUser({
+      email: "admin@amazing-fencing.com",
+      password: "123456",
+      email_confirm: true,
+      app_metadata: { org_id: afOrg.id },
+    });
+    afAdminUserData = adminData;
+  }
+
+  // Wait for the signup trigger to create the profile rows
+  await new Promise((r) => setTimeout(r, 1000));
+
+  // Promote admin@glass-outlet.com to role = 'admin'
+  const goAdminId = goAdminUserData?.user?.id;
+  if (goAdminId) {
     const { error } = await supabase
       .from("profiles")
       .update({ role: "admin" })
-      .eq("id", adminId);
+      .eq("id", goAdminId);
     if (error) {
-      console.warn("Warning: could not promote admin user:", error.message);
-      console.warn(`Run manually: UPDATE profiles SET role = 'admin' WHERE id = '${adminId}';`);
+      console.warn("Warning: could not promote Glass Outlet admin user:", error.message);
     } else {
       console.log("admin@glass-outlet.com promoted to role=admin");
     }
-  } else {
-    console.warn("Warning: admin user creation returned no user ID");
+  }
+
+  // Update profiles.org_id and promote for amazing-fencing users to override the trigger default
+  if (afOrg) {
+    const { error: testErr } = await supabase
+      .from("profiles")
+      .update({ org_id: afOrg.id })
+      .eq("email", "test@amazing-fencing.com");
+    if (testErr) {
+      console.warn("Warning: could not set org_id for Amazing Fencing test user:", testErr.message);
+    } else {
+      console.log("test@amazing-fencing.com linked to amazing-fencing org");
+    }
+
+    const { error: adminErr } = await supabase
+      .from("profiles")
+      .update({ org_id: afOrg.id, role: "admin" })
+      .eq("email", "admin@amazing-fencing.com");
+    if (adminErr) {
+      console.warn("Warning: could not promote Amazing Fencing admin user:", adminErr.message);
+    } else {
+      console.log("admin@amazing-fencing.com promoted to role=admin and linked to amazing-fencing org");
+    }
   }
 }
 

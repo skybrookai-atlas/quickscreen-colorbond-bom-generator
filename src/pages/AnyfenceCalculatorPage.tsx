@@ -15,6 +15,8 @@ import { CalculatorV3Page } from "./CalculatorV3Page";
 import { GatePositionModal } from "../components/calculator/GatePositionModal";
 import { MapCapture } from "../components/calculator/MapCapture";
 import { FenceTypeSidebar } from "../components/calculator/FenceTypeSidebar";
+import { TimberPalingVariationSidebar } from "../components/calculator/TimberPalingVariationSidebar";
+import { PriceBubble } from "../components/calculator/PriceBubble";
 import { useBomCalculator } from "../hooks/useBomCalculator";
 import { useBranding } from "../hooks/useBranding";
 import { priceForSku } from "../lib/localBomCalculator";
@@ -532,6 +534,79 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
     gst: number;
     grandTotal: number;
   } | null>(null);
+
+  const [selectedFenceType, setSelectedFenceType] = useState<string | null>(null);
+
+  // Sync selectedFenceType with payload if loaded from a quote/redirect
+  useEffect(() => {
+    if (payload?.productCode === "AF_TIMBER_PALING" && selectedFenceType !== "timber-paling") {
+      setSelectedFenceType("timber-paling");
+    }
+  }, [payload?.productCode, selectedFenceType]);
+
+  const handleSelectFenceType = useCallback((type: string) => {
+    if (type === "timber-paling") {
+      setSelectedFenceType("timber-paling");
+      if (payload) {
+        const defaultVars = {
+          timber_type: "treated_pine",
+          paling_style: "butted",
+          max_panel_width_mm: 2400,
+          paling_gap_mm: 0,
+          rail_profile: "75x38",
+          rail_count: 3,
+          target_height_mm: 1800,
+        };
+
+        const hasRuns = payload.runs.some((r) => r.segments.length > 0);
+        const nextPayload = {
+          ...payload,
+          productCode: "AF_TIMBER_PALING",
+          variables: {
+            ...payload.variables,
+            ...defaultVars,
+          },
+          runs: hasRuns
+            ? payload.runs.map((r) => ({
+                ...r,
+                productCode: "AF_TIMBER_PALING",
+                variables: {
+                  ...r.variables,
+                  max_panel_width_mm: 2400,
+                  rail_profile: "75x38",
+                  rail_count: 3,
+                  target_height_mm: 1800,
+                },
+              }))
+            : [
+                {
+                  runId: crypto.randomUUID(),
+                  productCode: "AF_TIMBER_PALING",
+                  variables: {
+                    max_panel_width_mm: 2400,
+                    rail_profile: "75x38",
+                    rail_count: 3,
+                    target_height_mm: 1800,
+                  },
+                  leftBoundary: { type: "product_post" as const },
+                  rightBoundary: { type: "product_post" as const },
+                  segments: [
+                    {
+                      segmentId: crypto.randomUUID(),
+                      sortOrder: 1,
+                      segmentKind: "panel" as const,
+                      segmentWidthMm: 12000, // 12m default run
+                      targetHeightMm: 1800,
+                    },
+                  ],
+                  corners: [],
+                },
+              ],
+        };
+        dispatch({ type: "SET_PAYLOAD", payload: nextPayload });
+      }
+    }
+  }, [payload, dispatch]);
   const runPaneWidth = initialRunPaneWidth();
   const [mobileLayout, setMobileLayout] = useState(false);
   // const [mobileTab, setMobileTab] = useState<MobileCalculatorTab>(INITIAL_MOBILE_CALCULATOR_TAB);
@@ -707,7 +782,7 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
     address: string;
     snapshot: any;
   }) => {
-    const productCode = "AF_TIMBER_PALING";
+    const productCode = "QSHS";
     const initialPayload = createEmptyPayload(productCode);
     initialPayload.propertyAnchor = {
       lat: anchor.lat,
@@ -725,7 +800,7 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
   }, [dispatch, jobName]);
 
   const handleSkipMapCapture = useCallback(() => {
-    const productCode = "AF_TIMBER_PALING";
+    const productCode = "QSHS";
     const initialPayload = createEmptyPayload(productCode);
     initialPayload.propertyAnchor = undefined;
     initialPayload.snapshot = undefined;
@@ -1914,17 +1989,37 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
       ) : (
         <>
           <div className="relative flex h-full min-h-0 flex-col overflow-hidden bg-brand-bg md:flex-row">
-            <FenceTypeSidebar activeType="timber-paling" />
+            {selectedFenceType === "timber-paling" ? (
+              <TimberPalingVariationSidebar
+                payload={payload!}
+                dispatch={dispatch}
+                lastBom={lastBom}
+                onChangeFenceType={() => setSelectedFenceType(null)}
+              />
+            ) : (
+              <FenceTypeSidebar
+                activeType="timber-paling"
+                onSelectType={handleSelectFenceType}
+              />
+            )}
             <main className="min-h-0 min-w-0 flex-1 overflow-y-auto p-4 relative">
               {payload ? (
-                <LayoutCanvasV3
-                  mapExpanded={mapExpanded}
-                  onMapExpandedChange={setMapExpanded}
-                  showRunDetails={false}
-                  propertyAnchor={payload.propertyAnchor ?? null}
-                  mapSnapshot={payload.snapshot ?? null}
-                  onMapSnapshotChange={handleMapSnapshotChange}
-                />
+                <div className="relative h-full w-full">
+                  <LayoutCanvasV3
+                    mapExpanded={mapExpanded}
+                    onMapExpandedChange={setMapExpanded}
+                    showRunDetails={false}
+                    propertyAnchor={payload.propertyAnchor ?? null}
+                    mapSnapshot={payload.snapshot ?? null}
+                    onMapSnapshotChange={handleMapSnapshotChange}
+                  />
+                  {selectedFenceType === "timber-paling" && (
+                    <PriceBubble
+                      payload={payload}
+                      bomResult={lastBom}
+                    />
+                  )}
+                </div>
               ) : (
                 <div className="rounded-2xl border border-dashed border-brand-border bg-brand-bg/50 p-6 text-center text-sm font-bold text-brand-muted">
                   Start from the sidebar, then draw the layout here.

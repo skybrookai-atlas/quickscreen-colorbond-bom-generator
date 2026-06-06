@@ -134,7 +134,10 @@ async function loadComponentNames(
   }
 
   const map = new Map<string, { sku: string; name: string; description: string; defaultPrice: number | null; canonicalCode: string | null }>();
+  const explicitKeys = new Set<string>();
+
   for (const row of allRows) {
+    const isExplicit = !!row.canonical_code;
     const canonicalCode = row.canonical_code || generateCanonicalCode(row.sku, row.name || "", row.category || "", row.metadata);
     const val = {
       sku: row.sku,
@@ -147,7 +150,16 @@ async function loadComponentNames(
     if (canonicalCode) {
       const parts = canonicalCode.split(",").map((s: string) => s.trim());
       for (const p of parts) {
-        if (p) map.set(p, val);
+        if (p) {
+          if (isExplicit) {
+            map.set(p, val);
+            explicitKeys.add(p);
+          } else {
+            if (!explicitKeys.has(p)) {
+              map.set(p, val);
+            }
+          }
+        }
       }
     }
   }
@@ -711,6 +723,12 @@ Deno.serve(async (req: Request) => {
                   return ps === "standard_65" ? 1 : 0;
                 })(),
                 width_deduction_mm: 0,
+                // Legacy aliases for backward compatibility with older seeds
+                left_is_product_post: leftIsSystem,
+                right_is_product_post: rightIsSystem,
+                product_post_boundary_count: systemTerminationCount,
+                corner_post_count: runCornerCount,
+                wall_boundary_count: nonSystemWallCount,
               };
         const activeSegCtx = segCtx;
 

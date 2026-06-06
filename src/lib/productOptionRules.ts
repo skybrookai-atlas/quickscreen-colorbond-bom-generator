@@ -136,7 +136,7 @@ export function normaliseVariablesForSystem(
   productCode: string,
   variables: Variables,
 ): Variables {
-  if (productCode === "DF_CCA_PAL") {
+  if (productCode === "DF_CCA_PAL" || productCode === "AF_TIMBER_PALING") {
     return variables;
   }
   const finishOptions = finishOptionsForSystem(productCode);
@@ -266,7 +266,7 @@ export function applyProductOptionRules(
   fields: SchemaField[],
   variables: Variables,
 ): SchemaField[] {
-  if (productCode === "DF_CCA_PAL") {
+  if (productCode === "DF_CCA_PAL" || productCode === "AF_TIMBER_PALING") {
     return fields.sort((a, b) => a.sort_order - b.sort_order);
   }
   const byKey = new Map(fields.map((field) => [field.field_key, field]));

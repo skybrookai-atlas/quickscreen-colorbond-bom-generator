@@ -5949,6 +5949,7 @@
       "add_sku_pattern": "XP-BTP-{colour}",
       "qty_formula": "num_csr * 2 * num_panels",
       "is_pack": false,
+      "is_suggestion": true,
       "priority": 20,
       "is_suggestion": true,
       "notes": "2 XP-BTP per CSR (top + bottom)",

@@ -136,19 +136,38 @@ export function loadFixtures(dir: string): Fixture[] {
 export async function runFixtures(): Promise<void> {
   const supabaseUrl = Deno.env.get("SUPABASE_URL") || Deno.env.get("VITE_SUPABASE_URL")!;
   const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-  const email = Deno.env.get("TEST_USER_EMAIL") ?? "admin@glass-outlet.com";
-  const password = Deno.env.get("TEST_USER_PASSWORD") ?? "123456";
+  const defaultEmail = Deno.env.get("TEST_USER_EMAIL") ?? "admin@glass-outlet.com";
 
   const supabase = createClient(supabaseUrl, serviceRoleKey);
-  const { data: authData, error: authError } =
-    await supabase.auth.signInWithPassword({
+  const tokenCache = new Map<string, string>();
+
+  async function getJwtForFixture(fixture: Fixture): Promise<string> {
+    const payload = fixture.input?.payload as any;
+    const productCode = payload?.productCode || "";
+    let email = defaultEmail;
+
+    if (productCode.startsWith("AF_") || fixture.id.startsWith("AF_")) {
+      email = "test@amazing-fencing.com";
+    }
+
+    if (tokenCache.has(email)) {
+      return tokenCache.get(email)!;
+    }
+
+    const password = Deno.env.get("TEST_USER_PASSWORD") ?? "123456";
+    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-  if (authError || !authData.session) {
-    throw new Error(`Failed to sign in as ${email}: ${authError?.message}`);
+
+    if (authError || !authData.session) {
+      throw new Error(`Failed to sign in as ${email}: ${authError?.message}`);
+    }
+
+    const token = authData.session.access_token;
+    tokenCache.set(email, token);
+    return token;
   }
-  const jwt = authData.session.access_token;
 
   const fixtureDir = join(
     dirname(fromFileUrl(import.meta.url)),
@@ -170,6 +189,7 @@ export async function runFixtures(): Promise<void> {
 
   for (const fixture of fixtures) {
     Deno.test(`${fixture.id}: ${fixture.description}`, async () => {
+      const jwt = await getJwtForFixture(fixture);
       const isLocal = Deno.env.get("TEST_LOCAL_FUNC") === "true";
       const url = isLocal ? "http://localhost:8000" : `${supabaseUrl}/functions/v1/bom-calculator`;
       const res = await fetch(url, {
@@ -182,6 +202,8 @@ export async function runFixtures(): Promise<void> {
       });
 
       const body = (await res.json()) as Record<string, unknown>;
+      console.log(`--- BODY FOR ${fixture.id} ---`);
+      console.log(JSON.stringify(body, null, 2));
 
       if (res.status !== 200 || Deno.args.includes("--verbose") || fixture.id.includes("AF_TIMBER_PALING")) {
         console.log(`\n--- Test: ${fixture.id} ---`);

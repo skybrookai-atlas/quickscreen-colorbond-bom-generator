@@ -630,7 +630,7 @@
       "version_label": "v1.0.0",
       "stage": "component",
       "name": "emit_vertical_slats",
-      "expression": "slat_stocks",
+      "expression": "slat_stocks * num_panels",
       "output_key": "qty_slat",
       "priority": 10,
       "active": true
