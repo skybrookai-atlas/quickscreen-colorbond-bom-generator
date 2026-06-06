@@ -1562,7 +1562,7 @@
       "version_label": "v1.0.0",
       "stage": "component",
       "name": "emit_slat_65",
-      "expression": "slat_size_mm == 65 ? slat_stocks : 0",
+      "expression": "slat_size_mm == 65 ? (slat_stocks * num_panels) : 0",
       "output_key": "qty_slat_65",
       "priority": 10,
       "active": true
@@ -1573,7 +1573,7 @@
       "version_label": "v1.0.0",
       "stage": "component",
       "name": "emit_slat_90",
-      "expression": "slat_size_mm == 90 ? slat_stocks : 0",
+      "expression": "slat_size_mm == 90 ? (slat_stocks * num_panels) : 0",
       "output_key": "qty_slat_90",
       "priority": 20,
       "active": true

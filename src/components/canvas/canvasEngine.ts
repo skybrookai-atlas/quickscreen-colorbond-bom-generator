@@ -4507,7 +4507,10 @@ export function initCanvasEngine(
     for (const run of runs) {
       rebuildSegmentsPreservingGates(run, scale);
     }
-    notifyChange();
+    const nonBoundaryRuns = runs.filter((run) => !run.isBoundary);
+    if (nonBoundaryRuns.length > 0) {
+      notifyChange();
+    }
     scheduleRedraw();
   }
 
@@ -4526,7 +4529,10 @@ export function initCanvasEngine(
       for (const run of runs) {
         rebuildSegmentsPreservingGates(run, scale);
       }
-      notifyChange();
+      const nonBoundaryRuns = runs.filter((run) => !run.isBoundary);
+      if (nonBoundaryRuns.length > 0) {
+        notifyChange();
+      }
     }
     pan = { ...next.pan };
     zoom = Math.max(0.000001, next.zoom);

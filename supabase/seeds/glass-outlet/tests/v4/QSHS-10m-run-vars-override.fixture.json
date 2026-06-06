@@ -38,9 +38,9 @@
   "expect": {
     "errors": [],
     "lines": [
-      { "sku": "XP-6100-S65-MN", "category": "slat", "name": "Slat resolved to monument from run override" },
-      { "sku": "XP-2400-FP-MN", "category": "post", "name": "Post resolved to monument from run override" },
-      { "sku": "QS-5800-CFC-MN", "category": "side_frame", "name": "CFC resolved to monument from run override" }
+      { "sku": "XP-6100-S65-MN", "qty": 52, "category": "slat", "name": "Slat resolved to monument from run override" },
+      { "sku": "XP-2400-FP-MN", "qty": 5, "category": "post", "name": "Post resolved to monument from run override" },
+      { "sku": "QS-5800-CFC-MN", "qty": 3, "category": "side_frame", "name": "CFC resolved to monument from run override" }
     ]
   }
 }

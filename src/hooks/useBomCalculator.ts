@@ -6,26 +6,31 @@ import type { PricingTier } from '../types/bom.types';
 
 function expandSectionSystemOverrides(payload: CanonicalPayload): CanonicalPayload {
   const runs: CanonicalRun[] = [];
-  let changed = false;
 
   for (const run of payload.runs) {
     const baseSegments: CanonicalSegment[] = [];
     const overrideGroups = new Map<string, CanonicalSegment[]>();
 
     for (const segment of run.segments) {
-      if (segment.segmentKind === 'gate_opening') {
-        baseSegments.push(segment);
+      // Ensure both kind and segmentKind are set for engine compatibility
+      const segWithKind: CanonicalSegment = {
+        ...segment,
+        kind: segment.kind ?? (segment.segmentKind === 'gate_opening' ? 'gate' : 'fence'),
+        segmentKind: segment.segmentKind ?? (segment.kind === 'gate' ? 'gate_opening' : 'panel'),
+      };
+
+      if (segWithKind.segmentKind === 'gate_opening') {
+        baseSegments.push(segWithKind);
         continue;
       }
-      const segmentProductCode = String(segment.variables?.product_code ?? run.productCode);
+      const segmentProductCode = String(segWithKind.variables?.product_code ?? run.productCode);
       if (segmentProductCode === run.productCode) {
-        baseSegments.push(segment);
+        baseSegments.push(segWithKind);
         continue;
       }
-      changed = true;
       overrideGroups.set(segmentProductCode, [
         ...(overrideGroups.get(segmentProductCode) ?? []),
-        segment,
+        segWithKind,
       ]);
     }
 
@@ -44,7 +49,8 @@ function expandSectionSystemOverrides(payload: CanonicalPayload): CanonicalPaylo
     }
   }
 
-  return changed ? { ...payload, runs } : payload;
+  // Always return mapped/changed payload if runs were processed or kind was normalized
+  return { ...payload, runs };
 }
 
 export function useBomCalculator() {

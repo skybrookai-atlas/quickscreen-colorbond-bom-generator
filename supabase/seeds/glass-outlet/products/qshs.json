@@ -5463,7 +5463,7 @@
       "version_label": "v1.0.0",
       "stage": "stock",
       "name": "csr_stocks",
-      "expression": "num_csr > 0 ? ceil(num_csr / csr_cuts_per_stock) : 0",
+      "expression": "num_csr > 0 ? ceil((num_csr * num_panels) / csr_cuts_per_stock) : 0",
       "output_key": "csr_stocks",
       "priority": 50,
       "active": true
@@ -5568,7 +5568,7 @@
       "version_label": "v1.0.0",
       "stage": "component",
       "name": "emit_slat_65",
-      "expression": "slat_size_mm == 65 ? slat_stocks : 0",
+      "expression": "slat_size_mm == 65 ? (slat_stocks * num_panels) : 0",
       "output_key": "qty_slat_65",
       "priority": 10,
       "active": true
@@ -5579,7 +5579,7 @@
       "version_label": "v1.0.0",
       "stage": "component",
       "name": "emit_slat_90",
-      "expression": "slat_size_mm == 90 ? slat_stocks : 0",
+      "expression": "slat_size_mm == 90 ? (slat_stocks * num_panels) : 0",
       "output_key": "qty_slat_90",
       "priority": 20,
       "active": true
@@ -5879,6 +5879,7 @@
       "add_sku_pattern": "XP-BTP-{colour}",
       "qty_formula": "csr_plate_qty",
       "is_pack": false,
+      "is_suggestion": true,
       "priority": 20,
       "notes": "2 XP-BTP per CSR (top + bottom)",
       "active": true
