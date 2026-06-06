@@ -32,6 +32,7 @@ import { ProfileProvider } from "./context/ProfileContext";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { AdminPortalPage } from "./pages/admin/AdminPortalPage";
 import { OnboardingPage } from "./pages/OnboardingPage";
+import { BookingFlowPage } from "./pages/BookingFlowPage";
 
 function ThemedToaster() {
   const { theme } = useTheme();
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginPage /> },
       { path: "/onboarding", element: <OnboardingPage /> },
       { path: "/", element: <AnyfenceCalculatorPage /> },
+      { path: "/book/:quoteId", element: <BookingFlowPage /> },
       {
         path: "/fence-calculator",
         element: <AnyfenceCalculatorPage />,

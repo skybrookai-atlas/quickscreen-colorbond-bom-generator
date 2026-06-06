@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { ChevronDown, X, Mail } from "lucide-react";
+import { useParams, useNavigate } from "react-router-dom";
 import type { CanonicalPayload } from "../../types/canonical.types";
 import { resolveAmazingFencingItem, INSTALL_LABOUR_RATES } from "../../lib/amazingFencingMapper";
 
@@ -9,6 +10,8 @@ interface PriceBubbleProps {
 }
 
 export function PriceBubble({ payload, bomResult }: PriceBubbleProps) {
+  const { quoteId } = useParams<{ quoteId?: string }>();
+  const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState<"supply_only" | "supply_install">("supply_only");
   
@@ -472,6 +475,14 @@ export function PriceBubble({ payload, bomResult }: PriceBubbleProps) {
       <div className="p-4 border-t border-brand-border/40 bg-brand-bg/10 flex flex-col gap-2 shrink-0">
         <button
           type="button"
+          onClick={() => {
+            const targetQuoteId = quoteId || "q_4f9a2c";
+            if (isInstall) {
+              navigate(`/book/${targetQuoteId}`);
+            } else {
+              navigate(`/book/${targetQuoteId}?mode=supply-only`);
+            }
+          }}
           className="w-full min-h-11 flex items-center justify-center gap-2 rounded-lg bg-[#DD6E1B] font-bold text-white shadow hover:bg-[#B85710] transition-colors"
         >
           <span>
