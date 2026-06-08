@@ -180,7 +180,8 @@ Latest Brief 031 pass: run headings now show full system names with inline edita
 | V3-4 | `bom-calculator` edge function | ✅ Complete |
 | V3-5 | Multi-run UI at `/calculator` (form + canvas are hand-coded, shared across fencing systems) | ✅ Complete |
 | V3-6 | BOM output (per-run tabs + trace panel) | ✅ Complete |
-| V3-7 | Docs (CLAUDE.md + tasks.md + how_it_works.md) | 🔄 In progress |
+| V3-7 | Docs (CLAUDE.md + tasks.md + how_it_works.md) | ✅ Complete |
+| BF-1 | Build Forge Chat Embed (Path A proxy, MVP) | ✅ Complete |
 
 ---
 
@@ -487,6 +488,7 @@ Enables reliable LLM authoring and sets up an in-app AI import feature later
 - **Phase 1** — Foundation: Vite + React + TS scaffolded, Tailwind v3 + PostCSS configured, all 6 SQL migrations written, auth components built (LoginForm, SignUpForm, AuthGuard, useAuth), AppShell + Header built, React Router configured. *(Supabase CLI install + migration apply pending.)*
 - **Phase 2** — Fence Configuration: Zod schema, FenceConfigContext (useReducer, XPL enforcement), FenceConfigForm (RHF + Zod, all data-testid attrs), ColourSelect, SlatSizeSelect, SlatGapSelect, AccordionSection, FormField, constants. Build passes with zero TypeScript errors.
 - **V3 Planning** — Reviewed `qshs_mvp_build_pack/` + `qshs_gates_build_pack/`, wrote 7 phase specs (`docs/phase-v3-*.md`), one-page overview (`docs/how_it_works.md`), updated CLAUDE.md with v3 architecture, added v3 section to `docs/tasks.md`.
+- **Build Forge Phase 1 (MVP)** — Implemented Deno edge function backend proxy, database usage tracking migrations, and React chat panel beside the Visual Wizard Builder with form action bridge parser.
 
 ---
 
