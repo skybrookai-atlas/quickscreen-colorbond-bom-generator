@@ -3,8 +3,8 @@
 ## Current Phase
 
 > **Phase 7 (v1 polish)** complete — v1 code removed.
-> **v3 Engine** — V3-1 through V3-6 complete. V3-7 (docs cross-linking) is the only remaining item.
-> Start here for an overview: [`docs/how_it_works.md`](./how_it_works.md).
+> **v3 Engine** — All phases V3-1 through V3-7 are 100% complete.
+> Start here for an overview: [`how_it_works.md`](./how_it_works.md).
 
 Latest infrastructure fix: duplicate Supabase migration version 029 was resolved by keeping the earlier profile-email migration at 029 and renaming the later quote property-anchor migration to 030.
 
@@ -403,7 +403,7 @@ Latest Brief 031 pass: run headings now show full system names with inline edita
 - [x] Update `CLAUDE.md` sections 1, 3, 5, 5a (new), 6, 8, 11, 14, 15, 16
 - [x] Write this v3 Engine section in `docs/tasks.md`
 - [x] Update "Current Phase" header
-- [ ] Cross-link all phase docs + CLAUDE.md sections + how_it_works.md — verify links resolve
+- [x] Cross-link all phase docs + CLAUDE.md sections + how_it_works.md — verify links resolve
 
 ---
 
@@ -487,7 +487,7 @@ Enables reliable LLM authoring and sets up an in-app AI import feature later
 - **Phase 0** — Cypress test suite: all 23 test files written, TC test bugs fixed (TC3, TC4, TC11, TC12, TC14, TC17, TC24), failures documented in `docs/cypress-test-report.md`
 - **Phase 1** — Foundation: Vite + React + TS scaffolded, Tailwind v3 + PostCSS configured, all 6 SQL migrations written, auth components built (LoginForm, SignUpForm, AuthGuard, useAuth), AppShell + Header built, React Router configured. *(Supabase CLI install + migration apply pending.)*
 - **Phase 2** — Fence Configuration: Zod schema, FenceConfigContext (useReducer, XPL enforcement), FenceConfigForm (RHF + Zod, all data-testid attrs), ColourSelect, SlatSizeSelect, SlatGapSelect, AccordionSection, FormField, constants. Build passes with zero TypeScript errors.
-- **V3 Planning** — Reviewed `qshs_mvp_build_pack/` + `qshs_gates_build_pack/`, wrote 7 phase specs (`docs/phase-v3-*.md`), one-page overview (`docs/how_it_works.md`), updated CLAUDE.md with v3 architecture, added v3 section to `docs/tasks.md`.
+- **V3 Planning** — Reviewed `qshs_mvp_build_pack/` + `qshs_gates_build_pack/`, wrote 7 phase specs in the [docs/](./) directory, the one-page overview [how_it_works.md](./how_it_works.md), updated [CLAUDE.md](../CLAUDE.md) (which redirects to [AGENTS.md](../AGENTS.md)) with v3 architecture, and added the v3 section to [tasks.md](./tasks.md).
 - **Build Forge Phase 1 (MVP)** — Implemented Deno edge function backend proxy, database usage tracking migrations, and React chat panel beside the Visual Wizard Builder with form action bridge parser.
 
 ---

@@ -1,7 +1,7 @@
 
 # QuickScreen BOM Generator — Architecture & Development Guide
 
-> **Purpose**: Single source of truth for working on this codebase. Covers business rules, architecture decisions, security constraints, and active guardrails. For implementation history and task tracking, see `docs/tasks.md` and `docs/phase-*.md`.
+> **Purpose**: Single source of truth for working on this codebase. Covers business rules, architecture decisions, security constraints, and active guardrails. For implementation history and task tracking, see [docs/tasks.md](docs/tasks.md) and the [docs/phase-*.md](docs/) design specs.
 
 ---
 
@@ -23,9 +23,9 @@ Staff and trade customers can:
 
 ### Current State
 
-**Phases 0–7 are complete (Phase 7 included V1 removal). A parallel v3 data-driven engine is being adapted from `qshs_mvp_build_pack/` + `qshs_gates_build_pack/` — see `docs/phase-v3-*.md` and `docs/how_it_works.md`.** The React app is the primary codebase.
+**Phases 0–7 are complete (Phase 7 included V1 removal). A parallel v3 data-driven engine is being adapted from `qshs_mvp_build_pack/` + `qshs_gates_build_pack/` — see the [V3 phase specifications](docs/) and [docs/how_it_works.md](docs/how_it_works.md).** The React app is the primary codebase.
 
-- See `docs/tasks.md` for the full current task status.
+- See [docs/tasks.md](docs/tasks.md) for the full current task status.
 
 ### Two routes — V3 only (v1 removed)
 
@@ -52,7 +52,7 @@ v2 was retired (deleted in an earlier cleanup). v1 was removed — the `/new` ro
 | Layer          | Technology                                 | Purpose                                                  |
 | -------------- | ------------------------------------------ | -------------------------------------------------------- |
 | Framework      | React 19 with Vite                         | SPA build tooling, HMR, fast dev                         |
-| Styling        | Tailwind CSS 3                             | Utility-first CSS, light/dark theme (`docs/ui-theme.md`)   |
+| Styling        | Tailwind CSS 3                             | Utility-first CSS, light/dark theme ([docs/ui-theme.md](docs/ui-theme.md))   |
 | Server State   | TanStack Query v5                          | Caching, mutations for all Supabase calls                |
 | Client State   | React Context + useReducer                 | Fence config, gate list, UI accordion/modal state        |
 | Auth           | Supabase Auth                              | Email/password, session management, RLS                  |
@@ -79,7 +79,7 @@ Database migrations are in `supabase/migrations/` (001–010 are shared catalog 
 
 **Seeds are JSON-authoritative.** The only SQL seed loaded by `supabase db reset` is `supabase/seeds/organizations.sql` (one row — the org). Everything else — fences, gates, pricing, v3 engine rules — lives as **per-product JSON files** under `supabase/seeds/glass-outlet/products/`. Current files: `qshs.json`, `vs.json`, `xpl.json`, `bayg.json`, `qs_gate.json` (shared gate across all fences), `other.json` (inactive non-fence families).
 
-JSON Schemas at `supabase/seeds/schemas/*.schema.json`, wrapped by `product-file.schema.json`. The Node upserter at `supabase/seeds/tools/seed-products.js` (run via `npm run seed:products`, and automatically by `npm run db:reset`) validates each file, resolves business-key FKs, and upserts every section directly via supabase-js. No SQL is generated. See `docs/seed-data-mapping-spec.md` and the `seed-mapper` skill for the authoring contract.
+JSON Schemas at `supabase/seeds/schemas/*.schema.json`, wrapped by `product-file.schema.json`. The Node upserter at `supabase/seeds/tools/seed-products.js` (run via `npm run seed:products`, and automatically by `npm run db:reset`) validates each file, resolves business-key FKs, and upserts every section directly via supabase-js. No SQL is generated. See [docs/seed-data-mapping-spec.md](docs/seed-data-mapping-spec.md) and the `seed-mapper` skill for the authoring contract.
 
 `slat-fencing.sql.disabled` is the historical pre-flatten SQL seed, kept on disk for reference only (the `.disabled` extension means supabase skips it).
 
@@ -173,7 +173,7 @@ The v3 BOM engine is driven by data in migrations 011–014 and 018. All engine 
 
 **To change QSHS calculation behaviour:** edit seed rows and `npm run db:reset`. Do not edit `supabase/functions/bom-calculator/index.ts` unless you're changing engine-framework behaviour.
 
-See `docs/engine-schema.md` for column shapes and `docs/how_it_works.md` for a plain-English overview.
+See [docs/engine-schema.md](docs/engine-schema.md) for column shapes and [docs/how_it_works.md](docs/how_it_works.md) for a plain-English overview.
 
 ---
 
@@ -221,7 +221,7 @@ const orgId = profile.org_id;
 
 **Graceful math.js failures:** every `mathjs.evaluate` wrapped in try/catch. Failed rule ID + error logged to trace. Pipeline continues.
 
-See `docs/bom-calculator-pipeline.md` for the full spec.
+See [docs/bom-calculator-pipeline.md](docs/bom-calculator-pipeline.md) for the full spec.
 
 ### bom-calculator (v3 — product-agnostic)
 
@@ -246,7 +246,7 @@ See `docs/bom-calculator-pipeline.md` for the full spec.
 
 **Graceful math.js failures:** every `mathjs.evaluate` wrapped in try/catch. Failed rule ID + error logged to trace. Pipeline continues.
 
-See `docs/phase-v3-4-bom-calculator.md` for the full spec.
+See [docs/phase-v3-4-bom-calculator.md](docs/phase-v3-4-bom-calculator.md) for the full spec.
 
 ---
 
@@ -277,7 +277,7 @@ Google Maps JS API loaded via `<script>` tag; the engine handles geocoding, tile
 
 ## 9. UI & Theme
 
-**Light and dark** themes: `ThemeProvider` toggles `data-theme` on `<html>`; colours come from CSS variables in `src/index.css` and Tailwind `brand-*` tokens (see `tailwind.config.js`). Full conventions: **`docs/ui-theme.md`**. Prefer `text-brand-text`, `text-brand-muted`, and form patterns from `src/components/ui/Input.tsx`—avoid raw `text-neutral-200`–`400` for copy on `brand-card` without explicit light/dark handling.
+**Light and dark** themes: `ThemeProvider` toggles `data-theme` on `<html>`; colours come from CSS variables in `src/index.css` and Tailwind `brand-*` tokens (see `tailwind.config.js`). Full conventions: [**docs/ui-theme.md**](docs/ui-theme.md). Prefer `text-brand-text`, `text-brand-muted`, and form patterns from `src/components/ui/Input.tsx`—avoid raw `text-neutral-200`–`400` for copy on `brand-card` without explicit light/dark handling.
 
 Layout: SkybrookAI branding top-left, Glass Outlet logo top-right. Accordion sections for progressive disclosure (Layout → Config → Gates → Contact → BOM).
 
@@ -305,7 +305,7 @@ Responsive: desktop-first. Canvas section hidden on mobile (`md:block`). BOM tab
 
 ## 11. Development Phases
 
-**v1 Phases 0–7 complete** (Phase 7 included V1 code removal). **v3 Engine phases V3-1 through V3-6 complete — V3-7 (docs cross-linking) in progress.** See `docs/tasks.md`.
+**v1 Phases 0–7 complete** (Phase 7 included V1 code removal). **v3 Engine phases V3-1 through V3-7 complete.** See [docs/tasks.md](docs/tasks.md).
 
 ---
 
@@ -339,11 +339,11 @@ VITE_SUPABASE_ANON_KEY=your-local-anon-key
 
 ## 14. Testing
 
-**v3 Testing:** Deno unit tests at `supabase/functions/bom-calculator/index_test.ts` — fixtures (TC-V3-1 through TC-V3-8) covering rule firings, selector resolution, companion expansion, validation errors, warnings, missing pricing, and malformed rules. See `docs/bom-calculator-pipeline.md`.
+**v3 Testing:** Deno unit tests at `supabase/functions/bom-calculator/index_test.ts` — fixtures (TC-V3-1 through TC-V3-8) covering rule firings, selector resolution, companion expansion, validation errors, warnings, missing pricing, and malformed rules. See [docs/bom-calculator-pipeline.md](docs/bom-calculator-pipeline.md).
 
 v3 Cypress E2E coverage is a follow-up phase. `SchemaDrivenForm` emits `data-testid={field_key}` matching existing conventions so future selectors can be written against the `/fence-calculator` route.
 
-**v3 Testing:** Deno unit tests at `supabase/functions/bom-calculator/index_test.ts` — 8 fixtures (TC-V3-1 through TC-V3-8) covering rule firings, selector resolution, companion expansion, validation errors, warnings, missing pricing, and malformed rules. See `docs/phase-v3-4-bom-calculator.md`.
+**v3 Testing:** Deno unit tests at `supabase/functions/bom-calculator/index_test.ts` — 8 fixtures (TC-V3-1 through TC-V3-8) covering rule firings, selector resolution, companion expansion, validation errors, warnings, missing pricing, and malformed rules. See [docs/phase-v3-4-bom-calculator.md](docs/phase-v3-4-bom-calculator.md).
 
 v3 Cypress coverage is a follow-up phase. `SchemaDrivenForm` emits `data-testid={field_key}` matching existing conventions so future selectors reuse the same pattern.
 
@@ -356,15 +356,15 @@ v3 Cypress coverage is a follow-up phase. `SchemaDrivenForm` emits `data-testid=
 - **Australian context**: Currency is AUD, GST is 10%, measurements are metric (mm for heights/widths, m for run lengths). Postcodes are 4 digits.
 - **Colour names are Colorbond brand names** — spelled exactly as listed in Section 4. v3 `bom-calculator` normalises long names to short codes (`black-satin` → `B`) before selector resolution.
 - **Multi-tenancy: every table has `org_id`.** Edge functions always scope queries by `org_id` resolved from the user's JWT. RLS policies use `public.user_org_id()`. The client never sends `org_id`.
-- **Always update `docs/tasks.md` after completing any task or group of tasks.** Tick off `[x]`, update the Phases Overview table, and update the "Current Phase" header. Do this before responding to the user.
-- **Current status**: All phases complete. v3 Engine phases V3-1 through V3-6 complete — V3-7 (docs cross-linking) in progress. See `docs/tasks.md`.
+- **Always update [docs/tasks.md](docs/tasks.md) after completing any task or group of tasks.** Tick off `[x]`, update the Phases Overview table, and update the "Current Phase" header. Do this before responding to the user.
+- **Current status**: All phases complete. v3 Engine phases V3-1 through V3-7 complete. See [docs/tasks.md](docs/tasks.md).
 - **Seed data (products, pricing, components, v3 engine rules) goes in `supabase/seeds/glass-outlet/products/*.json`, never in new migration files, never as new SQL seeds.** Edit the per-product JSON files and run `npm run seed:products` (or a full `npm run db:reset`).
 - **v3 rules live in seed data (JSON), not code.** To change QSHS calculation behaviour, edit `supabase/seeds/glass-outlet/products/qshs.json`. To change the shared QS_GATE, edit `qs_gate.json`. Do **not** edit `supabase/functions/bom-calculator/index.ts` unless you're changing engine framework behaviour (pipeline order, math.js safety, placeholder resolution, etc.).
-- **Adding a new product = one new JSON file.** New fence → create `<system>.json` with `product_type: "fence"`. New gate → create `<gate>.json` with `product_type: "gate"` and a `compatible_with_system_types: [...]` array listing which fence system_types it pairs with. Gates do **not** live inside fence files — a shared gate can pair with multiple fences. Authoring contract: `docs/seed-data-mapping-spec.md`. Use the `seed-mapper` skill when doing this in Claude Code.
+- **Adding a new product = one new JSON file.** New fence → create `<system>.json` with `product_type: "fence"`. New gate → create `<gate>.json` with `product_type: "gate"` and a `compatible_with_system_types: [...]` array listing which fence system_types it pairs with. Gates do **not** live inside fence files — a shared gate can pair with multiple fences. Authoring contract: [docs/seed-data-mapping-spec.md](docs/seed-data-mapping-spec.md). Use the `seed-mapper` skill when doing this in Claude Code.
 - **Products table is flat** (post migration 022). No parent/variant hierarchy — every product has `parent_id = NULL`. The `product_type` column distinguishes fences from gates from other catalog items. Older code that filtered `WHERE parent_id IS NULL` has been updated; don't reintroduce that pattern.
 - **Admin trace access in v3** requires `profiles.role = 'admin'`. The seeded `admin@glass-outlet.com` / `123456` user has it. New admins: `UPDATE profiles SET role = 'admin' WHERE email = ...`.
 - **Legacy routes are gone.** `/new` (v1 `MainApp`) and its edge function `calculate-bom` have been deleted. The only calculator route is `/fence-calculator` (`CalculatorV3Page` + `bom-calculator`).
-- **Canonical payload** is the single JSON shape shared by v3 canvas, form, engine, and `quote_runs`/`quote_run_segments`. `runId` and `segmentId` are stable across round-trips. Do not regenerate them in adapter code — that breaks load/save. See `docs/canonical-payload.md`.
+- **Canonical payload** is the single JSON shape shared by v3 canvas, form, engine, and `quote_runs`/`quote_run_segments`. `runId` and `segmentId` are stable across round-trips. Do not regenerate them in adapter code — that breaks load/save. See [docs/canonical-payload.md](docs/canonical-payload.md).
 
 ---
 

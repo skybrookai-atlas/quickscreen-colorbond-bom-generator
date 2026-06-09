@@ -16,6 +16,7 @@ import { RightPaneTabs, type RightPaneView } from "../components/calculator-v3/R
 import { ExtraItemsPanel } from "../components/calculator-v3/ExtraItemsPanel";
 import { SuggestedAccessoriesPanel } from "../components/calculator-v3/SuggestedAccessoriesPanel";
 import { BOMResultTabs } from "../components/shared/BOMResultTabs";
+import { BOMReviewerPanel } from "../components/calculator-v3/BOMReviewerPanel";
 import { MobileBomTotals } from "../components/shared/MobileBomTotals";
 import { PwaStatusBanners } from "../components/pwa/PwaStatusBanners";
 import { BomV3PDFTemplate } from "../components/quote/BomV3PDFTemplate";
@@ -2485,6 +2486,19 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
                       </p>
                     </div>
                   )}
+                </section>
+                <section
+                  data-testid="ai-reviewer-section"
+                  className={`rounded-2xl border border-brand-border/60 bg-brand-card p-3 sm:p-5 ${
+                    mobileLayout
+                      ? (mobileTab === "bom" && rightPaneView === "ai_review" && !mapExpanded ? "block" : "hidden")
+                      : (rightPaneView === "ai_review" && !mapExpanded ? "block" : "hidden")
+                  }`}
+                >
+                  <BOMReviewerPanel
+                    payload={payload}
+                    bomItems={bomResultForTabs ? bomResultForTabs.allItems : []}
+                  />
                 </section>
               </div>
             </main>
