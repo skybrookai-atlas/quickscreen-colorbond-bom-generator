@@ -16,6 +16,7 @@ import { GatePositionModal } from "../components/calculator/GatePositionModal";
 import { MapCapture } from "../components/calculator/MapCapture";
 import { FenceTypeSidebar } from "../components/calculator/FenceTypeSidebar";
 import { TimberPalingVariationSidebar } from "../components/calculator/TimberPalingVariationSidebar";
+import { RetainingWallVariationSidebar } from "../components/calculator/RetainingWallVariationSidebar";
 import { PriceBubble } from "../components/calculator/PriceBubble";
 import { useBomCalculator } from "../hooks/useBomCalculator";
 import { useBranding } from "../hooks/useBranding";
@@ -541,6 +542,8 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
   useEffect(() => {
     if (payload?.productCode === "AF_TIMBER_PALING" && selectedFenceType !== "timber-paling") {
       setSelectedFenceType("timber-paling");
+    } else if (payload?.productCode === "AF_RETAINING_WALL" && selectedFenceType !== "retaining-wall") {
+      setSelectedFenceType("retaining-wall");
     }
   }, [payload?.productCode, selectedFenceType]);
 
@@ -597,6 +600,73 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
                       segmentKind: "panel" as const,
                       segmentWidthMm: 12000, // 12m default run
                       targetHeightMm: 1800,
+                    },
+                  ],
+                  corners: [],
+                },
+              ],
+        };
+        dispatch({ type: "SET_PAYLOAD", payload: nextPayload });
+      }
+    } else if (type === "retaining-wall") {
+      setSelectedFenceType("retaining-wall");
+      if (payload) {
+        const defaultVars = {
+          product_line: "superpost",
+          max_panel_width_mm: 2400,
+          target_height_mm: 600,
+          sleeper_height_mm: 200,
+          colour: "Grey",
+          include_plinth: true,
+          include_brackets: true,
+          corner_count: 0,
+        };
+
+        const hasRuns = payload.runs.some((r) => r.segments.length > 0);
+        const nextPayload = {
+          ...payload,
+          productCode: "AF_RETAINING_WALL",
+          variables: {
+            ...payload.variables,
+            ...defaultVars,
+          },
+          runs: hasRuns
+            ? payload.runs.map((r) => ({
+                ...r,
+                productCode: "AF_RETAINING_WALL",
+                variables: {
+                  ...r.variables,
+                  max_panel_width_mm: 2400,
+                  target_height_mm: 600,
+                  sleeper_height_mm: 200,
+                  colour: "Grey",
+                  include_plinth: true,
+                  include_brackets: true,
+                  corner_count: 0,
+                },
+              }))
+            : [
+                {
+                  runId: crypto.randomUUID(),
+                  productCode: "AF_RETAINING_WALL",
+                  variables: {
+                    max_panel_width_mm: 2400,
+                    target_height_mm: 600,
+                    sleeper_height_mm: 200,
+                    colour: "Grey",
+                    include_plinth: true,
+                    include_brackets: true,
+                    corner_count: 0,
+                  },
+                  leftBoundary: { type: "product_post" as const },
+                  rightBoundary: { type: "product_post" as const },
+                  segments: [
+                    {
+                      segmentId: crypto.randomUUID(),
+                      sortOrder: 1,
+                      segmentKind: "panel" as const,
+                      segmentWidthMm: 12000,
+                      targetHeightMm: 600,
                     },
                   ],
                   corners: [],
@@ -782,7 +852,7 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
     address: string;
     snapshot: any;
   }) => {
-    const productCode = "QSHS";
+    const productCode = instanceProduct?.system_type || "QSHS";
     const initialPayload = createEmptyPayload(productCode);
     initialPayload.propertyAnchor = {
       lat: anchor.lat,
@@ -797,10 +867,10 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
     dispatch({ type: "SET_ENTRY_METHOD", entryMethod: "draw" });
     setIntroDismissed(true);
     setRightPaneView("map");
-  }, [dispatch, jobName]);
+  }, [dispatch, jobName, instanceProduct?.system_type]);
 
   const handleSkipMapCapture = useCallback(() => {
-    const productCode = "QSHS";
+    const productCode = instanceProduct?.system_type || "QSHS";
     const initialPayload = createEmptyPayload(productCode);
     initialPayload.propertyAnchor = undefined;
     initialPayload.snapshot = undefined;
@@ -808,7 +878,7 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
     dispatch({ type: "SET_ENTRY_METHOD", entryMethod: "draw" });
     setIntroDismissed(true);
     setRightPaneView("map");
-  }, [dispatch]);
+  }, [dispatch, instanceProduct?.system_type]);
 
   // function handleApplyDescription(result: ParseResult) {
   //   const parsedSystem = result.attributes.systemType?.value;
@@ -1996,9 +2066,16 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
                 lastBom={lastBom}
                 onChangeFenceType={() => setSelectedFenceType(null)}
               />
+            ) : selectedFenceType === "retaining-wall" ? (
+              <RetainingWallVariationSidebar
+                payload={payload!}
+                dispatch={dispatch}
+                lastBom={lastBom}
+                onChangeFenceType={() => setSelectedFenceType(null)}
+              />
             ) : (
               <FenceTypeSidebar
-                activeType="timber-paling"
+                activeType={selectedFenceType ?? undefined}
                 onSelectType={handleSelectFenceType}
               />
             )}
@@ -2013,7 +2090,7 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
                     mapSnapshot={payload.snapshot ?? null}
                     onMapSnapshotChange={handleMapSnapshotChange}
                   />
-                  {selectedFenceType === "timber-paling" && (
+                  {(selectedFenceType === "timber-paling" || selectedFenceType === "retaining-wall") && (
                     <PriceBubble
                       payload={payload}
                       bomResult={lastBom}

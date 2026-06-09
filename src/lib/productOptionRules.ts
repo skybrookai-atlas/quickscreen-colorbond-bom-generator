@@ -116,6 +116,29 @@ export function postColourOptionsForSystem(variables: Variables) {
 }
 
 export function initialVariablesForSystem(productCode: string): Variables {
+  if (productCode === "AF_RETAINING_WALL") {
+    return {
+      product_line: "superpost",
+      max_panel_width_mm: 2400,
+      target_height_mm: 600,
+      sleeper_height_mm: 200,
+      colour: "Grey",
+      include_plinth: true,
+      include_brackets: true,
+      corner_count: 0,
+    };
+  }
+  if (productCode === "AF_TIMBER_PALING") {
+    return {
+      timber_type: "treated_pine",
+      paling_style: "butted",
+      max_panel_width_mm: 2400,
+      paling_gap_mm: 0,
+      rail_profile: "75x38",
+      rail_count: 3,
+      target_height_mm: 1800,
+    };
+  }
   const maxPanelWidth = maxPanelWidthForSystem(productCode);
   return normaliseVariablesForSystem(productCode, {
     finish_family: "standard",
@@ -136,7 +159,7 @@ export function normaliseVariablesForSystem(
   productCode: string,
   variables: Variables,
 ): Variables {
-  if (productCode === "DF_CCA_PAL" || productCode === "AF_TIMBER_PALING") {
+  if (productCode === "DF_CCA_PAL" || productCode === "AF_TIMBER_PALING" || productCode === "AF_RETAINING_WALL") {
     return variables;
   }
   const finishOptions = finishOptionsForSystem(productCode);
@@ -266,7 +289,7 @@ export function applyProductOptionRules(
   fields: SchemaField[],
   variables: Variables,
 ): SchemaField[] {
-  if (productCode === "DF_CCA_PAL" || productCode === "AF_TIMBER_PALING") {
+  if (productCode === "DF_CCA_PAL" || productCode === "AF_TIMBER_PALING" || productCode === "AF_RETAINING_WALL") {
     return fields.sort((a, b) => a.sort_order - b.sort_order);
   }
   const byKey = new Map(fields.map((field) => [field.field_key, field]));

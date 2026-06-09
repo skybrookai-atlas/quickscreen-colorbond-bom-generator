@@ -22,6 +22,21 @@ export function FenceTypeSidebar({ activeType = "timber-paling", onSelectType }:
         </svg>
       ),
     },
+    {
+      id: "retaining-wall",
+      title: "Retaining Wall",
+      subtitle: "SuperPost · TUFFPOLY",
+      thumbnail: (
+        <svg viewBox="0 0 40 40" className="w-full h-full">
+          <rect x="2" y="32" width="36" height="6" fill="#8C7D70" />
+          <rect x="2" y="25" width="36" height="6" fill="#A39382" />
+          <rect x="2" y="18" width="36" height="6" fill="#8C7D70" />
+          <rect x="2" y="11" width="36" height="6" fill="#A39382" />
+          <rect x="8" y="8" width="4" height="30" fill="#5A524A" />
+          <rect x="28" y="8" width="4" height="30" fill="#5A524A" />
+        </svg>
+      ),
+    },
   ];
 
   const comingSoonTypes = [

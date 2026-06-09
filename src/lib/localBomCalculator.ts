@@ -58,7 +58,7 @@ type ScopeInfo = Omit<BOMSource, "qty"> & {
   productCode?: string;
 };
 
-const SUPPORTED_PRODUCTS = new Set(["QSHS", "BAYG", "VS", "XPL"]);
+const SUPPORTED_PRODUCTS = new Set(["QSHS", "BAYG", "VS", "XPL", "AF_RETAINING_WALL"]);
 const STANDARD_COLOURS = new Set(["B", "MN", "G", "SM", "W", "BS", "D", "M", "P", "PB", "S"]);
 const ALUMAWOOD_CORE_COLOURS = new Set(["KWI", "WRC"]);
 const CSR_CAP_COLOURS = new Set(["B", "G", "MN", "S", "SM", "W"]);
@@ -1332,6 +1332,133 @@ function calculateVerticalSlatRun(
   return lines;
 }
 
+function calculateRetainingWallRun(
+  payload: CanonicalPayload,
+  run: CanonicalRun,
+  warnings: string[],
+  computed: LocalBomResult["computed"],
+): QtyLine[] {
+  const lines: QtyLine[] = [];
+  const firstFenceSegment = run.segments.find((s) => s.segmentKind !== "gate_opening");
+  const mergedRunVars = {
+    ...payload.variables,
+    ...(run.variables ?? {}),
+    ...(firstFenceSegment?.variables ?? {}),
+  };
+
+  const productLine = String(mergedRunVars.product_line ?? "superpost").toLowerCase();
+  const maxPanelWidthMm = toNumber(mergedRunVars.max_panel_width_mm, 2400);
+  const sleeperHeightMm = toNumber(mergedRunVars.sleeper_height_mm, 200);
+  const rawColour = String(mergedRunVars.colour ?? "Grey");
+  const colour = productLine === "superpost" ? "Grey" : (rawColour === "Grey" ? "Charcoal" : rawColour);
+
+  const includePlinth = mergedRunVars.include_plinth !== false;
+  const includeBrackets = mergedRunVars.include_brackets !== false;
+  const cornerCount = toNumber(mergedRunVars.corner_count, 0);
+
+  const segment = firstFenceSegment;
+  if (!segment) return lines;
+
+  const segmentWidthMm = toNumber(segment.segmentWidthMm, 0);
+  const targetHeightMm = toNumber(segment.targetHeightMm ?? mergedRunVars.target_height_mm, 600);
+  if (segmentWidthMm <= 0) return lines;
+
+  const numPanels = Math.max(1, Math.ceil(segmentWidthMm / maxPanelWidthMm));
+  const numPosts = numPanels + 1;
+
+  const postInGroundMm = Math.max(targetHeightMm * 0.5, 600);
+  const postTotalLengthMm = targetHeightMm + postInGroundMm;
+
+  let postStockLengthMm = 2400;
+  if (productLine === "tuffpoly") {
+    if (postTotalLengthMm <= 1200) postStockLengthMm = 1200;
+    else if (postTotalLengthMm <= 1600) postStockLengthMm = 1600;
+    else if (postTotalLengthMm <= 2000) postStockLengthMm = 2000;
+    else postStockLengthMm = 2400;
+  }
+
+  const hPostCount = 2 + cornerCount;
+  const cPostCount = Math.max(0, numPosts - hPostCount);
+  const postCaps = numPosts;
+  const concreteBags = numPosts * 2;
+
+  const sleepersPerBay = Math.ceil(targetHeightMm / sleeperHeightMm);
+  const totalSleepers = numPanels * sleepersPerBay;
+  const sleepersWithWastage = Math.ceil(totalSleepers * 1.05);
+
+  const plinthPieces = includePlinth ? numPanels : 0;
+  const bracketPairs = includeBrackets ? hPostCount : 0;
+  const bracketQty = bracketPairs * 2;
+
+  if (targetHeightMm > 1000 && maxPanelWidthMm > 2100) {
+    warnings.push("Recommended maximum post spacing narrows above 1m wall height.");
+  }
+  if (targetHeightMm > 1800) {
+    warnings.push("Retaining wall height cannot exceed 1800mm.");
+  }
+
+  const runId = run.runId;
+  const segmentId = segment.segmentId;
+
+  computed[runId] = computed[runId] ?? {};
+  computed[runId][segmentId] = {
+    actual_height_mm: targetHeightMm,
+    num_panels: numPanels,
+    num_posts: numPosts,
+    c_post_count: cPostCount,
+    h_post_count: hPostCount,
+  };
+
+  if (productLine === "superpost") {
+    if (cPostCount > 0) {
+      lines.push({ sku: "21T000", category: "post", quantity: cPostCount, runId, segmentId });
+    }
+    if (hPostCount > 0) {
+      lines.push({ sku: "21T001", category: "post", quantity: hPostCount, runId, segmentId });
+    }
+    const sleeperSku = maxPanelWidthMm <= 2000 ? "21T007" : "21T008";
+    lines.push({ sku: sleeperSku, category: "sleeper", quantity: sleepersWithWastage, runId, segmentId });
+
+    if (plinthPieces > 0) {
+      const plinthSku = maxPanelWidthMm <= 2400 ? "21T005" : "21T006";
+      lines.push({ sku: plinthSku, category: "sleeper", quantity: plinthPieces, runId, segmentId });
+    }
+    if (bracketQty > 0) {
+      lines.push({ sku: "21T002", category: "bracket", quantity: bracketQty, runId, segmentId });
+    }
+    const capSku = maxPanelWidthMm <= 2000 ? "21T009" : "21T010";
+    lines.push({ sku: capSku, category: "cap", quantity: postCaps, runId, segmentId });
+  } else {
+    const suffix = colour === "Drift" ? "DR" : "CH";
+    const postLenShort = postStockLengthMm === 2400 ? "24" : String(postStockLengthMm).substring(0, 2);
+    const cPostSku = `TP100CP${suffix}${postLenShort}`;
+    if (cPostCount > 0) {
+      lines.push({ sku: cPostSku, category: "post", quantity: cPostCount, runId, segmentId });
+    }
+    const hPostLenShort = postStockLengthMm === 2400 ? "224" : String(postStockLengthMm).substring(0, 2);
+    const hPostSku = `TP100HPCH${hPostLenShort}`;
+    if (hPostCount > 0) {
+      lines.push({ sku: hPostSku, category: "post", quantity: hPostCount, runId, segmentId });
+    }
+    const spacingCode = maxPanelWidthMm <= 1600 ? "16" : (maxPanelWidthMm <= 2000 ? "20" : "24");
+    const sleeperSku = `TP200SL${suffix}${spacingCode}`;
+    lines.push({ sku: sleeperSku, category: "sleeper", quantity: sleepersWithWastage, runId, segmentId });
+
+    if (plinthPieces > 0) {
+      lines.push({ sku: sleeperSku, category: "sleeper", quantity: plinthPieces, runId, segmentId, notes: "Plinth board" });
+    }
+    if (bracketQty > 0) {
+      lines.push({ sku: "TPFBGAL3", category: "bracket", quantity: bracketQty, runId, segmentId });
+    }
+  }
+
+  if (concreteBags > 0) {
+    lines.push({ sku: "AF-CON-RAPID-30", category: "fixing", quantity: concreteBags, runId, segmentId });
+  }
+
+  return lines;
+}
+
 function calculateScreenRun(
   payload: CanonicalPayload,
   run: CanonicalRun,
@@ -1357,6 +1484,10 @@ function calculateScreenRun(
 
   if (run.productCode === "VS") {
     return calculateVerticalSlatRun(payload, run, warnings, computed);
+  }
+
+  if (run.productCode === "AF_RETAINING_WALL") {
+    return calculateRetainingWallRun(payload, run, warnings, computed);
   }
 
   if (!SUPPORTED_PRODUCTS.has(run.productCode)) {
