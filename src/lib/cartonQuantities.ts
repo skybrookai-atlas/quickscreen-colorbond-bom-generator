@@ -33,7 +33,7 @@ export function cartonHintForLine(item: BOMLineItem) {
 
   const cartonUnitPrice = priceForSku(item.sku, nextCartonQty);
   const saving =
-    cartonUnitPrice > 0 && item.unitPrice > cartonUnitPrice
+    cartonUnitPrice > 0 && item.unitPrice !== null && item.unitPrice > cartonUnitPrice
       ? Math.round((item.unitPrice - cartonUnitPrice) * nextCartonQty)
       : 0;
 

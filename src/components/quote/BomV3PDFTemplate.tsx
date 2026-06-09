@@ -178,10 +178,10 @@ export function BomV3PDFTemplate({
                 <Text style={s.colUnit}>{item.unit}</Text>
                 <Text style={s.colQty}>{item.quantity}</Text>
                 <Text style={s.colPrice}>
-                  {item.unitPrice > 0 ? `$${item.unitPrice.toFixed(2)}` : "—"}
+                  {item.unitPrice !== null && item.unitPrice > 0 ? `$${item.unitPrice.toFixed(2)}` : item.unitPrice === null ? "TBC" : "—"}
                 </Text>
                 <Text style={s.colTotal}>
-                  {item.lineTotal > 0 ? `$${item.lineTotal.toFixed(2)}` : "—"}
+                  {item.lineTotal !== null && item.lineTotal > 0 ? `$${item.lineTotal.toFixed(2)}` : item.lineTotal === null ? "TBC" : "—"}
                 </Text>
               </View>
             ))}

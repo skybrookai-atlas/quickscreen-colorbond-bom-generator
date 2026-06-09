@@ -150,4 +150,54 @@ describe("SupplierForm", () => {
 
     act(() => root.unmount());
   });
+
+  it("renders promote/demote buttons for admin and updates values", async () => {
+    const { container, root } = renderForm({
+      initialData: {
+        trustTier: "community",
+      },
+      onSubmit: async () => {},
+    });
+
+    // Wait a brief tick for render
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    });
+
+    const select = container.querySelector<HTMLSelectElement>('[data-testid="supplier-trust-tier"]');
+    expect(select!.value).toBe("community");
+
+    const promoteBtn = container.querySelector<HTMLButtonElement>('[data-testid="promote-supplier-btn"]');
+    expect(promoteBtn).not.toBeNull();
+    expect(promoteBtn!.textContent).toBe("Promote to Verified");
+
+    await act(async () => {
+      promoteBtn!.click();
+    });
+
+    // Wait for state updates
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    });
+
+    expect(select!.value).toBe("verified");
+    
+    // Now that it's verified, demote button should be visible
+    const demoteBtn = container.querySelector<HTMLButtonElement>('[data-testid="demote-supplier-btn"]');
+    expect(demoteBtn).not.toBeNull();
+    expect(demoteBtn!.textContent).toBe("Demote to Community");
+
+    await act(async () => {
+      demoteBtn!.click();
+    });
+
+    // Wait for state updates
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    });
+
+    expect(select!.value).toBe("community");
+
+    act(() => root.unmount());
+  });
 });

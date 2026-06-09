@@ -224,11 +224,17 @@ export function SegmentRow({
   const compactLabel =
     displayLabel?.replace(/\s+/g, "") ??
     `R${runIdx + 1}${gate ? "G" : "S"}${segIdx + 1}`;
-  const titleLabel = gate
-    ? `Gate ${segIdx + 1} — ${Math.round(segmentLength)}mm`
-    : isBayg
-      ? `Panel ${segIdx + 1} — ${Math.round(segmentLength)}mm`
-      : `Section ${segIdx + 1}`;
+  const titleLabel = (() => {
+    if (gate) return `Gate ${segIdx + 1} — ${Math.round(segmentLength)}mm`;
+    if (runProductCode === "AF_TIMBER_PALING") return `Timber Section ${segIdx + 1}`;
+    if (runProductCode === "AF_COLORBOND") return `Colorbond Panel ${segIdx + 1}`;
+    if (runProductCode === "AF_PERMASTEEL") return `Permasteel Panel ${segIdx + 1}`;
+    if (runProductCode === "AF_RETAINING_WALL") return `Wall Section ${segIdx + 1}`;
+    if (runProductCode === "AF_CHAINWIRE_SECURITY") return `Chainwire Section ${segIdx + 1}`;
+    if (runProductCode === "AF_TIMBER_SLAT_SCREEN") return `Slat Section ${segIdx + 1}`;
+    if (isBayg) return `Panel ${segIdx + 1} — ${Math.round(segmentLength)}mm`;
+    return `Section ${segIdx + 1}`;
+  })();
   const matchesMaster = (() => {
     if (!run) return true;
     if (gate) {
@@ -607,9 +613,29 @@ export function SegmentRow({
 
 
 
+  const sectionOrPanelText = (() => {
+    if (gate) return "gate";
+    if (runProductCode === "AF_COLORBOND") return "panel";
+    if (runProductCode === "AF_PERMASTEEL") return "panel";
+    if (isBayg) return "panel";
+    return "section";
+  })();
+
+  const settingsButtonLabel = (() => {
+    if (gate) return "Gate Settings";
+    if (runProductCode === "AF_TIMBER_PALING") return "Timber Section Settings";
+    if (runProductCode === "AF_COLORBOND") return "Colorbond Panel Settings";
+    if (runProductCode === "AF_PERMASTEEL") return "Permasteel Panel Settings";
+    if (runProductCode === "AF_RETAINING_WALL") return "Wall Section Settings";
+    if (runProductCode === "AF_CHAINWIRE_SECURITY") return "Chainwire Section Settings";
+    if (runProductCode === "AF_TIMBER_SLAT_SCREEN") return "Slat Section Settings";
+    if (isBayg) return "Panel Settings";
+    return "Section Settings";
+  })();
+
   return (
     <div className={`transition-all ${!matchesMaster ? "ml-4 pl-0" : ""}`}>
-      <div className={`relative cursor-pointer overflow-hidden rounded-xl border bg-white p-3 text-sm font-semibold shadow-sm transition-all ${
+      <div className={`relative cursor-pointer overflow-hidden rounded-xl border bg-white p-2.5 text-sm font-semibold shadow-sm transition-all ${
         !matchesMaster ? "border-[#E9E5DD] border-l-4 border-l-[#DD6E1B]" : "border-[#E9E5DD]"
       }`}
         onDoubleClick={(event) => {
@@ -619,7 +645,7 @@ export function SegmentRow({
         }}
         title="Double-click to edit options"
       >
-        <div className="p-1">
+        <div className="p-0">
 
           <div className="min-w-0 space-y-3 w-full">
             <div className="grid grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] items-center gap-2">
@@ -690,10 +716,10 @@ export function SegmentRow({
                     ? "border-[#DD6E1B] bg-[#FCF1E6] text-[#DD6E1B] shadow-sm font-bold"
                     : "border-[#E9E5DD] text-[#6E7681] hover:border-[#DD6E1B]/50 hover:text-[#DD6E1B]"
                     }`}
-                  aria-label={open ? `Collapse ${gate ? "gate" : "section"} settings` : `Open ${gate ? "gate" : "section"} settings`}
-                  title={open ? `Collapse ${gate ? "gate" : "section"} settings` : `${gate ? "Gate" : "Section"} settings`}
+                  aria-label={open ? `Collapse ${gate ? "gate" : sectionOrPanelText} settings` : `Open ${gate ? "gate" : sectionOrPanelText} settings`}
+                  title={open ? `Collapse ${gate ? "gate" : sectionOrPanelText} settings` : `${gate ? "Gate" : sectionOrPanelText.charAt(0).toUpperCase() + sectionOrPanelText.slice(1)} settings`}
                 >
-                  <span>{gate ? "Gate Settings" : "Section Settings"}</span>
+                  <span>{settingsButtonLabel}</span>
                   {open ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 </button>
               </div>
@@ -708,8 +734,8 @@ export function SegmentRow({
                   }
                   confirmLabel={<X size={14} strokeWidth={2.5} />}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-full text-red-500 transition-colors hover:bg-red-50"
-                  aria-label={gate ? "Remove gate" : "Remove section"}
-                  title={gate ? "Remove gate" : "Remove section"}
+                  aria-label={gate ? "Remove gate" : `Remove ${sectionOrPanelText}`}
+                  title={gate ? "Remove gate" : `Remove ${sectionOrPanelText}`}
                 >
                   <X size={14} strokeWidth={2.5} />
                 </ConfirmButton>
@@ -794,7 +820,7 @@ export function SegmentRow({
                     >
                       {heightEntries.map((entry) => (
                         <option key={entry.N} value={entry.height}>
-                          {entry.height}mm - {entry.N} slats
+                          {productCode.startsWith("AF_") ? `${entry.height}mm` : `${entry.height}mm - ${entry.N} slats`}
                         </option>
                       ))}
                     </select>

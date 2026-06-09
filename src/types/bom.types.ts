@@ -50,8 +50,8 @@ export interface BOMLineItem {
   totalQty?: number;
   sources?: BOMSource[];
   unit: BOMUnit;
-  unitPrice: number;    // ex-GST
-  lineTotal: number;    // quantity × unitPrice
+  unitPrice: number | null;    // ex-GST
+  lineTotal: number | null;    // quantity × unitPrice
   notes?: string;
   runId?: string;
   segmentId?: string;

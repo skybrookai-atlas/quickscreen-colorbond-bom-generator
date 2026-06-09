@@ -420,3 +420,17 @@ git push origin my-feature-branch
 - **Port 5173 in use** — kill the existing `npm run dev` process and restart
 - **`npm run setup` errors on seed step** — ensure `supabase start` completed successfully first; check `supabase status`
 - **Login not working** — run `npm run db:reset` to re-seed the test user
+
+---
+
+## 15. Graphify Knowledge Graph
+
+This project utilizes **Graphify** to maintain interactive, navigable knowledge graphs of the architecture and code dependencies.
+
+* **Frontend Graph (`src/` folder)**: Located at [graphify-out-src/](file:///c:/Users/Liam/Documents/GitHub/quickscreen-colorbond-bom-generator/graphify-out-src/)
+* **Backend Graph (`supabase/` folder)**: Located at [graphify-out-supabase/](file:///c:/Users/Liam/Documents/GitHub/quickscreen-colorbond-bom-generator/graphify-out-supabase/)
+
+### Guidelines for AI Agents:
+- **Query the Graph**: When asked about codebase architecture, file relationships, or cross-module call flows, use the `/graphify query "<question>"` command on the appropriate graph to perform a BFS/DFS traversal first.
+- **Maintain Auto-updates**: Git hooks are installed to automatically update these graphs after commits. If significant non-code documents (like Markdown files) are changed, run `/graphify --update` to refresh the index.
+

@@ -17,6 +17,7 @@ function expandSectionSystemOverrides(payload: CanonicalPayload): CanonicalPaylo
         ...segment,
         kind: segment.kind ?? (segment.segmentKind === 'gate_opening' ? 'gate' : 'fence'),
         segmentKind: segment.segmentKind ?? (segment.kind === 'gate' ? 'gate_opening' : 'panel'),
+        productCode: segment.productCode ?? (segment.segmentKind === 'gate_opening' ? 'QS_GATE' : run.productCode),
       };
 
       if (segWithKind.segmentKind === 'gate_opening') {
@@ -43,7 +44,7 @@ function expandSectionSystemOverrides(payload: CanonicalPayload): CanonicalPaylo
         ...run,
         runId: `${run.runId}-${productCode.toLowerCase()}`,
         productCode,
-        segments,
+        segments: segments.map((s) => ({ ...s, productCode })),
         corners: [],
       });
     }
@@ -78,7 +79,11 @@ export function useBomCalculator() {
       }
 
       const { data, error } = await supabase.functions.invoke('bom-calculator', {
-        body: { payload: calculatorPayload, pricingTier: tier, supplierSlug },
+        body: { 
+          payload: calculatorPayload, 
+          pricingTier: tier, 
+          supplierSlug: supplierSlug || (calculatorPayload.variables?.supplier_slug as string | undefined) || 'amazing-fencing'
+        },
         headers: invokeHeaders,
       });
       if (error) return calculateLocalBom(calculatorPayload, tier);

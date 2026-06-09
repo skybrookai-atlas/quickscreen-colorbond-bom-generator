@@ -20,6 +20,8 @@ const SYSTEM_MAX_PANEL_WIDTH: Record<string, number> = {
   VS: 2600,
   XPL: 2600,
   BAYG: 3000,
+  AF_TIMBER_PALING: 2400,
+  AF_COLORBOND: 2365,
 };
 
 export function maxPanelWidthForSystem(productCode: string | null | undefined) {
@@ -86,6 +88,12 @@ export function heightOptionsForSystem(productCode: string, variables: Variables
 }
 
 export function heightEntriesForSystem(productCode: string, variables: Variables): DerivedHeight[] {
+  if (productCode === "AF_TIMBER_PALING") {
+    return [1200, 1500, 1800, 2100, 2400].map(h => ({ N: h, height: h }));
+  }
+  if (productCode === "AF_COLORBOND") {
+    return [1500, 1800, 2100, 2400].map(h => ({ N: h, height: h }));
+  }
   if (productCode === "VS") return [];
   const slatSize = Number(variables.slat_size_mm ?? 65);
   const slatGap = Number(variables.slat_gap_mm ?? DEFAULT_SLAT_GAP_MM);
@@ -135,8 +143,19 @@ export function initialVariablesForSystem(productCode: string): Variables {
       max_panel_width_mm: 2400,
       paling_gap_mm: 0,
       rail_profile: "75x38",
-      rail_count: 3,
+      rail_count: 0,
       target_height_mm: 1800,
+      post_size: "100x75",
+      post_mounting: "in_ground",
+      paling_width_mm: 100,
+    };
+  }
+  if (productCode === "AF_COLORBOND") {
+    return {
+      colour: "Monument",
+      max_panel_width_mm: 2365,
+      target_height_mm: 1800,
+      mounting_type: "concreted-in-ground",
     };
   }
   const maxPanelWidth = maxPanelWidthForSystem(productCode);
@@ -159,7 +178,44 @@ export function normaliseVariablesForSystem(
   productCode: string,
   variables: Variables,
 ): Variables {
-  if (productCode === "DF_CCA_PAL" || productCode === "AF_TIMBER_PALING" || productCode === "AF_RETAINING_WALL") {
+  if (productCode === "AF_RETAINING_WALL") {
+    return {
+      product_line: "superpost",
+      max_panel_width_mm: 2400,
+      target_height_mm: 600,
+      sleeper_height_mm: 200,
+      colour: "Grey",
+      include_plinth: true,
+      include_brackets: true,
+      corner_count: 0,
+      ...variables,
+    };
+  }
+  if (productCode === "AF_TIMBER_PALING") {
+    return {
+      timber_type: "treated_pine",
+      paling_style: "butted",
+      max_panel_width_mm: 2400,
+      paling_gap_mm: 0,
+      rail_profile: "75x38",
+      rail_count: 0,
+      target_height_mm: 1800,
+      post_size: "100x75",
+      post_mounting: "in_ground",
+      paling_width_mm: 100,
+      ...variables,
+    };
+  }
+  if (productCode === "AF_COLORBOND") {
+    return {
+      colour: "Monument",
+      max_panel_width_mm: 2365,
+      target_height_mm: 1800,
+      mounting_type: "concreted-in-ground",
+      ...variables,
+    };
+  }
+  if (productCode === "DF_CCA_PAL") {
     return variables;
   }
   const finishOptions = finishOptionsForSystem(productCode);
@@ -289,7 +345,12 @@ export function applyProductOptionRules(
   fields: SchemaField[],
   variables: Variables,
 ): SchemaField[] {
-  if (productCode === "DF_CCA_PAL" || productCode === "AF_TIMBER_PALING" || productCode === "AF_RETAINING_WALL") {
+  if (
+    productCode === "DF_CCA_PAL" ||
+    productCode === "AF_TIMBER_PALING" ||
+    productCode === "AF_COLORBOND" ||
+    productCode === "AF_RETAINING_WALL"
+  ) {
     return fields.sort((a, b) => a.sort_order - b.sort_order);
   }
   const byKey = new Map(fields.map((field) => [field.field_key, field]));

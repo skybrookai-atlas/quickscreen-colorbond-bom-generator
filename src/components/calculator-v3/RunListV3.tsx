@@ -1,9 +1,10 @@
+import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { supabase, isSupabaseConfigured } from "../../lib/supabase";
 import { getSupplierBySlug } from "../../lib/multiSupplier/queries";
 import { useCalculator } from "../../context/CalculatorContext";
-import type { CanonicalPayload, CanonicalRun } from "../../types/canonical.types";
+import type { CanonicalPayload, CanonicalRun, CanonicalVariables } from "../../types/canonical.types";
 import { initialVariablesForSystem } from "../../lib/productOptionRules";
 import { localFenceProducts } from "../../lib/localSeedData";
 import type { ParseResult } from "../../lib/describeFenceParser";
@@ -78,16 +79,25 @@ function getSystemIcon(systemType: string) {
         </svg>
       );
     case "DF_CCA_PAL":
+    case "AF_TIMBER_PALING":
       return (
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M4 22V5l2-2 2 2v17M10 22V5l2-2 2 2v17M16 22V5l2-2 2 2v17" />
         </svg>
       );
+    case "AF_COLORBOND":
     case "Colorbond":
       return (
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="3" y="3" width="18" height="18" rx="2" />
           <path d="M6 3v18M10 3v18M14 3v18M18 3v18" />
+        </svg>
+      );
+    case "AF_RETAINING_WALL":
+      return (
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="3" y="14" width="18" height="7" rx="1" />
+          <rect x="3" y="7" width="18" height="7" rx="1" />
         </svg>
       );
     case "Pool glass":
@@ -122,6 +132,9 @@ function getSystemStartingPrice(systemType: string) {
     case "XPL": return "from $280/m";
     case "BAYG": return "from $160/m";
     case "DF_CCA_PAL": return "from $90/m";
+    case "AF_TIMBER_PALING": return "from $90/m";
+    case "AF_COLORBOND": return "from $110/m";
+    case "AF_RETAINING_WALL": return "from $140/m";
     default: return "";
   }
 }
@@ -138,7 +151,8 @@ export function RunListV3({
   initialDescription?: string;
 }) {
   const { state, dispatch } = useCalculator();
-  const { supplierSlug } = useParams<{ supplierSlug?: string }>();
+  const { supplierSlug: urlSupplierSlug } = useParams<{ supplierSlug?: string }>();
+  const supplierSlug = urlSupplierSlug || "amazing-fencing";
   const payload = state.payload;
   const hasRuns = Boolean(payload?.runs.length);
 
@@ -156,7 +170,7 @@ export function RunListV3({
       if (!isSupabaseConfigured) return [];
       let q = supabase
         .from("products")
-        .select("id, name, system_type, description")
+        .select("id, name, system_type, description, system_instance_id, supplier_id, suppliers(slug)")
         .eq("product_type", "fence")
         .eq("active", true);
 
@@ -173,19 +187,61 @@ export function RunListV3({
     enabled: true,
   });
 
-  const productsToRender = dbProducts.length > 0 
-    ? dbProducts.map(p => ({
-        system_type: p.system_type,
-        name: p.name,
-        description: p.description
-      }))
-    : localFenceProducts;
+  const productsToRender = useMemo(() => {
+    if (dbProducts.length === 0) return localFenceProducts;
+
+    // Deduplicate by system_type, prioritizing rows with non-null system_instance_id
+    const bySystem = new Map<string, any>();
+    for (const p of dbProducts) {
+      const existing = bySystem.get(p.system_type);
+      if (!existing || (p.system_instance_id !== null && existing.system_instance_id === null)) {
+        bySystem.set(p.system_type, p);
+      }
+    }
+
+    return Array.from(bySystem.values()).map(p => ({
+      system_type: p.system_type,
+      name: p.name,
+      description: p.description,
+      system_instance_id: p.system_instance_id,
+      supplier_id: p.supplier_id,
+      suppliers: p.suppliers
+    }));
+  }, [dbProducts]);
 
   if (!payload) return null;
   const currentPayload = payload;
 
-  function createPayloadForSystem(productCode: string): CanonicalPayload {
-    const variables = initialVariablesForSystem(productCode);
+  function createPayloadForSystem(
+    productCode: string, 
+    systemInstanceId?: string,
+    productSupplierId?: string | null,
+    productSupplierSlug?: string | null
+  ): CanonicalPayload {
+    const baseVars = initialVariablesForSystem(productCode);
+
+    let resolvedSupplierId = productSupplierId;
+    let resolvedSupplierSlug = productSupplierSlug;
+
+    if (!resolvedSupplierId) {
+      if (productCode.startsWith("AF_")) {
+        resolvedSupplierId = "1aecc2bc-4b44-4676-a23a-903fe9286830";
+        resolvedSupplierSlug = "amazing-fencing";
+      } else if (productCode.startsWith("DF_")) {
+        resolvedSupplierId = "52946ce5-5125-44eb-bbce-7f19e424fa89";
+        resolvedSupplierSlug = "discount-fencing";
+      } else {
+        resolvedSupplierId = "7da9cadf-179c-4aa1-96dd-5487d8ce5334";
+        resolvedSupplierSlug = "glass-outlet";
+      }
+    }
+
+    const variables = {
+      ...baseVars,
+      supplier_id: resolvedSupplierId,
+      supplier_slug: resolvedSupplierSlug || "",
+      ...(systemInstanceId ? { system_instance_id: systemInstanceId } : (currentPayload?.variables?.system_instance_id ? { system_instance_id: currentPayload.variables.system_instance_id } : {})),
+    } as CanonicalVariables;
     const runId = crypto.randomUUID();
     return {
       productCode,
@@ -218,8 +274,13 @@ export function RunListV3({
     };
   }
 
-  function startFirstRun(productCode: string) {
-    const nextPayload = createPayloadForSystem(productCode);
+  function startFirstRun(
+    productCode: string, 
+    systemInstanceId?: string,
+    productSupplierId?: string | null,
+    productSupplierSlug?: string | null
+  ) {
+    const nextPayload = createPayloadForSystem(productCode, systemInstanceId, productSupplierId, productSupplierSlug);
     const firstRun = nextPayload.runs[0];
     dispatch({ type: "SET_PAYLOAD", payload: nextPayload });
     window.setTimeout(() => {
@@ -267,7 +328,12 @@ export function RunListV3({
               <button
                 key={product.system_type}
                 type="button"
-                onClick={() => startFirstRun(product.system_type)}
+                onClick={() => startFirstRun(
+                  product.system_type, 
+                  (product as any).system_instance_id,
+                  (product as any).supplier_id,
+                  (product as any).suppliers?.slug
+                )}
                 className="flex items-center justify-between gap-3 p-3 rounded-lg border border-[#E9E5DD] bg-white text-left transition-all hover:border-[#DD6E1B]/50 hover:shadow-sm group"
                 data-testid={`landing-system-${product.system_type}`}
               >
@@ -366,7 +432,19 @@ export function RunListV3({
           onClick={addRun}
           className="min-h-11 w-full rounded-lg border border-[#E9E5DD] bg-white px-4 py-3 text-sm font-semibold text-[#11161D] shadow-sm transition-all hover:border-[#DD6E1B]/50 hover:bg-[#FCF1E6]/10"
         >
-          + Add run
+          {payload.productCode === "AF_TIMBER_PALING"
+            ? "+ Add Timber Run"
+            : payload.productCode === "AF_COLORBOND"
+              ? "+ Add Colorbond Run"
+              : payload.productCode === "AF_RETAINING_WALL"
+                ? "+ Add Wall Run"
+                : payload.productCode === "AF_PERMASTEEL"
+                  ? "+ Add Permasteel Run"
+                  : payload.productCode === "AF_CHAINWIRE_SECURITY"
+                    ? "+ Add Chainwire Run"
+                    : payload.productCode === "AF_TIMBER_SLAT_SCREEN"
+                      ? "+ Add Slat Run"
+                      : "+ Add Run"}
         </button>
       )}
     </div>

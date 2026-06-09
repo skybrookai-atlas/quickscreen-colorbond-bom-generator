@@ -35,101 +35,72 @@ import {
   mathjs,
   normaliseVariables,
   resolvePlaceholders,
-  resolvePrice,
+  resolvePriceCents,
 } from "./lib.ts";
 
-async function loadPricing(
-  orgId: string,
-  tier: PricingTier,
-  skus: string[],
-  canonicalCodes: string[] = [],
-): Promise<Map<string, PricingRule[]>> {
-  if (skus.length === 0 && canonicalCodes.length === 0) return new Map();
-  const supabaseAdmin = createClient(
-    Deno.env.get("SUPABASE_URL")!,
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-  );
-
-  const promises = [];
-  if (skus.length > 0) {
-    promises.push(
-      supabaseAdmin
-        .from("pricing_rules_with_sku")
-        .select("sku, price, rule, priority, canonical_code")
-        .eq("org_id", orgId)
-        .eq("tier_code", tier)
-        .eq("active", true)
-        .in("sku", skus)
-    );
-  }
-  if (canonicalCodes.length > 0) {
-    promises.push(
-      supabaseAdmin
-        .from("pricing_rules_with_sku")
-        .select("sku, price, rule, priority, canonical_code")
-        .eq("org_id", orgId)
-        .eq("tier_code", tier)
-        .eq("active", true)
-        .in("canonical_code", canonicalCodes)
-    );
-  }
-
-  const results = await Promise.all(promises);
-  const data = [];
-  for (const res of results) {
-    if (res.error) throw new Error(`Pricing lookup failed: ${res.error.message}`);
-    data.push(...(res.data ?? []));
-  }
-
-  const map = new Map<string, PricingRule[]>();
-  for (const row of data) {
-    if (row.sku) {
-      const existing = map.get(row.sku) ?? [];
-      existing.push(row as PricingRule);
-      map.set(row.sku, existing);
-    }
-    if (row.canonical_code) {
-      const existing = map.get(row.canonical_code) ?? [];
-      existing.push(row as PricingRule);
-      map.set(row.canonical_code, existing);
-    }
-  }
-  return map;
-}
+// loadPricing removed in favor of resolvePriceCents SQL function
 
 
 
 async function loadComponentNames(
   orgIds: string[],
   systemTypes: string[],
+  supplierOrgId?: string,
 ): Promise<Map<string, { sku: string; name: string; description: string; defaultPrice: number | null; canonicalCode: string | null }>> {
-  if (systemTypes.length === 0 || orgIds.length === 0) return new Map();
+  if (systemTypes.length === 0 && !supplierOrgId) return new Map();
   const supabaseAdmin = createClient(
     Deno.env.get("SUPABASE_URL")!,
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
   );
 
   const allRows: any[] = [];
-  let from = 0;
-  let to = 999;
-  let hasMore = true;
 
-  while (hasMore) {
-    const { data, error } = await supabaseAdmin
-      .from("product_components")
-      .select("sku, name, description, default_price, canonical_code, category, metadata")
-      .in("org_id", orgIds)
-      .eq("active", true)
-      .overlaps("system_types", systemTypes)
-      .range(from, to);
+  // Query 1: Load product components for productOrgIds overlapping with systemTypes
+  if (orgIds.length > 0 && systemTypes.length > 0) {
+    let from = 0;
+    let to = 999;
+    let hasMore = true;
+    while (hasMore) {
+      const { data, error } = await supabaseAdmin
+        .from("product_components")
+        .select("sku, name, description, default_price, canonical_code, category, metadata")
+        .in("org_id", orgIds)
+        .eq("active", true)
+        .overlaps("system_types", systemTypes)
+        .range(from, to);
 
-    if (error) throw new Error(`Component names lookup failed: ${error.message}`);
-    allRows.push(...(data ?? []));
-    if ((data ?? []).length < 1000) {
-      hasMore = false;
-    } else {
-      from += 1000;
-      to += 1000;
+      if (error) throw new Error(`Component names lookup failed: ${error.message}`);
+      allRows.push(...(data ?? []));
+      if ((data ?? []).length < 1000) {
+        hasMore = false;
+      } else {
+        from += 1000;
+        to += 1000;
+      }
+    }
+  }
+
+  // Query 2: If supplierOrgId is provided, load all active components for the supplier (WITHOUT system_types filter)
+  if (supplierOrgId) {
+    let fromSupplier = 0;
+    let toSupplier = 999;
+    let hasMoreSupplier = true;
+    while (hasMoreSupplier) {
+      const { data, error } = await supabaseAdmin
+        .from("product_components")
+        .select("sku, name, description, default_price, canonical_code, category, metadata")
+        .eq("org_id", supplierOrgId)
+        .eq("active", true)
+        .range(fromSupplier, toSupplier);
+
+      if (error) throw new Error(`Supplier component names lookup failed: ${error.message}`);
+      allRows.push(...(data ?? []));
+      if ((data ?? []).length < 1000) {
+        hasMoreSupplier = false;
+      } else {
+        fromSupplier += 1000;
+        toSupplier += 1000;
+      }
     }
   }
 
@@ -259,7 +230,7 @@ Deno.serve(async (req: Request) => {
 
     // Step 3 — parse + minimally validate payload
     const body = (await req.json()) as any;
-    const { payload: bodyPayload, pricingTier: reqTier, debug, supplierId, supplierSlug } = body || {};
+    const { payload: bodyPayload, pricingTier: reqTier, debug, supplierId, supplierSlug, atTime } = body || {};
 
     let payload = bodyPayload;
     if (!payload && body && (body.productCode || body.runs)) {
@@ -269,21 +240,34 @@ Deno.serve(async (req: Request) => {
     const pricingTier: PricingTier = reqTier ?? defaultTier ?? "tier1";
     const wantTrace = isAdmin && debug === true;
 
-    // Resolve supplier scoping to get the effective orgId
-    let effectiveOrgId = orgId;
+    // Resolve supplier scoping to get the effective orgId and actualSupplierId
     const resolvedSupplierId = payload?.variables?.supplier_id as string ?? supplierId;
+    let effectiveOrgId = orgId;
+    let actualSupplierId = resolvedSupplierId;
     const resolvedSupplierSlug = payload?.variables?.supplier_slug as string ?? supplierSlug;
     if (resolvedSupplierId || resolvedSupplierSlug) {
-      let q = supabaseAdmin.from("suppliers").select("org_id");
+      let q = supabaseAdmin.from("suppliers").select("id, org_id");
       if (resolvedSupplierId) {
         q = q.eq("id", resolvedSupplierId);
       } else {
         q = q.eq("slug", resolvedSupplierSlug);
       }
       const { data: supplierRow } = await q.maybeSingle();
-      if (supplierRow?.org_id) {
-        effectiveOrgId = supplierRow.org_id;
+      if (supplierRow) {
+        if (supplierRow.org_id) {
+          effectiveOrgId = supplierRow.org_id;
+        }
+        actualSupplierId = supplierRow.id;
       }
+    }
+
+    if (!actualSupplierId) {
+      const { data: goSupplier } = await supabaseAdmin
+        .from("suppliers")
+        .select("id")
+        .eq("slug", "glass-outlet")
+        .maybeSingle();
+      actualSupplierId = goSupplier?.id;
     }
 
     // Fallback if effectiveOrgId is still empty (e.g., unauthenticated request with no supplier slug)
@@ -485,6 +469,12 @@ Deno.serve(async (req: Request) => {
       // Old saved quotes stored the turn angle in segment_join; we convert to a positive
       // (right-turn) interior angle. Remove once all production quotes have been re-saved.
       for (const seg of run.segments) {
+        if (!seg.leftTermination) {
+          seg.leftTermination = { kind: "system" };
+        }
+        if (!seg.rightTermination) {
+          seg.rightTermination = { kind: "system" };
+        }
         const lt = seg.leftTermination as SegmentTermination & { angleDeg?: number };
         if (lt.kind === "segment_join" && typeof lt.angleDeg === "number" && lt.angleDeg > 5) {
           seg.leftTermination = { kind: "system_corner", angleDeg: 180 - lt.angleDeg };
@@ -593,16 +583,17 @@ Deno.serve(async (req: Request) => {
       // ─── Process segments ────────────────────────────────────────────────────
 
       for (const segment of run.segments as CanonicalSegment[]) {
-        const activeEngineData = engineDataMap.get(segment.productCode);
+        const resolvedProductCode = segment.productCode || (segment.kind === "gate" ? "QS_GATE" : (run.productCode ?? payload.productCode));
+        const activeEngineData = engineDataMap.get(resolvedProductCode);
 
         if (!activeEngineData) {
           allAssumptions.push(
-            `No engine data loaded for product: ${segment.productCode} — segment skipped`,
+            `No engine data loaded for product: ${resolvedProductCode} — segment skipped`,
           );
           continue;
         }
 
-        const activeProductCode = segment.productCode;
+        const activeProductCode = resolvedProductCode;
 
         // Build segment context: job ctx + segment overrides + geometry helpers
         const segVarsNorm = segment.variables
@@ -1045,7 +1036,11 @@ Deno.serve(async (req: Request) => {
     );
 
     // Step 12 — pricing + component name lookup (sequential dependencies due to SKU filtering)
-    const componentNames = await loadComponentNames(Array.from(productOrgIds), uniqueProductCodes);
+    const componentNames = await loadComponentNames(
+      Array.from(productOrgIds),
+      uniqueProductCodes,
+      effectiveOrgId,
+    );
 
     // Dynamic canonical mapping: resolve canonical codes to the supplier's actual SKU
     for (const line of [...aggregatedLines, ...allLines, ...aggregatedSuggestions]) {
@@ -1067,7 +1062,7 @@ Deno.serve(async (req: Request) => {
       )
     );
 
-    const pricingMap = await loadPricing(effectiveOrgId, pricingTier, resolvedSkus, canonicalCodes);
+    const atTimeParam = atTime ?? new Date().toISOString();
 
     // Backfill name/description on all lines from product_components
     for (const line of [...aggregatedLines, ...allLines, ...aggregatedSuggestions]) {
@@ -1080,16 +1075,34 @@ Deno.serve(async (req: Request) => {
       }
     }
 
-    function resolveLinePrice(sku: string, quantity: number): number | null {
-      let rules = pricingMap.get(sku) ?? [];
-      if (rules.length === 0) {
+    async function resolveLinePrice(sku: string, quantity: number): Promise<number | null> {
+      if (!actualSupplierId) return null;
+      
+      let priceCents = await resolvePriceCents(supabaseAdmin, {
+        supplierId: actualSupplierId,
+        sku,
+        tierCode: pricingTier,
+        quantity,
+        atTime: atTimeParam
+      });
+
+      if (priceCents === null || priceCents === undefined) {
         const canonical = componentNames.get(sku)?.canonicalCode;
         if (canonical) {
-          rules = pricingMap.get(canonical) ?? [];
+          priceCents = await resolvePriceCents(supabaseAdmin, {
+            supplierId: actualSupplierId,
+            sku: canonical,
+            tierCode: pricingTier,
+            quantity,
+            atTime: atTimeParam
+          });
         }
       }
 
-      if (rules.length > 0) return resolvePrice(rules, quantity);
+      if (priceCents !== null && priceCents !== undefined) {
+        return priceCents / 100;
+      }
+
       const defaultPrice = componentNames.get(sku)?.defaultPrice ?? null;
       if (defaultPrice !== null && defaultPrice > 0) {
         allAssumptions.push(`Using default_price for SKU: ${sku} (no tier pricing rule)`);
@@ -1100,14 +1113,14 @@ Deno.serve(async (req: Request) => {
     }
 
     for (const line of aggregatedLines) {
-      const price = resolveLinePrice(line.sku, line.quantity);
+      const price = await resolveLinePrice(line.sku, line.quantity);
       line.unitPrice = price;
       line.lineTotal = price !== null ? parseFloat((line.quantity * price).toFixed(2)) : null;
     }
 
     // Price suggestions (informational — not included in totals)
     for (const line of aggregatedSuggestions) {
-      const price = resolveLinePrice(line.sku, line.quantity);
+      const price = await resolveLinePrice(line.sku, line.quantity);
       line.unitPrice = price;
       line.lineTotal = price !== null ? parseFloat((line.quantity * price).toFixed(2)) : null;
     }
@@ -1116,10 +1129,14 @@ Deno.serve(async (req: Request) => {
     for (const rr of runResults) {
       for (const item of rr.items) {
         const comp = componentNames.get(item.sku);
-        if (comp && item.sku !== comp.sku) {
-          item.sku = comp.sku;
+        if (comp) {
+          item.name = comp.name;
+          item.description = comp.description || comp.name;
+          if (item.sku !== comp.sku) {
+            item.sku = comp.sku;
+          }
         }
-        const price = resolveLinePrice(item.sku, item.quantity);
+        const price = await resolveLinePrice(item.sku, item.quantity);
         item.unitPrice = price;
         item.lineTotal = price !== null ? parseFloat((item.quantity * price).toFixed(2)) : null;
       }

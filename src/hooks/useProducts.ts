@@ -10,6 +10,8 @@ export interface Product {
   image_url: string | null;
   active: boolean;
   sort_order: number;
+  system_instance_id?: string | null;
+  supplier_id?: string | null;
   metadata?: {
     allowedAngles?: number[];
     /** Tier A: drives pitch ladder vs freeform height input — see `parseTargetHeightUi` */
@@ -33,11 +35,23 @@ export function useProducts() {
 
       const { data, error } = await supabase
         .from('products')
-        .select('id, name, system_type, description, image_url, active, sort_order, metadata')
+        .select('id, name, system_type, description, image_url, active, sort_order, metadata, system_instance_id, supplier_id')
         .order('active', { ascending: false })
         .order('sort_order', { ascending: true });
       if (error) return localProducts;
-      return data && data.length > 0 ? (data as Product[]) : localProducts;
+
+      if (data && data.length > 0) {
+        // Deduplicate products by system_type, prioritizing the one with non-null system_instance_id
+        const bySystem = new Map<string, Product>();
+        for (const p of data) {
+          const existing = bySystem.get(p.system_type);
+          if (!existing || (p.system_instance_id !== null && existing.system_instance_id === null)) {
+            bySystem.set(p.system_type, p as Product);
+          }
+        }
+        return Array.from(bySystem.values());
+      }
+      return localProducts;
     },
   });
 }

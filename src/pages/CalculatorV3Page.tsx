@@ -19,7 +19,7 @@ import { BOMResultTabs } from "../components/shared/BOMResultTabs";
 import { MobileBomTotals } from "../components/shared/MobileBomTotals";
 import { PwaStatusBanners } from "../components/pwa/PwaStatusBanners";
 import { BomV3PDFTemplate } from "../components/quote/BomV3PDFTemplate";
-import { AnyfenceLogo } from "../components/brand/AnyfenceLogo";
+import { AmazingFencingLogo } from "../components/brand/AmazingFencingLogo";
 import { JobNameEditor } from "../components/calculator/JobNameEditor";
 import { GatePositionModal } from "../components/calculator/GatePositionModal";
 import { PropertyAnchorFormGate, PropertyMap } from "../components/calculator/PropertyMap";
@@ -60,7 +60,6 @@ import { isSupabaseConfigured, supabase } from "../lib/supabase";
 import { useAuth } from "../hooks/useAuth";
 import { useProfile } from "../context/ProfileContext";
 import { useQuote } from "../hooks/useQuote";
-import { listSuppliers } from "../lib/multiSupplier/queries";
 import { savedBomToEngineResult } from "../lib/savedBomToEngineResult";
 import { jobNameFromQuote } from "../lib/quotePayload";
 import {
@@ -78,9 +77,6 @@ import {
   Save,
   Share2,
   X,
-  Building,
-  ToggleLeft,
-  ToggleRight,
   Hammer,
   Compass,
   ChevronRight,
@@ -168,16 +164,31 @@ function aggregateBomItems(items: BOMLineItem[]): BOMLineItem[] {
       ...(existing.sources ?? sourceFromLine(existing)),
       ...(item.sources ?? sourceFromLine(item)),
     ]);
-    const lineTotalBeforeReprice = existing.lineTotal + item.lineTotal;
-    const unitPrice = priceForBomLine(item, quantity);
-    const lineTotal =
-      unitPrice > 0 ? roundMoney(unitPrice * quantity) : roundMoney(lineTotalBeforeReprice);
+    const isUnpriced = item.unitPrice === null || existing.unitPrice === null;
+    let unitPrice: number | null = null;
+    let lineTotal: number | null = null;
+
+    if (isUnpriced) {
+      unitPrice = null;
+      lineTotal = null;
+    } else {
+      const p = priceForBomLine(item, quantity);
+      if (p > 0) {
+        unitPrice = p;
+        lineTotal = roundMoney(p * quantity);
+      } else {
+        const lineTotalBeforeReprice = (existing.lineTotal ?? 0) + (item.lineTotal ?? 0);
+        lineTotal = roundMoney(lineTotalBeforeReprice);
+        unitPrice = roundMoney(lineTotal / Math.max(1, quantity));
+      }
+    }
+
     grouped.set(key, {
       ...existing,
       quantity,
       totalQty: quantity,
       sources,
-      unitPrice: unitPrice > 0 ? unitPrice : roundMoney(lineTotal / Math.max(1, quantity)),
+      unitPrice,
       lineTotal,
       notes:
         existing.notes || item.notes
@@ -220,14 +231,15 @@ function deriveLineForSources(
   const sources = (line.sources ?? sourceFromLine(line)).filter(predicate);
   if (sources.length === 0) return null;
   const quantity = sources.reduce((sum, source) => sum + source.qty, 0);
-  const unitPrice = priceForBomLine(line, quantity);
+  const isUnpriced = line.unitPrice === null;
+  const unitPrice = isUnpriced ? null : priceForBomLine(line, quantity);
   return {
     ...line,
     quantity,
     totalQty: quantity,
     sources,
     unitPrice,
-    lineTotal: roundMoney(unitPrice * quantity),
+    lineTotal: unitPrice !== null ? roundMoney(unitPrice * quantity) : null,
   };
 }
 
@@ -300,7 +312,7 @@ function initialRunPaneWidth() {
   if (typeof window === "undefined") return 480;
   const stored = Number(window.localStorage.getItem("qsg-run-pane-width"));
   if (Number.isFinite(stored) && stored > 0) return stored;
-  return Math.round(Math.min(680, Math.max(390, window.innerWidth / 3)));
+  return Math.round(Math.min(800, Math.max(480, window.innerWidth / 2.8)));
 }
 
 const CUSTOMER_MODE_KEY = "qsbom-customer-mode";
@@ -341,10 +353,31 @@ function createInitialPayload(systemType = "QSHS"): CanonicalPayload {
 }
 
 function createEmptyPayload(systemType = "QSHS"): CanonicalPayload {
+  const baseVars = initialVariablesForSystem(systemType);
+  let resolvedSupplierId = "1aecc2bc-4b44-4676-a23a-903fe9286830"; // Amazing Fencing
+  let resolvedSupplierSlug = "amazing-fencing";
+
+  if (systemType.startsWith("DF_")) {
+    resolvedSupplierId = "52946ce5-5125-44eb-bbce-7f19e424fa89";
+    resolvedSupplierSlug = "discount-fencing";
+  } else if (!systemType.startsWith("AF_") && systemType !== "QSHS" && systemType !== "VS" && systemType !== "XPL" && systemType !== "BAYG") {
+    // If it's a generic system that isn't Glass Outlet, default to amazing-fencing
+    resolvedSupplierId = "1aecc2bc-4b44-4676-a23a-903fe9286830";
+    resolvedSupplierSlug = "amazing-fencing";
+  } else if (systemType === "QSHS" || systemType === "VS" || systemType === "XPL" || systemType === "BAYG") {
+    // For original Glass Outlet systems, use Glass Outlet supplier
+    resolvedSupplierId = "7da9cadf-179c-4aa1-96dd-5487d8ce5334";
+    resolvedSupplierSlug = "glass-outlet";
+  }
+
   return {
     productCode: systemType,
     schemaVersion: "v1",
-    variables: initialVariablesForSystem(systemType),
+    variables: {
+      ...baseVars,
+      supplier_id: resolvedSupplierId,
+      supplier_slug: resolvedSupplierSlug,
+    },
     runs: [],
   };
 }
@@ -490,14 +523,10 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
   bomMutateAsyncRef.current = bomMutation.mutateAsync;
 
   const { supplierSlug, instanceSlug } = useParams<{ supplierSlug?: string; instanceSlug?: string }>();
-  const activeSupplierSlug = supplierSlug || (payload?.variables?.supplier_slug as string | undefined);
+  const activeSupplierSlug = supplierSlug || "amazing-fencing";
   const { branding, logoUrl, supplier: supplierBrand } = useBranding(activeSupplierSlug);
 
-  // Fetch all active suppliers for switcher
-  const { data: allSuppliers } = useQuery({
-    queryKey: ["suppliers", "list"],
-    queryFn: () => listSuppliers(),
-  });
+
 
   // Fetch active system instance
   const { data: systemInstance, isLoading: loadingInstance } = useQuery({
@@ -599,26 +628,7 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
   const [saveJobDialogOpen, setSaveJobDialogOpen] = useState(false);
   const [showGuestSaveModal, setShowGuestSaveModal] = useState(false);
   const [gatePositionTarget, setGatePositionTarget] = useState<PendingParsedGate | null>(null);
-  const [bunningsEnabled, setBunningsEnabled] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.localStorage.getItem("qsg-bunnings-enabled") === "true";
-  });
 
-  const handleBunningsToggle = () => {
-    const nextVal = !bunningsEnabled;
-    setBunningsEnabled(nextVal);
-    window.localStorage.setItem("qsg-bunnings-enabled", String(nextVal));
-    window.dispatchEvent(new Event("storage"));
-    toast.success(nextVal ? "Bunnings lookup integration enabled!" : "Bunnings integration disabled.");
-  };
-
-  useEffect(() => {
-    const handleStorage = () => {
-      setBunningsEnabled(window.localStorage.getItem("qsg-bunnings-enabled") === "true");
-    };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
   const handleActiveBomSummaryChange = useCallback(
     (summary: { label: string; subtotal: number; gst: number; grandTotal: number }) => {
       setActiveBomSummary({
@@ -674,7 +684,7 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
       return;
     }
 
-    dispatch({ type: "SET_PAYLOAD", payload: createEmptyPayload("QSHS") });
+    dispatch({ type: "SET_PAYLOAD", payload: createEmptyPayload("AF_COLORBOND") });
     dispatch({ type: "SET_ENTRY_METHOD", entryMethod: "select" });
     setIntroDismissed(true);
     setRightPaneView("bom");
@@ -1120,12 +1130,13 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
         
         let updated = { ...line };
         if (typeof edit === "number") {
-          const unitPrice = priceForBomLine(line, edit);
+          const isUnpriced = line.unitPrice === null;
+          const unitPrice = isUnpriced ? null : priceForBomLine(line, edit);
           updated = {
             ...updated,
             quantity: edit,
             unitPrice,
-            lineTotal: roundMoney(unitPrice * edit),
+            lineTotal: unitPrice !== null ? roundMoney(unitPrice * edit) : null,
             notes: line.notes ? `${line.notes}; edited` : "edited",
           };
         }
@@ -1133,13 +1144,13 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
         const override = lineOverrides[key];
         if (override) {
           const qty = updated.quantity;
-          const price = override.unitPrice ?? updated.unitPrice;
+          const price = override.unitPrice !== undefined ? override.unitPrice : updated.unitPrice;
           updated = {
             ...updated,
             sku: override.sku ?? updated.sku,
             description: override.description ?? updated.description,
             unitPrice: price,
-            lineTotal: roundMoney(price * qty),
+            lineTotal: price !== null ? roundMoney(price * qty) : null,
           };
         }
         return updated;
@@ -1244,8 +1255,8 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
         );
         if (discountPct > 0) {
           const factor = 1 - discountPct / 100;
-          const discountedUnitPrice = roundMoney(item.unitPrice * factor);
-          const discountedLineTotal = roundMoney(discountedUnitPrice * item.quantity);
+          const discountedUnitPrice = item.unitPrice !== null ? roundMoney(item.unitPrice * factor) : null;
+          const discountedLineTotal = discountedUnitPrice !== null ? roundMoney(discountedUnitPrice * item.quantity) : null;
           return {
             ...item,
             unitPrice: discountedUnitPrice,
@@ -1270,7 +1281,7 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
       const discountedGateItems = gateItems.map(discountItem);
 
       const total = roundMoney(
-        discountedAllItems.reduce((sum, line) => sum + line.lineTotal, 0),
+        discountedAllItems.reduce((sum, line) => sum + (line.lineTotal ?? 0), 0),
       );
       const gst = roundMoney(total * 0.1);
       const grandTotal = roundMoney(total + gst);
@@ -1502,8 +1513,8 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
       Category: line.category,
       Unit: line.unit,
       Qty: line.quantity,
-      "Unit Price": line.unitPrice.toFixed(2),
-      "Line Total": line.lineTotal.toFixed(2),
+      "Unit Price": line.unitPrice !== null ? line.unitPrice.toFixed(2) : "TBC",
+      "Line Total": line.lineTotal !== null ? line.lineTotal.toFixed(2) : "TBC",
     })));
     rows.push(
       {
@@ -1656,7 +1667,7 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
     try {
       const result = await bomMutateAsyncRef.current({ 
         payload, 
-        supplierSlug: supplierSlug || (payload?.variables?.supplier_slug as string | undefined) 
+        supplierSlug: activeSupplierSlug || (payload?.variables?.supplier_slug as string | undefined) || "amazing-fencing"
       });
       if (requestId !== bomRequestIdRef.current) return;
       dispatch({ type: "SET_BOM_RESULT", result });
@@ -1664,7 +1675,7 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
     } catch {
       // Error is available via bomMutation.error.
     }
-  }, [payload, payloadCalcKey, dispatch, supplierSlug]);
+  }, [payload, payloadCalcKey, dispatch, activeSupplierSlug]);
 
   const runBomRecalcRef = useRef(runBomRecalculation);
   runBomRecalcRef.current = runBomRecalculation;
@@ -1996,12 +2007,7 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
                   />
                 </div>
               ) : (
-                <AnyfenceLogo
-                  className="justify-center"
-                  iconClassName="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
-                  textClassName="text-5xl sm:text-7xl lg:text-8xl"
-                  showSubtitle={true}
-                />
+                <AmazingFencingLogo className="justify-center scale-150 origin-center my-6" />
               )}
               <form
                 className="mx-auto w-full max-w-xl rounded-3xl border border-brand-border/70 bg-brand-card/80 p-5 text-left shadow-2xl backdrop-blur"
@@ -2054,67 +2060,9 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
                     </div>
                   </section>
 
-                  {/* Supplier Switcher Dropdown */}
-                  {!isCypressSmokeTest() && (userType === "contractor" || !supplierSlug) && allSuppliers && allSuppliers.length > 0 && (
-                    <div className="rounded-xl border border-[#E9E5DD]/60 bg-white p-3 space-y-2 shadow-sm">
-                      <label className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#6E7681] block">
-                        Select Supplier
-                      </label>
-                      <select
-                        id="supplier-switcher"
-                        value={String(payload?.variables?.supplier_id || "")}
-                        onChange={(e) => {
-                          const selectedSupplier = allSuppliers.find((s) => s.id === e.target.value);
-                          if (selectedSupplier && payload) {
-                            dispatch({
-                              type: "SET_PAYLOAD",
-                              payload: {
-                                ...payload,
-                                variables: {
-                                  ...payload.variables,
-                                  supplier_id: selectedSupplier.id,
-                                  supplier_slug: selectedSupplier.slug,
-                                },
-                              },
-                            });
-                            if (instanceSlug && supplierSlug) {
-                              navigate(`/s/${selectedSupplier.slug}/calculator/${instanceSlug}`);
-                            }
-                          }
-                        }}
-                        className="w-full rounded-lg border border-[#E9E5DD] bg-white px-3 py-2 text-xs font-semibold text-[#11161D] focus:border-[#DD6E1B] focus:outline-none focus:ring-2 focus:ring-[#DD6E1B]/20"
-                      >
-                        <option value="" disabled>Select a supplier...</option>
-                        {allSuppliers.map((s) => (
-                          <option key={s.id} value={s.id}>
-                            {s.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
+                  {/* Supplier Switcher Dropdown removed */}
 
-                  {/* Bunnings Toggle */}
-                  {!isCypressSmokeTest() && (!supplierSlug || userType === "contractor") && (
-                    <div className="flex items-center justify-between gap-3 bg-white p-3 rounded-xl border border-[#E9E5DD]/60 shadow-sm">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#6E7681] flex items-center gap-1.5">
-                        <Building className="text-brand-accent" size={16} />
-                        Bunnings Pricing API
-                      </span>
-                      <button
-                        type="button"
-                        onClick={handleBunningsToggle}
-                        className="text-[#DD6E1B] hover:text-[#c96215] transition-colors focus:outline-none"
-                        title="When enabled, fallback items in the BOM lookup retail pricing from a mock Bunnings index."
-                      >
-                        {bunningsEnabled ? (
-                          <ToggleRight size={36} className="text-[#DD6E1B]" />
-                        ) : (
-                          <ToggleLeft size={36} className="text-brand-muted" />
-                        )}
-                      </button>
-                    </div>
-                  )}
+
                   {payload && (
                     <>
                       {!hasLegacyConfiguredPayload ? (
@@ -2301,10 +2249,8 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
                   <div className="mb-4 flex flex-col gap-4 border-b border-brand-border pb-5 sm:flex-row sm:items-start sm:justify-between">
                     <div className="min-w-0">
                       <div className="mb-3 flex flex-wrap items-center gap-3">
-                        <AnyfenceLogo
-                          iconClassName="h-10 w-10"
-                          textClassName="text-2xl"
-                          showSubtitle={false}
+                        <AmazingFencingLogo
+                          className="scale-75 origin-left"
                         />
                         <div className="h-10 w-px bg-brand-border" />
                         <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-muted">
@@ -2413,7 +2359,7 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
                         onAssignCustomSku={handleAssignCustomSku}
                         onActiveSummaryChange={handleActiveBomSummaryChange}
                         customerMode={customerMode}
-                        hideBunnings={supplierSlug ? userType !== 'contractor' : false}
+                        hideBunnings={true}
                       />
 
                       {/* Installation Rates / Directory section */}
@@ -2675,28 +2621,6 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
       )}
     </AppShell>
   );
-}
-
-function isCypressSmokeTest(): boolean {
-  if (typeof window === "undefined") return false;
-  try {
-    for (let i = 0; i < window.localStorage.length; i++) {
-      const key = window.localStorage.key(i);
-      if (key && key.endsWith("-auth-token")) {
-        const val = window.localStorage.getItem(key);
-        if (val) {
-          const parsed = JSON.parse(val);
-          const accessToken = parsed.access_token;
-          if (accessToken === "bn-smoke-token" || accessToken === "property-map-smoke-token") {
-            return true;
-          }
-        }
-      }
-    }
-  } catch (e) {
-    // ignore
-  }
-  return false;
 }
 
 export function CalculatorV3Page() {

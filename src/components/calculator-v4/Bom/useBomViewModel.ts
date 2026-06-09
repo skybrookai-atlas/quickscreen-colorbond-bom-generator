@@ -12,8 +12,8 @@ export interface BomViewLine {
   description: string;
   unit: string;
   quantity: number;
-  unitPrice: number;
-  lineTotal: number;
+  unitPrice: number | null;
+  lineTotal: number | null;
   category: string;
   /** Source of the line. */
   source: "engine" | "suggestion" | "extra";
@@ -55,16 +55,16 @@ const GST_RATE = 0.1;
 
 function applyQtyOverride(
   baseQty: number,
-  baseLineTotal: number,
-  unitPrice: number,
+  baseLineTotal: number | null,
+  unitPrice: number | null,
   lineKey: string,
   overrides: Record<string, number>,
-): { quantity: number; lineTotal: number } {
+): { quantity: number; lineTotal: number | null } {
   const o = overrides[lineKey];
   if (o === undefined)
     return { quantity: baseQty, lineTotal: baseLineTotal };
   const quantity = o;
-  return { quantity, lineTotal: quantity * unitPrice };
+  return { quantity, lineTotal: unitPrice !== null ? quantity * unitPrice : null };
 }
 
 function asLine(
@@ -201,7 +201,7 @@ export function useBomViewModel(): BomViewModel {
       .filter((l) => !state.removedSkus.has(l.sku))
       .map((l) => asLine(l, "engine", overrides));
 
-    const total = allLines.reduce((s, l) => s + l.lineTotal, 0);
+    const total = allLines.reduce((s, l) => s + (l.lineTotal ?? 0), 0);
     const gst = total * GST_RATE;
 
     return {
@@ -240,6 +240,6 @@ export function groupByCategory(lines: BomViewLine[]) {
   return Array.from(map.entries()).map(([category, items]) => ({
     category,
     items,
-    subtotal: items.reduce((s, x) => s + x.lineTotal, 0),
+    subtotal: items.reduce((s, x) => s + (x.lineTotal ?? 0), 0),
   }));
 }

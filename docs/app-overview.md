@@ -25,6 +25,13 @@ The current branch uses these active routes in `src/App.tsx`:
 - `/login` renders the auth page.
 - `/quotes` and `/quote/:id` are protected saved quote views.
 - `/new` still renders the older `MainApp` behind `AuthGuard`; do not extend it unless the project intentionally revives that surface.
+- `/admin/suppliers` renders `SuppliersListPage` for managing system suppliers.
+- `/admin/suppliers/new` and `/admin/suppliers/:slug/edit` render `SupplierEditPage` for creating/updating a supplier.
+- `/admin/system-instances` renders `SystemInstancesListPage` for viewing/filtering system configurations.
+- `/admin/system-instances/new` and `/admin/system-instances/:id/edit` render `SystemInstanceEditPage` for creating/updating system instances.
+- `/admin/products` renders `ProductsListPage` for viewing/filtering system products with supplier/instance filter options.
+- `/admin/products/new` and `/admin/products/:id/edit` render `ProductEditPage` for creating/updating system products.
+- `/admin/imports/new` and `/admin/imports/:runId/review` render `ImportPage` for uploading wholesaler inventory lists, diffing staged products/pricing against the live catalogue, and publishing approved changes.
 
 Older docs may mention `/fence-calculator`; in this branch the locally tested route is `/calculator`.
 
@@ -146,6 +153,17 @@ Key shape:
 
 - `src/components/calculator-v3/AchievedHeightBadge.tsx`
   - Shows calculated achieved height where engine output provides it.
+
+## Multi-Supplier Module
+
+- `src/types/multiSupplier.ts`
+  - Canonical type definitions for the multi-supplier database models (suppliers, archetypes, instances, grants, reports).
+- `src/lib/multiSupplier/schemas.ts`
+  - Zod schemas validating multi-supplier domain objects.
+- `src/lib/multiSupplier/queries.ts`
+  - Read-only database query helpers for suppliers, archetypes, and system instances.
+- `src/lib/multiSupplier/index.ts`
+  - Public export surface for multi-supplier query helpers and schemas.
 
 ## Canvas And Layout Mapper
 

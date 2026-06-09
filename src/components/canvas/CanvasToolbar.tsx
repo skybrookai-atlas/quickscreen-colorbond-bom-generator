@@ -13,11 +13,12 @@ import {
   Minus,
   CircleHelp,
   ArrowRight,
+  Layers,
   Camera,
   TreePine,
   Compass,
 } from "lucide-react";
-import { useState, useEffect, type RefObject } from "react";
+import { useRef, useState, useEffect, type RefObject } from "react";
 import type { initCanvasEngine } from "./canvasEngine";
 import { TOOL_HOTKEYS } from "../../lib/canvasShortcuts";
 import type {
@@ -55,6 +56,13 @@ type MapLayerUpdates = Partial<
   >
 >;
 
+type CachedMapLayerState = Partial<
+  Record<
+    CanonicalMapLayerId,
+    Pick<CanonicalMapSnapshotLayer, "visible" | "opacity">
+  >
+>;
+
 interface CanvasToolbarProps {
   engineRef: RefObject<Engine | null>;
   activeTool: CanvasTool;
@@ -85,14 +93,25 @@ export function CanvasToolbar({
   engineRef,
   activeTool,
   onToolChange,
+  snapEnabled,
+  onSnapToggle,
+  gateSnap100,
+  onGateSnap100Toggle,
+  showGrid,
+  onToggleGrid,
   onHelpOpen,
   onPrintMap,
   canUndo = false,
   canRedo = false,
   freehandStyle,
   onFreehandStyleChange,
+  mapLayers,
+  onMapLayerChange,
+  onMapLayersChange,
 }: CanvasToolbarProps) {
+  const [mobileLayersOpen, setMobileLayersOpen] = useState(false);
   const [clearConfirmOpen, setClearConfirmOpen] = useState(false);
+  const sheetTouchStartYRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -161,6 +180,146 @@ export function CanvasToolbar({
     </span>
   );
 
+  const layerRows = (["satellite", "roadmap"] as const)
+    .map((layerId) => ({ layerId, layer: mapLayers?.[layerId] }))
+    .filter(
+      (
+        row,
+      ): row is {
+        layerId: CanonicalMapLayerId;
+        layer: CanonicalMapSnapshotLayer;
+      } => Boolean(row.layer),
+    );
+  const availableLayerRows = layerRows.filter(({ layer }) => Boolean(layer.url));
+  const mapVisible = availableLayerRows.some(({ layer }) => layer.visible);
+  const canChangeMapLayers = Boolean(onMapLayerChange || onMapLayersChange);
+  const previousMapLayerStateRef = useRef<CachedMapLayerState | null>(null);
+  const applyMapLayerUpdates = (updates: MapLayerUpdates) => {
+    if (onMapLayersChange) {
+      onMapLayersChange(updates);
+      return;
+    }
+    if (!onMapLayerChange) return;
+    (Object.entries(updates) as Array<[CanonicalMapLayerId, MapLayerUpdates[CanonicalMapLayerId]]>)
+      .forEach(([layerId, layerUpdates]) => {
+        if (layerUpdates) onMapLayerChange(layerId, layerUpdates);
+      });
+  };
+  const handleMapVisibilityToggle = () => {
+    if (!canChangeMapLayers) return;
+    if (mapVisible) {
+      previousMapLayerStateRef.current = Object.fromEntries(
+        availableLayerRows.map(({ layerId, layer }) => [
+          layerId,
+          { visible: layer.visible, opacity: layer.opacity },
+        ]),
+      ) as CachedMapLayerState;
+      applyMapLayerUpdates(
+        Object.fromEntries(
+          availableLayerRows.map(({ layerId }) => [layerId, { visible: false }]),
+        ) as MapLayerUpdates,
+      );
+      return;
+    }
+
+    const fallback: Required<CachedMapLayerState> = {
+      satellite: { visible: true, opacity: 1 },
+      roadmap: { visible: true, opacity: 0.5 },
+    };
+    applyMapLayerUpdates(
+      Object.fromEntries(
+        availableLayerRows.map(({ layerId }) => [
+          layerId,
+          previousMapLayerStateRef.current?.[layerId] ?? fallback[layerId],
+        ]),
+      ) as MapLayerUpdates,
+    );
+  };
+
+  const renderLayerControls = (mode: "desktop" | "sheet") =>
+    layerRows.length > 0 && canChangeMapLayers ? (
+      <div
+        className={
+          mode === "desktop"
+            ? "inline-flex shrink-0 items-center gap-2 rounded-lg border border-brand-border/70 bg-brand-card/80 px-2 py-1 text-xs text-brand-muted"
+            : "space-y-4 text-sm text-brand-muted"
+        }
+      >
+        <div className={mode === "desktop" ? "contents" : "flex items-center justify-between gap-3"}>
+          <span className="font-bold uppercase tracking-wide text-brand-text">Layers</span>
+          <button
+            type="button"
+            aria-label={mapVisible ? "Hide map underlay" : "Show map underlay"}
+            title={mapVisible ? "Hide map underlay" : "Show map underlay"}
+            className={btnCls(mapVisible)}
+            onClick={handleMapVisibilityToggle}
+          >
+            {mapVisible ? "Map off" : "Map on"}
+          </button>
+        </div>
+        {layerRows.map(({ layerId, layer }) => {
+          const label = layerId === "satellite" ? "Satellite" : "Roadmap";
+          const layerAvailable = Boolean(layer.url);
+          return (
+            <div
+              key={layerId}
+              className={
+                mode === "desktop"
+                  ? "inline-flex items-center gap-1.5"
+                  : "grid grid-cols-[5.75rem_1fr_2.5rem] items-center gap-3"
+              }
+            >
+              <label
+                className={[
+                  "inline-flex items-center gap-1.5 font-semibold",
+                  !layerAvailable ? "cursor-not-allowed opacity-50" : "cursor-pointer",
+                ].join(" ")}
+                title={
+                  layerAvailable
+                    ? `Show ${label} layer`
+                    : `${label} layer was not captured`
+                }
+              >
+                <input
+                  type="checkbox"
+                  checked={layer.visible}
+                  disabled={!layerAvailable}
+                  aria-label={`Show ${label} layer`}
+                  onChange={(event) =>
+                    applyMapLayerUpdates({
+                      [layerId]: { visible: event.currentTarget.checked },
+                    })
+                  }
+                  className="accent-brand-accent disabled:cursor-not-allowed"
+                />
+                {label}
+              </label>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={Math.round(layer.opacity * 100)}
+                aria-label={`${label} layer opacity`}
+                title={`${label} opacity`}
+                disabled={!layer.visible || !layerAvailable}
+                onInput={(event) =>
+                  applyMapLayerUpdates({
+                    [layerId]: {
+                      opacity: Number(event.currentTarget.value) / 100,
+                    },
+                  })
+                }
+                className="h-1.5 w-full accent-brand-accent disabled:cursor-not-allowed disabled:opacity-40 md:w-20"
+              />
+              <span className="w-8 text-right tabular-nums">
+                {Math.round(layer.opacity * 100)}%
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    ) : null;
+
   const clearCanvas = () => {
     engineRef.current?.clear();
     handleTool("draw");
@@ -194,6 +353,14 @@ export function CanvasToolbar({
       </button>
       <button type="button" aria-label="Clear canvas" className={mobileBtnCls(false)} onClick={() => setClearConfirmOpen(true)}>
         <Trash2 size={17} /> Clear
+      </button>
+      <button
+        type="button"
+        aria-label="Open map layers"
+        className={mobileBtnCls(mobileLayersOpen)}
+        onClick={() => setMobileLayersOpen(true)}
+      >
+        <Layers size={17} /> Layers
       </button>
     </div>
 
@@ -233,7 +400,29 @@ export function CanvasToolbar({
       </div>
     )}
 
-
+    {mobileLayersOpen && (
+      <div className="fixed inset-0 z-50 bg-black/45 md:hidden" onClick={() => setMobileLayersOpen(false)}>
+        <div
+          data-testid="layers-bottom-sheet"
+          className="absolute inset-x-0 bottom-0 flex min-h-[45dvh] max-h-[45dvh] flex-col overflow-y-auto rounded-t-2xl border border-brand-border bg-brand-card p-4 shadow-2xl"
+          onClick={(event) => event.stopPropagation()}
+          onTouchStart={(event) => {
+            sheetTouchStartYRef.current = event.touches[0]?.clientY ?? null;
+          }}
+          onTouchEnd={(event) => {
+            const startY = sheetTouchStartYRef.current;
+            const endY = event.changedTouches[0]?.clientY;
+            sheetTouchStartYRef.current = null;
+            if (startY !== null && endY !== undefined && endY - startY > 40) {
+              setMobileLayersOpen(false);
+            }
+          }}
+        >
+          <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-brand-border" />
+          {renderLayerControls("sheet")}
+        </div>
+      </div>
+    )}
 
     <div className="hidden flex-nowrap items-center gap-2 overflow-x-auto border-b border-brand-border/60 bg-brand-card p-2 [scrollbar-width:thin] md:flex md:flex-wrap md:gap-3 md:border-b-0">
       <div className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-brand-border/70 bg-brand-bg/50 px-2 py-1.5">
@@ -418,6 +607,49 @@ export function CanvasToolbar({
       </button>
       </div>
 
+      <div className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-brand-border/70 bg-brand-bg/50 px-2 py-1.5">
+        <span className="shrink-0 text-[10px] font-black uppercase tracking-wide text-brand-muted">View</span>
+        {renderLayerControls("desktop")}
+        <div className="w-px h-4 bg-brand-border/60 mx-1" />
+        <label className="flex shrink-0 cursor-pointer items-center gap-1.5 text-xs text-brand-muted">
+          <input
+            type="checkbox"
+            aria-label="Angle snap"
+            checked={snapEnabled}
+            onChange={(e) => {
+              onSnapToggle(e.target.checked);
+              engineRef.current?.setSnapToGrid(e.target.checked);
+            }}
+            className="accent-brand-accent"
+          />
+          Angle snap
+        </label>
+
+        <label className="flex shrink-0 cursor-pointer items-center gap-1.5 text-xs text-brand-muted">
+          <input
+            type="checkbox"
+            aria-label="Gate snap 100mm"
+            checked={gateSnap100}
+            onChange={(e) => {
+              onGateSnap100Toggle(e.target.checked);
+              engineRef.current?.setGateSnapTo100mm(e.target.checked);
+            }}
+            className="accent-brand-accent"
+          />
+          Gate snap 100mm
+        </label>
+
+        <label className="flex shrink-0 cursor-pointer items-center gap-1.5 text-xs text-brand-muted">
+          <input
+            type="checkbox"
+            aria-label="Show grid"
+            checked={showGrid}
+            onChange={(e) => onToggleGrid(e.target.checked)}
+            className="accent-brand-accent"
+          />
+          Grid
+        </label>
+      </div>
 
       <button
         type="button"

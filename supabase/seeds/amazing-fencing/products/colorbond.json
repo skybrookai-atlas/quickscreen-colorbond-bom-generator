@@ -372,7 +372,7 @@
       "selector_type": "exact",
       "match_json": {},
       "qty_key": "qty_concrete",
-      "sku_pattern": "Post Mix Concrete 30kg",
+      "sku_pattern": "AF-CON-POSTMIX-30",
       "priority": 10,
       "active": true
     }

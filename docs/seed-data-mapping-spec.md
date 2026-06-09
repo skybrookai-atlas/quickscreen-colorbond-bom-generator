@@ -506,6 +506,56 @@ Targeting `product_components` + `pricing_rules`. Extraction pattern:
 
 Quantity-break rows become additional `pricing_rules` entries with higher `priority` and a `rule` expression like `"qty <= 50"`.
 
+### 7.4 Cin7 Mass-Download XLSX / Bulk CSV Import
+
+The Admin portal supports importing catalog items directly from wholesaler exports, specifically matching the Cin7 Product Master format or a generic CSV format.
+
+#### 7.4.1 Cin7 XLSX Product Master Schema
+When parsing a Cin7 Mass-Download XLSX file:
+1. **Header Identification**: The parser locates the first row containing `ProductId` as the header.
+2. **Column Mappings to Component/Prices**:
+   - `sku` is resolved from `ManufacturerSKU` || `SupplierSKU` || `cin7-${row.ProductId}`.
+   - `name` maps from `ShortDescription`.
+   - `category` is inferred by scanning `ShortDescription`, `Custom1`, `Custom2`, and `Custom3` for keywords:
+     - `'slat'` -> `slat`
+     - `'post'` -> `post`
+     - `'rail'` -> `rail`
+     - `'bracket'` -> `bracket`
+     - `'screw' | 'fastener' | 'fixings'` -> `screw`
+     - `'hinge' | 'latch' | 'lock' | 'dropbolt' | 'gate stop' | 'drop bolt'` -> `hardware`
+     - `'gate' | 'leaf' | 'frame'` -> `gate`
+     - `'cap' | 'spacer' | 'plugs' | 'cover'` -> `accessory`
+   - `system_types` array is inferred by scanning `ShortDescription`, `Custom1`, `Custom2`, and `Custom3` for keywords:
+     - `'QSHS' | 'HORIZONTAL'` -> `QSHS`
+     - `'VS' | 'VERTICAL'` -> `VS`
+     - `'XPL' | 'XPRESS'` -> `XPL`
+     - `'BAYG' | 'BAY-G'` -> `BAYG`
+     - `'GATE'` -> `GATE`
+     - Falls back to `['QSHS']` if no keyword matches.
+   - `colours` array contains `[Colour.trim().toLowerCase()]` if `Colour` is present.
+   - `sizes` is parsed from the `Size` column:
+     - `Width x Height` (e.g. `50x50`) -> `{ width, height }`
+     - Single dimension (e.g. `1800mm`) -> `{ length }`
+3. **Pricing Tier Calculation**:
+   - `Cost` matches `BuyPriceEx` and `Price` matches `RRP`.
+   - `Tier 1` (Retail): if `RRP` is present, it uses `RRP * 100` (cents). If missing, defaults to `BuyPriceEx * 1.5 * 100` (cents).
+   - `Tier 2` (Trade/Distributor): `BuyPriceEx * 1.3 * 100` (cents).
+   - `Tier 3` (Best Wholesaler): `BuyPriceEx * 1.15 * 100` (cents).
+
+#### 7.4.2 Generic CSV Schema
+When parsing generic CSV files, the parser maps common field aliases:
+- **SKU**: `sku`, `SKU`, `Sku`, `ManufacturerSKU`, `SupplierSKU`, `code`, `Code`.
+- **Name**: `name`, `Name`, `description`, `Description`, `ShortDescription`, `title`, `Title`.
+- **Category**: `category`, `Category`, `type`, `Type`. Defaults to `accessory`.
+- **System Types**: `system_types`, `system_type`, `SystemTypes`, `SystemType`. Common values: comma-separated list of `QSHS`, `VS`, `XPL`, `BAYG`, `GATE`.
+- **Colours**: `colours`, `colour`, `Colour`, `Color`, `color`.
+- **Sizes**: `size`, `Size`, `dimensions`, `Dimensions`.
+- **Pricing**: `price`, `Price`, `price_cents`, `priceCents`, `priceExGst`, `BuyPriceEx`, `BuyPrice`.
+  - Staged prices are replicated across three tiers:
+    - Tier 1: `basePriceCents`
+    - Tier 2: `basePriceCents * 0.85`
+    - Tier 3: `basePriceCents * 0.72`
+
 ---
 
 ## 8. Output worked example — adding a "VS" vertical slat system

@@ -241,7 +241,7 @@ export function SuggestedAccessoriesPanel({
                   <div className="text-right tabular-nums">
                     <p className="text-xs text-brand-muted">Unit</p>
                     <p className="font-semibold text-brand-text">
-                      ${item.unitPrice.toFixed(2)}
+                      {item.unitPrice !== null && item.unitPrice !== undefined ? `$${item.unitPrice.toFixed(2)}` : "TBC"}
                     </p>
                   </div>
                   <button

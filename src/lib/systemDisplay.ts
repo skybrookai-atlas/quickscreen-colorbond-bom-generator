@@ -6,6 +6,9 @@ const SYSTEM_DISPLAY_NAME_FALLBACKS: Record<string, string> = {
   VS: "Vertical Slat",
   BAYG: "Buy As You Go",
   DF_CCA_PAL: "CCA Pine Paling",
+  AF_TIMBER_PALING: "Timber Paling",
+  AF_COLORBOND: "Colorbond Steel",
+  AF_RETAINING_WALL: "Timber Retaining Wall",
 };
 
 function tidySeedName(name: string) {

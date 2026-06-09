@@ -479,6 +479,12 @@ Concretely, how does adding ColorBond Slatted Fence work in this model?
 
 **Total authoring time at platform maturity:** 2-4 hours for someone who knows the supplier's catalogue. Compared to building a new bespoke calculator codebase, this is 100x faster.
 
+## Decision log
+
+| Date | Decision | Details |
+|---|---|---|
+| 2026-06-08 | Glass Outlet Backfill & Platform Trust Tier | Backfilled Glass Outlet as the initial supplier with 12 archetypes and 8 system instances. Set the initial trust tier to `platform` for the Glass Outlet systems, which remains the default until demoted via the admin UI. |
+
 ---
 
 *This document is the canonical reference for the system authoring process. Updates here propagate to briefs and tooling. Lives at `docs/system-authoring-process.md` in the repo.*

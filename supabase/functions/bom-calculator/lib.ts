@@ -2,6 +2,7 @@
 // No Deno env, no Supabase client, no HTTP — safe to import in tests.
 
 import { create, all } from "https://esm.sh/mathjs@13";
+import type { SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2";
 import type { PricingRule } from "../_shared/types.ts";
 
 const mathjs = create(all);
@@ -334,4 +335,31 @@ export function generateCanonicalCode(
 
   // Fallback to name or sku if we cannot parse
   return name || sku;
+}
+
+export interface PricingContext {
+  supplierId: string;
+  sku: string;
+  tierCode: string;
+  quantity: number;
+  atTime?: string;
+}
+
+export async function resolvePriceCents(
+  supabase: SupabaseClient,
+  ctx: PricingContext
+): Promise<number | null> {
+  const { data, error } = await supabase.rpc("resolve_price_cents", {
+    p_supplier_id: ctx.supplierId,
+    p_sku: ctx.sku,
+    p_tier_code: ctx.tierCode,
+    p_quantity: ctx.quantity,
+    p_at: ctx.atTime ?? new Date().toISOString()
+  });
+
+  if (error) {
+    throw new Error(`Failed to resolve price cents via RPC: ${error.message}`);
+  }
+
+  return data;
 }

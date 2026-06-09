@@ -13,13 +13,22 @@ interface FenceProduct {
   name: string;
   system_type: string;
   description: string | null;
+  system_instance_id?: string;
+  supplier_id?: string | null;
+  suppliers?: { slug: string } | null;
 }
 
 function mergeFenceProducts(products: FenceProduct[]): FenceProduct[] {
-  const bySystem = new Map(products.map((product) => [product.system_type, product]));
+  const bySystem = new Map<string, FenceProduct>();
+  for (const product of products) {
+    const existing = bySystem.get(product.system_type);
+    if (!existing || (product.system_instance_id && !existing.system_instance_id)) {
+      bySystem.set(product.system_type, product);
+    }
+  }
   for (const localProduct of localFenceProducts) {
     if (!bySystem.has(localProduct.system_type)) {
-      bySystem.set(localProduct.system_type, localProduct);
+      bySystem.set(localProduct.system_type, localProduct as any);
     }
   }
   return [...bySystem.values()].sort((a, b) => {
@@ -75,16 +84,25 @@ function getSystemIcon(systemType: string) {
         </svg>
       );
     case "DF_CCA_PAL":
+    case "AF_TIMBER_PALING":
       return (
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M4 22V5l2-2 2 2v17M10 22V5l2-2 2 2v17M16 22V5l2-2 2 2v17" />
         </svg>
       );
+    case "AF_COLORBOND":
     case "Colorbond":
       return (
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="3" y="3" width="18" height="18" rx="2" />
           <path d="M6 3v18M10 3v18M14 3v18M18 3v18" />
+        </svg>
+      );
+    case "AF_RETAINING_WALL":
+      return (
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="3" y="14" width="18" height="7" rx="1" />
+          <rect x="3" y="7" width="18" height="7" rx="1" />
         </svg>
       );
     case "Pool glass":
@@ -119,6 +137,9 @@ function getSystemStartingPrice(systemType: string) {
     case "XPL": return "from $280/m";
     case "BAYG": return "from $160/m";
     case "DF_CCA_PAL": return "from $90/m";
+    case "AF_TIMBER_PALING": return "from $90/m";
+    case "AF_COLORBOND": return "from $110/m";
+    case "AF_RETAINING_WALL": return "from $140/m";
     default: return "";
   }
 }
@@ -134,14 +155,14 @@ export function ProductSelectV3({
 }) {
   const { state, dispatch } = useCalculator();
 
-  const { data: products = [] } = useQuery<FenceProduct[]>({
+  const { data: products = [] } = useQuery<any[]>({
     queryKey: ["v3FenceProducts", supplierId],
     queryFn: async () => {
       if (!isSupabaseConfigured) return localFenceProducts;
 
       let q = supabase
         .from("products")
-        .select("id, name, system_type, description")
+        .select("id, name, system_type, description, system_instance_id, supplier_id, suppliers(slug)")
         .eq("product_type", "fence")
         .eq("active", true);
 
@@ -152,7 +173,7 @@ export function ProductSelectV3({
       const { data, error } = await q.order("sort_order", { ascending: true });
       if (error) return localFenceProducts;
       return data && data.length > 0
-        ? mergeFenceProducts(data as FenceProduct[])
+        ? mergeFenceProducts(data as any[])
         : localFenceProducts;
     },
   });
@@ -162,13 +183,36 @@ export function ProductSelectV3({
     if (!currentCode && products[0]) selectProduct(products[0]);
   };
 
-  function selectProduct(p: FenceProduct) {
+  function selectProduct(p: any) {
     const initialVariables = initialVariablesForSystem(p.system_type);
     const initialHeight = Number(initialVariables.target_height_mm ?? 1800);
+
+    let resolvedSupplierId = p.supplier_id;
+    let resolvedSupplierSlug = p.suppliers?.slug;
+
+    if (!resolvedSupplierId) {
+      if (p.system_type.startsWith("AF_")) {
+        resolvedSupplierId = "1aecc2bc-4b44-4676-a23a-903fe9286830";
+        resolvedSupplierSlug = "amazing-fencing";
+      } else if (p.system_type.startsWith("DF_")) {
+        resolvedSupplierId = "52946ce5-5125-44eb-bbce-7f19e424fa89";
+        resolvedSupplierSlug = "discount-fencing";
+      } else {
+        resolvedSupplierId = "7da9cadf-179c-4aa1-96dd-5487d8ce5334";
+        resolvedSupplierSlug = "glass-outlet";
+      }
+    }
+
+    const variables = {
+      ...initialVariables,
+      supplier_id: resolvedSupplierId,
+      supplier_slug: resolvedSupplierSlug || undefined,
+      ...(p.system_instance_id ? { system_instance_id: p.system_instance_id } : (state.payload?.variables?.system_instance_id ? { system_instance_id: state.payload.variables.system_instance_id } : {})),
+    };
     const initialPayload: CanonicalPayload = {
       productCode: p.system_type,
       schemaVersion: "v1",
-      variables: initialVariables,
+      variables,
       ...(state.payload?.propertyAnchor
         ? { propertyAnchor: state.payload.propertyAnchor }
         : {}),
@@ -177,7 +221,7 @@ export function ProductSelectV3({
         {
           runId: crypto.randomUUID(),
           productCode: p.system_type,
-          variables: initialVariables,
+          variables,
           leftBoundary: { type: "product_post" },
           rightBoundary: { type: "product_post" },
           segments: [
@@ -234,7 +278,13 @@ export function ProductSelectV3({
                               ? "Build As You Go"
                               : product.system_type === "DF_CCA_PAL"
                                 ? "Treated Pine Paling"
-                                : product.name}
+                                : product.system_type === "AF_TIMBER_PALING"
+                                  ? "Treated Pine & Hardwood Paling"
+                                  : product.system_type === "AF_COLORBOND"
+                                    ? "Colorbond Steel"
+                                    : product.system_type === "AF_RETAINING_WALL"
+                                      ? "Timber Retaining Wall"
+                                      : product.name}
                     </span>
                     <span className="text-[11.5px] text-[#6E7681] truncate">
                       {product.description || (
@@ -248,7 +298,13 @@ export function ProductSelectV3({
                                 ? "Custom panel configurations"
                                 : product.system_type === "DF_CCA_PAL"
                                   ? "Traditional timber boundary"
-                                  : "Aluminium fencing system"
+                                  : product.system_type === "AF_TIMBER_PALING"
+                                    ? "Treated pine & hardwood paling boundary fence"
+                                    : product.system_type === "AF_COLORBOND"
+                                      ? "Standard Colorbond steel panel fence"
+                                      : product.system_type === "AF_RETAINING_WALL"
+                                        ? "Timber retaining wall sleepers & posts"
+                                        : "Aluminium fencing system"
                       )}
                     </span>
                   </span>

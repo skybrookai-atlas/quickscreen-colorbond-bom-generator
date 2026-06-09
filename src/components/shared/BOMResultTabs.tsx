@@ -75,7 +75,7 @@ function nextBreakHint(item: BOMLineItem) {
   if (!nextBreak) return null;
 
   const nextUnitPrice = priceForSku(item.sku, nextBreak);
-  if (nextUnitPrice <= 0 || item.unitPrice <= 0 || nextUnitPrice >= item.unitPrice) {
+  if (item.unitPrice === null || nextUnitPrice <= 0 || item.unitPrice <= 0 || nextUnitPrice >= item.unitPrice) {
     return {
       more: nextBreak - item.quantity,
       savingPct: null as number | null,
@@ -464,10 +464,10 @@ function BOMMobileCard({
           {!customerMode && (
             <>
               <p className="mt-2 text-xs font-semibold text-brand-muted">
-                {item.unitPrice > 0 ? `$${formatMoney(item.unitPrice)}` : "-"} / {unitLabel(item)}
+                {item.unitPrice !== null && item.unitPrice !== undefined ? `$${formatMoney(item.unitPrice)}` : "Price TBC"} / {unitLabel(item)}
               </p>
               <p className="mt-1 text-base font-black text-brand-primary">
-                {item.unitPrice > 0 ? `$${formatMoney(item.lineTotal)}` : "-"}
+                {item.lineTotal !== null && item.lineTotal !== undefined ? `$${formatMoney(item.lineTotal)}` : "Price TBC"}
               </p>
             </>
           )}
@@ -608,7 +608,7 @@ function ItemGroup({
           const bulkBuySku = bulkBuyVariantForSku(item.sku);
           const bulkBuyUnitPrice = bulkBuySku ? priceForSku(bulkBuySku, item.quantity) : 0;
           const bulkBuySaving =
-            bulkBuySku && bulkBuyUnitPrice > 0 && item.unitPrice > bulkBuyUnitPrice
+            bulkBuySku && bulkBuyUnitPrice > 0 && item.unitPrice !== null && item.unitPrice > bulkBuyUnitPrice
               ? item.unitPrice - bulkBuyUnitPrice
               : 0;
           const canSwitchEconomy =
@@ -663,7 +663,7 @@ function ItemGroup({
           <td className="py-2.5 px-3 text-sm text-brand-text">
             <div className="flex flex-wrap items-center gap-1.5">
               <span>{stripParentheticalDispatchCode(item.description)}</span>
-              {item.unitPrice <= 0 && (
+              {item.unitPrice !== null && item.unitPrice <= 0 && (
                 <span className="rounded-full border border-brand-warning/40 bg-brand-warning/10 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-warning print:hidden">
                   Price not set
                 </span>
@@ -793,10 +793,10 @@ function ItemGroup({
           {!customerMode && (
             <>
               <td className="hidden py-2.5 px-3 text-sm text-brand-muted text-right tabular-nums sm:table-cell">
-                {item.unitPrice > 0 ? `$${formatMoney(item.unitPrice)}` : "-"}
+                {item.unitPrice !== null && item.unitPrice !== undefined ? `$${formatMoney(item.unitPrice)}` : "Price TBC"}
               </td>
               <td className="py-2.5 px-3 text-sm text-brand-text font-medium text-right tabular-nums">
-                {item.unitPrice > 0 ? `$${formatMoney(item.lineTotal)}` : "-"}
+                {item.lineTotal !== null && item.lineTotal !== undefined ? `$${formatMoney(item.lineTotal)}` : "Price TBC"}
               </td>
             </>
           )}
@@ -881,7 +881,7 @@ export function BOMResultTabs({
         [];
 
   const activeTotal = parseFloat(
-    activeItems.reduce((s, i) => s + i.lineTotal, 0).toFixed(2),
+    activeItems.reduce((s, i) => s + (i.lineTotal ?? 0), 0).toFixed(2),
   );
   const activeGst = parseFloat((activeTotal * 0.1).toFixed(2));
   const activeGrandTotal = parseFloat((activeTotal + activeGst).toFixed(2));

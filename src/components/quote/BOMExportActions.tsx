@@ -30,7 +30,7 @@ function applyOverrides(
       return {
         ...i,
         quantity: qty,
-        lineTotal: parseFloat((qty * i.unitPrice).toFixed(2)),
+        lineTotal: i.unitPrice !== null ? parseFloat((qty * i.unitPrice).toFixed(2)) : null,
       };
     });
 }
@@ -51,7 +51,7 @@ export function BOMExportActions({
 
   const effectiveItems = applyOverrides(result.allItems, removedSkus, qtyOverrides);
   const subtotal = parseFloat(
-    effectiveItems.reduce((s, i) => s + i.lineTotal, 0).toFixed(2),
+    effectiveItems.reduce((s, i) => s + (i.lineTotal ?? 0), 0).toFixed(2),
   );
   const gst = parseFloat((subtotal * 0.1).toFixed(2));
   const grandTotal = parseFloat((subtotal + gst).toFixed(2));
@@ -63,7 +63,7 @@ export function BOMExportActions({
     setCopying(true);
     const lines = effectiveItems.map(
       (i) =>
-        `${i.sku}\t${stripParentheticalDispatchCode(i.name || i.description)}\t×${i.quantity}\t$${i.lineTotal.toFixed(2)}`,
+        `${i.sku}\t${stripParentheticalDispatchCode(i.name || i.description)}\t×${i.quantity}\t${i.lineTotal !== null ? `$${i.lineTotal.toFixed(2)}` : "TBC"}`,
     );
     lines.push("");
     lines.push(`Subtotal (ex-GST)\t\t\t$${subtotal.toFixed(2)}`);
@@ -93,8 +93,8 @@ export function BOMExportActions({
       Category: i.category,
       Unit: i.unit,
       Qty: i.quantity,
-      "Unit Price": i.unitPrice.toFixed(2),
-      "Line Total": i.lineTotal.toFixed(2),
+      "Unit Price": i.unitPrice !== null ? i.unitPrice.toFixed(2) : "TBC",
+      "Line Total": i.lineTotal !== null ? i.lineTotal.toFixed(2) : "TBC",
     }));
     rows.push({
       SKU: "", Name: "Subtotal (ex-GST)", Description: "", Category: "",

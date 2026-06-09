@@ -6,7 +6,7 @@ import {
 
 describe('multiSupplier schemas', () => {
   const now = new Date().toISOString();
-  const u = '11111111-1111-1111-1111-111111111111';
+  const u = '11111111-1111-4111-8111-111111111111';
 
   it('parses a valid supplier row', () => {
     const ok = supplierSchema.safeParse({

@@ -197,6 +197,87 @@ export function RunCard({ run, runIdx, autoOpenFirstSection = false, onAutoOpenC
   const sectionCount = run.segments.filter((s) => s.segmentKind !== "gate_opening").length;
   const postCount = isBayg ? 0 : (sectionCount + gateCount + 1 + (run.corners?.length ?? 0));
 
+  const specItems = useMemo(() => {
+    const items = [];
+    
+    // Target Height
+    items.push({
+      label: "Height",
+      value: (
+        <InlineHeightEditor
+          productCode={run.productCode}
+          variables={runVariables}
+          valueMm={runHeight}
+          ariaLabel={`Run ${runIdx + 1} default height`}
+          onChange={updateRunHeight}
+        />
+      ),
+      mono: true,
+    });
+
+    if (run.productCode === "AF_TIMBER_PALING") {
+      items.push({
+        label: "Timber",
+        value: runVariables.timber_type === "hardwood" ? "Hardwood" : "Treated Pine",
+      });
+      items.push({
+        label: "Style",
+        value: runVariables.paling_style === "lapped_capped" ? "Lapped & Capped" : "Butted",
+      });
+      items.push({
+        label: "Rail",
+        value: runVariables.rail_profile ? String(runVariables.rail_profile) : "75x38",
+      });
+      items.push({
+        label: "Post size",
+        value: runVariables.post_size ? String(runVariables.post_size) : "100x75",
+      });
+    } else if (run.productCode === "AF_COLORBOND") {
+      items.push({
+        label: "Colour",
+        value: colourName(runVariables.colour || runVariables.colour_code),
+      });
+      items.push({
+        label: "Mounting",
+        value: isBayg ? "Not required" : (MOUNTING_LABELS[mounting] ?? mounting),
+      });
+    } else {
+      // Fallback for aluminum slat systems (QSHS, VS, XPL, BAYG)
+      items.push({
+        label: "Colour",
+        value: colourName(runVariables.colour_code),
+      });
+      items.push({
+        label: run.productCode === "DF_CCA_PAL" ? "Paling" : "Slat size",
+        value: run.productCode === "DF_CCA_PAL" ? (runVariables.paling_type ? String(runVariables.paling_type) : "CCA Pine") : `${slatSize}mm`,
+      });
+      items.push({
+        label: run.productCode === "DF_CCA_PAL" ? "Rail" : "Gap size",
+        value: run.productCode === "DF_CCA_PAL" ? (runVariables.rail_type ? String(runVariables.rail_type) : "3 Rails") : `${slatGap}mm`,
+      });
+    }
+
+    // Common items
+    if (run.productCode !== "AF_TIMBER_PALING" && run.productCode !== "AF_COLORBOND") {
+      items.push({
+        label: "Mounting",
+        value: isBayg ? "Not required" : (MOUNTING_LABELS[mounting] ?? mounting),
+      });
+    }
+    
+    items.push({
+      label: "Max spacing",
+      value: `${jobMax}mm`,
+    });
+
+    items.push({
+      label: isBayg ? "Panels" : "Posts × Gates",
+      value: isBayg ? "0" : `${postCount} × ${gateCount}`,
+    });
+
+    return items;
+  }, [run.productCode, runVariables, runHeight, slatSize, slatGap, mounting, jobMax, postCount, gateCount, isBayg, runIdx]);
+
   return (
     <div className="space-y-2">
       {runIdx === 0 && (
@@ -220,11 +301,25 @@ export function RunCard({ run, runIdx, autoOpenFirstSection = false, onAutoOpenC
         </button>
       )}
 
-      <div className="rounded-xl border border-[#E9E5DD] bg-white p-4 shadow-sm space-y-4">
+      <div className="rounded-xl border border-[#E9E5DD] bg-white p-3.5 shadow-sm space-y-3">
         {/* Card Header */}
-        <div className="flex items-baseline justify-between border-b border-[#E9E5DD] pb-2.5">
+        <div className="flex items-baseline justify-between border-b border-[#E9E5DD] pb-2">
           <div className="flex items-baseline gap-2 min-w-0">
-            <span className="text-[15px] font-bold text-[#11161D]">Run {runIdx + 1}</span>
+            <span className="text-[15px] font-bold text-[#11161D]">
+              {run.productCode === "AF_TIMBER_PALING"
+                ? `Timber Run ${runIdx + 1}`
+                : run.productCode === "AF_COLORBOND"
+                  ? `Colorbond Run ${runIdx + 1}`
+                  : run.productCode === "AF_RETAINING_WALL"
+                    ? `Wall Run ${runIdx + 1}`
+                    : run.productCode === "AF_PERMASTEEL"
+                      ? `Permasteel Run ${runIdx + 1}`
+                      : run.productCode === "AF_CHAINWIRE_SECURITY"
+                        ? `Chainwire Run ${runIdx + 1}`
+                        : run.productCode === "AF_TIMBER_SLAT_SCREEN"
+                          ? `Slat Run ${runIdx + 1}`
+                          : `Run ${runIdx + 1}`}
+            </span>
             <span className="text-[12px] text-[#6E7681] truncate">({systemDisplayName(run.productCode)})</span>
           </div>
           <span className="af-sidebar-mono text-[#DD6E1B] font-semibold text-[13.5px] shrink-0">
@@ -233,64 +328,15 @@ export function RunCard({ run, runIdx, autoOpenFirstSection = false, onAutoOpenC
         </div>
 
         {/* Spec Grid */}
-        <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-[#6E7681]">
-          {/* Left Column */}
-          <div className="space-y-1.5">
-            <div className="flex justify-between items-center gap-1">
-              <span className="font-medium">Height:</span>
-              <span className="af-sidebar-mono text-[#11161D] font-semibold">
-                <InlineHeightEditor
-                  productCode={run.productCode}
-                  variables={runVariables}
-                  valueMm={runHeight}
-                  ariaLabel={`Run ${runIdx + 1} default height`}
-                  onChange={updateRunHeight}
-                />
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-[#6E7681]">
+          {specItems.map((item, idx) => (
+            <div key={idx} className="flex justify-between items-center gap-1">
+              <span className="font-medium">{item.label}:</span>
+              <span className={`text-[#11161D] font-semibold truncate max-w-[140px] ${item.mono ? "af-sidebar-mono" : ""}`} title={typeof item.value === 'string' ? item.value : undefined}>
+                {item.value}
               </span>
             </div>
-            <div className="flex justify-between items-center gap-1">
-              <span className="font-medium">Colour:</span>
-              <span className="af-sidebar-mono text-[#11161D] font-semibold truncate max-w-[120px]" title={colourName(runVariables.colour_code)}>
-                {colourName(runVariables.colour_code)}
-              </span>
-            </div>
-            <div className="flex justify-between items-center gap-1">
-              <span className="font-medium">
-                {run.productCode === "DF_CCA_PAL" ? "Paling:" : "Slat size:"}
-              </span>
-              <span className="af-sidebar-mono text-[#11161D] font-semibold">
-                {run.productCode === "DF_CCA_PAL" ? (runVariables.paling_type ? String(runVariables.paling_type) : "CCA Pine") : `${slatSize}mm`}
-              </span>
-            </div>
-            <div className="flex justify-between items-center gap-1">
-              <span className="font-medium">
-                {run.productCode === "DF_CCA_PAL" ? "Rail:" : "Gap size:"}
-              </span>
-              <span className="af-sidebar-mono text-[#11161D] font-semibold">
-                {run.productCode === "DF_CCA_PAL" ? (runVariables.rail_type ? String(runVariables.rail_type) : "3 Rails") : `${slatGap}mm`}
-              </span>
-            </div>
-          </div>
-
-          {/* Right Column */}
-          <div className="space-y-1.5">
-            <div className="flex justify-between items-center gap-1">
-              <span className="font-medium">Mounting:</span>
-              <span className="af-sidebar-mono text-[#11161D] font-semibold truncate max-w-[120px]" title={isBayg ? "Not required" : MOUNTING_LABELS[mounting] ?? mounting}>
-                {isBayg ? "Not required" : MOUNTING_LABELS[mounting] ?? mounting}
-              </span>
-            </div>
-            <div className="flex justify-between items-center gap-1">
-              <span className="font-medium">Max spacing:</span>
-              <span className="af-sidebar-mono text-[#11161D] font-semibold">{jobMax}mm</span>
-            </div>
-            <div className="flex justify-between items-center gap-1">
-              <span className="font-medium">Posts × Gates:</span>
-              <span className="af-sidebar-mono text-[#11161D] font-semibold">
-                {isBayg ? "0" : postCount} × {gateCount}
-              </span>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Run Settings Toggle Button */}
@@ -409,7 +455,21 @@ export function RunCard({ run, runIdx, autoOpenFirstSection = false, onAutoOpenC
                   className="inline-flex items-center gap-1 text-xs font-semibold text-[#DD6E1B] hover:text-[#c96215] transition-colors px-2 py-1.5 rounded hover:bg-[#FCF1E6]/50"
                 >
                   <Plus size={14} />
-                  {isBayg ? "Add panel" : "Add Section"}
+                  {run.productCode === "AF_TIMBER_PALING"
+                    ? "Add Timber Section"
+                    : run.productCode === "AF_COLORBOND"
+                      ? "Add Colorbond Panel"
+                      : run.productCode === "AF_RETAINING_WALL"
+                        ? "Add Wall Section"
+                        : run.productCode === "AF_PERMASTEEL"
+                          ? "Add Permasteel Panel"
+                          : run.productCode === "AF_CHAINWIRE_SECURITY"
+                            ? "Add Chainwire Section"
+                            : run.productCode === "AF_TIMBER_SLAT_SCREEN"
+                              ? "Add Slat Section"
+                              : isBayg
+                                ? "Add panel"
+                                : "Add Section"}
                 </button>
                 {!isBayg && (
                   <button
@@ -418,7 +478,11 @@ export function RunCard({ run, runIdx, autoOpenFirstSection = false, onAutoOpenC
                     className="inline-flex items-center gap-1 text-xs font-semibold text-[#DD6E1B] hover:text-[#c96215] transition-colors px-2 py-1.5 rounded hover:bg-[#FCF1E6]/50"
                   >
                     <Plus size={14} />
-                    Add Gate
+                    {run.productCode === "AF_TIMBER_PALING"
+                      ? "Add Timber Gate"
+                      : run.productCode === "AF_COLORBOND"
+                        ? "Add Colorbond Gate"
+                        : "Add Gate"}
                   </button>
                 )}
               </div>

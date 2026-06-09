@@ -11,7 +11,6 @@ import { AdminGuard } from "./components/auth/AdminGuard";
 import { LoginPage } from "./pages/LoginPage";
 import { QuotesHistoryPage } from "./pages/QuotesHistoryPage";
 import { CalculatorV3Page } from "./pages/CalculatorV3Page";
-import { AnyfenceCalculatorPage } from "./pages/AnyfenceCalculatorPage";
 import { CalculatorV4Page } from "./pages/CalculatorV4Page";
 import { SupplierPortalPage } from "./pages/SupplierPortalPage";
 import { ContractorPortalPage } from "./pages/ContractorPortalPage";
@@ -19,7 +18,9 @@ import { ContractorEmbedQuotePage } from "./pages/ContractorEmbedQuotePage";
 import { CalculatorBuilderPage } from "./pages/CalculatorBuilderPage";
 import { MarketplacePage } from "./pages/MarketplacePage";
 import { AdminModerationPage } from "./pages/admin/AdminModerationPage";
-import { ProductsIndexPage } from "./pages/admin/ProductsIndexPage";
+import { ProductsListPage } from "./pages/admin/ProductsListPage";
+import { ProductEditPage } from "./pages/admin/ProductEditPage";
+import { ImportPage } from "./pages/admin/ImportPage";
 import { ProductDetailPage } from "./pages/admin/ProductDetailPage";
 import { ComponentsIndexPage } from "./pages/admin/ComponentsIndexPage";
 import { ColoursAdminPage } from "./pages/admin/ColoursAdminPage";
@@ -44,16 +45,16 @@ const router = createBrowserRouter([
     children: [
       { path: "/login", element: <LoginPage /> },
       { path: "/onboarding", element: <OnboardingPage /> },
-      { path: "/", element: <AnyfenceCalculatorPage /> },
+      { path: "/", element: <Navigate to="/fence-calculator" replace /> },
       {
         path: "/fence-calculator",
-        element: <AnyfenceCalculatorPage />,
+        element: <CalculatorV3Page />,
       },
       {
         path: "/calculator",
         element: (
           <AuthGuard>
-            <AnyfenceCalculatorPage />
+            <CalculatorV3Page />
           </AuthGuard>
         ),
       },
@@ -157,7 +158,23 @@ const router = createBrowserRouter([
         path: "/admin/products",
         element: (
           <AdminGuard>
-            <ProductsIndexPage />
+            <ProductsListPage />
+          </AdminGuard>
+        ),
+      },
+      {
+        path: "/admin/products/new",
+        element: (
+          <AdminGuard>
+            <ProductEditPage />
+          </AdminGuard>
+        ),
+      },
+      {
+        path: "/admin/products/:id/edit",
+        element: (
+          <AdminGuard>
+            <ProductEditPage />
           </AdminGuard>
         ),
       },
@@ -166,6 +183,22 @@ const router = createBrowserRouter([
         element: (
           <AdminGuard>
             <ProductDetailPage />
+          </AdminGuard>
+        ),
+      },
+      {
+        path: "/admin/imports/new",
+        element: (
+          <AdminGuard>
+            <ImportPage />
+          </AdminGuard>
+        ),
+      },
+      {
+        path: "/admin/imports/:runId/review",
+        element: (
+          <AdminGuard>
+            <ImportPage />
           </AdminGuard>
         ),
       },
