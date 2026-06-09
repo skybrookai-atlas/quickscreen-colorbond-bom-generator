@@ -19,6 +19,8 @@ import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
 import { listSuppliers, listArchetypes } from "../lib/multiSupplier/queries";
 import { CalculatorBuilderWizard } from "../components/calculator-builder/CalculatorBuilderWizard";
+import { BuildForgeChatPanel } from "../components/calculator-builder/BuildForgeChatPanel";
+
 
 type Tab = "details" | "variables" | "rules" | "selectors" | "tests";
 
@@ -371,6 +373,94 @@ export function CalculatorBuilderPage() {
     }, 1200);
   };
 
+  const handleApplyMeta = (field: string, value: string) => {
+    switch (field) {
+      case "name":
+        setCalcName(value);
+        break;
+      case "description":
+        setCalcDescription(value);
+        break;
+      case "organization":
+        setSelectedSupplierId(value);
+        break;
+      case "archetype":
+        setSelectedArchetypeId(value);
+        break;
+      case "visibility":
+        setVisibility(value);
+        break;
+    }
+  };
+
+  const handleApplyAddVariable = (variable: any) => {
+    setVariables((prev) => {
+      const filtered = prev.filter((v) => v.name !== variable.key);
+      return [
+        ...filtered,
+        {
+          id: `var-${Date.now()}-${Math.random().toString(36).substring(4)}`,
+          name: variable.key,
+          type: variable.type,
+          description: variable.description || "",
+          defaultValue: String(variable.default ?? ""),
+          options: variable.options ? variable.options.map(String) : [],
+        },
+      ];
+    });
+  };
+
+  const handleApplyAddRule = (rule: any) => {
+    setRules((prev) => {
+      const filtered = prev.filter((r) => r.outputKey !== rule.outputKey);
+      return [
+        ...filtered,
+        {
+          id: `rule-${Date.now()}-${Math.random().toString(36).substring(4)}`,
+          outputKey: rule.outputKey,
+          expression: rule.expression,
+          stage: rule.stage || "derive",
+          description: rule.description || "",
+        },
+      ];
+    });
+  };
+
+  const handleApplyMapSelector = (selector: any) => {
+    setSelectors((prev) => {
+      const filtered = prev.filter((s) => s.skuPattern !== selector.canonical_name);
+      return [
+        ...filtered,
+        {
+          id: `sel-${Date.now()}-${Math.random().toString(36).substring(4)}`,
+          category: selector.category || "slat",
+          matchCriteria: selector.matchCriteria || "",
+          skuPattern: selector.canonical_name || "",
+        },
+      ];
+    });
+  };
+
+  const handleApplyAddTest = (test: any) => {
+    setTestCases((prev) => {
+      const filtered = prev.filter((t) => t.name !== test.name);
+      return [
+        ...filtered,
+        {
+          id: `test-${Date.now()}-${Math.random().toString(36).substring(4)}`,
+          name: test.name,
+          inputs: test.inputs || {},
+          expectedOutputs: test.expectedOutputs || [],
+          status: "idle",
+        },
+      ];
+    });
+  };
+
+  const handleApplyComplete = () => {
+    toast.success("Build Forge: Calculator configured successfully! Ready to submit.");
+  };
+
   return (
     <AppShell>
       <div className="min-h-screen bg-brand-bg text-brand-text p-4 sm:p-8">
@@ -405,8 +495,10 @@ export function CalculatorBuilderPage() {
           </div>
 
 
-          {/* Navigation Tabs */}
-          <div className="flex border-b border-brand-border/40 gap-2 overflow-x-auto pb-px">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div className="lg:col-span-8 space-y-6">
+              {/* Navigation Tabs */}
+              <div className="flex border-b border-brand-border/40 gap-2 overflow-x-auto pb-px">
             {(["details", "variables", "rules", "selectors", "tests"] as Tab[]).map((tab) => (
               <button
                 key={tab}
@@ -952,6 +1044,30 @@ export function CalculatorBuilderPage() {
               </div>
             )}
           </div>
+          </div>
+
+          <div className="lg:col-span-4">
+            <BuildForgeChatPanel
+              onApplyMeta={handleApplyMeta}
+              onAddVariable={handleApplyAddVariable}
+              onAddRule={handleApplyAddRule}
+              onMapSelector={handleApplyMapSelector}
+              onAddTest={handleApplyAddTest}
+              onComplete={handleApplyComplete}
+              currentValues={{
+                name: calcName,
+                description: calcDescription,
+                supplierId: selectedSupplierId,
+                archetypeId: selectedArchetypeId,
+                visibility: visibility,
+                variables: variables,
+                rules: rules,
+                selectors: selectors,
+                tests: testCases,
+              }}
+            />
+          </div>
+        </div>
         </div>
       </div>
 
