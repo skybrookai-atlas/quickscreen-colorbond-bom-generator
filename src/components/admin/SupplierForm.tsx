@@ -68,6 +68,7 @@ export function SupplierForm({ initialData, onSubmit, onCancel, isLoading }: Sup
   });
 
   const nameValue = watch('name');
+  const trustTierValue = watch('trustTier');
 
   // Auto-slugify name when creating a new supplier (only if slug was not manually touched)
   useEffect(() => {
@@ -231,6 +232,30 @@ export function SupplierForm({ initialData, onSubmit, onCancel, isLoading }: Sup
           </select>
           {errors.trustTier && (
             <p className="mt-1 text-xs text-brand-danger">{errors.trustTier.message}</p>
+          )}
+          {isAdmin && (
+            <div className="mt-2 flex gap-2">
+              {trustTierValue === 'community' && (
+                <button
+                  type="button"
+                  onClick={() => setValue('trustTier', 'verified', { shouldValidate: true })}
+                  className="px-2 py-1 text-xs bg-emerald-600 hover:bg-emerald-700 text-white rounded font-medium transition-colors"
+                  data-testid="promote-supplier-btn"
+                >
+                  Promote to Verified
+                </button>
+              )}
+              {trustTierValue === 'verified' && (
+                <button
+                  type="button"
+                  onClick={() => setValue('trustTier', 'community', { shouldValidate: true })}
+                  className="px-2 py-1 text-xs bg-amber-600 hover:bg-amber-700 text-white rounded font-medium transition-colors"
+                  data-testid="demote-supplier-btn"
+                >
+                  Demote to Community
+                </button>
+              )}
+            </div>
           )}
         </div>
 

@@ -140,7 +140,7 @@ function getFieldGroup(fieldKey: string): "style" | "posts" | "palings" | "rails
   ) {
     return "posts";
   }
-  if (k.includes("paling") || k.includes("blade") || k.includes("infill_type")) {
+  if (k.includes("paling") || k.includes("blade") || k.includes("infill_type") || k.includes("sheet")) {
     return "palings";
   }
   if (k.includes("rail") || k.includes("capping")) {
@@ -371,6 +371,8 @@ export function RunSettingsEditor({ run, onCollapse }: Props) {
     .filter(Boolean)
     .join(" · ");
 
+  const palingsLabel = productCode === "AF_TIMBER_PALING" ? "Palings" : (productCode === "AF_COLORBOND" ? "Sheets" : "Slats");
+
   return (
     <div className="mb-3 space-y-3 p-4 bg-[#FCFBF9] rounded-xl border border-[#E9E5DD]">
       <p className="text-xs font-semibold text-[#6E7681]">
@@ -511,7 +513,7 @@ export function RunSettingsEditor({ run, onCollapse }: Props) {
       {hasPalings && (
         <SettingsDisclosureRow
           id={`${run.runId}-palings`}
-          label="Palings"
+          label={palingsLabel}
           value={palingsSummary}
         >
           <div className="space-y-4">

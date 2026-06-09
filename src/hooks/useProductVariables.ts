@@ -19,16 +19,18 @@ export function useProductVariables(systemType: string | null, scope: Scope, org
 
       let query = supabase
         .from('products')
-        .select('id')
-        .eq('system_type', systemType);
+        .select('id, system_instance_id')
+        .eq('system_type', systemType)
+        .eq('active', true);
 
       if (orgId) {
         query = query.eq('org_id', orgId);
       }
 
-      const { data: product, error: prodErr } = await query.maybeSingle();
-      if (prodErr) return getLocalVariables(systemType, scope);
-      if (!product) return getLocalVariables(systemType, scope);
+      const { data: products, error: prodErr } = await query;
+      if (prodErr || !products || products.length === 0) return getLocalVariables(systemType, scope);
+
+      const product = products.find((p) => p.system_instance_id !== null) || products[0];
 
       const { data, error } = await supabase
         .from('product_variables')

@@ -108,7 +108,7 @@ export function InlineHeightEditor({
     >
       {heightEntries.map((entry) => (
         <option key={entry.N} value={entry.height}>
-          {entry.height}mm - {entry.N} slats
+          {productCode.startsWith("AF_") ? `${entry.height}mm` : `${entry.height}mm - ${entry.N} slats`}
         </option>
       ))}
     </select>

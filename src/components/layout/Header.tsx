@@ -9,7 +9,6 @@ import { useProfile } from '../../context/ProfileContext';
 import type { TenantBranding } from '../../lib/tenantThemes';
 import { INSTALL_VIDEOS, type InstallVideoKey } from '../../lib/installVideos';
 import { InstallVideoQR } from '../calculator-v3/InstallVideoQR';
-import { AnyfenceLogo } from '../brand/AnyfenceLogo';
 import { AmazingFencingLogo } from '../brand/AmazingFencingLogo';
 
 interface HeaderProps {
@@ -53,12 +52,12 @@ function isCypressSmokeTest(): boolean {
 }
 
 export function Header({
-  branding,
+  branding: _branding,
   actions,
   mobileTitle,
   jobTitle,
-  brandLogoSrc,
-  brandLogoAlt = "The Glass Outlet",
+  brandLogoSrc: _brandLogoSrc,
+  brandLogoAlt: _brandLogoAlt = "The Glass Outlet",
   priceLabel,
   customerMode = false,
   onCustomerModeChange,
@@ -120,46 +119,9 @@ export function Header({
                 {compactJobTitle}
               </span>
             </div>
-          ) : brandLogoSrc ? (
-            <div className="flex items-center gap-3">
-              <img
-                src={brandLogoSrc}
-                alt={brandLogoAlt}
-                className="h-8 w-auto max-w-[9rem] shrink-0 object-contain sm:h-10 sm:max-w-[12rem]"
-              />
-              <span className="h-4 w-px bg-brand-border/60" />
-              <div className="flex items-center gap-1 text-[11px] font-semibold text-brand-muted select-none">
-                <span>Powered by <span className="font-black text-brand-text">Anyfence</span></span>
-              </div>
-            </div>
-          ) : (!branding || branding?.title === 'Amazing Fencing') ? (
+          ) : (
             <div className="flex items-center gap-3">
               <AmazingFencingLogo className="scale-75 origin-left" />
-              <span className="h-4 w-px bg-brand-border/60" />
-              <div className="flex items-center gap-1 text-[11px] font-semibold text-brand-muted select-none">
-                <span>Powered by <span className="font-black text-brand-text">Anyfence</span></span>
-              </div>
-            </div>
-          ) : (branding?.title === 'Anyfence' || branding?.title === 'AnyFence') ? (
-            <AnyfenceLogo showSubtitle={true} iconClassName="h-8 w-8" textClassName="text-xl sm:text-2xl" />
-          ) : (
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="min-w-0 leading-tight">
-                <p className="truncate text-base font-black tracking-tight text-brand-text sm:text-lg">
-                  {branding?.title ?? 'The Glass Outlet'}{branding?.titleItalic && <em>{branding.titleItalic}</em>}
-                </p>
-                <p className="truncate text-xs font-semibold text-brand-muted">
-                  {branding?.subtitle ?? 'Amazing Fencing — Get a Fence Quote'}
-                </p>
-              </div>
-              <span className="h-4 w-px bg-brand-border/60 shrink-0" />
-              <AnyfenceLogo
-                showSubtitle={false}
-                variant="white"
-                iconClassName="h-5 w-5"
-                textClassName="text-sm"
-                className="opacity-50 hover:opacity-100 transition-opacity shrink-0"
-              />
             </div>
           )}
         </div>

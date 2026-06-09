@@ -1665,7 +1665,7 @@ export function calculateLocalBom(
     ),
   }));
 
-  const subtotal = roundMoney(lines.reduce((sum, line) => sum + line.lineTotal, 0));
+  const subtotal = roundMoney(lines.reduce((sum, line) => sum + (line.lineTotal ?? 0), 0));
   const gst = roundMoney(subtotal * 0.1);
   const grandTotal = roundMoney(subtotal + gst);
   const gateItems = lines.filter((line) =>

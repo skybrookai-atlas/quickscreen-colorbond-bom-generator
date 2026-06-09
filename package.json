@@ -20,7 +20,7 @@
     "cy:run:react": "CYPRESS_BASE_URL=http://localhost:5173 cypress run",
     "test": "vitest run --environment jsdom src/hooks/useGoogleMaps.test.tsx",
     "test:e2e": "npm run cy:run",
-    "test:unit": "npx deno test --allow-read --allow-env supabase/functions/bom-calculator/index_test.ts",
+    "test:unit": "npx deno test --allow-read --allow-env supabase/functions/bom-calculator/",
     "test:integration": "scripts/test-integration.sh",
     "test:describe-fence": "node scripts/run-describe-fence-parser-tests.mjs",
     "seed:auth": "node supabase/seeds/seed-auth.js",
@@ -75,6 +75,7 @@
     "react-router-dom": "^7.14.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
+    "xlsx": "^0.18.5",
     "zod": "^4.3.6"
   }
 }

@@ -128,16 +128,31 @@ function aggregateBomItems(items: BOMLineItem[]): BOMLineItem[] {
       ...(existing.sources ?? sourceFromLine(existing)),
       ...(item.sources ?? sourceFromLine(item)),
     ]);
-    const lineTotalBeforeReprice = existing.lineTotal + item.lineTotal;
-    const unitPrice = priceForBomLine(item, quantity);
-    const lineTotal =
-      unitPrice > 0 ? roundMoney(unitPrice * quantity) : roundMoney(lineTotalBeforeReprice);
+    const isUnpriced = item.unitPrice === null || existing.unitPrice === null;
+    let unitPrice: number | null = null;
+    let lineTotal: number | null = null;
+
+    if (isUnpriced) {
+      unitPrice = null;
+      lineTotal = null;
+    } else {
+      const p = priceForBomLine(item, quantity);
+      if (p > 0) {
+        unitPrice = p;
+        lineTotal = roundMoney(p * quantity);
+      } else {
+        const lineTotalBeforeReprice = (existing.lineTotal ?? 0) + (item.lineTotal ?? 0);
+        lineTotal = roundMoney(lineTotalBeforeReprice);
+        unitPrice = roundMoney(lineTotal / Math.max(1, quantity));
+      }
+    }
+
     grouped.set(key, {
       ...existing,
       quantity,
       totalQty: quantity,
       sources,
-      unitPrice: unitPrice > 0 ? unitPrice : roundMoney(lineTotal / Math.max(1, quantity)),
+      unitPrice,
       lineTotal,
       notes:
         existing.notes || item.notes
@@ -180,14 +195,15 @@ function deriveLineForSources(
   const sources = (line.sources ?? sourceFromLine(line)).filter(predicate);
   if (sources.length === 0) return null;
   const quantity = sources.reduce((sum, source) => sum + source.qty, 0);
-  const unitPrice = priceForBomLine(line, quantity);
+  const isUnpriced = line.unitPrice === null;
+  const unitPrice = isUnpriced ? null : priceForBomLine(line, quantity);
   return {
     ...line,
     quantity,
     totalQty: quantity,
     sources,
     unitPrice,
-    lineTotal: roundMoney(unitPrice * quantity),
+    lineTotal: unitPrice !== null ? roundMoney(unitPrice * quantity) : null,
   };
 }
 
@@ -1124,12 +1140,13 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
         
         let updated = { ...line };
         if (typeof edit === "number") {
-          const unitPrice = priceForBomLine(line, edit);
+          const isUnpriced = line.unitPrice === null;
+          const unitPrice = isUnpriced ? null : priceForBomLine(line, edit);
           updated = {
             ...updated,
             quantity: edit,
             unitPrice,
-            lineTotal: roundMoney(unitPrice * edit),
+            lineTotal: unitPrice !== null ? roundMoney(unitPrice * edit) : null,
             notes: line.notes ? `${line.notes}; edited` : "edited",
           };
         }
@@ -1137,13 +1154,13 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
         const override = lineOverrides[key];
         if (override) {
           const qty = updated.quantity;
-          const price = override.unitPrice ?? updated.unitPrice;
+          const price = override.unitPrice !== undefined ? override.unitPrice : updated.unitPrice;
           updated = {
             ...updated,
             sku: override.sku ?? updated.sku,
             description: override.description ?? updated.description,
             unitPrice: price,
-            lineTotal: roundMoney(price * qty),
+            lineTotal: price !== null ? roundMoney(price * qty) : null,
           };
         }
         return updated;
@@ -1248,8 +1265,8 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
         );
         if (discountPct > 0) {
           const factor = 1 - discountPct / 100;
-          const discountedUnitPrice = roundMoney(item.unitPrice * factor);
-          const discountedLineTotal = roundMoney(discountedUnitPrice * item.quantity);
+          const discountedUnitPrice = item.unitPrice !== null ? roundMoney(item.unitPrice * factor) : null;
+          const discountedLineTotal = discountedUnitPrice !== null ? roundMoney(discountedUnitPrice * item.quantity) : null;
           return {
             ...item,
             unitPrice: discountedUnitPrice,
@@ -1274,7 +1291,7 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
       const discountedGateItems = gateItems.map(discountItem);
 
       const total = roundMoney(
-        discountedAllItems.reduce((sum, line) => sum + line.lineTotal, 0),
+        discountedAllItems.reduce((sum, line) => sum + (line.lineTotal ?? 0), 0),
       );
       const gst = roundMoney(total * 0.1);
       const grandTotal = roundMoney(total + gst);
@@ -1505,8 +1522,8 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
       Category: line.category,
       Unit: line.unit,
       Qty: line.quantity,
-      "Unit Price": line.unitPrice.toFixed(2),
-      "Line Total": line.lineTotal.toFixed(2),
+      "Unit Price": line.unitPrice !== null ? line.unitPrice.toFixed(2) : "TBC",
+      "Line Total": line.lineTotal !== null ? line.lineTotal.toFixed(2) : "TBC",
     })));
     rows.push(
       {

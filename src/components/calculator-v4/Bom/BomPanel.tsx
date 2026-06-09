@@ -13,9 +13,9 @@ import { useBomViewModel, type BomViewLine } from "./useBomViewModel";
 const GST_RATE = 0.1;
 
 function totalsFromLines(lines: BomViewLine[]) {
-  const pricedLines = lines.filter((l) => l.unitPrice > 0);
-  const tbcCount = lines.length - pricedLines.length;
-  const subtotal = pricedLines.reduce((s, l) => s + l.lineTotal, 0);
+  const pricedLines = lines.filter((l) => l.unitPrice !== null && l.unitPrice > 0);
+  const tbcCount = lines.filter((l) => l.unitPrice === null).length;
+  const subtotal = pricedLines.reduce((s, l) => s + (l.lineTotal ?? 0), 0);
   const gst = subtotal * GST_RATE;
   return { subtotal, gst, grandTotal: subtotal + gst, tbcCount };
 }
@@ -126,7 +126,7 @@ export function BomPanel({
       minimumFractionDigits: 2,
     });
     const parts = view.runResults.map((r, i) => {
-      const sub = r.items.reduce((s, l) => s + l.lineTotal, 0);
+      const sub = r.items.reduce((s, l) => s + (l.lineTotal ?? 0), 0);
       return `Run ${i + 1} ${money.format(sub)}`;
     });
     const secondary =

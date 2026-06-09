@@ -600,7 +600,7 @@
         "timber_type": "treated_pine"
       },
       "qty_key": "qty_post",
-      "sku_pattern": "100x75 Treated Pine Post 1800mm",
+      "sku_pattern": "AF-POST-PINE-100x75-1800",
       "priority": 10,
       "active": true
     },
@@ -614,7 +614,7 @@
         "timber_type": "hardwood"
       },
       "qty_key": "qty_post",
-      "sku_pattern": "100x75 Hardwood Post 1800mm",
+      "sku_pattern": "AF-POST-HWD-100x75-1800",
       "priority": 15,
       "active": true
     },
@@ -628,7 +628,7 @@
         "timber_type": "treated_pine"
       },
       "qty_key": "qty_post",
-      "sku_pattern": "100x75 Treated Pine Post 2400mm",
+      "sku_pattern": "AF-POST-PINE-100x75-2400",
       "priority": 20,
       "active": true
     },
@@ -642,7 +642,7 @@
         "timber_type": "hardwood"
       },
       "qty_key": "qty_post",
-      "sku_pattern": "100x75 Hardwood Post 2400mm",
+      "sku_pattern": "AF-POST-HWD-100x75-2400",
       "priority": 25,
       "active": true
     },
@@ -656,7 +656,7 @@
         "timber_type": "treated_pine"
       },
       "qty_key": "qty_post",
-      "sku_pattern": "100x75 Treated Pine Post 3000mm",
+      "sku_pattern": "AF-POST-PINE-100x75-3000",
       "priority": 30,
       "active": true
     },
@@ -670,7 +670,7 @@
         "timber_type": "hardwood"
       },
       "qty_key": "qty_post",
-      "sku_pattern": "100x75 Hardwood Post 3000mm",
+      "sku_pattern": "AF-POST-HWD-100x75-3000",
       "priority": 35,
       "active": true
     },
@@ -684,7 +684,7 @@
         "timber_type": "treated_pine"
       },
       "qty_key": "qty_rail",
-      "sku_pattern": "75x38 Treated Pine Rail 4800mm",
+      "sku_pattern": "AF-RAIL-PINE-75x38-4800",
       "priority": 10,
       "active": true
     },
@@ -698,7 +698,7 @@
         "timber_type": "hardwood"
       },
       "qty_key": "qty_rail",
-      "sku_pattern": "75x38 Hardwood Rail 4800mm",
+      "sku_pattern": "AF-RAIL-HWD-75x38-4800",
       "priority": 15,
       "active": true
     },
@@ -712,8 +712,22 @@
         "timber_type": "treated_pine"
       },
       "qty_key": "qty_rail",
-      "sku_pattern": "100x38 Treated Pine Rail 4800mm",
+      "sku_pattern": "AF-RAIL-PINE-100x38-4800",
       "priority": 20,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_TIMBER_PALING",
+      "selector_key": "af_rail_100x38_arrissed",
+      "component_category": "rail",
+      "selector_type": "exact",
+      "match_json": {
+        "rail_profile": "100x38_arrissed",
+        "timber_type": "treated_pine"
+      },
+      "qty_key": "qty_rail",
+      "sku_pattern": "AF-RAIL-PINE-ARR-100x38-4800",
+      "priority": 22,
       "active": true
     },
     {
@@ -726,7 +740,7 @@
         "timber_type": "hardwood"
       },
       "qty_key": "qty_rail",
-      "sku_pattern": "100x38 Hardwood Rail 4800mm",
+      "sku_pattern": "AF-RAIL-HWD-100x38-4800",
       "priority": 25,
       "active": true
     },
@@ -739,7 +753,7 @@
         "target_height_mm": { "lte": 1200 }
       },
       "qty_key": "qty_paling",
-      "sku_pattern": "100x16 Rough Sawn Treated Pine Paling 1200mm",
+      "sku_pattern": "AF-PAL-100x16-1200",
       "priority": 10,
       "active": true
     },
@@ -752,7 +766,7 @@
         "target_height_mm": { "lte": 1500 }
       },
       "qty_key": "qty_paling",
-      "sku_pattern": "100x16 Rough Sawn Treated Pine Paling 1500mm",
+      "sku_pattern": "AF-PAL-100x16-1500",
       "priority": 15,
       "active": true
     },
@@ -765,7 +779,7 @@
         "target_height_mm": { "lte": 1800 }
       },
       "qty_key": "qty_paling",
-      "sku_pattern": "100x16 Rough Sawn Treated Pine Paling 1800mm",
+      "sku_pattern": "AF-PAL-100x16-1800",
       "priority": 20,
       "active": true
     },
@@ -778,7 +792,7 @@
         "target_height_mm": { "lte": 2400 }
       },
       "qty_key": "qty_paling",
-      "sku_pattern": "100x16 Rough Sawn Treated Pine Paling 2400mm",
+      "sku_pattern": "AF-PAL-100x16-2400",
       "priority": 30,
       "active": true
     },
@@ -791,7 +805,7 @@
         "timber_type": "hardwood"
       },
       "qty_key": "qty_concrete",
-      "sku_pattern": "Post Mix Concrete 30kg",
+      "sku_pattern": "AF-CON-POSTMIX-30",
       "priority": 5,
       "active": true
     },
@@ -804,7 +818,7 @@
         "timber_type": "treated_pine"
       },
       "qty_key": "qty_concrete",
-      "sku_pattern": "Rapid Set Concrete 30kg",
+      "sku_pattern": "AF-CON-RAPID-30",
       "priority": 10,
       "active": true
     },
@@ -817,7 +831,7 @@
         "timber_type": "treated_pine"
       },
       "qty_key": "qty_nails_front",
-      "sku_pattern": "57mm Ring Shank Gal Nail",
+      "sku_pattern": "AF-NAIL-COIL-57-250",
       "priority": 20,
       "active": true
     },
@@ -830,7 +844,7 @@
         "timber_type": "hardwood"
       },
       "qty_key": "qty_nails_front",
-      "sku_pattern": "57mm Smooth Shank Gal Nail",
+      "sku_pattern": "AF-NAIL-COIL-57-250",
       "priority": 25,
       "active": true
     },
@@ -844,7 +858,7 @@
         "timber_type": "treated_pine"
       },
       "qty_key": "qty_nails_back",
-      "sku_pattern": "45mm Ring Shank Gal Nail",
+      "sku_pattern": "AF-NAIL-COIL-45-250",
       "priority": 30,
       "active": true
     },
@@ -858,7 +872,7 @@
         "timber_type": "hardwood"
       },
       "qty_key": "qty_nails_back",
-      "sku_pattern": "45mm Smooth Shank Gal Nail",
+      "sku_pattern": "AF-NAIL-COIL-45-250",
       "priority": 35,
       "active": true
     },
@@ -869,7 +883,7 @@
       "selector_type": "exact",
       "match_json": {},
       "qty_key": "qty_batten_screws",
-      "sku_pattern": "100mm Galvanised Batten Screw",
+      "sku_pattern": "AF-SCR-BB-14g-100-500",
       "priority": 40,
       "active": true
     },
@@ -882,7 +896,7 @@
         "paling_style": "lapped_capped"
       },
       "qty_key": "qty_capping",
-      "sku_pattern": "75x50 Treated Pine Capping Rail 4800mm",
+      "sku_pattern": "AF-CAP-75x50-4800",
       "priority": 30,
       "active": true
     }

@@ -706,8 +706,9 @@ This brief is drafted alongside this architecture document — see `_briefs/00-i
 | 2026-05-26 | First-class visibility tables | B2B scoping; multi-supplier readiness |
 | 2026-05-26 | Admin-first then self-serve, data model supports both | User decision in Hyperagent thread |
 | (pre-existing) | Server-side BOM is canonical (Approach A) | Per `docs/calculator-architecture-tradeoffs.md` — not re-decided here |
-| 2026-05-26 | `localBomCalculator.ts` evolves internally, signature stable | Preserves regression guard; remains the offline-estimate path |
 | 2026-05-26 | New repo `quickscreen-colorbond-generator` (fork of `quickscreen-bom-generator`) | Liam's call — clean slate for the multi-supplier rollout; default branch `main` |
+| 2026-05-26 | `localBomCalculator.ts` evolves internally, signature stable | Preserves regression guard; remains the offline-estimate path |
+| 2026-06-08 | Brief 034 - Layer 4 Versioned Price Books & Pinning | Edge function and SQL resolver migrated to one-shot DB price book lookup with legacy fallback |
 
 ---
 

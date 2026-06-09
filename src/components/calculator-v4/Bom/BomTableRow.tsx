@@ -50,7 +50,7 @@ export function BomTableRow({ line, onRemove, onQtyChange }: Props) {
           line.quantity
         )}
       </td>
-      {line.unitPrice === 0 ? (
+      {line.unitPrice === null || line.unitPrice === 0 ? (
         <td
           colSpan={2}
           className="px-3 py-2 text-right"
@@ -66,7 +66,7 @@ export function BomTableRow({ line, onRemove, onQtyChange }: Props) {
             {fmt(line.unitPrice)}
           </td>
           <td className="px-3 py-2 text-xs font-mono tabular-nums text-right font-semibold text-brand-text">
-            {fmt(line.lineTotal)}
+            {line.lineTotal !== null ? fmt(line.lineTotal) : "TBC"}
           </td>
         </>
       )}

@@ -288,6 +288,7 @@ async function main() {
   // 5. Save components to seeds/amazing-fencing/products/price_catalogue.json
   const seedOutput = {
     org_slug: "amazing-fencing",
+    supplier_slug: "amazing-fencing",
     product_components: productComponents,
     pricing_rules: pricingRules
   };
