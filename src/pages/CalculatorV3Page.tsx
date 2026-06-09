@@ -13,9 +13,11 @@ import {
 import { ClearJobConfirmDialog } from "../components/calculator-v3/ClearJobConfirmDialog";
 import { SaveJobDialog } from "../components/calculator-v3/SaveJobDialog";
 import { RightPaneTabs, type RightPaneView } from "../components/calculator-v3/RightPaneTabs";
+import { ExportDropdown } from "../components/calculator-v3/ExportDropdown";
 import { ExtraItemsPanel } from "../components/calculator-v3/ExtraItemsPanel";
 import { SuggestedAccessoriesPanel } from "../components/calculator-v3/SuggestedAccessoriesPanel";
 import { BOMResultTabs } from "../components/shared/BOMResultTabs";
+import { BOMReviewerPanel } from "../components/calculator-v3/BOMReviewerPanel";
 import { MobileBomTotals } from "../components/shared/MobileBomTotals";
 import { PwaStatusBanners } from "../components/pwa/PwaStatusBanners";
 import { BomV3PDFTemplate } from "../components/quote/BomV3PDFTemplate";
@@ -70,12 +72,9 @@ import {
 import { queryClient } from "../lib/queryClient";
 import { LegacyQuoteError } from "../types/quote.types";
 import {
-  Download,
   Keyboard,
   Loader2,
-  Printer,
   Save,
-  Share2,
   X,
   Hammer,
   Compass,
@@ -385,7 +384,16 @@ function createEmptyPayload(systemType = "QSHS"): CanonicalPayload {
 type PendingParsedGate = NonNullable<NonNullable<CanonicalPayload["job"]>["pendingGates"]>[number];
 
 function productCodeFromParsedSystem(systemType: ParsedSystemType | undefined) {
-  if (systemType === "VS" || systemType === "XPL" || systemType === "BAYG") return systemType;
+  if (
+    systemType === "VS" ||
+    systemType === "XPL" ||
+    systemType === "BAYG" ||
+    systemType === "AF_TIMBER_PALING" ||
+    systemType === "AF_COLORBOND" ||
+    systemType === "AF_RETAINING_WALL"
+  ) {
+    return systemType;
+  }
   return "QSHS";
 }
 
@@ -1916,45 +1924,15 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
       </div>
       {rightPaneView === "bom" && (
         <div className="flex min-w-0 flex-wrap items-center justify-end gap-1.5">
-          <button
-            type="button"
-            onClick={handlePrintBom}
+          <ExportDropdown
+            onPrintBom={handlePrintBom}
+            onExportCsv={handleExportCsv}
+            onSharePdf={() => void handleSharePdf()}
+            includeMap={includeMapInBomPrint}
+            onIncludeMapChange={setIncludeMapInBomPrint}
             disabled={!bomResultForTabs}
-            title="Print BOM"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <Printer size={16} />
-            Print BOM
-          </button>
-          <label className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted">
-            <input
-              type="checkbox"
-              checked={includeMapInBomPrint}
-              onChange={(event) => setIncludeMapInBomPrint(event.target.checked)}
-              className="accent-brand-primary"
-            />
-            Include map
-          </label>
-          <button
-            type="button"
-            onClick={handleExportCsv}
-            disabled={!bomResultForTabs}
-            title="Export CSV (Ctrl+E)"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <Download size={16} />
-            Export CSV
-          </button>
-          <button
-            type="button"
-            onClick={() => void handleSharePdf()}
-            disabled={!bomResultForTabs || sharingPdf}
-            title="Share PDF"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            {sharingPdf ? <Loader2 size={16} className="animate-spin" /> : <Share2 size={16} />}
-            Share PDF
-          </button>
+            sharingPdf={sharingPdf}
+          />
           <button
             type="button"
             onClick={() => setShortcutsOpen(true)}
@@ -2485,6 +2463,19 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
                       </p>
                     </div>
                   )}
+                </section>
+                <section
+                  data-testid="ai-reviewer-section"
+                  className={`rounded-2xl border border-brand-border/60 bg-brand-card p-3 sm:p-5 ${
+                    mobileLayout
+                      ? (mobileTab === "bom" && rightPaneView === "ai_review" && !mapExpanded ? "block" : "hidden")
+                      : (rightPaneView === "ai_review" && !mapExpanded ? "block" : "hidden")
+                  }`}
+                >
+                  <BOMReviewerPanel
+                    payload={payload}
+                    bomItems={bomResultForTabs ? bomResultForTabs.allItems : []}
+                  />
                 </section>
               </div>
             </main>

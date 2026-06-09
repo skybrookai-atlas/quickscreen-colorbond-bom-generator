@@ -9,6 +9,7 @@ import { LayoutCanvasV3 } from "../components/calculator-v3/LayoutCanvasV3";
 import { ClearJobConfirmDialog } from "../components/calculator-v3/ClearJobConfirmDialog";
 import { SaveJobDialog } from "../components/calculator-v3/SaveJobDialog";
 import { RightPaneTabs, type RightPaneView } from "../components/calculator-v3/RightPaneTabs";
+import { ExportDropdown } from "../components/calculator-v3/ExportDropdown";
 import { PwaStatusBanners } from "../components/pwa/PwaStatusBanners";
 import { BomV3PDFTemplate } from "../components/quote/BomV3PDFTemplate";
 import { CalculatorV3Page } from "./CalculatorV3Page";
@@ -16,6 +17,7 @@ import { GatePositionModal } from "../components/calculator/GatePositionModal";
 import { MapCapture } from "../components/calculator/MapCapture";
 import { FenceTypeSidebar } from "../components/calculator/FenceTypeSidebar";
 import { TimberPalingVariationSidebar } from "../components/calculator/TimberPalingVariationSidebar";
+import { RetainingWallVariationSidebar } from "../components/calculator/RetainingWallVariationSidebar";
 import { PriceBubble } from "../components/calculator/PriceBubble";
 import { useBomCalculator } from "../hooks/useBomCalculator";
 import { useBranding } from "../hooks/useBranding";
@@ -45,11 +47,8 @@ import {
 import { queryClient } from "../lib/queryClient";
 import { LegacyQuoteError } from "../types/quote.types";
 import {
-  Download,
   Keyboard,
   Loader2,
-  Printer,
-  Share2,
   X,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -557,6 +556,8 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
   useEffect(() => {
     if (payload?.productCode === "AF_TIMBER_PALING" && selectedFenceType !== "timber-paling") {
       setSelectedFenceType("timber-paling");
+    } else if (payload?.productCode === "AF_RETAINING_WALL" && selectedFenceType !== "retaining-wall") {
+      setSelectedFenceType("retaining-wall");
     }
   }, [payload?.productCode, selectedFenceType]);
 
@@ -613,6 +614,73 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
                       segmentKind: "panel" as const,
                       segmentWidthMm: 12000, // 12m default run
                       targetHeightMm: 1800,
+                    },
+                  ],
+                  corners: [],
+                },
+              ],
+        };
+        dispatch({ type: "SET_PAYLOAD", payload: nextPayload });
+      }
+    } else if (type === "retaining-wall") {
+      setSelectedFenceType("retaining-wall");
+      if (payload) {
+        const defaultVars = {
+          product_line: "superpost",
+          max_panel_width_mm: 2400,
+          target_height_mm: 600,
+          sleeper_height_mm: 200,
+          colour: "Grey",
+          include_plinth: true,
+          include_brackets: true,
+          corner_count: 0,
+        };
+
+        const hasRuns = payload.runs.some((r) => r.segments.length > 0);
+        const nextPayload = {
+          ...payload,
+          productCode: "AF_RETAINING_WALL",
+          variables: {
+            ...payload.variables,
+            ...defaultVars,
+          },
+          runs: hasRuns
+            ? payload.runs.map((r) => ({
+                ...r,
+                productCode: "AF_RETAINING_WALL",
+                variables: {
+                  ...r.variables,
+                  max_panel_width_mm: 2400,
+                  target_height_mm: 600,
+                  sleeper_height_mm: 200,
+                  colour: "Grey",
+                  include_plinth: true,
+                  include_brackets: true,
+                  corner_count: 0,
+                },
+              }))
+            : [
+                {
+                  runId: crypto.randomUUID(),
+                  productCode: "AF_RETAINING_WALL",
+                  variables: {
+                    max_panel_width_mm: 2400,
+                    target_height_mm: 600,
+                    sleeper_height_mm: 200,
+                    colour: "Grey",
+                    include_plinth: true,
+                    include_brackets: true,
+                    corner_count: 0,
+                  },
+                  leftBoundary: { type: "product_post" as const },
+                  rightBoundary: { type: "product_post" as const },
+                  segments: [
+                    {
+                      segmentId: crypto.randomUUID(),
+                      sortOrder: 1,
+                      segmentKind: "panel" as const,
+                      segmentWidthMm: 12000,
+                      targetHeightMm: 600,
                     },
                   ],
                   corners: [],
@@ -798,7 +866,7 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
     address: string;
     snapshot: any;
   }) => {
-    const productCode = "QSHS";
+    const productCode = instanceProduct?.system_type || "QSHS";
     const initialPayload = createEmptyPayload(productCode);
     initialPayload.propertyAnchor = {
       lat: anchor.lat,
@@ -813,10 +881,10 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
     dispatch({ type: "SET_ENTRY_METHOD", entryMethod: "draw" });
     setIntroDismissed(true);
     setRightPaneView("map");
-  }, [dispatch, jobName]);
+  }, [dispatch, jobName, instanceProduct?.system_type]);
 
   const handleSkipMapCapture = useCallback(() => {
-    const productCode = "QSHS";
+    const productCode = instanceProduct?.system_type || "QSHS";
     const initialPayload = createEmptyPayload(productCode);
     initialPayload.propertyAnchor = undefined;
     initialPayload.snapshot = undefined;
@@ -824,7 +892,7 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
     dispatch({ type: "SET_ENTRY_METHOD", entryMethod: "draw" });
     setIntroDismissed(true);
     setRightPaneView("map");
-  }, [dispatch]);
+  }, [dispatch, instanceProduct?.system_type]);
 
   // function handleApplyDescription(result: ParseResult) {
   //   const parsedSystem = result.attributes.systemType?.value;
@@ -1922,45 +1990,15 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
       </div>
       {rightPaneView === "bom" && (
         <div className="flex min-w-0 flex-wrap items-center justify-end gap-1.5">
-          <button
-            type="button"
-            onClick={handlePrintBom}
+          <ExportDropdown
+            onPrintBom={handlePrintBom}
+            onExportCsv={handleExportCsv}
+            onSharePdf={() => void handleSharePdf()}
+            includeMap={includeMapInBomPrint}
+            onIncludeMapChange={setIncludeMapInBomPrint}
             disabled={!bomResultForTabs}
-            title="Print BOM"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <Printer size={16} />
-            Print BOM
-          </button>
-          <label className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted">
-            <input
-              type="checkbox"
-              checked={includeMapInBomPrint}
-              onChange={(event) => setIncludeMapInBomPrint(event.target.checked)}
-              className="accent-brand-primary"
-            />
-            Include map
-          </label>
-          <button
-            type="button"
-            onClick={handleExportCsv}
-            disabled={!bomResultForTabs}
-            title="Export CSV (Ctrl+E)"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <Download size={16} />
-            Export CSV
-          </button>
-          <button
-            type="button"
-            onClick={() => void handleSharePdf()}
-            disabled={!bomResultForTabs || sharingPdf}
-            title="Share PDF"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            {sharingPdf ? <Loader2 size={16} className="animate-spin" /> : <Share2 size={16} />}
-            Share PDF
-          </button>
+            sharingPdf={sharingPdf}
+          />
           <button
             type="button"
             onClick={() => setShortcutsOpen(true)}
@@ -2013,9 +2051,16 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
                 lastBom={lastBom}
                 onChangeFenceType={() => setSelectedFenceType(null)}
               />
+            ) : selectedFenceType === "retaining-wall" ? (
+              <RetainingWallVariationSidebar
+                payload={payload!}
+                dispatch={dispatch}
+                lastBom={lastBom}
+                onChangeFenceType={() => setSelectedFenceType(null)}
+              />
             ) : (
               <FenceTypeSidebar
-                activeType="timber-paling"
+                activeType={selectedFenceType ?? undefined}
                 onSelectType={handleSelectFenceType}
               />
             )}
@@ -2030,7 +2075,7 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
                     mapSnapshot={payload.snapshot ?? null}
                     onMapSnapshotChange={handleMapSnapshotChange}
                   />
-                  {selectedFenceType === "timber-paling" && (
+                  {(selectedFenceType === "timber-paling" || selectedFenceType === "retaining-wall") && (
                     <PriceBubble
                       payload={payload}
                       bomResult={lastBom}

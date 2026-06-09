@@ -1,5 +1,5 @@
-import { Eye, EyeOff, LogOut, Menu, Moon, Plus, PlayCircle, Sun, Trash2, WifiOff, X, Shield } from 'lucide-react';
-import { useEffect, useState, type ReactNode } from 'react';
+import { Eye, EyeOff, LogOut, Menu, Moon, Plus, PlayCircle, Sun, Trash2, WifiOff, X, Shield, ChevronDown } from 'lucide-react';
+import { useEffect, useState, useRef, type ReactNode } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 import { supabase } from '../../lib/supabase';
@@ -70,6 +70,20 @@ export function Header({
   const [installVideosOpen, setInstallVideosOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [offline, setOffline] = useState(() => navigator.onLine === false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const onOnline = () => setOffline(false);
@@ -160,66 +174,104 @@ export function Header({
             {actions}
           </div>
         )}
-        {!showCypressMinimal && isPrivileged && (
-          <button
-            type="button"
-            onClick={() => setInstallVideosOpen(true)}
-            title="Install videos"
-            className="hidden rounded-md p-2 text-brand-muted transition-colors hover:bg-brand-border/30 hover:text-brand-text sm:inline-flex"
-          >
-            <PlayCircle size={16} />
-          </button>
-        )}
-        {!showCypressMinimal && isPrivileged && (
-          <button
-            onClick={toggle}
-            title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-            className="hidden rounded-md p-2 text-brand-muted transition-colors hover:bg-brand-border/30 hover:text-brand-text sm:inline-flex"
-          >
-            {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
-          </button>
-        )}
-
         {user ? (
           <>
-            {!showCypressMinimal && onCustomerModeChange && (
-              <button
-                type="button"
-                onClick={() => onCustomerModeChange(!customerMode)}
-                title={customerMode ? "Show cost mode" : "Show customer mode"}
-                className="hidden items-center gap-1.5 rounded-md px-2.5 py-2 text-xs font-bold text-brand-muted transition-colors hover:bg-brand-border/30 hover:text-brand-text sm:flex"
-              >
-                {customerMode ? <EyeOff size={16} /> : <Eye size={16} />}
-                <span>{customerMode ? "Cost mode" : "Customer mode"}</span>
-              </button>
-            )}
-            {!showCypressMinimal && role === 'admin' && (
-              <Link
-                to="/admin/portal"
-                title="Admin Control Panel"
-                className="hidden items-center gap-1.5 rounded-md px-2.5 py-2 text-xs text-brand-accent transition-colors hover:bg-brand-accent/10 sm:flex font-semibold"
-              >
-                <Shield size={16} />
-                <span>Admin</span>
-              </Link>
-            )}
             {!showCypressMinimal && (
-              <div
-                title={user.email ?? ''}
-                className="hidden h-7 w-7 select-none items-center justify-center rounded-full border border-brand-accent/30 bg-brand-accent/15 text-xs font-semibold text-brand-accent sm:flex"
-              >
-                {initials}
+              <div className="relative hidden sm:block" ref={userMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  className="flex items-center gap-1.5 rounded-lg border border-brand-border bg-brand-bg/50 px-2 py-1.5 hover:border-brand-primary transition-colors focus:outline-none"
+                  aria-haspopup="true"
+                  aria-expanded={userMenuOpen}
+                >
+                  <div
+                    title={user.email ?? ''}
+                    className="h-7 w-7 select-none items-center justify-center rounded-full border border-brand-accent/30 bg-brand-accent/15 text-xs font-semibold text-brand-accent flex"
+                  >
+                    {initials}
+                  </div>
+                  <ChevronDown size={14} className="text-brand-muted" />
+                </button>
+
+                {userMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-56 rounded-xl border border-brand-border bg-brand-card py-2 shadow-xl z-50 text-xs text-brand-text">
+                    <div className="px-3 py-2 border-b border-brand-border/60">
+                      <p className="font-semibold truncate text-brand-text" title={user.email}>{user.email}</p>
+                      <p className="text-[10px] text-brand-muted uppercase font-bold tracking-wider mt-0.5">{role || 'User'}</p>
+                    </div>
+
+                    <div className="py-1">
+                      {onCustomerModeChange && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            onCustomerModeChange(!customerMode);
+                            setUserMenuOpen(false);
+                          }}
+                          className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-brand-border/20 transition-colors"
+                        >
+                          {customerMode ? <EyeOff size={16} className="text-brand-muted" /> : <Eye size={16} className="text-brand-muted" />}
+                          <span>{customerMode ? "Switch to Cost Mode" : "Switch to Customer Mode"}</span>
+                        </button>
+                      )}
+
+                      {isPrivileged && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setInstallVideosOpen(true);
+                            setUserMenuOpen(false);
+                          }}
+                          className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-brand-border/20 transition-colors"
+                        >
+                          <PlayCircle size={16} className="text-brand-muted" />
+                          <span>Install Videos</span>
+                        </button>
+                      )}
+
+                      {isPrivileged && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            toggle();
+                            setUserMenuOpen(false);
+                          }}
+                          className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-brand-border/20 transition-colors"
+                        >
+                          {theme === 'light' ? <Moon size={16} className="text-brand-muted" /> : <Sun size={16} className="text-brand-muted" />}
+                          <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+                        </button>
+                      )}
+
+                      {role === 'admin' && (
+                        <Link
+                          to="/admin/portal"
+                          onClick={() => setUserMenuOpen(false)}
+                          className="flex items-center gap-2 px-3 py-2 text-left hover:bg-brand-border/20 transition-colors text-brand-accent font-medium"
+                        >
+                          <Shield size={16} className="text-brand-accent" />
+                          <span>Admin Portal</span>
+                        </Link>
+                      )}
+                    </div>
+
+                    <div className="border-t border-brand-border/60 mt-1 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          handleSignOut();
+                          setUserMenuOpen(false);
+                        }}
+                        className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-brand-danger/10 text-brand-danger transition-colors font-medium"
+                      >
+                        <LogOut size={16} className="text-brand-danger" />
+                        <span>Sign Out</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-            {!showCypressMinimal && (
-              <button
-                onClick={handleSignOut}
-                title="Sign out"
-                className="hidden items-center gap-1.5 rounded-md px-2.5 py-2 text-xs text-brand-muted transition-colors hover:bg-brand-border/30 hover:text-brand-text sm:flex"
-              >
-                <LogOut size={16} />
-                <span className="hidden sm:inline">Sign out</span>
-              </button>
             )}
           </>
         ) : (
