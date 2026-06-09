@@ -4,9 +4,8 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { corsHeaders, handleCors } from "../_shared/cors.ts";
 import { extractJwt } from "../_shared/auth.ts";
-import { MockAgentTransport, AgentContext } from "./agent_transport.ts";
-
-const transport = new MockAgentTransport();
+import { MockAgentTransport, AnthropicAgentTransport, AgentContext } from "./agent_transport.ts";
+import { FENCING_AGENT_SYSTEM_PROMPT } from "./fencing_agent_prompt.ts";
 
 Deno.serve(async (req: Request) => {
   const cors = handleCors(req);
@@ -63,6 +62,8 @@ Deno.serve(async (req: Request) => {
     const url = new URL(req.url);
     const body = req.method === "POST" ? await req.json().catch(() => ({})) : {};
     const action = body.action || (url.pathname.endsWith("/session") ? "session" : url.pathname.endsWith("/message") ? "message" : "");
+    const agentMode = body.agentMode || "mock";
+    const transport = agentMode === "live" ? new AnthropicAgentTransport() : new MockAgentTransport();
 
     // Prepare signed identity context payload (server-side derived)
     const context: AgentContext = {
@@ -74,7 +75,7 @@ Deno.serve(async (req: Request) => {
         slug: org.slug,
       },
       role: (profile.role ?? "user") as "user" | "staff" | "admin",
-      productsLoaded: true, // In Phase 1 MVP, we default this to true
+      productsLoaded: true,
     };
 
     if (action === "session") {
@@ -85,7 +86,7 @@ Deno.serve(async (req: Request) => {
       const { error: logError } = await supabaseAdmin
         .from("buildforge_usage")
         .insert({
-          id: sessionData.sessionId.replace("bf-session-", "") || undefined, // use unique part if valid UUID, otherwise defaults
+          id: sessionData.sessionId.replace("bf-session-", "") || undefined, // use unique part if valid UUID
           user_id: user.id,
           org_id: org.id,
           outcome: "active",
@@ -103,6 +104,8 @@ Deno.serve(async (req: Request) => {
     } else if (action === "message") {
       const sessionId = body.sessionId;
       const text = body.text;
+      const history = body.history || [];
+      const agentId = body.agentId; // Allow client to specify which spawned agent to run
 
       if (!sessionId || !text) {
         return new Response(JSON.stringify({ error: "Missing sessionId or message text" }), {
@@ -111,8 +114,67 @@ Deno.serve(async (req: Request) => {
         });
       }
 
+      // Fetch active agent config
+      let agentConfig = null;
+      if (agentId) {
+        const { data } = await supabaseAdmin
+          .from("agent_configs")
+          .select("*")
+          .eq("id", agentId)
+          .eq("org_id", org.id)
+          .maybeSingle();
+        agentConfig = data;
+      }
+
+      if (!agentConfig) {
+        // Fallback to primary Fencing Agent config
+        const { data } = await supabaseAdmin
+          .from("agent_configs")
+          .select("*")
+          .eq("is_spawned", false)
+          .eq("org_id", org.id)
+          .maybeSingle();
+        agentConfig = data;
+      }
+
+      // Compile system instructions dynamically
+      const basePrompt = agentConfig ? agentConfig.system_prompt : FENCING_AGENT_SYSTEM_PROMPT;
+      const modelName = agentConfig ? agentConfig.model : "claude-3-5-sonnet-20241022";
+      
+      // Resolve tools
+      let toolsConfig: string[] = ["search_catalog"];
+      if (agentConfig && Array.isArray(agentConfig.tools_config)) {
+        toolsConfig = agentConfig.tools_config as string[];
+      }
+
+      let compiledPrompt = basePrompt;
+      if (agentConfig) {
+        // Fetch knowledge assets and corrections parallelly
+        const [knowledgeRes, correctionsRes] = await Promise.all([
+          supabaseAdmin.from("agent_knowledge").select("*").eq("agent_id", agentConfig.id),
+          supabaseAdmin.from("agent_corrections").select("*").eq("agent_id", agentConfig.id),
+        ]);
+
+        const knowledgeList = knowledgeRes.data || [];
+        const correctionsList = correctionsRes.data || [];
+
+        if (knowledgeList.length > 0) {
+          compiledPrompt += "\n\n### ADDITIONAL LEARNED KNOWLEDGE (Knowledge Base)\n";
+          for (const k of knowledgeList) {
+            compiledPrompt += `\n- **Asset: ${k.title} (${k.content_type})**\n${k.content_body}\n`;
+          }
+        }
+
+        if (correctionsList.length > 0) {
+          compiledPrompt += "\n\n### CORRECTIONS & BEHAVIOURAL RULES (Feedback Loop)\n";
+          compiledPrompt += "You MUST correct your behavior according to these feedback logs:\n";
+          for (const c of correctionsList) {
+            compiledPrompt += `\n- When user says/triggers: "${c.trigger_pattern}"\n  Feedback Note: ${c.correction_notes}\n  Expected Correct Response: ${c.expected_behavior}\n`;
+          }
+        }
+      }
+
       // Increment message count on usage tracker
-      // Since sessionId might not be a valid UUID, we find the active session for the user
       const { data: activeUsage } = await supabaseAdmin
         .from("buildforge_usage")
         .select("id, message_count")
@@ -134,10 +196,19 @@ Deno.serve(async (req: Request) => {
       const customStream = new ReadableStream({
         async start(controller) {
           try {
-            await transport.sendMessage(sessionId, text, (chunk) => {
-              const sseLine = `data: ${JSON.stringify(chunk)}\n\n`;
-              controller.enqueue(encoder.encode(sseLine));
-            });
+            await transport.sendMessage(
+              sessionId, 
+              text, 
+              history, 
+              compiledPrompt, 
+              modelName, 
+              toolsConfig, 
+              org.id, 
+              (chunk) => {
+                const sseLine = `data: ${JSON.stringify(chunk)}\n\n`;
+                controller.enqueue(encoder.encode(sseLine));
+              }
+            );
           } catch (streamErr) {
             console.error("Streaming error:", streamErr);
             const errLine = `data: ${JSON.stringify({ error: streamErr.message })}\n\n`;
