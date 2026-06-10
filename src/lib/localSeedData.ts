@@ -6,6 +6,8 @@ import qsGateRaw from "../../supabase/seeds/glass-outlet/products/qs_gate.json?r
 import priceCatalogueRaw from "../../supabase/seeds/glass-outlet/products/price_catalogue.json?raw";
 import ccaPinePalingRaw from "../../supabase/seeds/discount-fencing/products/cca-pine-paling.json?raw";
 import timberPalingRaw from "../../supabase/seeds/amazing-fencing/products/timber-paling.json?raw";
+import colorbondRaw from "../../supabase/seeds/amazing-fencing/products/colorbond.json?raw";
+import retainingWallRaw from "../../supabase/seeds/amazing-fencing/products/retaining-wall.json?raw";
 import type { Product } from "../hooks/useProducts";
 import type { SchemaField } from "../components/calculator-v3/SchemaDrivenForm";
 import type { ProductSearchItem } from "../hooks/useProductSearch";
@@ -71,6 +73,8 @@ const seedFiles: SeedFile[] = [
   JSON.parse(priceCatalogueRaw) as SeedFile,
   JSON.parse(ccaPinePalingRaw) as SeedFile,
   JSON.parse(timberPalingRaw) as SeedFile,
+  JSON.parse(colorbondRaw) as SeedFile,
+  JSON.parse(retainingWallRaw) as SeedFile,
 ];
 
 function component(
@@ -951,7 +955,16 @@ export const localFenceProducts = localProducts.filter((product) => {
     .find((p) => p.system_type === product.system_type);
   return (
     seedProduct?.product_type !== "gate" &&
-    ["QSHS", "VS", "XPL", "BAYG", "DF_CCA_PAL"].includes(product.system_type)
+    [
+      "QSHS",
+      "VS",
+      "XPL",
+      "BAYG",
+      "DF_CCA_PAL",
+      "AF_TIMBER_PALING",
+      "AF_COLORBOND",
+      "AF_RETAINING_WALL",
+    ].includes(product.system_type)
   );
 });
 

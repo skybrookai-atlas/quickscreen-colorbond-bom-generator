@@ -8,7 +8,7 @@ interface RunRecapCardProps {
   runIdx: number;
   payload: CanonicalPayload;
   onAddSection: () => void;
-  onAddGate: () => void;
+  onAddGate?: () => void;
   onRemoveRun: () => void;
   isOpen: boolean;
   onToggle: () => void;
@@ -26,6 +26,8 @@ export function RunRecapCard({
   onToggle,
   bomResult,
 }: RunRecapCardProps) {
+  const isRetainingWall = run.productCode === "AF_RETAINING_WALL";
+
   // Calculate total run length in metres
   const totalLengthMm = run.segments.reduce((sum, seg) => sum + (seg.segmentWidthMm ?? 0), 0);
   const lengthM = (totalLengthMm / 1000).toFixed(1);
@@ -38,11 +40,16 @@ export function RunRecapCard({
 
   const style = runVars.paling_style === "lapped_capped" ? "Lapped & Capped" : "Butted";
   const material = runVars.timber_type === "hardwood" ? "Hardwood" : "CCA Pine H4";
-  const height = runVars.target_height_mm ?? 1800;
-  const color = runVars.colour ?? "Natural Timber";
+  const height = runVars.target_height_mm ?? (isRetainingWall ? 600 : 1800);
+  const color = runVars.colour ?? (isRetainingWall ? "Grey" : "Natural Timber");
   const railProfile = (runVars.rail_profile as string || "75x38").replace(/_/g, " ");
   const mounting = runVars.post_mounting === "core_drilled" ? "Core-drilled" : "In-ground";
   const maxSpacing = runVars.max_panel_width_mm ?? 2400;
+
+  // Retaining wall specific vars
+  const productLine = String(runVars.product_line ?? "superpost");
+  const sleeperHeight = runVars.sleeper_height_mm ?? 200;
+  const cornerCount = runVars.corner_count ?? 0;
 
   // Calculate posts count and gates count
   const gatesCount = run.segments.filter((s) => s.segmentKind === "gate_opening").length;
@@ -51,15 +58,22 @@ export function RunRecapCard({
   let postsCount = 0;
   if (bomResult?.computed?.[run.runId]) {
     const computedRun = bomResult.computed[run.runId];
-    // Sum posts across segments
-    postsCount = Object.values(computedRun).reduce((sum: number, seg: any) => {
-      return sum + (seg.qty_post ?? 0);
-    }, 0);
+    if (isRetainingWall) {
+      // Retaining wall structure has num_posts per segment
+      postsCount = Object.values(computedRun).reduce((sum: number, seg: any) => {
+        return sum + (seg.num_posts ?? 0);
+      }, 0);
+    } else {
+      // Sum posts across segments
+      postsCount = Object.values(computedRun).reduce((sum: number, seg: any) => {
+        return sum + (seg.qty_post ?? 0);
+      }, 0);
+    }
   }
   if (postsCount === 0) {
     // Basic estimate: panels + 1 + any gates
     const panels = Math.max(1, Math.ceil(totalLengthMm / Number(maxSpacing)));
-    postsCount = panels + 1 + gatesCount;
+    postsCount = panels + 1 + (isRetainingWall ? 0 : gatesCount);
   }
 
   return (
@@ -71,7 +85,9 @@ export function RunRecapCard({
             <span className="font-mono text-lg font-bold text-[#DD6E1B]">{lengthM}m</span>
           </div>
           <div className="mt-1 text-xs text-brand-muted font-medium">
-            Timber Paling · {style} · {material}
+            {isRetainingWall
+              ? `Retaining Wall · ${productLine === "superpost" ? "SuperPost" : "TUFFPOLY"}`
+              : `Timber Paling · ${style} · ${material}`}
           </div>
         </div>
         <button
@@ -86,40 +102,75 @@ export function RunRecapCard({
 
       {/* 2-column Spec Grid */}
       <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs border-t border-brand-border/40 pt-3">
-        <div className="flex justify-between border-b border-brand-border/20 pb-1">
-          <span className="text-brand-muted">Height</span>
-          <span className="af-sidebar-mono font-semibold text-brand-text">{height}mm</span>
-        </div>
-        <div className="flex justify-between border-b border-brand-border/20 pb-1">
-          <span className="text-brand-muted">Color</span>
-          <span className="af-sidebar-mono font-semibold text-brand-text capitalize">{String(color).replace(/-/g, " ")}</span>
-        </div>
-        <div className="flex justify-between border-b border-brand-border/20 pb-1">
-          <span className="text-brand-muted">Paling</span>
-          <span className="af-sidebar-mono font-semibold text-brand-text">100x16mm</span>
-        </div>
-        <div className="flex justify-between border-b border-brand-border/20 pb-1">
-          <span className="text-brand-muted">Rail</span>
-          <span className="af-sidebar-mono font-semibold text-brand-text capitalize">{railProfile}</span>
-        </div>
-        <div className="flex justify-between border-b border-brand-border/20 pb-1">
-          <span className="text-brand-muted">Post</span>
-          <span className="af-sidebar-mono font-semibold text-brand-text capitalize">{runVars.post_size || "100x75"} {runVars.timber_type === "hardwood" ? "HWD" : "Pine"}</span>
-        </div>
-        <div className="flex justify-between border-b border-brand-border/20 pb-1">
-          <span className="text-brand-muted">Mounting</span>
-          <span className="af-sidebar-mono font-semibold text-brand-text">{mounting}</span>
-        </div>
-        <div className="flex justify-between border-b border-brand-border/20 pb-1">
-          <span className="text-brand-muted">Max spacing</span>
-          <span className="af-sidebar-mono font-semibold text-brand-text">{maxSpacing}mm</span>
-        </div>
-        <div className="flex justify-between border-b border-brand-border/20 pb-1">
-          <span className="text-brand-muted">Posts × Gates</span>
-          <span className="af-sidebar-mono font-semibold text-brand-text">
-            {postsCount} Posts · {gatesCount} Gate{gatesCount === 1 ? "" : "s"}
-          </span>
-        </div>
+        {isRetainingWall ? (
+          <>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Height</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">{height}mm</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Color</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text capitalize">{String(color).replace(/-/g, " ")}</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Sleeper H</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">{sleeperHeight}mm</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Max spacing</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">{maxSpacing}mm</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Post Line</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text capitalize">{productLine === "superpost" ? "SuperPost" : "TUFFPOLY"}</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Corners</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">{cornerCount}</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Posts</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">{postsCount} Posts</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Height</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">{height}mm</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Color</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text capitalize">{String(color).replace(/-/g, " ")}</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Paling</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">100x16mm</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Rail</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text capitalize">{railProfile}</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Post</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text capitalize">{runVars.post_size || "100x75"} {runVars.timber_type === "hardwood" ? "HWD" : "Pine"}</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Mounting</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">{mounting}</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Max spacing</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">{maxSpacing}mm</span>
+            </div>
+            <div className="flex justify-between border-b border-brand-border/20 pb-1">
+              <span className="text-brand-muted">Posts × Gates</span>
+              <span className="af-sidebar-mono font-semibold text-brand-text">
+                {postsCount} Posts · {gatesCount} Gate{gatesCount === 1 ? "" : "s"}
+              </span>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Council Height Alert if Height > 1800mm */}
@@ -135,9 +186,11 @@ export function RunRecapCard({
         <Button onClick={onAddSection} icon={Plus} variant="ghost" size="small">
           Add section
         </Button>
-        <Button onClick={onAddGate} icon={Plus} variant="ghost" size="small">
-          Add gate
-        </Button>
+        {onAddGate && (
+          <Button onClick={onAddGate} icon={Plus} variant="ghost" size="small">
+            Add gate
+          </Button>
+        )}
         <ConfirmButton
           onConfirm={onRemoveRun}
           confirmLabel={<><Trash2 size={14} /> Confirm remove</>}

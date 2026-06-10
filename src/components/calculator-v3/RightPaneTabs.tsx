@@ -1,6 +1,6 @@
-import { FileText, Map } from "lucide-react";
+import { FileText, Map, Sparkles } from "lucide-react";
 
-export type RightPaneView = "map" | "bom";
+export type RightPaneView = "map" | "bom" | "ai_review";
 
 interface RightPaneTabsProps {
   activeView: RightPaneView;
@@ -10,11 +10,12 @@ interface RightPaneTabsProps {
 const tabs: Array<{ id: RightPaneView; label: string; icon: typeof Map }> = [
   { id: "map", label: "Map", icon: Map },
   { id: "bom", label: "BOM", icon: FileText },
+  { id: "ai_review", label: "AI Review", icon: Sparkles },
 ];
 
 export function RightPaneTabs({ activeView, onChange }: RightPaneTabsProps) {
   return (
-    <div className="inline-flex items-center rounded-xl border border-brand-primary/35 bg-brand-bg/70 p-1 shadow-inner">
+    <div className="inline-flex items-center rounded-xl border border-brand-border bg-brand-bg/70 p-1 shadow-inner">
       {tabs.map(({ id, label, icon: Icon }) => (
         <button
           key={id}

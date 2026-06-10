@@ -1,0 +1,2212 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "extractJwt",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/auth.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "shared_auth_extractjwt",
+      "community": 1,
+      "norm_label": "extractjwt"
+    },
+    {
+      "label": "resolveUserProfile",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/auth.ts",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "shared_auth_resolveuserprofile",
+      "community": 1,
+      "norm_label": "resolveuserprofile"
+    },
+    {
+      "label": "CanonicalPayload",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/canonical.types.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "shared_canonical_types_canonicalpayload",
+      "community": 0,
+      "norm_label": "canonicalpayload"
+    },
+    {
+      "label": "CanonicalRun",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/canonical.types.ts",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "shared_canonical_types_canonicalrun",
+      "community": 3,
+      "norm_label": "canonicalrun"
+    },
+    {
+      "label": "SegmentTermination",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/canonical.types.ts",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "shared_canonical_types_segmenttermination",
+      "community": 0,
+      "norm_label": "segmenttermination"
+    },
+    {
+      "label": "SegmentKind",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/canonical.types.ts",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "shared_canonical_types_segmentkind",
+      "community": 112,
+      "norm_label": "segmentkind"
+    },
+    {
+      "label": "CanonicalSegment",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/canonical.types.ts",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "shared_canonical_types_canonicalsegment",
+      "community": 3,
+      "norm_label": "canonicalsegment"
+    },
+    {
+      "label": "handleCors",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/cors.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "shared_cors_handlecors",
+      "community": 1,
+      "norm_label": "handlecors"
+    },
+    {
+      "label": "patchSegmentVariables",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/segmentTermination.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "shared_segmenttermination_patchsegmentvariables",
+      "community": 114,
+      "norm_label": "patchsegmentvariables"
+    },
+    {
+      "label": "walkRunForPosts",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/segmentTermination.ts",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "shared_segmenttermination_walkrunforposts",
+      "community": 0,
+      "norm_label": "walkrunforposts"
+    },
+    {
+      "label": "SystemType",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "shared_types_systemtype",
+      "community": 133,
+      "norm_label": "systemtype"
+    },
+    {
+      "label": "SlatSize",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "shared_types_slatsize",
+      "community": 132,
+      "norm_label": "slatsize"
+    },
+    {
+      "label": "SlatGap",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "shared_types_slatgap",
+      "community": 131,
+      "norm_label": "slatgap"
+    },
+    {
+      "label": "MaxPanelWidth",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "shared_types_maxpanelwidth",
+      "community": 127,
+      "norm_label": "maxpanelwidth"
+    },
+    {
+      "label": "PostMounting",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "shared_types_postmounting",
+      "community": 128,
+      "norm_label": "postmounting"
+    },
+    {
+      "label": "Termination",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "shared_types_termination",
+      "community": 134,
+      "norm_label": "termination"
+    },
+    {
+      "label": "Colour",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "shared_types_colour",
+      "community": 120,
+      "norm_label": "colour"
+    },
+    {
+      "label": "FenceConfig",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "shared_types_fenceconfig",
+      "community": 121,
+      "norm_label": "fenceconfig"
+    },
+    {
+      "label": "GateType",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "shared_types_gatetype",
+      "community": 124,
+      "norm_label": "gatetype"
+    },
+    {
+      "label": "GatePostSize",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "shared_types_gatepostsize",
+      "community": 123,
+      "norm_label": "gatepostsize"
+    },
+    {
+      "label": "HingeType",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "shared_types_hingetype",
+      "community": 125,
+      "norm_label": "hingetype"
+    },
+    {
+      "label": "LatchType",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "shared_types_latchtype",
+      "community": 126,
+      "norm_label": "latchtype"
+    },
+    {
+      "label": "GateConfig",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "shared_types_gateconfig",
+      "community": 122,
+      "norm_label": "gateconfig"
+    },
+    {
+      "label": "BOMCategory",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "shared_types_bomcategory",
+      "community": 116,
+      "norm_label": "bomcategory"
+    },
+    {
+      "label": "BOMUnit",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "shared_types_bomunit",
+      "community": 0,
+      "norm_label": "bomunit"
+    },
+    {
+      "label": "BOMLineItem",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "shared_types_bomlineitem",
+      "community": 1,
+      "norm_label": "bomlineitem"
+    },
+    {
+      "label": "BOMResult",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "shared_types_bomresult",
+      "community": 117,
+      "norm_label": "bomresult"
+    },
+    {
+      "label": "PricingTier",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "shared_types_pricingtier",
+      "community": 1,
+      "norm_label": "pricingtier"
+    },
+    {
+      "label": "RunInput",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "shared_types_runinput",
+      "community": 129,
+      "norm_label": "runinput"
+    },
+    {
+      "label": "CalculatorRequest",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L99",
+      "_origin": "ast",
+      "id": "shared_types_calculatorrequest",
+      "community": 119,
+      "norm_label": "calculatorrequest"
+    },
+    {
+      "label": "SegmentDiagnostic",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L108",
+      "_origin": "ast",
+      "id": "shared_types_segmentdiagnostic",
+      "community": 130,
+      "norm_label": "segmentdiagnostic"
+    },
+    {
+      "label": "CalculatorBOMResult",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L115",
+      "_origin": "ast",
+      "id": "shared_types_calculatorbomresult",
+      "community": 118,
+      "norm_label": "calculatorbomresult"
+    },
+    {
+      "label": "PricingRule",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "source_location": "L127",
+      "_origin": "ast",
+      "id": "shared_types_pricingrule",
+      "community": 5,
+      "norm_label": "pricingrule"
+    },
+    {
+      "label": "QtyAssertion",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/fixture_runner.ts",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "bom_calculator_fixture_runner_qtyassertion",
+      "community": 14,
+      "norm_label": "qtyassertion"
+    },
+    {
+      "label": "LineItem",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/fixture_runner.ts",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "bom_calculator_fixture_runner_lineitem",
+      "community": 12,
+      "norm_label": "lineitem"
+    },
+    {
+      "label": "FixtureExpect",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/fixture_runner.ts",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "bom_calculator_fixture_runner_fixtureexpect",
+      "community": 11,
+      "norm_label": "fixtureexpect"
+    },
+    {
+      "label": "Fixture",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/fixture_runner.ts",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "bom_calculator_fixture_runner_fixture",
+      "community": 10,
+      "norm_label": "fixture"
+    },
+    {
+      "label": "assertQty",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/fixture_runner.ts",
+      "source_location": "L53",
+      "_origin": "ast",
+      "id": "bom_calculator_fixture_runner_assertqty",
+      "community": 9,
+      "norm_label": "assertqty"
+    },
+    {
+      "label": "assertFixture",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/fixture_runner.ts",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "bom_calculator_fixture_runner_assertfixture",
+      "community": 8,
+      "norm_label": "assertfixture"
+    },
+    {
+      "label": "loadFixtures",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/fixture_runner.ts",
+      "source_location": "L124",
+      "_origin": "ast",
+      "id": "bom_calculator_fixture_runner_loadfixtures",
+      "community": 13,
+      "norm_label": "loadfixtures"
+    },
+    {
+      "label": "runFixtures",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/fixture_runner.ts",
+      "source_location": "L136",
+      "_origin": "ast",
+      "id": "bom_calculator_fixture_runner_runfixtures",
+      "community": 4,
+      "norm_label": "runfixtures"
+    },
+    {
+      "label": "EngineData",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_enginedata",
+      "community": 0,
+      "norm_label": "enginedata"
+    },
+    {
+      "label": "resolvePrice",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L106",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_resolveprice",
+      "community": 0,
+      "norm_label": "resolveprice"
+    },
+    {
+      "label": "matchesJSON",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L125",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_matchesjson",
+      "community": 0,
+      "norm_label": "matchesjson"
+    },
+    {
+      "label": "resolvePlaceholders",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L165",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_resolveplaceholders",
+      "community": 0,
+      "norm_label": "resolveplaceholders"
+    },
+    {
+      "label": "stocks",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L185",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_stocks",
+      "community": 0,
+      "norm_label": "stocks"
+    },
+    {
+      "label": "equalStrings",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_equalstrings",
+      "community": 15,
+      "norm_label": "equalstrings"
+    },
+    {
+      "label": "normaliseVariables",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L213",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_normalisevariables",
+      "community": 0,
+      "norm_label": "normalisevariables"
+    },
+    {
+      "label": "generateCanonicalCode",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L244",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_generatecanonicalcode",
+      "community": 0,
+      "norm_label": "generatecanonicalcode"
+    },
+    {
+      "label": "PricingContext",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L340",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_pricingcontext",
+      "community": 16,
+      "norm_label": "pricingcontext"
+    },
+    {
+      "label": "resolvePriceCents",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L348",
+      "_origin": "ast",
+      "id": "bom_calculator_lib_resolvepricecents",
+      "community": 2,
+      "norm_label": "resolvepricecents"
+    },
+    {
+      "label": "AgentContext",
+      "file_type": "code",
+      "source_file": "supabase/functions/buildforge/agent_transport.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "buildforge_agent_transport_agentcontext",
+      "community": 1,
+      "norm_label": "agentcontext"
+    },
+    {
+      "label": "AgentResponseChunk",
+      "file_type": "code",
+      "source_file": "supabase/functions/buildforge/agent_transport.ts",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "buildforge_agent_transport_agentresponsechunk",
+      "community": 18,
+      "norm_label": "agentresponsechunk"
+    },
+    {
+      "label": "AgentTransport",
+      "file_type": "code",
+      "source_file": "supabase/functions/buildforge/agent_transport.ts",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "buildforge_agent_transport_agenttransport",
+      "community": 1,
+      "norm_label": "agenttransport"
+    },
+    {
+      "label": "MockAgentTransport",
+      "file_type": "code",
+      "source_file": "supabase/functions/buildforge/agent_transport.ts",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "buildforge_agent_transport_mockagenttransport",
+      "community": 1,
+      "norm_label": "mockagenttransport"
+    },
+    {
+      "label": "auth.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/auth.ts",
+      "_origin": "ast_file",
+      "id": "shared_auth",
+      "community": 110,
+      "norm_label": "auth.ts"
+    },
+    {
+      "label": "canonical.types.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/canonical.types.ts",
+      "_origin": "ast_file",
+      "id": "shared_canonical_types",
+      "community": 111,
+      "norm_label": "canonical.types.ts"
+    },
+    {
+      "label": "cors.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/cors.ts",
+      "_origin": "ast_file",
+      "id": "shared_cors",
+      "community": 113,
+      "norm_label": "cors.ts"
+    },
+    {
+      "label": "segmentTermination.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/segmentTermination.ts",
+      "_origin": "ast_file",
+      "id": "shared_segmenttermination",
+      "community": 3,
+      "norm_label": "segmenttermination.ts"
+    },
+    {
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/_shared/types.ts",
+      "_origin": "ast_file",
+      "id": "shared_types",
+      "community": 115,
+      "norm_label": "types.ts"
+    },
+    {
+      "label": "pricing.test.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/__tests__/pricing.test.ts",
+      "_origin": "ast_file",
+      "id": "tests_pricing_test",
+      "community": 2,
+      "norm_label": "pricing.test.ts"
+    },
+    {
+      "label": "regression.test.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/__tests__/regression.test.ts",
+      "_origin": "ast_file",
+      "id": "tests_regression_test",
+      "community": 2,
+      "norm_label": "regression.test.ts"
+    },
+    {
+      "label": "fixture_runner.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/fixture_runner.ts",
+      "_origin": "ast_file",
+      "id": "bom_calculator_fixture_runner",
+      "community": 7,
+      "norm_label": "fixture_runner.ts"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "_origin": "ast_file",
+      "id": "bom_calculator_index",
+      "community": 0,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "index_test.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "_origin": "ast_file",
+      "id": "bom_calculator_index_test",
+      "community": 0,
+      "norm_label": "index_test.ts"
+    },
+    {
+      "label": "integration_tests.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/integration_tests.ts",
+      "_origin": "ast_file",
+      "id": "bom_calculator_integration_tests",
+      "community": 4,
+      "norm_label": "integration_tests.ts"
+    },
+    {
+      "label": "lib.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "_origin": "ast_file",
+      "id": "bom_calculator_lib",
+      "community": 5,
+      "norm_label": "lib.ts"
+    },
+    {
+      "label": "agent_transport.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/buildforge/agent_transport.ts",
+      "_origin": "ast_file",
+      "id": "buildforge_agent_transport",
+      "community": 17,
+      "norm_label": "agent_transport.ts"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/buildforge/index.ts",
+      "_origin": "ast_file",
+      "id": "buildforge_index",
+      "community": 1,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/calculate-pricing/index.ts",
+      "_origin": "ast_file",
+      "id": "calculate_pricing_index",
+      "community": 1,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "deno.json",
+      "file_type": "code",
+      "source_file": "supabase/functions/deno.json",
+      "_origin": "ast_file",
+      "id": "functions_deno",
+      "community": 23,
+      "norm_label": "deno.json"
+    },
+    {
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "supabase/functions/search-products/index.ts",
+      "_origin": "ast_file",
+      "id": "search_products_index",
+      "community": 1,
+      "norm_label": "index.ts"
+    },
+    {
+      "label": "001_create_organisations.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/001_create_organisations.sql",
+      "_origin": "ast_file",
+      "id": "migrations_001_create_organisations",
+      "community": 27,
+      "norm_label": "001_create_organisations.sql"
+    },
+    {
+      "label": "002_create_profiles.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/002_create_profiles.sql",
+      "_origin": "ast_file",
+      "id": "migrations_002_create_profiles",
+      "community": 28,
+      "norm_label": "002_create_profiles.sql"
+    },
+    {
+      "label": "003_create_quotes.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/003_create_quotes.sql",
+      "_origin": "ast_file",
+      "id": "migrations_003_create_quotes",
+      "community": 29,
+      "norm_label": "003_create_quotes.sql"
+    },
+    {
+      "label": "004_create_pricing.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/004_create_pricing.sql",
+      "_origin": "ast_file",
+      "id": "migrations_004_create_pricing",
+      "community": 30,
+      "norm_label": "004_create_pricing.sql"
+    },
+    {
+      "label": "005_create_products.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/005_create_products.sql",
+      "_origin": "ast_file",
+      "id": "migrations_005_create_products",
+      "community": 31,
+      "norm_label": "005_create_products.sql"
+    },
+    {
+      "label": "006_create_product_components.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/006_create_product_components.sql",
+      "_origin": "ast_file",
+      "id": "migrations_006_create_product_components",
+      "community": 32,
+      "norm_label": "006_create_product_components.sql"
+    },
+    {
+      "label": "007_add_quote_number.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/007_add_quote_number.sql",
+      "_origin": "ast_file",
+      "id": "migrations_007_add_quote_number",
+      "community": 33,
+      "norm_label": "007_add_quote_number.sql"
+    },
+    {
+      "label": "008_restructure_schema.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/008_restructure_schema.sql",
+      "_origin": "ast_file",
+      "id": "migrations_008_restructure_schema",
+      "community": 34,
+      "norm_label": "008_restructure_schema.sql"
+    },
+    {
+      "label": "009_add_product_image_url.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/009_add_product_image_url.sql",
+      "_origin": "ast_file",
+      "id": "migrations_009_add_product_image_url",
+      "community": 35,
+      "norm_label": "009_add_product_image_url.sql"
+    },
+    {
+      "label": "010_products_read_policy.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/010_products_read_policy.sql",
+      "_origin": "ast_file",
+      "id": "migrations_010_products_read_policy",
+      "community": 36,
+      "norm_label": "010_products_read_policy.sql"
+    },
+    {
+      "label": "011_engine_core.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/011_engine_core.sql",
+      "_origin": "ast_file",
+      "id": "migrations_011_engine_core",
+      "community": 37,
+      "norm_label": "011_engine_core.sql"
+    },
+    {
+      "label": "012_engine_rules.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/012_engine_rules.sql",
+      "_origin": "ast_file",
+      "id": "migrations_012_engine_rules",
+      "community": 38,
+      "norm_label": "012_engine_rules.sql"
+    },
+    {
+      "label": "013_engine_selectors.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/013_engine_selectors.sql",
+      "_origin": "ast_file",
+      "id": "migrations_013_engine_selectors",
+      "community": 39,
+      "norm_label": "013_engine_selectors.sql"
+    },
+    {
+      "label": "014_engine_companions.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/014_engine_companions.sql",
+      "_origin": "ast_file",
+      "id": "migrations_014_engine_companions",
+      "community": 40,
+      "norm_label": "014_engine_companions.sql"
+    },
+    {
+      "label": "018_engine_quote_runs.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/018_engine_quote_runs.sql",
+      "_origin": "ast_file",
+      "id": "migrations_018_engine_quote_runs",
+      "community": 41,
+      "norm_label": "018_engine_quote_runs.sql"
+    },
+    {
+      "label": "019_add_admin_role.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/019_add_admin_role.sql",
+      "_origin": "ast_file",
+      "id": "migrations_019_add_admin_role",
+      "community": 42,
+      "norm_label": "019_add_admin_role.sql"
+    },
+    {
+      "label": "020_engine_unique_indexes.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/020_engine_unique_indexes.sql",
+      "_origin": "ast_file",
+      "id": "migrations_020_engine_unique_indexes",
+      "community": 43,
+      "norm_label": "020_engine_unique_indexes.sql"
+    },
+    {
+      "label": "021_engine_rls.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/021_engine_rls.sql",
+      "_origin": "ast_file",
+      "id": "migrations_021_engine_rls",
+      "community": 44,
+      "norm_label": "021_engine_rls.sql"
+    },
+    {
+      "label": "022_flatten_products.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/022_flatten_products.sql",
+      "_origin": "ast_file",
+      "id": "migrations_022_flatten_products",
+      "community": 45,
+      "norm_label": "022_flatten_products.sql"
+    },
+    {
+      "label": "023_selector_qty_key.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/023_selector_qty_key.sql",
+      "_origin": "ast_file",
+      "id": "migrations_023_selector_qty_key",
+      "community": 46,
+      "norm_label": "023_selector_qty_key.sql"
+    },
+    {
+      "label": "024_colour_options.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/024_colour_options.sql",
+      "_origin": "ast_file",
+      "id": "migrations_024_colour_options",
+      "community": 47,
+      "norm_label": "024_colour_options.sql"
+    },
+    {
+      "label": "025_admin_rls.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/025_admin_rls.sql",
+      "_origin": "ast_file",
+      "id": "migrations_025_admin_rls",
+      "community": 48,
+      "norm_label": "025_admin_rls.sql"
+    },
+    {
+      "label": "026_companion_rule_suggestions.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/026_companion_rule_suggestions.sql",
+      "_origin": "ast_file",
+      "id": "migrations_026_companion_rule_suggestions",
+      "community": 49,
+      "norm_label": "026_companion_rule_suggestions.sql"
+    },
+    {
+      "label": "027_org_calculator_theme.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/027_org_calculator_theme.sql",
+      "_origin": "ast_file",
+      "id": "migrations_027_org_calculator_theme",
+      "community": 50,
+      "norm_label": "027_org_calculator_theme.sql"
+    },
+    {
+      "label": "028_seed_supplier_prices_2026_05_09.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/028_seed_supplier_prices_2026_05_09.sql",
+      "_origin": "ast_file",
+      "id": "migrations_028_seed_supplier_prices_2026_05_09",
+      "community": 51,
+      "norm_label": "028_seed_supplier_prices_2026_05_09.sql"
+    },
+    {
+      "label": "029_add_profile_email.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/029_add_profile_email.sql",
+      "_origin": "ast_file",
+      "id": "migrations_029_add_profile_email",
+      "community": 52,
+      "norm_label": "029_add_profile_email.sql"
+    },
+    {
+      "label": "030_add_quote_property_anchor.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/030_add_quote_property_anchor.sql",
+      "_origin": "ast_file",
+      "id": "migrations_030_add_quote_property_anchor",
+      "community": 53,
+      "norm_label": "030_add_quote_property_anchor.sql"
+    },
+    {
+      "label": "032_supplier_archetype_instance_schema.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/032_supplier_archetype_instance_schema.sql",
+      "_origin": "ast_file",
+      "id": "migrations_032_supplier_archetype_instance_schema",
+      "community": 54,
+      "norm_label": "032_supplier_archetype_instance_schema.sql"
+    },
+    {
+      "label": "033_backfill_glass_outlet_supplier_and_instances.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/033_backfill_glass_outlet_supplier_and_instances.sql",
+      "_origin": "ast_file",
+      "id": "migrations_033_backfill_glass_outlet_supplier_and_instances",
+      "community": 55,
+      "norm_label": "033_backfill_glass_outlet_supplier_and_instances.sql"
+    },
+    {
+      "label": "034_versioned_price_books.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/034_versioned_price_books.sql",
+      "_origin": "ast_file",
+      "id": "migrations_034_versioned_price_books",
+      "community": 56,
+      "norm_label": "034_versioned_price_books.sql"
+    },
+    {
+      "label": "042_discount_fencing_supplier_and_instances.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/042_discount_fencing_supplier_and_instances.sql",
+      "_origin": "ast_file",
+      "id": "migrations_042_discount_fencing_supplier_and_instances",
+      "community": 57,
+      "norm_label": "042_discount_fencing_supplier_and_instances.sql"
+    },
+    {
+      "label": "043_discount_fencing_seed_priceboook.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/043_discount_fencing_seed_priceboook.sql",
+      "_origin": "ast_file",
+      "id": "migrations_043_discount_fencing_seed_priceboook",
+      "community": 58,
+      "norm_label": "043_discount_fencing_seed_priceboook.sql"
+    },
+    {
+      "label": "045_amazing_fencing_supplier_and_instances.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/045_amazing_fencing_supplier_and_instances.sql",
+      "_origin": "ast_file",
+      "id": "migrations_045_amazing_fencing_supplier_and_instances",
+      "community": 59,
+      "norm_label": "045_amazing_fencing_supplier_and_instances.sql"
+    },
+    {
+      "label": "046_amazing_fencing_trade_price_book.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/046_amazing_fencing_trade_price_book.sql",
+      "_origin": "ast_file",
+      "id": "migrations_046_amazing_fencing_trade_price_book",
+      "community": 60,
+      "norm_label": "046_amazing_fencing_trade_price_book.sql"
+    },
+    {
+      "label": "047_drop_system_types_constraint.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/047_drop_system_types_constraint.sql",
+      "_origin": "ast_file",
+      "id": "migrations_047_drop_system_types_constraint",
+      "community": 61,
+      "norm_label": "047_drop_system_types_constraint.sql"
+    },
+    {
+      "label": "048_platform_expansion.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/048_platform_expansion.sql",
+      "_origin": "ast_file",
+      "id": "migrations_048_platform_expansion",
+      "community": 62,
+      "norm_label": "048_platform_expansion.sql"
+    },
+    {
+      "label": "049_update_pricing_rules_view.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/049_update_pricing_rules_view.sql",
+      "_origin": "ast_file",
+      "id": "migrations_049_update_pricing_rules_view",
+      "community": 63,
+      "norm_label": "049_update_pricing_rules_view.sql"
+    },
+    {
+      "label": "050_anyfence_install_pricing.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/050_anyfence_install_pricing.sql",
+      "_origin": "ast_file",
+      "id": "migrations_050_anyfence_install_pricing",
+      "community": 64,
+      "norm_label": "050_anyfence_install_pricing.sql"
+    },
+    {
+      "label": "051_anyfence_and_amazing_fencing_setup.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/051_anyfence_and_amazing_fencing_setup.sql",
+      "_origin": "ast_file",
+      "id": "migrations_051_anyfence_and_amazing_fencing_setup",
+      "community": 65,
+      "norm_label": "051_anyfence_and_amazing_fencing_setup.sql"
+    },
+    {
+      "label": "052_supplier_portal_pricing_rls.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/052_supplier_portal_pricing_rls.sql",
+      "_origin": "ast_file",
+      "id": "migrations_052_supplier_portal_pricing_rls",
+      "community": 66,
+      "norm_label": "052_supplier_portal_pricing_rls.sql"
+    },
+    {
+      "label": "053_update_amazing_fencing_branding.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/053_update_amazing_fencing_branding.sql",
+      "_origin": "ast_file",
+      "id": "migrations_053_update_amazing_fencing_branding",
+      "community": 67,
+      "norm_label": "053_update_amazing_fencing_branding.sql"
+    },
+    {
+      "label": "054_clean_up_amazing_fencing_calculators.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/054_clean_up_amazing_fencing_calculators.sql",
+      "_origin": "ast_file",
+      "id": "migrations_054_clean_up_amazing_fencing_calculators",
+      "community": 68,
+      "norm_label": "054_clean_up_amazing_fencing_calculators.sql"
+    },
+    {
+      "label": "055_generic_calculators_and_vetting.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/055_generic_calculators_and_vetting.sql",
+      "_origin": "ast_file",
+      "id": "migrations_055_generic_calculators_and_vetting",
+      "community": 69,
+      "norm_label": "055_generic_calculators_and_vetting.sql"
+    },
+    {
+      "label": "056_update_pricing_rules_with_sku_canonical.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/056_update_pricing_rules_with_sku_canonical.sql",
+      "_origin": "ast_file",
+      "id": "migrations_056_update_pricing_rules_with_sku_canonical",
+      "community": 70,
+      "norm_label": "056_update_pricing_rules_with_sku_canonical.sql"
+    },
+    {
+      "label": "057_amazing_fencing_pricebook_v2.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/057_amazing_fencing_pricebook_v2.sql",
+      "_origin": "ast_file",
+      "id": "migrations_057_amazing_fencing_pricebook_v2",
+      "community": 71,
+      "norm_label": "057_amazing_fencing_pricebook_v2.sql"
+    },
+    {
+      "label": "058_deactivate_old_concrete_skus.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/058_deactivate_old_concrete_skus.sql",
+      "_origin": "ast_file",
+      "id": "migrations_058_deactivate_old_concrete_skus",
+      "community": 72,
+      "norm_label": "058_deactivate_old_concrete_skus.sql"
+    },
+    {
+      "label": "059_deactivate_old_rail_skus.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/059_deactivate_old_rail_skus.sql",
+      "_origin": "ast_file",
+      "id": "migrations_059_deactivate_old_rail_skus",
+      "community": 73,
+      "norm_label": "059_deactivate_old_rail_skus.sql"
+    },
+    {
+      "label": "060_fix_bom_pricing_rls_and_archetypes.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/060_fix_bom_pricing_rls_and_archetypes.sql",
+      "_origin": "ast_file",
+      "id": "migrations_060_fix_bom_pricing_rls_and_archetypes",
+      "community": 74,
+      "norm_label": "060_fix_bom_pricing_rls_and_archetypes.sql"
+    },
+    {
+      "label": "061_grant_anon_select.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/061_grant_anon_select.sql",
+      "_origin": "ast_file",
+      "id": "migrations_061_grant_anon_select",
+      "community": 75,
+      "norm_label": "061_grant_anon_select.sql"
+    },
+    {
+      "label": "062_staging_tables.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/062_staging_tables.sql",
+      "_origin": "ast_file",
+      "id": "migrations_062_staging_tables",
+      "community": 76,
+      "norm_label": "062_staging_tables.sql"
+    },
+    {
+      "label": "063_create_buildforge_usage.sql",
+      "file_type": "code",
+      "source_file": "supabase/migrations/063_create_buildforge_usage.sql",
+      "_origin": "ast_file",
+      "id": "migrations_063_create_buildforge_usage",
+      "community": 77,
+      "norm_label": "063_create_buildforge_usage.sql"
+    },
+    {
+      "label": "colour-options.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/amazing-fencing/colour-options.json",
+      "_origin": "ast_file",
+      "id": "amazing_fencing_colour_options",
+      "community": 6,
+      "norm_label": "colour-options.json"
+    },
+    {
+      "label": "chainwire-security.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/amazing-fencing/products/chainwire-security.json",
+      "_origin": "ast_file",
+      "id": "products_chainwire_security",
+      "community": 82,
+      "norm_label": "chainwire-security.json"
+    },
+    {
+      "label": "colorbond.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/amazing-fencing/products/colorbond.json",
+      "_origin": "ast_file",
+      "id": "products_colorbond",
+      "community": 83,
+      "norm_label": "colorbond.json"
+    },
+    {
+      "label": "permasteel.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/amazing-fencing/products/permasteel.json",
+      "_origin": "ast_file",
+      "id": "products_permasteel",
+      "community": 85,
+      "norm_label": "permasteel.json"
+    },
+    {
+      "label": "price_catalogue.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/amazing-fencing/products/price_catalogue.json",
+      "_origin": "ast_file",
+      "id": "products_price_catalogue",
+      "community": 86,
+      "norm_label": "price_catalogue.json"
+    },
+    {
+      "label": "qs_gate.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/amazing-fencing/products/qs_gate.json",
+      "_origin": "ast_file",
+      "id": "products_qs_gate",
+      "community": 87,
+      "norm_label": "qs_gate.json"
+    },
+    {
+      "label": "retaining-wall.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/amazing-fencing/products/retaining-wall.json",
+      "_origin": "ast_file",
+      "id": "products_retaining_wall",
+      "community": 89,
+      "norm_label": "retaining-wall.json"
+    },
+    {
+      "label": "timber-paling.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/amazing-fencing/products/timber-paling.json",
+      "_origin": "ast_file",
+      "id": "products_timber_paling",
+      "community": 90,
+      "norm_label": "timber-paling.json"
+    },
+    {
+      "label": "timber-slat-screen.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/amazing-fencing/products/timber-slat-screen.json",
+      "_origin": "ast_file",
+      "id": "products_timber_slat_screen",
+      "community": 91,
+      "norm_label": "timber-slat-screen.json"
+    },
+    {
+      "label": "aluminium-pool.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/discount-fencing/products/aluminium-pool.json",
+      "_origin": "ast_file",
+      "id": "products_aluminium_pool",
+      "community": 78,
+      "norm_label": "aluminium-pool.json"
+    },
+    {
+      "label": "aluminium-slat-gate.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/discount-fencing/products/aluminium-slat-gate.json",
+      "_origin": "ast_file",
+      "id": "products_aluminium_slat_gate",
+      "community": 79,
+      "norm_label": "aluminium-slat-gate.json"
+    },
+    {
+      "label": "cca-pine-paling.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/discount-fencing/products/cca-pine-paling.json",
+      "_origin": "ast_file",
+      "id": "products_cca_pine_paling",
+      "community": 81,
+      "norm_label": "cca-pine-paling.json"
+    },
+    {
+      "label": "colour-options.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/colour-options.json",
+      "_origin": "ast_file",
+      "id": "glass_outlet_colour_options",
+      "community": 24,
+      "norm_label": "colour-options.json"
+    },
+    {
+      "label": "pricing-2026-05-09.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/pricing-2026-05-09.json",
+      "_origin": "ast_file",
+      "id": "glass_outlet_pricing_2026_05_09",
+      "community": 25,
+      "norm_label": "pricing-2026-05-09.json"
+    },
+    {
+      "label": "bayg.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/products/bayg.json",
+      "_origin": "ast_file",
+      "id": "products_bayg",
+      "community": 80,
+      "norm_label": "bayg.json"
+    },
+    {
+      "label": "other.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/products/other.json",
+      "_origin": "ast_file",
+      "id": "products_other",
+      "community": 84,
+      "norm_label": "other.json"
+    },
+    {
+      "label": "qshs.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/products/qshs.json",
+      "_origin": "ast_file",
+      "id": "products_qshs",
+      "community": 88,
+      "norm_label": "qshs.json"
+    },
+    {
+      "label": "vs.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/products/vs.json",
+      "_origin": "ast_file",
+      "id": "products_vs",
+      "community": 92,
+      "norm_label": "vs.json"
+    },
+    {
+      "label": "xpl.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/products/xpl.json",
+      "_origin": "ast_file",
+      "id": "products_xpl",
+      "community": 93,
+      "norm_label": "xpl.json"
+    },
+    {
+      "label": "xpsg_gate.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/products/xpsg_gate.json",
+      "_origin": "ast_file",
+      "id": "products_xpsg_gate",
+      "community": 94,
+      "norm_label": "xpsg_gate.json"
+    },
+    {
+      "label": "seed-images.js",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/seed-images.js",
+      "_origin": "ast_file",
+      "id": "glass_outlet_seed_images",
+      "community": 26,
+      "norm_label": "seed-images.js"
+    },
+    {
+      "label": "TC-V3-2-qshs-wall-termination.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/TC-V3-2-qshs-wall-termination.fixture.json",
+      "_origin": "ast_file",
+      "id": "tests_tc_v3_2_qshs_wall_termination_fixture",
+      "community": 146,
+      "norm_label": "tc-v3-2-qshs-wall-termination.fixture.json"
+    },
+    {
+      "label": "TC-V3-3-qshs-gate-opening.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/TC-V3-3-qshs-gate-opening.fixture.json",
+      "_origin": "ast_file",
+      "id": "tests_tc_v3_3_qshs_gate_opening_fixture",
+      "community": 147,
+      "norm_label": "tc-v3-3-qshs-gate-opening.fixture.json"
+    },
+    {
+      "label": "TC-V3-4-qshs-varied-terminations.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/TC-V3-4-qshs-varied-terminations.fixture.json",
+      "_origin": "ast_file",
+      "id": "tests_tc_v3_4_qshs_varied_terminations_fixture",
+      "community": 148,
+      "norm_label": "tc-v3-4-qshs-varied-terminations.fixture.json"
+    },
+    {
+      "label": "TC-V3-5-qshs-angles.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/TC-V3-5-qshs-angles.fixture.json",
+      "_origin": "ast_file",
+      "id": "tests_tc_v3_5_qshs_angles_fixture",
+      "community": 149,
+      "norm_label": "tc-v3-5-qshs-angles.fixture.json"
+    },
+    {
+      "label": "BAYG-3x6m-corners_in-ground.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/corners/BAYG-3x6m-corners_in-ground.fixture.json",
+      "_origin": "ast_file",
+      "id": "corners_bayg_3x6m_corners_in_ground_fixture",
+      "community": 19,
+      "norm_label": "bayg-3x6m-corners_in-ground.fixture.json"
+    },
+    {
+      "label": "QSHS-3x6m-corners_in-ground.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/corners/QSHS-3x6m-corners_in-ground.fixture.json",
+      "_origin": "ast_file",
+      "id": "corners_qshs_3x6m_corners_in_ground_fixture",
+      "community": 20,
+      "norm_label": "qshs-3x6m-corners_in-ground.fixture.json"
+    },
+    {
+      "label": "VS-3x6m-corners_in-ground.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/corners/VS-3x6m-corners_in-ground.fixture.json",
+      "_origin": "ast_file",
+      "id": "corners_vs_3x6m_corners_in_ground_fixture",
+      "community": 21,
+      "norm_label": "vs-3x6m-corners_in-ground.fixture.json"
+    },
+    {
+      "label": "XPL-3x6m-corners_in-ground.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/corners/XPL-3x6m-corners_in-ground.fixture.json",
+      "_origin": "ast_file",
+      "id": "corners_xpl_3x6m_corners_in_ground_fixture",
+      "community": 22,
+      "norm_label": "xpl-3x6m-corners_in-ground.fixture.json"
+    },
+    {
+      "label": "AF_TIMBER_PALING-30m-straight_lapped_capped_hardwood.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/AF_TIMBER_PALING-30m-straight_lapped_capped_hardwood.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_af_timber_paling_30m_straight_lapped_capped_hardwood_fixture",
+      "community": 135,
+      "norm_label": "af_timber_paling-30m-straight_lapped_capped_hardwood.fixture.json"
+    },
+    {
+      "label": "BAYG-10m-straight_base-plate.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/BAYG-10m-straight_base-plate.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_bayg_10m_straight_base_plate_fixture",
+      "community": 136,
+      "norm_label": "bayg-10m-straight_base-plate.fixture.json"
+    },
+    {
+      "label": "BAYG-10m-straight_in-ground.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/BAYG-10m-straight_in-ground.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_bayg_10m_straight_in_ground_fixture",
+      "community": 137,
+      "norm_label": "bayg-10m-straight_in-ground.fixture.json"
+    },
+    {
+      "label": "DF_CCA_PAL-30m-straight_butted.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/DF_CCA_PAL-30m-straight_butted.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_df_cca_pal_30m_straight_butted_fixture",
+      "community": 138,
+      "norm_label": "df_cca_pal-30m-straight_butted.fixture.json"
+    },
+    {
+      "label": "QSHS-10m-straight_base-plate.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/QSHS-10m-straight_base-plate.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_qshs_10m_straight_base_plate_fixture",
+      "community": 139,
+      "norm_label": "qshs-10m-straight_base-plate.fixture.json"
+    },
+    {
+      "label": "QSHS-10m-straight_in-ground.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/QSHS-10m-straight_in-ground.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_qshs_10m_straight_in_ground_fixture",
+      "community": 140,
+      "norm_label": "qshs-10m-straight_in-ground.fixture.json"
+    },
+    {
+      "label": "VS-10m-straight_base-plate.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/VS-10m-straight_base-plate.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_vs_10m_straight_base_plate_fixture",
+      "community": 141,
+      "norm_label": "vs-10m-straight_base-plate.fixture.json"
+    },
+    {
+      "label": "VS-10m-straight_in-ground.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/VS-10m-straight_in-ground.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_vs_10m_straight_in_ground_fixture",
+      "community": 142,
+      "norm_label": "vs-10m-straight_in-ground.fixture.json"
+    },
+    {
+      "label": "XPL-10m-straight_base-plate.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/XPL-10m-straight_base-plate.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_xpl_10m_straight_base_plate_fixture",
+      "community": 143,
+      "norm_label": "xpl-10m-straight_base-plate.fixture.json"
+    },
+    {
+      "label": "XPL-10m-straight_in-ground.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/simple/XPL-10m-straight_in-ground.fixture.json",
+      "_origin": "ast_file",
+      "id": "simple_xpl_10m_straight_in_ground_fixture",
+      "community": 144,
+      "norm_label": "xpl-10m-straight_in-ground.fixture.json"
+    },
+    {
+      "label": "QSHS-10m-run-vars-override.fixture.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/glass-outlet/tests/v4/QSHS-10m-run-vars-override.fixture.json",
+      "_origin": "ast_file",
+      "id": "v4_qshs_10m_run_vars_override_fixture",
+      "community": 152,
+      "norm_label": "qshs-10m-run-vars-override.fixture.json"
+    },
+    {
+      "label": "organizations.sql",
+      "file_type": "code",
+      "source_file": "supabase/seeds/organizations.sql",
+      "_origin": "ast_file",
+      "id": "seeds_organizations",
+      "community": 108,
+      "norm_label": "organizations.sql"
+    },
+    {
+      "label": "pricing_rules.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/pricing_rules.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_pricing_rules_schema",
+      "community": 95,
+      "norm_label": "pricing_rules.schema.json"
+    },
+    {
+      "label": "product-file.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/product-file.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_product_file_schema",
+      "community": 100,
+      "norm_label": "product-file.schema.json"
+    },
+    {
+      "label": "product_companion_rules.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/product_companion_rules.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_product_companion_rules_schema",
+      "community": 96,
+      "norm_label": "product_companion_rules.schema.json"
+    },
+    {
+      "label": "product_component_selectors.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/product_component_selectors.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_product_component_selectors_schema",
+      "community": 97,
+      "norm_label": "product_component_selectors.schema.json"
+    },
+    {
+      "label": "product_components.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/product_components.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_product_components_schema",
+      "community": 98,
+      "norm_label": "product_components.schema.json"
+    },
+    {
+      "label": "product_constraints.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/product_constraints.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_product_constraints_schema",
+      "community": 99,
+      "norm_label": "product_constraints.schema.json"
+    },
+    {
+      "label": "product_rules.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/product_rules.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_product_rules_schema",
+      "community": 101,
+      "norm_label": "product_rules.schema.json"
+    },
+    {
+      "label": "product_validations.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/product_validations.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_product_validations_schema",
+      "community": 102,
+      "norm_label": "product_validations.schema.json"
+    },
+    {
+      "label": "product_variables.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/product_variables.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_product_variables_schema",
+      "community": 103,
+      "norm_label": "product_variables.schema.json"
+    },
+    {
+      "label": "product_warnings.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/product_warnings.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_product_warnings_schema",
+      "community": 104,
+      "norm_label": "product_warnings.schema.json"
+    },
+    {
+      "label": "products.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/products.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_products_schema",
+      "community": 105,
+      "norm_label": "products.schema.json"
+    },
+    {
+      "label": "rule_sets.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/rule_sets.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_rule_sets_schema",
+      "community": 106,
+      "norm_label": "rule_sets.schema.json"
+    },
+    {
+      "label": "rule_versions.schema.json",
+      "file_type": "code",
+      "source_file": "supabase/seeds/schemas/rule_versions.schema.json",
+      "_origin": "ast_file",
+      "id": "schemas_rule_versions_schema",
+      "community": 107,
+      "norm_label": "rule_versions.schema.json"
+    },
+    {
+      "label": "seed-auth.js",
+      "file_type": "code",
+      "source_file": "supabase/seeds/seed-auth.js",
+      "_origin": "ast_file",
+      "id": "seeds_seed_auth",
+      "community": 109,
+      "norm_label": "seed-auth.js"
+    },
+    {
+      "label": "dump-to-json.js",
+      "file_type": "code",
+      "source_file": "supabase/seeds/tools/dump-to-json.js",
+      "_origin": "ast_file",
+      "id": "tools_dump_to_json",
+      "community": 150,
+      "norm_label": "dump-to-json.js"
+    },
+    {
+      "label": "seed-products.js",
+      "file_type": "code",
+      "source_file": "supabase/seeds/tools/seed-products.js",
+      "_origin": "ast_file",
+      "id": "tools_seed_products",
+      "community": 151,
+      "norm_label": "seed-products.js"
+    },
+    {
+      "label": "Untitled query 606.sql",
+      "file_type": "code",
+      "source_file": "supabase/snippets/Untitled query 606.sql",
+      "_origin": "ast_file",
+      "id": "snippets_untitled_query_606",
+      "community": 145,
+      "norm_label": "untitled query 606.sql"
+    }
+  ],
+  "links": [
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_auth_extractjwt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/buildforge/index.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "buildforge_index",
+      "target": "shared_auth_extractjwt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/calculate-pricing/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "calculate_pricing_index",
+      "target": "shared_auth_extractjwt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/search-products/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "search_products_index",
+      "target": "shared_auth_extractjwt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_auth_resolveuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/calculate-pricing/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "calculate_pricing_index",
+      "target": "shared_auth_resolveuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/search-products/index.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "search_products_index",
+      "target": "shared_auth_resolveuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_canonical_types_canonicalpayload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_canonical_types_canonicalrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/_shared/segmentTermination.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "shared_segmenttermination",
+      "target": "shared_canonical_types_canonicalrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_canonical_types_segmenttermination",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_canonical_types_canonicalsegment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/_shared/segmentTermination.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "shared_segmenttermination",
+      "target": "shared_canonical_types_canonicalsegment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_cors_handlecors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/buildforge/index.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "buildforge_index",
+      "target": "shared_cors_handlecors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/calculate-pricing/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "calculate_pricing_index",
+      "target": "shared_cors_handlecors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/search-products/index.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "search_products_index",
+      "target": "shared_cors_handlecors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_segmenttermination_walkrunforposts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "shared_segmenttermination_walkrunforposts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_types_bomunit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/calculate-pricing/index.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "calculate_pricing_index",
+      "target": "shared_types_bomlineitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_types_pricingtier",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/calculate-pricing/index.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "calculate_pricing_index",
+      "target": "shared_types_pricingtier",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "shared_types_pricingrule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "shared_types_pricingrule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/lib.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "bom_calculator_lib",
+      "target": "shared_types_pricingrule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/calculate-pricing/index.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "calculate_pricing_index",
+      "target": "shared_types_pricingrule",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "bom_calculator_fixture_runner_runfixtures",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/integration_tests.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "bom_calculator_integration_tests",
+      "target": "bom_calculator_fixture_runner_runfixtures",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "bom_calculator_lib_enginedata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "bom_calculator_lib_enginedata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "bom_calculator_lib_resolveprice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "bom_calculator_lib_matchesjson",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "bom_calculator_lib_matchesjson",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "bom_calculator_lib_resolveplaceholders",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "bom_calculator_lib_resolveplaceholders",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "bom_calculator_lib_stocks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "bom_calculator_lib_normalisevariables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "bom_calculator_lib_normalisevariables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "bom_calculator_lib_generatecanonicalcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index_test.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "bom_calculator_index_test",
+      "target": "bom_calculator_lib_generatecanonicalcode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/index.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "bom_calculator_index",
+      "target": "bom_calculator_lib_resolvepricecents",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/__tests__/pricing.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_pricing_test",
+      "target": "bom_calculator_lib_resolvepricecents",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/bom-calculator/__tests__/regression.test.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_regression_test",
+      "target": "bom_calculator_lib_resolvepricecents",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/buildforge/index.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "buildforge_index",
+      "target": "buildforge_agent_transport_agentcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "context": "type",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/buildforge/agent_transport.ts",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "buildforge_agent_transport_mockagenttransport",
+      "target": "buildforge_agent_transport_agenttransport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "supabase/functions/buildforge/index.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "buildforge_index",
+      "target": "buildforge_agent_transport_mockagenttransport",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "e03c1d5023a2f2aacfd881a08bf967494d96b2ef"
+}

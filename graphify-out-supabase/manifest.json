@@ -1,0 +1,712 @@
+{
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\_shared\\auth.ts": {
+    "mtime": 1780405182.0391626,
+    "ast_hash": "7967a9eeee60a38e6d3e4b6c60f0bcf0",
+    "semantic_hash": "7967a9eeee60a38e6d3e4b6c60f0bcf0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\_shared\\canonical.types.ts": {
+    "mtime": 1780405182.0391626,
+    "ast_hash": "210f1ea4662c256bb48a726265c58f5c",
+    "semantic_hash": "210f1ea4662c256bb48a726265c58f5c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\_shared\\cors.ts": {
+    "mtime": 1780405182.0391626,
+    "ast_hash": "3d932920a2a56589e3b9a22841d77064",
+    "semantic_hash": "3d932920a2a56589e3b9a22841d77064"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\_shared\\segmentTermination.ts": {
+    "mtime": 1780405182.0391626,
+    "ast_hash": "89752f690feb98d7c3277a7f51bfda2f",
+    "semantic_hash": "89752f690feb98d7c3277a7f51bfda2f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\_shared\\types.ts": {
+    "mtime": 1780405182.0401628,
+    "ast_hash": "fde541c1f524f8c4919f86d5530d3cd8",
+    "semantic_hash": "fde541c1f524f8c4919f86d5530d3cd8"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\bom-calculator\\__tests__\\pricing.test.ts": {
+    "mtime": 1780849452.8510664,
+    "ast_hash": "c139c1b7e76cc85387c922014712ade2",
+    "semantic_hash": "c139c1b7e76cc85387c922014712ade2"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\bom-calculator\\__tests__\\regression.test.ts": {
+    "mtime": 1780849457.1666813,
+    "ast_hash": "520a6591f65f0973fb54a1e5f180a678",
+    "semantic_hash": "520a6591f65f0973fb54a1e5f180a678"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\bom-calculator\\fixture_runner.ts": {
+    "mtime": 1780796120.349229,
+    "ast_hash": "805277850278a87df57e2fa59b69c936",
+    "semantic_hash": "805277850278a87df57e2fa59b69c936"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\bom-calculator\\index.ts": {
+    "mtime": 1780849477.5655515,
+    "ast_hash": "040948da3521ca51a63040552300d9ae",
+    "semantic_hash": "040948da3521ca51a63040552300d9ae"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\bom-calculator\\index_test.ts": {
+    "mtime": 1780729728.7973056,
+    "ast_hash": "6f081a0a16fa4844c4a62381f9ac39af",
+    "semantic_hash": "6f081a0a16fa4844c4a62381f9ac39af"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\bom-calculator\\integration_tests.ts": {
+    "mtime": 1780729728.7993014,
+    "ast_hash": "3e779ae327e5335547224cd805c27710",
+    "semantic_hash": "3e779ae327e5335547224cd805c27710"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\bom-calculator\\lib.ts": {
+    "mtime": 1780849448.7246697,
+    "ast_hash": "c6d11a422b7b76c97ba607a1b97d134d",
+    "semantic_hash": "c6d11a422b7b76c97ba607a1b97d134d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\buildforge\\agent_transport.ts": {
+    "mtime": 1780913350.6400068,
+    "ast_hash": "f2c1ce186333bd01baf8e3d9c217d406",
+    "semantic_hash": "f2c1ce186333bd01baf8e3d9c217d406"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\buildforge\\index.ts": {
+    "mtime": 1780913358.3746762,
+    "ast_hash": "784e1594824405727d3cbd093bb90867",
+    "semantic_hash": "784e1594824405727d3cbd093bb90867"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\calculate-pricing\\index.ts": {
+    "mtime": 1780405182.042163,
+    "ast_hash": "a089cdfcc9b8fcfa441a20688a98bc03",
+    "semantic_hash": "a089cdfcc9b8fcfa441a20688a98bc03"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\deno.json": {
+    "mtime": 1780405182.042163,
+    "ast_hash": "4760265df1b9d1fe9f2ed45f2d423ff5",
+    "semantic_hash": "4760265df1b9d1fe9f2ed45f2d423ff5"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\functions\\search-products\\index.ts": {
+    "mtime": 1780405182.042163,
+    "ast_hash": "2cfc5db11374259fb67da4ddd2e8a161",
+    "semantic_hash": "2cfc5db11374259fb67da4ddd2e8a161"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\001_create_organisations.sql": {
+    "mtime": 1780405182.042163,
+    "ast_hash": "05760b50775b6092e1360139b300c13c",
+    "semantic_hash": "05760b50775b6092e1360139b300c13c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\002_create_profiles.sql": {
+    "mtime": 1780405182.043163,
+    "ast_hash": "9f6767070af5b5ff0b9ed39970d17224",
+    "semantic_hash": "9f6767070af5b5ff0b9ed39970d17224"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\003_create_quotes.sql": {
+    "mtime": 1780405182.043163,
+    "ast_hash": "6631eba9c4f6ff513dce2d836d1abea6",
+    "semantic_hash": "6631eba9c4f6ff513dce2d836d1abea6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\004_create_pricing.sql": {
+    "mtime": 1780405182.043163,
+    "ast_hash": "046483ffd8930863b323950acbc27f7b",
+    "semantic_hash": "046483ffd8930863b323950acbc27f7b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\005_create_products.sql": {
+    "mtime": 1780405182.043163,
+    "ast_hash": "b01e60bdf1abd6b0c934d01d1484ece4",
+    "semantic_hash": "b01e60bdf1abd6b0c934d01d1484ece4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\006_create_product_components.sql": {
+    "mtime": 1780405182.0441628,
+    "ast_hash": "c61dae826995afcf5ec0f4e2a9c9356b",
+    "semantic_hash": "c61dae826995afcf5ec0f4e2a9c9356b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\007_add_quote_number.sql": {
+    "mtime": 1780405182.0441628,
+    "ast_hash": "fbeaeb0889e84b88dcad2050fa0910a8",
+    "semantic_hash": "fbeaeb0889e84b88dcad2050fa0910a8"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\008_restructure_schema.sql": {
+    "mtime": 1780405182.0441628,
+    "ast_hash": "d18c007c119279c8277cf3fc6b5310aa",
+    "semantic_hash": "d18c007c119279c8277cf3fc6b5310aa"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\009_add_product_image_url.sql": {
+    "mtime": 1780405182.0441628,
+    "ast_hash": "7f6cc043629bdcdb053332c90b9fbd1f",
+    "semantic_hash": "7f6cc043629bdcdb053332c90b9fbd1f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\010_products_read_policy.sql": {
+    "mtime": 1780405182.0441628,
+    "ast_hash": "f3d330fd6970dbed0830c41d2b865c32",
+    "semantic_hash": "f3d330fd6970dbed0830c41d2b865c32"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\011_engine_core.sql": {
+    "mtime": 1780405182.0451682,
+    "ast_hash": "ca01d7517c59f30ce1ac3bccb75099da",
+    "semantic_hash": "ca01d7517c59f30ce1ac3bccb75099da"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\012_engine_rules.sql": {
+    "mtime": 1780405182.0451682,
+    "ast_hash": "c9c9e7370a2014d51c8696126abe74dc",
+    "semantic_hash": "c9c9e7370a2014d51c8696126abe74dc"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\013_engine_selectors.sql": {
+    "mtime": 1780405182.0451682,
+    "ast_hash": "11b7dccf8866d06787262ed394f55396",
+    "semantic_hash": "11b7dccf8866d06787262ed394f55396"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\014_engine_companions.sql": {
+    "mtime": 1780405182.0451682,
+    "ast_hash": "524eec38d21166246bd3b566b786c67f",
+    "semantic_hash": "524eec38d21166246bd3b566b786c67f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\018_engine_quote_runs.sql": {
+    "mtime": 1780405182.0451682,
+    "ast_hash": "a478651fff3482e363cee8adfb57243f",
+    "semantic_hash": "a478651fff3482e363cee8adfb57243f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\019_add_admin_role.sql": {
+    "mtime": 1780405182.0461626,
+    "ast_hash": "b28a0c789a515ab14ad6e16d41a9002f",
+    "semantic_hash": "b28a0c789a515ab14ad6e16d41a9002f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\020_engine_unique_indexes.sql": {
+    "mtime": 1780405182.0461626,
+    "ast_hash": "286de877cca61b1d67b27d1ffc2db026",
+    "semantic_hash": "286de877cca61b1d67b27d1ffc2db026"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\021_engine_rls.sql": {
+    "mtime": 1780405182.0461626,
+    "ast_hash": "dfc9d99cc78363ebe53c349784140aa0",
+    "semantic_hash": "dfc9d99cc78363ebe53c349784140aa0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\022_flatten_products.sql": {
+    "mtime": 1780405182.0461626,
+    "ast_hash": "dbdf3233fe6a0c4715bcb6b274716632",
+    "semantic_hash": "dbdf3233fe6a0c4715bcb6b274716632"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\023_selector_qty_key.sql": {
+    "mtime": 1780405182.0471733,
+    "ast_hash": "308548c763ace84376cc5a67feea50cb",
+    "semantic_hash": "308548c763ace84376cc5a67feea50cb"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\024_colour_options.sql": {
+    "mtime": 1780405182.0471733,
+    "ast_hash": "cbbbcc0cbabc2ededcf9a324822ba243",
+    "semantic_hash": "cbbbcc0cbabc2ededcf9a324822ba243"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\025_admin_rls.sql": {
+    "mtime": 1780405182.0471733,
+    "ast_hash": "24c7d92b2d38a06a2aaace275f488e86",
+    "semantic_hash": "24c7d92b2d38a06a2aaace275f488e86"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\026_companion_rule_suggestions.sql": {
+    "mtime": 1780405182.0471733,
+    "ast_hash": "296573091cb3c531bcc422de7d8b406a",
+    "semantic_hash": "296573091cb3c531bcc422de7d8b406a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\027_org_calculator_theme.sql": {
+    "mtime": 1780405182.0471733,
+    "ast_hash": "918fd8b097796d7a96dd4dee2eee4ac8",
+    "semantic_hash": "918fd8b097796d7a96dd4dee2eee4ac8"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\028_seed_supplier_prices_2026_05_09.sql": {
+    "mtime": 1780405182.0481637,
+    "ast_hash": "1dd9e001bf014bbe5081d05bbd43150b",
+    "semantic_hash": "1dd9e001bf014bbe5081d05bbd43150b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\029_add_profile_email.sql": {
+    "mtime": 1780405182.0481637,
+    "ast_hash": "c262fa27d56de9161c24deac6939437f",
+    "semantic_hash": "c262fa27d56de9161c24deac6939437f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\030_add_quote_property_anchor.sql": {
+    "mtime": 1780405182.049164,
+    "ast_hash": "8136e166978237f984a643cc8874c70a",
+    "semantic_hash": "8136e166978237f984a643cc8874c70a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\032_supplier_archetype_instance_schema.sql": {
+    "mtime": 1780724908.686451,
+    "ast_hash": "8e6dd9465a1b0b4ea08afecb15ef9651",
+    "semantic_hash": "8e6dd9465a1b0b4ea08afecb15ef9651"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\033_backfill_glass_outlet_supplier_and_instances.sql": {
+    "mtime": 1780724908.686956,
+    "ast_hash": "1544e7a2121231606da42249fc650fcd",
+    "semantic_hash": "1544e7a2121231606da42249fc650fcd"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\034_versioned_price_books.sql": {
+    "mtime": 1780724908.686956,
+    "ast_hash": "cbc7b71fc7d732c6bab0d8cff2615316",
+    "semantic_hash": "cbc7b71fc7d732c6bab0d8cff2615316"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\042_discount_fencing_supplier_and_instances.sql": {
+    "mtime": 1780724908.686956,
+    "ast_hash": "e7bc5b6ccf9250d3abb63937bb40ee82",
+    "semantic_hash": "e7bc5b6ccf9250d3abb63937bb40ee82"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\043_discount_fencing_seed_priceboook.sql": {
+    "mtime": 1780724908.687962,
+    "ast_hash": "978aaa8883f5eca3378bfc7d06982702",
+    "semantic_hash": "978aaa8883f5eca3378bfc7d06982702"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\045_amazing_fencing_supplier_and_instances.sql": {
+    "mtime": 1780724908.687962,
+    "ast_hash": "e82e8762a3cac37c77de090f15da9475",
+    "semantic_hash": "e82e8762a3cac37c77de090f15da9475"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\046_amazing_fencing_trade_price_book.sql": {
+    "mtime": 1780724908.687962,
+    "ast_hash": "30063f5df12e165c1280e04822c5f0d7",
+    "semantic_hash": "30063f5df12e165c1280e04822c5f0d7"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\047_drop_system_types_constraint.sql": {
+    "mtime": 1780724908.688964,
+    "ast_hash": "f983cbdb33789c2f3a8d032cff931795",
+    "semantic_hash": "f983cbdb33789c2f3a8d032cff931795"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\048_platform_expansion.sql": {
+    "mtime": 1780724908.689469,
+    "ast_hash": "642acf1d951b8cc62f18bf876b454c21",
+    "semantic_hash": "642acf1d951b8cc62f18bf876b454c21"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\049_update_pricing_rules_view.sql": {
+    "mtime": 1780724908.689469,
+    "ast_hash": "b0891746c61447d402070fa3ecc5fae0",
+    "semantic_hash": "b0891746c61447d402070fa3ecc5fae0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\050_anyfence_install_pricing.sql": {
+    "mtime": 1780724908.689469,
+    "ast_hash": "b3b8360e84f44926bdafd9d6a268fe5e",
+    "semantic_hash": "b3b8360e84f44926bdafd9d6a268fe5e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\051_anyfence_and_amazing_fencing_setup.sql": {
+    "mtime": 1780724908.6903536,
+    "ast_hash": "45bf4a21e9ceaa1d337f1139e697b8b8",
+    "semantic_hash": "45bf4a21e9ceaa1d337f1139e697b8b8"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\052_supplier_portal_pricing_rls.sql": {
+    "mtime": 1780724908.6909952,
+    "ast_hash": "9bdc1dbbbffff3109fd2930d8627cce3",
+    "semantic_hash": "9bdc1dbbbffff3109fd2930d8627cce3"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\053_update_amazing_fencing_branding.sql": {
+    "mtime": 1780724908.6909952,
+    "ast_hash": "42597105ce834ac1bafca4930469a459",
+    "semantic_hash": "42597105ce834ac1bafca4930469a459"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\054_clean_up_amazing_fencing_calculators.sql": {
+    "mtime": 1780724908.6909952,
+    "ast_hash": "ff012a5328c123ace5ea834f1d96db21",
+    "semantic_hash": "ff012a5328c123ace5ea834f1d96db21"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\055_generic_calculators_and_vetting.sql": {
+    "mtime": 1780724908.692,
+    "ast_hash": "6c48069ccd244123a0d7b8ab7a48abd2",
+    "semantic_hash": "6c48069ccd244123a0d7b8ab7a48abd2"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\056_update_pricing_rules_with_sku_canonical.sql": {
+    "mtime": 1780724908.692,
+    "ast_hash": "37a2eec2c68afe0f056921de093e1140",
+    "semantic_hash": "37a2eec2c68afe0f056921de093e1140"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\057_amazing_fencing_pricebook_v2.sql": {
+    "mtime": 1780724908.6929998,
+    "ast_hash": "74adf73e6405dfe2ea6e9e2d27fddd18",
+    "semantic_hash": "74adf73e6405dfe2ea6e9e2d27fddd18"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\058_deactivate_old_concrete_skus.sql": {
+    "mtime": 1780845550.140623,
+    "ast_hash": "851f3f344adb0cec80bd716752a8b2c2",
+    "semantic_hash": "851f3f344adb0cec80bd716752a8b2c2"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\059_deactivate_old_rail_skus.sql": {
+    "mtime": 1780845550.140623,
+    "ast_hash": "1a37fa110363022c8ba6bc85e2c39306",
+    "semantic_hash": "1a37fa110363022c8ba6bc85e2c39306"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\060_fix_bom_pricing_rls_and_archetypes.sql": {
+    "mtime": 1780845550.1411636,
+    "ast_hash": "e2fafa9374f2e69d3d1ea08817890180",
+    "semantic_hash": "e2fafa9374f2e69d3d1ea08817890180"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\061_grant_anon_select.sql": {
+    "mtime": 1780845543.253468,
+    "ast_hash": "ad1a32053161dfa33a6118fbdc31fd03",
+    "semantic_hash": "ad1a32053161dfa33a6118fbdc31fd03"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\062_staging_tables.sql": {
+    "mtime": 1780864537.9355898,
+    "ast_hash": "6e116467a072acdc99942f6d67d8b964",
+    "semantic_hash": "6e116467a072acdc99942f6d67d8b964"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\migrations\\063_create_buildforge_usage.sql": {
+    "mtime": 1780913301.7987914,
+    "ast_hash": "503033c740e1c21b61a9ed6fd2a0f39f",
+    "semantic_hash": "503033c740e1c21b61a9ed6fd2a0f39f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\amazing-fencing\\colour-options.json": {
+    "mtime": 1780724908.6929998,
+    "ast_hash": "528a543df59b59d7b8518d4081bd3b7f",
+    "semantic_hash": "528a543df59b59d7b8518d4081bd3b7f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\amazing-fencing\\products\\chainwire-security.json": {
+    "mtime": 1780724908.6929998,
+    "ast_hash": "4c2acc498f46277863cd00f3aecd3e14",
+    "semantic_hash": "4c2acc498f46277863cd00f3aecd3e14"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\amazing-fencing\\products\\colorbond.json": {
+    "mtime": 1780724908.6929998,
+    "ast_hash": "c0f1963e307b7a8264a6aba767820566",
+    "semantic_hash": "c0f1963e307b7a8264a6aba767820566"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\amazing-fencing\\products\\permasteel.json": {
+    "mtime": 1780724908.6945038,
+    "ast_hash": "dfdd243668a5448f48cbe114890d5541",
+    "semantic_hash": "dfdd243668a5448f48cbe114890d5541"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\amazing-fencing\\products\\price_catalogue.json": {
+    "mtime": 1780724908.7015083,
+    "ast_hash": "00bdcb74ad1607cfebbc6807b5c76703",
+    "semantic_hash": "00bdcb74ad1607cfebbc6807b5c76703"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\amazing-fencing\\products\\qs_gate.json": {
+    "mtime": 1780724908.7025106,
+    "ast_hash": "c30cb6bbe527bdfaa68935bbc37106a2",
+    "semantic_hash": "c30cb6bbe527bdfaa68935bbc37106a2"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\amazing-fencing\\products\\retaining-wall.json": {
+    "mtime": 1780724908.7025106,
+    "ast_hash": "93b489b8d01871e2127d6ad4032d88e1",
+    "semantic_hash": "93b489b8d01871e2127d6ad4032d88e1"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\amazing-fencing\\products\\timber-paling.json": {
+    "mtime": 1780845985.563133,
+    "ast_hash": "cde22df354c0f8c4a878cd451a7404cf",
+    "semantic_hash": "cde22df354c0f8c4a878cd451a7404cf"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\amazing-fencing\\products\\timber-slat-screen.json": {
+    "mtime": 1780724908.7030165,
+    "ast_hash": "47aa25240f528af178343dc55702e1d6",
+    "semantic_hash": "47aa25240f528af178343dc55702e1d6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\discount-fencing\\products\\aluminium-pool.json": {
+    "mtime": 1780724908.704023,
+    "ast_hash": "201a3b06e91f81906871626ad2ef0251",
+    "semantic_hash": "201a3b06e91f81906871626ad2ef0251"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\discount-fencing\\products\\aluminium-slat-gate.json": {
+    "mtime": 1780724908.704023,
+    "ast_hash": "3a46b6bdc33d7aef024f2bc665cc3394",
+    "semantic_hash": "3a46b6bdc33d7aef024f2bc665cc3394"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\discount-fencing\\products\\cca-pine-paling.json": {
+    "mtime": 1780724908.7054634,
+    "ast_hash": "2732801512f815cb354938015bbcb061",
+    "semantic_hash": "2732801512f815cb354938015bbcb061"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\colour-options.json": {
+    "mtime": 1780405182.1141603,
+    "ast_hash": "c78295fe3393df27363deeb8b87ab686",
+    "semantic_hash": "c78295fe3393df27363deeb8b87ab686"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\pricing-2026-05-09.json": {
+    "mtime": 1780405182.1151636,
+    "ast_hash": "084ffd1cad0c52d5de6ac9a9fc9e706e",
+    "semantic_hash": "084ffd1cad0c52d5de6ac9a9fc9e706e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\products\\bayg.json": {
+    "mtime": 1780796120.3502288,
+    "ast_hash": "d4d47c6d69452ef5993a0da3efb646ab",
+    "semantic_hash": "d4d47c6d69452ef5993a0da3efb646ab"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\products\\other.json": {
+    "mtime": 1780405182.1171632,
+    "ast_hash": "63a7affa0342152177a54049d97dc559",
+    "semantic_hash": "63a7affa0342152177a54049d97dc559"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\products\\price_catalogue.json": {
+    "mtime": 1780405182.1426482,
+    "ast_hash": "7e64dd6be9e00fef0bd5ab018c6091ae",
+    "semantic_hash": "7e64dd6be9e00fef0bd5ab018c6091ae"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\products\\qs_gate.json": {
+    "mtime": 1780405182.1446495,
+    "ast_hash": "2c5fedbf4fcc2496f582c8f0c66c6884",
+    "semantic_hash": "2c5fedbf4fcc2496f582c8f0c66c6884"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\products\\qshs.json": {
+    "mtime": 1780796120.3532465,
+    "ast_hash": "f2cb1097b36088144c2c3b6d4fc4d0cb",
+    "semantic_hash": "f2cb1097b36088144c2c3b6d4fc4d0cb"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\products\\vs.json": {
+    "mtime": 1780796120.3532465,
+    "ast_hash": "bb01e671d344867163e65553b4992e72",
+    "semantic_hash": "bb01e671d344867163e65553b4992e72"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\products\\xpl.json": {
+    "mtime": 1780729728.808551,
+    "ast_hash": "9f20e17440c8ec230e29922336d7efba",
+    "semantic_hash": "9f20e17440c8ec230e29922336d7efba"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\products\\xpsg_gate.json": {
+    "mtime": 1780405182.148649,
+    "ast_hash": "89a69a79b7804a3610aca9d07d3c9b1a",
+    "semantic_hash": "89a69a79b7804a3610aca9d07d3c9b1a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\seed-images.js": {
+    "mtime": 1780405182.148649,
+    "ast_hash": "5828c666f95cc0d86f68e211ac2dd3b3",
+    "semantic_hash": "5828c666f95cc0d86f68e211ac2dd3b3"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\TC-V3-2-qshs-wall-termination.fixture.json": {
+    "mtime": 1780405182.149649,
+    "ast_hash": "dbeb2bcaa2ff888a206acb065b87f2df",
+    "semantic_hash": "dbeb2bcaa2ff888a206acb065b87f2df"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\TC-V3-3-qshs-gate-opening.fixture.json": {
+    "mtime": 1780405182.149649,
+    "ast_hash": "b628913428a99698e0f3fb43e6de43d6",
+    "semantic_hash": "b628913428a99698e0f3fb43e6de43d6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\TC-V3-4-qshs-varied-terminations.fixture.json": {
+    "mtime": 1780405182.1506493,
+    "ast_hash": "b57ba6e11aceb588076ee8fcb5868118",
+    "semantic_hash": "b57ba6e11aceb588076ee8fcb5868118"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\TC-V3-5-qshs-angles.fixture.json": {
+    "mtime": 1780405182.1506493,
+    "ast_hash": "0a70b62f299007269a3e9dcf2cb7092d",
+    "semantic_hash": "0a70b62f299007269a3e9dcf2cb7092d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\corners\\BAYG-3x6m-corners_in-ground.fixture.json": {
+    "mtime": 1780729728.80959,
+    "ast_hash": "edd4e94b047bc8cd3afcc9499760297e",
+    "semantic_hash": "edd4e94b047bc8cd3afcc9499760297e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\corners\\QSHS-3x6m-corners_in-ground.fixture.json": {
+    "mtime": 1780729728.8104618,
+    "ast_hash": "5ce9592160aa4f76923dfdd61ff5ac71",
+    "semantic_hash": "5ce9592160aa4f76923dfdd61ff5ac71"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\corners\\VS-3x6m-corners_in-ground.fixture.json": {
+    "mtime": 1780729728.811476,
+    "ast_hash": "2ff80cb4d7ada5135f5cb1941781c025",
+    "semantic_hash": "2ff80cb4d7ada5135f5cb1941781c025"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\corners\\XPL-3x6m-corners_in-ground.fixture.json": {
+    "mtime": 1780729728.8139963,
+    "ast_hash": "5c6b33739602c8bfc97aff609f1d5139",
+    "semantic_hash": "5c6b33739602c8bfc97aff609f1d5139"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\AF_TIMBER_PALING-30m-straight_lapped_capped_hardwood.fixture.json": {
+    "mtime": 1780730099.1140137,
+    "ast_hash": "db5ef66de9a82f7fb73067faddb6c544",
+    "semantic_hash": "db5ef66de9a82f7fb73067faddb6c544"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\BAYG-10m-straight_base-plate.fixture.json": {
+    "mtime": 1780729728.8169224,
+    "ast_hash": "cefeb44fd167256738bd34335f95cfce",
+    "semantic_hash": "cefeb44fd167256738bd34335f95cfce"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\BAYG-10m-straight_in-ground.fixture.json": {
+    "mtime": 1780729728.8174675,
+    "ast_hash": "67406313d77e3ee69a17e656732e3e6d",
+    "semantic_hash": "67406313d77e3ee69a17e656732e3e6d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\DF_CCA_PAL-30m-straight_butted.fixture.json": {
+    "mtime": 1780724908.717064,
+    "ast_hash": "36fe45516ab9b36b69da002491d3ab7c",
+    "semantic_hash": "36fe45516ab9b36b69da002491d3ab7c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\QSHS-10m-straight_base-plate.fixture.json": {
+    "mtime": 1780729728.8184757,
+    "ast_hash": "1b3423e66950621ee7a96aa2dc4f1b1d",
+    "semantic_hash": "1b3423e66950621ee7a96aa2dc4f1b1d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\QSHS-10m-straight_in-ground.fixture.json": {
+    "mtime": 1780729728.8189826,
+    "ast_hash": "a02f9d22f8b3ddcdf8737466cbf45d38",
+    "semantic_hash": "a02f9d22f8b3ddcdf8737466cbf45d38"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\VS-10m-straight_base-plate.fixture.json": {
+    "mtime": 1780729728.8204963,
+    "ast_hash": "d5a596882c53c3c829632c67241976a5",
+    "semantic_hash": "d5a596882c53c3c829632c67241976a5"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\VS-10m-straight_in-ground.fixture.json": {
+    "mtime": 1780729728.8210084,
+    "ast_hash": "ca27ee8b3395e4f7b76ef69ca691bd2f",
+    "semantic_hash": "ca27ee8b3395e4f7b76ef69ca691bd2f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\XPL-10m-straight_base-plate.fixture.json": {
+    "mtime": 1780729728.822018,
+    "ast_hash": "cee88d8ff1b8153a9d932cb8c29fb7c6",
+    "semantic_hash": "cee88d8ff1b8153a9d932cb8c29fb7c6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\simple\\XPL-10m-straight_in-ground.fixture.json": {
+    "mtime": 1780729728.8230157,
+    "ast_hash": "fc2ed8316349673e0f17f00087ea4623",
+    "semantic_hash": "fc2ed8316349673e0f17f00087ea4623"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\tests\\v4\\QSHS-10m-run-vars-override.fixture.json": {
+    "mtime": 1780724908.7207801,
+    "ast_hash": "4ad9c9365a02af5d212e734ab3fa3e54",
+    "semantic_hash": "4ad9c9365a02af5d212e734ab3fa3e54"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\organizations.sql": {
+    "mtime": 1780405182.1546488,
+    "ast_hash": "af284cec4e6203eab2502c9c8624e809",
+    "semantic_hash": "af284cec4e6203eab2502c9c8624e809"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\pricing_rules.schema.json": {
+    "mtime": 1780724908.7207801,
+    "ast_hash": "568a1e459f982b4cd19a8930e98ddafe",
+    "semantic_hash": "568a1e459f982b4cd19a8930e98ddafe"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\product-file.schema.json": {
+    "mtime": 1780724908.721787,
+    "ast_hash": "0672ef78a15f14f087d1577740629b11",
+    "semantic_hash": "0672ef78a15f14f087d1577740629b11"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\product_companion_rules.schema.json": {
+    "mtime": 1780405182.1556492,
+    "ast_hash": "1aecf76b71bf8ba770f5957758592565",
+    "semantic_hash": "1aecf76b71bf8ba770f5957758592565"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\product_component_selectors.schema.json": {
+    "mtime": 1780405182.1556492,
+    "ast_hash": "869e3eedce2a2bdf1e20646decc0fab6",
+    "semantic_hash": "869e3eedce2a2bdf1e20646decc0fab6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\product_components.schema.json": {
+    "mtime": 1780724908.7225134,
+    "ast_hash": "7d20c194d421b3e7740fb826397d2f94",
+    "semantic_hash": "7d20c194d421b3e7740fb826397d2f94"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\product_constraints.schema.json": {
+    "mtime": 1780405182.1556492,
+    "ast_hash": "d303c449ec21513c04211443a860ed59",
+    "semantic_hash": "d303c449ec21513c04211443a860ed59"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\product_rules.schema.json": {
+    "mtime": 1780405182.1566494,
+    "ast_hash": "14cee0b80d6d14b9d16ae11772d912a7",
+    "semantic_hash": "14cee0b80d6d14b9d16ae11772d912a7"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\product_validations.schema.json": {
+    "mtime": 1780405182.1566494,
+    "ast_hash": "f66973470b0894e7287baa466d7ac09c",
+    "semantic_hash": "f66973470b0894e7287baa466d7ac09c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\product_variables.schema.json": {
+    "mtime": 1780405182.1566494,
+    "ast_hash": "b0507b5d25f2376bc161528f39e59537",
+    "semantic_hash": "b0507b5d25f2376bc161528f39e59537"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\product_warnings.schema.json": {
+    "mtime": 1780405182.1566494,
+    "ast_hash": "a6e4587a3cec2acc0df8ff9f60adecb4",
+    "semantic_hash": "a6e4587a3cec2acc0df8ff9f60adecb4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\products.schema.json": {
+    "mtime": 1780405182.1576495,
+    "ast_hash": "885919f7addc24fc28b9085e8f32b45b",
+    "semantic_hash": "885919f7addc24fc28b9085e8f32b45b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\rule_sets.schema.json": {
+    "mtime": 1780405182.1576495,
+    "ast_hash": "ea161ca8fffe378386543801ba6dfd71",
+    "semantic_hash": "ea161ca8fffe378386543801ba6dfd71"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\schemas\\rule_versions.schema.json": {
+    "mtime": 1780405182.1576495,
+    "ast_hash": "66212664d63d7aabbf3f9035057330c2",
+    "semantic_hash": "66212664d63d7aabbf3f9035057330c2"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\seed-auth.js": {
+    "mtime": 1780796120.35423,
+    "ast_hash": "89a1b4831de396257a637e5acadd7c3c",
+    "semantic_hash": "89a1b4831de396257a637e5acadd7c3c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\tools\\dump-to-json.js": {
+    "mtime": 1780405182.1586494,
+    "ast_hash": "db364bebab3be705a4d21af2ab3ad0a9",
+    "semantic_hash": "db364bebab3be705a4d21af2ab3ad0a9"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\tools\\seed-products.js": {
+    "mtime": 1780845985.564166,
+    "ast_hash": "c9112d3c5bef2a2fc153f2e34fe7370f",
+    "semantic_hash": "c9112d3c5bef2a2fc153f2e34fe7370f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\snippets\\Untitled query 606.sql": {
+    "mtime": 1780405182.1606495,
+    "ast_hash": "9119575827ca5cb1d1290a71bee1437f",
+    "semantic_hash": "9119575827ca5cb1d1290a71bee1437f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\aluminium-balustrade.png": {
+    "mtime": 1780405182.0531607,
+    "ast_hash": "385fb2355f733ef3d1eed4ea3908ae68",
+    "semantic_hash": "385fb2355f733ef3d1eed4ea3908ae68"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\colorbond.png": {
+    "mtime": 1780405182.059162,
+    "ast_hash": "ae49b755538669a525b1739544da114b",
+    "semantic_hash": "ae49b755538669a525b1739544da114b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\drainlab.png": {
+    "mtime": 1780405182.0631604,
+    "ast_hash": "d38620362df2f1bd0534ecd14add636a",
+    "semantic_hash": "d38620362df2f1bd0534ecd14add636a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\exterior.png": {
+    "mtime": 1780405182.0701623,
+    "ast_hash": "4d658fe1616a93b41089086e9c0c299d",
+    "semantic_hash": "4d658fe1616a93b41089086e9c0c299d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\fencing-and-breezewire.png": {
+    "mtime": 1780405182.0751605,
+    "ast_hash": "11c6310c6ba21ce5790f4af244b6ae8f",
+    "semantic_hash": "11c6310c6ba21ce5790f4af244b6ae8f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\glass-balustrade.png": {
+    "mtime": 1780405182.0801632,
+    "ast_hash": "baf9db1458b6cf7f5cdebb8d211b928c",
+    "semantic_hash": "baf9db1458b6cf7f5cdebb8d211b928c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\glass-outlet-logo.png": {
+    "mtime": 1780405182.0801632,
+    "ast_hash": "a1eefa7410a8092eac959f45ed90598e",
+    "semantic_hash": "a1eefa7410a8092eac959f45ed90598e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\glass-pool.png": {
+    "mtime": 1780405182.0851605,
+    "ast_hash": "a993e8ecfde093a29b505501521837df",
+    "semantic_hash": "a993e8ecfde093a29b505501521837df"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\glass-range.png": {
+    "mtime": 1780405182.0901606,
+    "ast_hash": "7a11a37dd5556d47d9765df03141344a",
+    "semantic_hash": "7a11a37dd5556d47d9765df03141344a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\glass-shower-screen.png": {
+    "mtime": 1780405182.0941608,
+    "ast_hash": "463417eddea9ffd5c9d63e752e5f3111",
+    "semantic_hash": "463417eddea9ffd5c9d63e752e5f3111"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\glass.png": {
+    "mtime": 1780405182.0991611,
+    "ast_hash": "b2a7620c84881e381ca48f40d8c797fa",
+    "semantic_hash": "b2a7620c84881e381ca48f40d8c797fa"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\hamptons.png": {
+    "mtime": 1780405182.1041608,
+    "ast_hash": "44b26639a3e9a376f777614bed49eeaa",
+    "semantic_hash": "44b26639a3e9a376f777614bed49eeaa"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\move-shutters.png": {
+    "mtime": 1780405182.109161,
+    "ast_hash": "71aa91b288540ee542334995acc99c29",
+    "semantic_hash": "71aa91b288540ee542334995acc99c29"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\supabase\\seeds\\glass-outlet\\assets\\quickscreen.png": {
+    "mtime": 1780405182.1141603,
+    "ast_hash": "10c4eda097ff76658c3adc7d2411e109",
+    "semantic_hash": "10c4eda097ff76658c3adc7d2411e109"
+  }
+}

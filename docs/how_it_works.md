@@ -120,4 +120,4 @@ The form and canvas toolbar are shared across every fencing system, so no UI cha
 - **Trace** — per-rule log of what the engine did. Admin-only; used to debug unexpected BOMs.
 - **Pricing rules** — math.js expressions per SKU + tier (e.g. "qty <= 50 → $1.20, qty > 50 → $1.05"). Evaluated at the end of the pipeline.
 
-For deep details see `CLAUDE.md` and the per-phase specs in `docs/phase-v3-*.md`.
+For deep details see [CLAUDE.md](../CLAUDE.md) (which redirects to [AGENTS.md](../AGENTS.md)) and the per-phase specs in the [docs/](.) directory.
