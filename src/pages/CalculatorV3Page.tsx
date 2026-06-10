@@ -84,6 +84,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from "sonner";
+import { getSubdomain } from "../lib/subdomain";
 import Papa from "papaparse";
 import { pdf } from "@react-pdf/renderer";
 import type {
@@ -531,7 +532,7 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
   bomMutateAsyncRef.current = bomMutation.mutateAsync;
 
   const { supplierSlug, instanceSlug } = useParams<{ supplierSlug?: string; instanceSlug?: string }>();
-  const activeSupplierSlug = supplierSlug || "amazing-fencing";
+  const activeSupplierSlug = supplierSlug || getSubdomain() || "amazing-fencing";
   const { branding, logoUrl, supplier: supplierBrand } = useBranding(activeSupplierSlug);
 
 
@@ -2642,10 +2643,12 @@ export function CalculatorV3Page() {
     instanceSlug?: string;
   }>();
 
+  const activeSupplierSlug = supplierSlug || getSubdomain();
+
   const key = quoteId
     ? `quote-${quoteId}`
-    : supplierSlug && instanceSlug
-      ? `supplier-${supplierSlug}-${instanceSlug}`
+    : activeSupplierSlug && instanceSlug
+      ? `supplier-${activeSupplierSlug}-${instanceSlug}`
       : instanceSlug
         ? `generic-${instanceSlug}`
         : "new";

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getSupplierBySlug } from '../lib/multiSupplier/queries';
+import { getSubdomain } from '../lib/subdomain';
 
 function hexToRgbChannels(hex: string): string {
   const clean = hex.replace('#', '');
@@ -21,7 +22,8 @@ function hexToRgbChannels(hex: string): string {
 
 export function useBranding(overrideSlug?: string) {
   const { supplierSlug: urlSlug } = useParams<{ supplierSlug?: string }>();
-  const supplierSlug = overrideSlug || urlSlug;
+  const subdomain = getSubdomain();
+  const supplierSlug = overrideSlug || urlSlug || subdomain;
 
   const { data: supplier, isLoading } = useQuery({
     queryKey: ['branding', 'supplier', supplierSlug],

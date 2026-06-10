@@ -34,7 +34,7 @@ import { ProfileProvider } from "./context/ProfileContext";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { AdminPortalPage } from "./pages/admin/AdminPortalPage";
 import { OnboardingPage } from "./pages/OnboardingPage";
-import { LandingPage } from "./pages/LandingPage";
+import { LandingPageRoute } from "./pages/LandingPageRoute";
 
 function ThemedToaster() {
   const { theme } = useTheme();
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/login", element: <LoginPage /> },
       { path: "/onboarding", element: <OnboardingPage /> },
-      { path: "/", element: <LandingPage /> },
+      { path: "/", element: <LandingPageRoute /> },
       {
         path: "/fence-calculator",
         element: <CalculatorV3Page />,

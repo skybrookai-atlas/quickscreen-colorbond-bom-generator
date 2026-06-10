@@ -12,6 +12,7 @@ import { InstallVideoQR } from '../calculator-v3/InstallVideoQR';
 import { AmazingFencingLogo } from '../brand/AmazingFencingLogo';
 import { GlassOutletLogo } from '../brand/GlassOutletLogo';
 import { ByronBeyondFencingLogo } from '../brand/ByronBeyondFencingLogo';
+import { getSubdomain } from '../../lib/subdomain';
 
 interface HeaderProps {
   branding?: TenantBranding;
@@ -69,7 +70,8 @@ export function Header({
   const { user } = useAuth();
   const { role } = useProfile();
   const { theme, toggle } = useTheme();
-  const { supplierSlug } = useParams<{ supplierSlug?: string }>();
+  const { supplierSlug: urlSlug } = useParams<{ supplierSlug?: string }>();
+  const activeSupplierSlug = urlSlug || getSubdomain() || "";
   const [installVideosOpen, setInstallVideosOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [offline, setOffline] = useState(() => navigator.onLine === false);
@@ -138,9 +140,9 @@ export function Header({
             </div>
           ) : (
             <div className="flex items-center gap-3">
-              {supplierSlug === "glass-outlet" ? (
+              {activeSupplierSlug === "glass-outlet" ? (
                 <GlassOutletLogo className="scale-75 origin-left" showThe={false} textClassName="text-white" />
-              ) : supplierSlug === "byron-and-beyond-fencing" ? (
+              ) : activeSupplierSlug === "byron-and-beyond-fencing" ? (
                 <ByronBeyondFencingLogo className="scale-75 origin-left" />
               ) : _brandLogoSrc ? (
                 <img src={_brandLogoSrc} alt={_brandLogoAlt} className="h-10 object-contain" />
