@@ -1,0 +1,1577 @@
+{
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\App.tsx": {
+    "mtime": 1780864743.4412842,
+    "ast_hash": "8b6ff398f6426714992e0a0a7a7afd8a",
+    "semantic_hash": "8b6ff398f6426714992e0a0a7a7afd8a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\AdminLayout.tsx": {
+    "mtime": 1780724908.6534584,
+    "ast_hash": "16d06cc0e55d58fa5d79ad42f8acebbf",
+    "semantic_hash": "16d06cc0e55d58fa5d79ad42f8acebbf"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\DiffTable.tsx": {
+    "mtime": 1780864798.9945118,
+    "ast_hash": "92baca489d684fd37c3779884dd270dc",
+    "semantic_hash": "92baca489d684fd37c3779884dd270dc"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\EngineTable.tsx": {
+    "mtime": 1780405181.9671636,
+    "ast_hash": "be14fdf155a29005d8cab15af1529425",
+    "semantic_hash": "be14fdf155a29005d8cab15af1529425"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\PricingWarningBadge.tsx": {
+    "mtime": 1780405181.9671636,
+    "ast_hash": "87026a123b8b0ad0b519dd6ca4a24323",
+    "semantic_hash": "87026a123b8b0ad0b519dd6ca4a24323"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\ProductForm.tsx": {
+    "mtime": 1780864772.6641674,
+    "ast_hash": "85d00b3ac34dce4a7aba38d0465ff7df",
+    "semantic_hash": "85d00b3ac34dce4a7aba38d0465ff7df"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\SharedByBadge.tsx": {
+    "mtime": 1780405181.9671636,
+    "ast_hash": "e8c0f7490b6226ce6f2d4ac5d9b25372",
+    "semantic_hash": "e8c0f7490b6226ce6f2d4ac5d9b25372"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\SupplierForm.tsx": {
+    "mtime": 1780849829.3131392,
+    "ast_hash": "d7ffbb5842b815ad9a19d7ca8257136c",
+    "semantic_hash": "d7ffbb5842b815ad9a19d7ca8257136c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\SystemInstanceForm.tsx": {
+    "mtime": 1780724908.6544645,
+    "ast_hash": "18859df70d5545df8eeeadb3adf39eb4",
+    "semantic_hash": "18859df70d5545df8eeeadb3adf39eb4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\__tests__\\SupplierForm.test.tsx": {
+    "mtime": 1780849847.7608151,
+    "ast_hash": "4204e4f4d92d74701292c077d54e9ed5",
+    "semantic_hash": "4204e4f4d92d74701292c077d54e9ed5"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\admin\\__tests__\\SystemInstanceForm.test.tsx": {
+    "mtime": 1780724908.6554668,
+    "ast_hash": "b502b860665485d930c0b4ae8140b076",
+    "semantic_hash": "b502b860665485d930c0b4ae8140b076"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\auth\\AdminGuard.tsx": {
+    "mtime": 1780405181.9671636,
+    "ast_hash": "5d8f686683de523df60a056fa0cd7b1a",
+    "semantic_hash": "5d8f686683de523df60a056fa0cd7b1a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\auth\\AuthGuard.tsx": {
+    "mtime": 1780405181.968164,
+    "ast_hash": "3c9bf76ef835b08b2f0bc9bfc703e18a",
+    "semantic_hash": "3c9bf76ef835b08b2f0bc9bfc703e18a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\auth\\LoginForm.tsx": {
+    "mtime": 1780405181.968164,
+    "ast_hash": "5e18681b125af395da47ea9e5fa8b18f",
+    "semantic_hash": "5e18681b125af395da47ea9e5fa8b18f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\auth\\SignUpForm.tsx": {
+    "mtime": 1780405181.968164,
+    "ast_hash": "35b614b82688384d12c160b5ce183c89",
+    "semantic_hash": "35b614b82688384d12c160b5ce183c89"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\brand\\AmazingFencingLogo.tsx": {
+    "mtime": 1780724908.6554668,
+    "ast_hash": "57d2935f699515e76f330c2559f73ef7",
+    "semantic_hash": "57d2935f699515e76f330c2559f73ef7"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\brand\\AnyfenceLogo.tsx": {
+    "mtime": 1780729728.7817864,
+    "ast_hash": "5936aa683b92a85724510a552cf3994f",
+    "semantic_hash": "5936aa683b92a85724510a552cf3994f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\brand\\GlassOutletLogo.tsx": {
+    "mtime": 1780405181.968164,
+    "ast_hash": "d7d788913be01f4acf7d709a28186f38",
+    "semantic_hash": "d7d788913be01f4acf7d709a28186f38"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-builder\\BuildForgeChatPanel.tsx": {
+    "mtime": 1780913447.542364,
+    "ast_hash": "746e4c58ac55a123b53adb3e38228672",
+    "semantic_hash": "746e4c58ac55a123b53adb3e38228672"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-builder\\CalculatorBuilderWizard.tsx": {
+    "mtime": 1780724908.6564665,
+    "ast_hash": "7c1dc3f85d54154179645b18f2787d0e",
+    "semantic_hash": "7c1dc3f85d54154179645b18f2787d0e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\AchievedHeightBadge.tsx": {
+    "mtime": 1780405181.9691634,
+    "ast_hash": "2c6987855f23c3f27ec50e98cf628710",
+    "semantic_hash": "2c6987855f23c3f27ec50e98cf628710"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\BOMTracePanel.tsx": {
+    "mtime": 1780405181.9691634,
+    "ast_hash": "2bf6c846a75f703fb54b7b52b0f174f6",
+    "semantic_hash": "2bf6c846a75f703fb54b7b52b0f174f6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\BOMWarningsPanel.tsx": {
+    "mtime": 1780405181.9691634,
+    "ast_hash": "94a7df759bc9fc3f257737037d045930",
+    "semantic_hash": "94a7df759bc9fc3f257737037d045930"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\ClearJobConfirmDialog.test.tsx": {
+    "mtime": 1780405181.9701629,
+    "ast_hash": "6826393297d55f9793b146984765c74f",
+    "semantic_hash": "6826393297d55f9793b146984765c74f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\ClearJobConfirmDialog.tsx": {
+    "mtime": 1780405181.9701629,
+    "ast_hash": "430bb5acfb54fdac6595ea1e52f57ab9",
+    "semantic_hash": "430bb5acfb54fdac6595ea1e52f57ab9"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\ColourPalette.tsx": {
+    "mtime": 1780845550.130157,
+    "ast_hash": "2c9cdff473eb44f203d33a42c44d4d03",
+    "semantic_hash": "2c9cdff473eb44f203d33a42c44d4d03"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\CombinedGapSelect.tsx": {
+    "mtime": 1780845550.130697,
+    "ast_hash": "adc3c152986250acaf5a1e696114e1bb",
+    "semantic_hash": "adc3c152986250acaf5a1e696114e1bb"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\DefaultSettings.tsx": {
+    "mtime": 1780405181.9701629,
+    "ast_hash": "849f911022e3c76b5c0374b51240b307",
+    "semantic_hash": "849f911022e3c76b5c0374b51240b307"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\ExtraItemsPanel.tsx": {
+    "mtime": 1780405181.9711628,
+    "ast_hash": "4271dcf2a704ed7980f9c07228ad9a55",
+    "semantic_hash": "4271dcf2a704ed7980f9c07228ad9a55"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\FenceSegmentDetails.tsx": {
+    "mtime": 1780405181.9711628,
+    "ast_hash": "753536c8b6b10e8bd7eeb747b0fb5abe",
+    "semantic_hash": "753536c8b6b10e8bd7eeb747b0fb5abe"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\GateComponentList.tsx": {
+    "mtime": 1780405181.9711628,
+    "ast_hash": "d3dbf409367eef04af94b776e24e1954",
+    "semantic_hash": "d3dbf409367eef04af94b776e24e1954"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\GateFormV3.tsx": {
+    "mtime": 1780405181.9711628,
+    "ast_hash": "23b53616c9e00e94d3bf820d73a657bd",
+    "semantic_hash": "23b53616c9e00e94d3bf820d73a657bd"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\GateListV3.tsx": {
+    "mtime": 1780405181.9721632,
+    "ast_hash": "d63601316745b9df2845cc7ae44af754",
+    "semantic_hash": "d63601316745b9df2845cc7ae44af754"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\GateSegmentDetails.tsx": {
+    "mtime": 1780405181.9721632,
+    "ast_hash": "0251ec30bdd9cad2aac0cda46806ab4e",
+    "semantic_hash": "0251ec30bdd9cad2aac0cda46806ab4e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\InlineHeightEditor.tsx": {
+    "mtime": 1780845550.131226,
+    "ast_hash": "8351b46faa1a1f63ced4d5429041ec56",
+    "semantic_hash": "8351b46faa1a1f63ced4d5429041ec56"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\InstallVideoQR.tsx": {
+    "mtime": 1780405181.9731631,
+    "ast_hash": "5ee16d59d4cf6d54c0ce59ba4580ad72",
+    "semantic_hash": "5ee16d59d4cf6d54c0ce59ba4580ad72"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\LayoutCanvasV3.tsx": {
+    "mtime": 1780405181.9731631,
+    "ast_hash": "68ddf7077142b7b8eae1c7229d8233ca",
+    "semantic_hash": "68ddf7077142b7b8eae1c7229d8233ca"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\MobileCalculatorTabs.test.tsx": {
+    "mtime": 1780405181.9731631,
+    "ast_hash": "8dd3d76d3e97a95e689363299f515c2f",
+    "semantic_hash": "8dd3d76d3e97a95e689363299f515c2f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\MobileCalculatorTabs.tsx": {
+    "mtime": 1780405181.9741633,
+    "ast_hash": "7f5aa855bd405edc8efea137d38ee2d9",
+    "semantic_hash": "7f5aa855bd405edc8efea137d38ee2d9"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\ProductSelectV3.tsx": {
+    "mtime": 1780845550.1317546,
+    "ast_hash": "e2be5868f27f1dce9fcaad75b1b3d41c",
+    "semantic_hash": "e2be5868f27f1dce9fcaad75b1b3d41c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\RightPaneTabs.tsx": {
+    "mtime": 1780405181.9741633,
+    "ast_hash": "bdbd3193fb78191b65a5e56bd410b845",
+    "semantic_hash": "bdbd3193fb78191b65a5e56bd410b845"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\RunCard.tsx": {
+    "mtime": 1780845550.132284,
+    "ast_hash": "2fc9c2894c3168a88d1955d1f7a50380",
+    "semantic_hash": "2fc9c2894c3168a88d1955d1f7a50380"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\RunDetailsPanel.tsx": {
+    "mtime": 1780405181.9751632,
+    "ast_hash": "9c94d7192e0c99fa6c9844c6a95e2d55",
+    "semantic_hash": "9c94d7192e0c99fa6c9844c6a95e2d55"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\RunListV3.propertyAnchor.test.tsx": {
+    "mtime": 1780724908.658465,
+    "ast_hash": "47764501fc98e74ff649eadffdac72cc",
+    "semantic_hash": "47764501fc98e74ff649eadffdac72cc"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\RunListV3.tsx": {
+    "mtime": 1780845550.1328168,
+    "ast_hash": "d2638cf03119b788f3747faa5da4a884",
+    "semantic_hash": "d2638cf03119b788f3747faa5da4a884"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\RunSectionGateUi.test.tsx": {
+    "mtime": 1780405181.9751632,
+    "ast_hash": "0578396d28566dbfbc7967183077f9f6",
+    "semantic_hash": "0578396d28566dbfbc7967183077f9f6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\RunSettingsEditor.tsx": {
+    "mtime": 1780845550.1339517,
+    "ast_hash": "01f05ee67b376305258df638c6cc23d1",
+    "semantic_hash": "01f05ee67b376305258df638c6cc23d1"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\SaveJobDialog.test.tsx": {
+    "mtime": 1780405181.9761634,
+    "ast_hash": "ba77724b2e4222a066f6cb3991c20117",
+    "semantic_hash": "ba77724b2e4222a066f6cb3991c20117"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\SaveJobDialog.tsx": {
+    "mtime": 1780405181.9761634,
+    "ast_hash": "dbcd498b4f71f8586b669458d99bf968",
+    "semantic_hash": "dbcd498b4f71f8586b669458d99bf968"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\SchemaDrivenForm.tsx": {
+    "mtime": 1780845550.1339517,
+    "ast_hash": "6560087fa4af1655ae5daed25ab6ddd0",
+    "semantic_hash": "6560087fa4af1655ae5daed25ab6ddd0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\SegmentRow.tsx": {
+    "mtime": 1780845550.1350255,
+    "ast_hash": "e47991faf7e0debb0fb9ba30f6318919",
+    "semantic_hash": "e47991faf7e0debb0fb9ba30f6318919"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\SettingsDisclosureRow.tsx": {
+    "mtime": 1780845550.1356099,
+    "ast_hash": "9ddd2120dcfe8de1d6fbfa913794f604",
+    "semantic_hash": "9ddd2120dcfe8de1d6fbfa913794f604"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\SuggestedAccessoriesPanel.tsx": {
+    "mtime": 1780845988.426078,
+    "ast_hash": "ce0dafa298907c6011339c0ac913d614",
+    "semantic_hash": "ce0dafa298907c6011339c0ac913d614"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\TerminationControl.tsx": {
+    "mtime": 1780405181.978163,
+    "ast_hash": "4e83aa8353a538127a0d7f30d6b33545",
+    "semantic_hash": "4e83aa8353a538127a0d7f30d6b33545"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\BomActions.tsx": {
+    "mtime": 1780405181.9791632,
+    "ast_hash": "102089ded27b54ccdf44226a2ed8dc6c",
+    "semantic_hash": "102089ded27b54ccdf44226a2ed8dc6c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\BomAlerts.tsx": {
+    "mtime": 1780405181.9791632,
+    "ast_hash": "31cacbdb2da0e7a35ee180ea89508ec6",
+    "semantic_hash": "31cacbdb2da0e7a35ee180ea89508ec6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\BomHeader.tsx": {
+    "mtime": 1780405181.9791632,
+    "ast_hash": "c4c886c9dc922e8e8a7b788c82f24672",
+    "semantic_hash": "c4c886c9dc922e8e8a7b788c82f24672"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\BomPanel.tsx": {
+    "mtime": 1780846276.1606379,
+    "ast_hash": "7a7eeed068c82104838f07349b8f9026",
+    "semantic_hash": "7a7eeed068c82104838f07349b8f9026"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\BomTable.tsx": {
+    "mtime": 1780405181.9801633,
+    "ast_hash": "b2f906f4434e0a002160c87a182ae1fd",
+    "semantic_hash": "b2f906f4434e0a002160c87a182ae1fd"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\BomTableRow.tsx": {
+    "mtime": 1780846283.121452,
+    "ast_hash": "c2848a155db4c6c0f7756ac277908614",
+    "semantic_hash": "c2848a155db4c6c0f7756ac277908614"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\BomTotals.tsx": {
+    "mtime": 1780405181.9801633,
+    "ast_hash": "ee0b33f8cd37fd44210b7722af29b905",
+    "semantic_hash": "ee0b33f8cd37fd44210b7722af29b905"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\ExtraItemsPanel.tsx": {
+    "mtime": 1780405181.9801633,
+    "ast_hash": "0a5fad37a175927b24a2f42b37879a51",
+    "semantic_hash": "0a5fad37a175927b24a2f42b37879a51"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\SuggestedAccessoriesPanel.tsx": {
+    "mtime": 1780405181.9801633,
+    "ast_hash": "63f1185a416126a3308ac2f0e2ac204d",
+    "semantic_hash": "63f1185a416126a3308ac2f0e2ac204d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\bomExportMapper.ts": {
+    "mtime": 1780405181.9811628,
+    "ast_hash": "179e925feccf7d74599f1bb592319264",
+    "semantic_hash": "179e925feccf7d74599f1bb592319264"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Bom\\useBomViewModel.ts": {
+    "mtime": 1780846191.5103254,
+    "ast_hash": "06596d1bfdbad5e91b2db71247558e12",
+    "semantic_hash": "06596d1bfdbad5e91b2db71247558e12"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Gate\\GateForm.tsx": {
+    "mtime": 1780405181.9811628,
+    "ast_hash": "afdec1ac64ebfcfd75db1599351dc750",
+    "semantic_hash": "afdec1ac64ebfcfd75db1599351dc750"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Gate\\GatePane.tsx": {
+    "mtime": 1780405181.9811628,
+    "ast_hash": "a6b5d7cc22b9446912d62e9dc58c89ef",
+    "semantic_hash": "a6b5d7cc22b9446912d62e9dc58c89ef"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\JobShell\\JobActions.tsx": {
+    "mtime": 1780405181.982163,
+    "ast_hash": "f6d634f7e054f0b4f4cdfcb8295b8bf4",
+    "semantic_hash": "f6d634f7e054f0b4f4cdfcb8295b8bf4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\JobShell\\JobNameField.tsx": {
+    "mtime": 1780405181.982163,
+    "ast_hash": "a12a070d406688fbb40c8a7bca831b1a",
+    "semantic_hash": "a12a070d406688fbb40c8a7bca831b1a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\JobShell\\JobShell.tsx": {
+    "mtime": 1780405181.982163,
+    "ast_hash": "1c31dd7680d8a7284c008708d672f707",
+    "semantic_hash": "1c31dd7680d8a7284c008708d672f707"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\JobShell\\ProductSelectV4.tsx": {
+    "mtime": 1780405181.9831622,
+    "ast_hash": "a752f7b01b470c49d301926d97cd6e7d",
+    "semantic_hash": "a752f7b01b470c49d301926d97cd6e7d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\JobShell\\QuoteDetailsPanel.tsx": {
+    "mtime": 1780405181.9831622,
+    "ast_hash": "544c1e6885bee2110160776ad9b41f86",
+    "semantic_hash": "544c1e6885bee2110160776ad9b41f86"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\LayoutMap\\FenceLayoutCanvasV4.tsx": {
+    "mtime": 1780405181.9831622,
+    "ast_hash": "f7761add4f5f8be0fb7d0100cbd015e6",
+    "semantic_hash": "f7761add4f5f8be0fb7d0100cbd015e6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\LayoutMap\\LayoutMapPane.tsx": {
+    "mtime": 1780405181.984163,
+    "ast_hash": "438446f91de1bf1c032fb5d58cc02840",
+    "semantic_hash": "438446f91de1bf1c032fb5d58cc02840"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\LayoutMap\\LayoutSegmentHighlightContext.tsx": {
+    "mtime": 1780405181.984163,
+    "ast_hash": "2ca0fa8705ef68d1de246f11dbf0feff",
+    "semantic_hash": "2ca0fa8705ef68d1de246f11dbf0feff"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\LayoutMap\\SegmentContextMenu.tsx": {
+    "mtime": 1780405181.984163,
+    "ast_hash": "5a66e5165b6d9014cf36e0b9bed53e69",
+    "semantic_hash": "5a66e5165b6d9014cf36e0b9bed53e69"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\RunCard\\MasterFenceVariableSeeds.tsx": {
+    "mtime": 1780405181.9851627,
+    "ast_hash": "5d1270dd837a01ed91a3cfb7265c3a81",
+    "semantic_hash": "5d1270dd837a01ed91a3cfb7265c3a81"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\RunCard\\RunActions.tsx": {
+    "mtime": 1780405181.9851627,
+    "ast_hash": "a960acd34be3801ffc7a4d02738bbb05",
+    "semantic_hash": "a960acd34be3801ffc7a4d02738bbb05"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\RunCard\\RunCard.tsx": {
+    "mtime": 1780405181.9851627,
+    "ast_hash": "e6a706f9c754cf941f5169a964edb56e",
+    "semantic_hash": "e6a706f9c754cf941f5169a964edb56e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\RunCard\\RunHeader.tsx": {
+    "mtime": 1780405181.9851627,
+    "ast_hash": "d42b48356832c3672eed9f9ccf3370d8",
+    "semantic_hash": "d42b48356832c3672eed9f9ccf3370d8"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\RunCard\\RunList.tsx": {
+    "mtime": 1780405181.9861634,
+    "ast_hash": "57c98be1ac9175c6c190c26a8a8b8594",
+    "semantic_hash": "57c98be1ac9175c6c190c26a8a8b8594"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\RunCard\\RunSubHeader.tsx": {
+    "mtime": 1780405181.9861634,
+    "ast_hash": "fc6a9745fb8598f19c9c6cb149ba5c9c",
+    "semantic_hash": "fc6a9745fb8598f19c9c6cb149ba5c9c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\RunCard\\SchemaDrivenFormV4.tsx": {
+    "mtime": 1780405181.9861634,
+    "ast_hash": "0d5c024c96f61b14a978c67b78140b9f",
+    "semantic_hash": "0d5c024c96f61b14a978c67b78140b9f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\RunCard\\useRunSummary.ts": {
+    "mtime": 1780405181.9861634,
+    "ast_hash": "1b8393fdf4c0221813615ac90ae8eda7",
+    "semantic_hash": "1b8393fdf4c0221813615ac90ae8eda7"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Segment\\GateSegmentDetails.tsx": {
+    "mtime": 1780405181.9871628,
+    "ast_hash": "ffd7976a5d05f292c5ec85e60d3faa14",
+    "semantic_hash": "ffd7976a5d05f292c5ec85e60d3faa14"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Segment\\InlineEdit.tsx": {
+    "mtime": 1780405181.9871628,
+    "ast_hash": "43cff9283b8b3f7fba8e692ca5391370",
+    "semantic_hash": "43cff9283b8b3f7fba8e692ca5391370"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Segment\\SegmentCollapsedSpecRow.tsx": {
+    "mtime": 1780405181.9871628,
+    "ast_hash": "5d582b899d0a6d61f3494793847bb81b",
+    "semantic_hash": "5d582b899d0a6d61f3494793847bb81b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Segment\\SegmentDetails.tsx": {
+    "mtime": 1780405181.9881632,
+    "ast_hash": "80eb7533d8e5b210224ad3c847071329",
+    "semantic_hash": "80eb7533d8e5b210224ad3c847071329"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Segment\\SegmentHeader.tsx": {
+    "mtime": 1780405181.9881632,
+    "ast_hash": "4906c34e94403dd9fdd2dea7e859a3af",
+    "semantic_hash": "4906c34e94403dd9fdd2dea7e859a3af"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Segment\\SegmentList.tsx": {
+    "mtime": 1780405181.9881632,
+    "ast_hash": "e6fa450fc9230b6ea0e577461c42d99e",
+    "semantic_hash": "e6fa450fc9230b6ea0e577461c42d99e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Segment\\SegmentMetrics.tsx": {
+    "mtime": 1780405181.9881632,
+    "ast_hash": "8dcb72114293519b704427d4f381f58e",
+    "semantic_hash": "8dcb72114293519b704427d4f381f58e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Segment\\SegmentRow.tsx": {
+    "mtime": 1780405181.9891634,
+    "ast_hash": "55b825f3d3943100eb67d8900823614e",
+    "semantic_hash": "55b825f3d3943100eb67d8900823614e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\Segment\\TerminationControl.tsx": {
+    "mtime": 1780405181.9891634,
+    "ast_hash": "96cec4238798e05a26675a04798b5b9f",
+    "semantic_hash": "96cec4238798e05a26675a04798b5b9f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\shared\\Separator.tsx": {
+    "mtime": 1780405181.9891634,
+    "ast_hash": "a307bf3f0c1326ec8384dd88a0f03f87",
+    "semantic_hash": "a307bf3f0c1326ec8384dd88a0f03f87"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\shared\\SlideOutPane.tsx": {
+    "mtime": 1780405181.9891634,
+    "ast_hash": "3f970f634d36297637c3d77d26668995",
+    "semantic_hash": "3f970f634d36297637c3d77d26668995"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v4\\shared\\Tabs.tsx": {
+    "mtime": 1780405181.990163,
+    "ast_hash": "dd206e145a5d385c14b353fa14a5998c",
+    "semantic_hash": "dd206e145a5d385c14b353fa14a5998c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\AddressInput.test.tsx": {
+    "mtime": 1780405181.990163,
+    "ast_hash": "f47639596322af73e7218a71fa91d5ae",
+    "semantic_hash": "f47639596322af73e7218a71fa91d5ae"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\AddressInput.tsx": {
+    "mtime": 1780405181.990163,
+    "ast_hash": "618e46649dd2b60fb519a8d12b42b354",
+    "semantic_hash": "618e46649dd2b60fb519a8d12b42b354"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\DescribeFenceBox.test.tsx": {
+    "mtime": 1780405181.9911625,
+    "ast_hash": "1a61c6d9a5c59d19f589e84941acfc9f",
+    "semantic_hash": "1a61c6d9a5c59d19f589e84941acfc9f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\DescribeFenceBox.tsx": {
+    "mtime": 1780405181.9911625,
+    "ast_hash": "8e8f8aa429921dc22fc5264812e81505",
+    "semantic_hash": "8e8f8aa429921dc22fc5264812e81505"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\EntryChoiceCard.tsx": {
+    "mtime": 1780405181.9911625,
+    "ast_hash": "f3df8a44c6c43c1d21b907b72d651934",
+    "semantic_hash": "f3df8a44c6c43c1d21b907b72d651934"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\FenceTypeSidebar.tsx": {
+    "mtime": 1780845550.1362934,
+    "ast_hash": "ad7a75199bbef989c1c5e1231d4ce672",
+    "semantic_hash": "ad7a75199bbef989c1c5e1231d4ce672"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\GatePositionModal.tsx": {
+    "mtime": 1780405181.9911625,
+    "ast_hash": "54d1cfa7c929ed10d3be428e946f774e",
+    "semantic_hash": "54d1cfa7c929ed10d3be428e946f774e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\JobNameEditor.tsx": {
+    "mtime": 1780405181.9911625,
+    "ast_hash": "f507aa188d8293dba64262602f8b8211",
+    "semantic_hash": "f507aa188d8293dba64262602f8b8211"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\MapCapture.tsx": {
+    "mtime": 1780729728.7817864,
+    "ast_hash": "5c6e5b7e53c88349f1787c21b40737f1",
+    "semantic_hash": "5c6e5b7e53c88349f1787c21b40737f1"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\ParsePreviewCard.tsx": {
+    "mtime": 1780405181.992163,
+    "ast_hash": "dfe29da68886f12b49a6675aec30b1e3",
+    "semantic_hash": "dfe29da68886f12b49a6675aec30b1e3"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\PriceBubble.tsx": {
+    "mtime": 1780796120.3445203,
+    "ast_hash": "aa59df40d6fac6247c1e5e4a182cd29c",
+    "semantic_hash": "aa59df40d6fac6247c1e5e4a182cd29c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\PropertyAnchorFormGate.test.tsx": {
+    "mtime": 1780405181.992163,
+    "ast_hash": "cd4df92fb655c6c4ac0687f35552b78f",
+    "semantic_hash": "cd4df92fb655c6c4ac0687f35552b78f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\PropertyMap.tsx": {
+    "mtime": 1780729728.7827935,
+    "ast_hash": "7a2c8ee35623844b1f698604f0faa5a4",
+    "semantic_hash": "7a2c8ee35623844b1f698604f0faa5a4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\RunRecapCard.tsx": {
+    "mtime": 1780845550.1362934,
+    "ast_hash": "51abe9bb64a08a9d25a70d03a538fc8e",
+    "semantic_hash": "51abe9bb64a08a9d25a70d03a538fc8e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\TimberPalingVariationSidebar.tsx": {
+    "mtime": 1780845550.1368716,
+    "ast_hash": "d1aa256a31a07e94438a5af3be2f2b10",
+    "semantic_hash": "d1aa256a31a07e94438a5af3be2f2b10"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator\\VariationDisclosure.tsx": {
+    "mtime": 1780845985.5592039,
+    "ast_hash": "bf7ccde8a5a8f7a8dc34086398e10e20",
+    "semantic_hash": "bf7ccde8a5a8f7a8dc34086398e10e20"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\CanvasToolbar.layers.test.tsx": {
+    "mtime": 1780729728.7844224,
+    "ast_hash": "2b8f5a3f16ac20565ca1deeb487b4efb",
+    "semantic_hash": "2b8f5a3f16ac20565ca1deeb487b4efb"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\CanvasToolbar.tsx": {
+    "mtime": 1780729728.785843,
+    "ast_hash": "60e59aa98f2e7b394d79ac40355adad9",
+    "semantic_hash": "60e59aa98f2e7b394d79ac40355adad9"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\FenceLayoutCanvas.tsx": {
+    "mtime": 1780724908.6630986,
+    "ast_hash": "00cc88d8d95ea1add2bb4606a4578358",
+    "semantic_hash": "00cc88d8d95ea1add2bb4606a4578358"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\FenceLayoutCanvas.v2.tsx": {
+    "mtime": 1780724908.6636045,
+    "ast_hash": "802d1f9e6fc590655614a85f70673066",
+    "semantic_hash": "802d1f9e6fc590655614a85f70673066"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\HelpCheatSheet.tsx": {
+    "mtime": 1780405181.9941623,
+    "ast_hash": "bee98bdfcdc04431014537c08f5b641f",
+    "semantic_hash": "bee98bdfcdc04431014537c08f5b641f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\LayoutMinimap.tsx": {
+    "mtime": 1780405181.9941623,
+    "ast_hash": "16f50bf4b8d19422f6e2b0147c94d9f3",
+    "semantic_hash": "16f50bf4b8d19422f6e2b0147c94d9f3"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\MapActionsMenu.tsx": {
+    "mtime": 1780724908.6636045,
+    "ast_hash": "c1247966b2e1ff0ec6c5f265f780626a",
+    "semantic_hash": "c1247966b2e1ff0ec6c5f265f780626a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\MapControls.tsx": {
+    "mtime": 1780405181.995163,
+    "ast_hash": "916e2cc8bfa72b67a13aa181c3a78f86",
+    "semantic_hash": "916e2cc8bfa72b67a13aa181c3a78f86"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\canonicalAdapter.propertyAnchor.test.ts": {
+    "mtime": 1780405181.995163,
+    "ast_hash": "8a9d9bc34876112d6086077a377f4f82",
+    "semantic_hash": "8a9d9bc34876112d6086077a377f4f82"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\canonicalAdapter.ts": {
+    "mtime": 1780405181.995163,
+    "ast_hash": "adbb54923f00ab8dea42d5a9b0b8d5b6",
+    "semantic_hash": "adbb54923f00ab8dea42d5a9b0b8d5b6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\canvasEngine.ts": {
+    "mtime": 1780796120.3472152,
+    "ast_hash": "8b27fdb68189dc1e224e882773bd92ab",
+    "semantic_hash": "8b27fdb68189dc1e224e882773bd92ab"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\mobileTouch.test.ts": {
+    "mtime": 1780405181.997162,
+    "ast_hash": "d23a319436fdd1caea14aca10815e337",
+    "semantic_hash": "d23a319436fdd1caea14aca10815e337"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\printMap.test.ts": {
+    "mtime": 1780405181.997162,
+    "ast_hash": "14a2b8ee508895c2455ea4d8a6ce24f4",
+    "semantic_hash": "14a2b8ee508895c2455ea4d8a6ce24f4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\printMap.ts": {
+    "mtime": 1780405181.997162,
+    "ast_hash": "9c8ccf46dab6319798ba614e36d8a1a2",
+    "semantic_hash": "9c8ccf46dab6319798ba614e36d8a1a2"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\canvas\\staticSnapshotCanvas.test.ts": {
+    "mtime": 1780405181.997162,
+    "ast_hash": "23d7a5b32f43f74a2392e3f5e31ddc3a",
+    "semantic_hash": "23d7a5b32f43f74a2392e3f5e31ddc3a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\fence\\ColourSelect.tsx": {
+    "mtime": 1780405181.9981635,
+    "ast_hash": "e828f56af9db448104b67897ee02aee4",
+    "semantic_hash": "e828f56af9db448104b67897ee02aee4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\gate\\GateForm.tsx": {
+    "mtime": 1780405181.9981635,
+    "ast_hash": "c86f29b2c8695eea6de8da008e46c684",
+    "semantic_hash": "c86f29b2c8695eea6de8da008e46c684"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\gate\\GateList.tsx": {
+    "mtime": 1780405181.9981635,
+    "ast_hash": "f39e919db71cc2172627ddc2fbf1985d",
+    "semantic_hash": "f39e919db71cc2172627ddc2fbf1985d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\gate\\GateModal.tsx": {
+    "mtime": 1780405181.9991634,
+    "ast_hash": "7bd5a858da4bec60d143f93cd0f835dd",
+    "semantic_hash": "7bd5a858da4bec60d143f93cd0f835dd"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\gate\\GateTypeSelect.tsx": {
+    "mtime": 1780405181.9991634,
+    "ast_hash": "845354f72cfd86b05cdfeba38e63c858",
+    "semantic_hash": "845354f72cfd86b05cdfeba38e63c858"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\layout\\AppShell.tsx": {
+    "mtime": 1780405181.9991634,
+    "ast_hash": "9256f829245654b9debc4fa144d5325b",
+    "semantic_hash": "9256f829245654b9debc4fa144d5325b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\layout\\Header.test.tsx": {
+    "mtime": 1780405181.9991634,
+    "ast_hash": "8f6a62cc5732eacc4a83fd13652a314e",
+    "semantic_hash": "8f6a62cc5732eacc4a83fd13652a314e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\layout\\Header.tsx": {
+    "mtime": 1780729728.7896063,
+    "ast_hash": "c84aed0c7ddc3bc2de25c49d3cc94264",
+    "semantic_hash": "c84aed0c7ddc3bc2de25c49d3cc94264"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\pwa\\PwaStatusBanners.test.tsx": {
+    "mtime": 1780405182.0001633,
+    "ast_hash": "37b67b1253dda02e8e65d42eafef34e0",
+    "semantic_hash": "37b67b1253dda02e8e65d42eafef34e0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\pwa\\PwaStatusBanners.tsx": {
+    "mtime": 1780405182.0001633,
+    "ast_hash": "db9ccaf5324fbfcdc50f69774f4cae72",
+    "semantic_hash": "db9ccaf5324fbfcdc50f69774f4cae72"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\quote\\BOMExportActions.tsx": {
+    "mtime": 1780846205.2959967,
+    "ast_hash": "d7096957f66786e495b7a739573af755",
+    "semantic_hash": "d7096957f66786e495b7a739573af755"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\quote\\BomV3PDFTemplate.tsx": {
+    "mtime": 1780846130.8096578,
+    "ast_hash": "114619d2f6d5e725a3c4c91dd57beab2",
+    "semantic_hash": "114619d2f6d5e725a3c4c91dd57beab2"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\AccordionSection.tsx": {
+    "mtime": 1780405182.001163,
+    "ast_hash": "ea6ddc1732c73ca448d03ebd8e0414fe",
+    "semantic_hash": "ea6ddc1732c73ca448d03ebd8e0414fe"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\BOMResultTabs.mobile.test.tsx": {
+    "mtime": 1780405182.001163,
+    "ast_hash": "35d7d5a69a5127ffafdf9c1b66fe0299",
+    "semantic_hash": "35d7d5a69a5127ffafdf9c1b66fe0299"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\BOMResultTabs.tsx": {
+    "mtime": 1780846214.8975084,
+    "ast_hash": "358c7b9941705f110357986d713935f7",
+    "semantic_hash": "358c7b9941705f110357986d713935f7"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\BomCutList.tsx": {
+    "mtime": 1780405182.0021632,
+    "ast_hash": "1a735eaceb37587a661b408aff620b5b",
+    "semantic_hash": "1a735eaceb37587a661b408aff620b5b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\Button.tsx": {
+    "mtime": 1780405182.0021632,
+    "ast_hash": "9c3d3a95b6293ef1a6f9afe5ed927e38",
+    "semantic_hash": "9c3d3a95b6293ef1a6f9afe5ed927e38"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\ButtonGroup.tsx": {
+    "mtime": 1780405182.0021632,
+    "ast_hash": "f1bde00267c349020b7f032db9f7844f",
+    "semantic_hash": "f1bde00267c349020b7f032db9f7844f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\ConfirmButton.tsx": {
+    "mtime": 1780405182.003163,
+    "ast_hash": "8fbb38278387db020328aaeff5783875",
+    "semantic_hash": "8fbb38278387db020328aaeff5783875"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\ErrorBoundary.tsx": {
+    "mtime": 1780405182.003163,
+    "ast_hash": "eb484fea03011b8863751e60ff794e49",
+    "semantic_hash": "eb484fea03011b8863751e60ff794e49"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\FormField.tsx": {
+    "mtime": 1780845550.1374032,
+    "ast_hash": "14a4e8be5c9de33ecea7017fc00b4a25",
+    "semantic_hash": "14a4e8be5c9de33ecea7017fc00b4a25"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\MobileBomTotals.test.tsx": {
+    "mtime": 1780405182.003163,
+    "ast_hash": "531fcf34df75d57f1e7a28cf3b0186ae",
+    "semantic_hash": "531fcf34df75d57f1e7a28cf3b0186ae"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\MobileBomTotals.tsx": {
+    "mtime": 1780405182.003163,
+    "ast_hash": "c2b771f99a4683dbb68e1cdd1e4ce02c",
+    "semantic_hash": "c2b771f99a4683dbb68e1cdd1e4ce02c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\NumberInput.test.tsx": {
+    "mtime": 1780405182.0041635,
+    "ast_hash": "0e09baf49889f8d6d9cb9fb8058d6939",
+    "semantic_hash": "0e09baf49889f8d6d9cb9fb8058d6939"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\NumberInput.tsx": {
+    "mtime": 1780405182.0041635,
+    "ast_hash": "54bb6ff2ad2c3985ca0f32be1400a7db",
+    "semantic_hash": "54bb6ff2ad2c3985ca0f32be1400a7db"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\shared\\NumberedBadge.tsx": {
+    "mtime": 1780405182.0041635,
+    "ast_hash": "13c9029590f9bbcf091c5db4cf630ad4",
+    "semantic_hash": "13c9029590f9bbcf091c5db4cf630ad4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\ui\\Badge.tsx": {
+    "mtime": 1780405182.0041635,
+    "ast_hash": "0447937cb3e798d4a0a1e6565ed8aebe",
+    "semantic_hash": "0447937cb3e798d4a0a1e6565ed8aebe"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\ui\\Button.tsx": {
+    "mtime": 1780405182.0051627,
+    "ast_hash": "8cee3d0d98a74d5c3597cad5542076d5",
+    "semantic_hash": "8cee3d0d98a74d5c3597cad5542076d5"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\ui\\ColourSwatches.tsx": {
+    "mtime": 1780405182.0051627,
+    "ast_hash": "67061baf666f91f701024c1dbb9a19d0",
+    "semantic_hash": "67061baf666f91f701024c1dbb9a19d0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\ui\\DerivationChip.tsx": {
+    "mtime": 1780405182.0051627,
+    "ast_hash": "523f44d3371a33003bd520cb526e38bb",
+    "semantic_hash": "523f44d3371a33003bd520cb526e38bb"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\ui\\Input.tsx": {
+    "mtime": 1780405182.0051627,
+    "ast_hash": "0deaa9f02db40134f8728f0b6885ebf0",
+    "semantic_hash": "0deaa9f02db40134f8728f0b6885ebf0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\ui\\NumberInput.tsx": {
+    "mtime": 1780405182.0061634,
+    "ast_hash": "79eab15eff3a96ef00910b1117a33a6c",
+    "semantic_hash": "79eab15eff3a96ef00910b1117a33a6c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\ui\\Segmented.tsx": {
+    "mtime": 1780405182.0061634,
+    "ast_hash": "fed5775e93c7ea023ac48cc8c0509f2c",
+    "semantic_hash": "fed5775e93c7ea023ac48cc8c0509f2c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\ui\\Select.tsx": {
+    "mtime": 1780405182.0061634,
+    "ast_hash": "4dffa7b6f9299cd5e91ebb7f1238e4e9",
+    "semantic_hash": "4dffa7b6f9299cd5e91ebb7f1238e4e9"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\ui\\Tooltip.tsx": {
+    "mtime": 1780405182.0061634,
+    "ast_hash": "8b1e25d0f73b2a8785f2c72f36ef7f29",
+    "semantic_hash": "8b1e25d0f73b2a8785f2c72f36ef7f29"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\context\\CalculatorContext.test.ts": {
+    "mtime": 1780405182.0071628,
+    "ast_hash": "04cbcdb1e4c773bdba2725c2a840be28",
+    "semantic_hash": "04cbcdb1e4c773bdba2725c2a840be28"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\context\\CalculatorContext.tsx": {
+    "mtime": 1780405182.0071628,
+    "ast_hash": "afc4537149457e4bcbc9c2eeea9678de",
+    "semantic_hash": "afc4537149457e4bcbc9c2eeea9678de"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\context\\CalculatorContextV4.tsx": {
+    "mtime": 1780405182.0071628,
+    "ast_hash": "2ea7035b8e037603c929a1b843d73f58",
+    "semantic_hash": "2ea7035b8e037603c929a1b843d73f58"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\context\\FenceConfigContext.tsx": {
+    "mtime": 1780405182.0071628,
+    "ast_hash": "6cf612d6b3823d30be779b8788ae94c3",
+    "semantic_hash": "6cf612d6b3823d30be779b8788ae94c3"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\context\\GateContext.tsx": {
+    "mtime": 1780405182.0081632,
+    "ast_hash": "27d323cf6e6b9db4a57569614094e8c0",
+    "semantic_hash": "27d323cf6e6b9db4a57569614094e8c0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\context\\ProfileContext.tsx": {
+    "mtime": 1780724908.66661,
+    "ast_hash": "081feca9f72bf29eaa1e7e92f4c08059",
+    "semantic_hash": "081feca9f72bf29eaa1e7e92f4c08059"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\context\\ThemeContext.tsx": {
+    "mtime": 1780405182.0081632,
+    "ast_hash": "24a713bdc9883ef88411ef71c0df938e",
+    "semantic_hash": "24a713bdc9883ef88411ef71c0df938e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useAdminProducts.ts": {
+    "mtime": 1780405182.0081632,
+    "ast_hash": "360aa266955b3d6546f04d255b7e2073",
+    "semantic_hash": "360aa266955b3d6546f04d255b7e2073"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useAdminRole.ts": {
+    "mtime": 1780405182.0081632,
+    "ast_hash": "9d896fce81531feb75990ad0fe56bead",
+    "semantic_hash": "9d896fce81531feb75990ad0fe56bead"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useAuth.ts": {
+    "mtime": 1780405182.009163,
+    "ast_hash": "d155e769ae1525455b0b35db19d34270",
+    "semantic_hash": "d155e769ae1525455b0b35db19d34270"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useBomCalculator.ts": {
+    "mtime": 1780796120.3472152,
+    "ast_hash": "45c9c73d9c668adf3b19d74a27694e43",
+    "semantic_hash": "45c9c73d9c668adf3b19d74a27694e43"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useBranding.ts": {
+    "mtime": 1780724908.6676128,
+    "ast_hash": "5a9350002b1b01650d5372f3004b3ca0",
+    "semantic_hash": "5a9350002b1b01650d5372f3004b3ca0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useColourOptions.ts": {
+    "mtime": 1780405182.009163,
+    "ast_hash": "006ae8d772af9c92ce60771fc9061e3e",
+    "semantic_hash": "006ae8d772af9c92ce60771fc9061e3e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useGoogleMaps.test.tsx": {
+    "mtime": 1780724908.6676128,
+    "ast_hash": "dc474c764507bc7826c3ccfd952e7e3f",
+    "semantic_hash": "dc474c764507bc7826c3ccfd952e7e3f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useGoogleMaps.ts": {
+    "mtime": 1780405182.0101633,
+    "ast_hash": "a036d9e37343db5e90e5321ed04e5ea6",
+    "semantic_hash": "a036d9e37343db5e90e5321ed04e5ea6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useProductComponents.ts": {
+    "mtime": 1780405182.0101633,
+    "ast_hash": "99e162668d03d00a1681a27c0d7add5e",
+    "semantic_hash": "99e162668d03d00a1681a27c0d7add5e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useProductEngineData.ts": {
+    "mtime": 1780405182.0101633,
+    "ast_hash": "c0d0cb097a465413591bc6c71cc8549e",
+    "semantic_hash": "c0d0cb097a465413591bc6c71cc8549e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useProductSearch.ts": {
+    "mtime": 1780405182.0101633,
+    "ast_hash": "71b2cab90df20e5d73b57dc2d83c1d2e",
+    "semantic_hash": "71b2cab90df20e5d73b57dc2d83c1d2e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useProductVariables.ts": {
+    "mtime": 1780845985.5601418,
+    "ast_hash": "6be9dc76bcb0bbac39d0a1b3bae1067b",
+    "semantic_hash": "6be9dc76bcb0bbac39d0a1b3bae1067b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useProducts.ts": {
+    "mtime": 1780405182.0111628,
+    "ast_hash": "9602d88951b015ae7aead471fd34b4a9",
+    "semantic_hash": "9602d88951b015ae7aead471fd34b4a9"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useQuote.ts": {
+    "mtime": 1780405182.0111628,
+    "ast_hash": "063d88428e873324adea0ebd111fd51f",
+    "semantic_hash": "063d88428e873324adea0ebd111fd51f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useQuotes.ts": {
+    "mtime": 1780405182.0111628,
+    "ast_hash": "0791c658daa54dbee2904f239c3a0eee",
+    "semantic_hash": "0791c658daa54dbee2904f239c3a0eee"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useSegmentHeightOptions.ts": {
+    "mtime": 1780405182.0111628,
+    "ast_hash": "33d3020dd95582c76d400b531dc8000d",
+    "semantic_hash": "33d3020dd95582c76d400b531dc8000d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\hooks\\useUndoToast.ts": {
+    "mtime": 1780405182.0111628,
+    "ast_hash": "86f228014cb73435fb8f4c07e661d795",
+    "semantic_hash": "86f228014cb73435fb8f4c07e661d795"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\amazingFencingMapper.ts": {
+    "mtime": 1780796120.3472152,
+    "ast_hash": "57313f17f485d91273673e0119733b62",
+    "semantic_hash": "57313f17f485d91273673e0119733b62"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\bomMetadata.ts": {
+    "mtime": 1780405182.0121622,
+    "ast_hash": "e31a9bc15cb9001c78eaef5de9fc749e",
+    "semantic_hash": "e31a9bc15cb9001c78eaef5de9fc749e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\bulkBuyVariants.ts": {
+    "mtime": 1780405182.0121622,
+    "ast_hash": "7fe5d63351e952bf8ef67a2d5af3ea3d",
+    "semantic_hash": "7fe5d63351e952bf8ef67a2d5af3ea3d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\canvasBbox.ts": {
+    "mtime": 1780405182.0121622,
+    "ast_hash": "2bc00e107b58c841dcc29a3a4dadd721",
+    "semantic_hash": "2bc00e107b58c841dcc29a3a4dadd721"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\canvasShortcuts.ts": {
+    "mtime": 1780405182.0131636,
+    "ast_hash": "eeb2f6346f6253053ff5b1b55ea58cac",
+    "semantic_hash": "eeb2f6346f6253053ff5b1b55ea58cac"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\cartonQuantities.ts": {
+    "mtime": 1780846221.1178045,
+    "ast_hash": "d542f1a7b627f002adc0b80906340042",
+    "semantic_hash": "d542f1a7b627f002adc0b80906340042"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\cataloguePages.ts": {
+    "mtime": 1780405182.0131636,
+    "ast_hash": "fa25e6a5390beff0d3010938195d9d5c",
+    "semantic_hash": "fa25e6a5390beff0d3010938195d9d5c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\colourHex.ts": {
+    "mtime": 1780405182.0131636,
+    "ast_hash": "23c4b4ae07760d2491e3329087d4fc48",
+    "semantic_hash": "23c4b4ae07760d2491e3329087d4fc48"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\constants.ts": {
+    "mtime": 1780405182.014164,
+    "ast_hash": "e31877fac19732aa3898f8216bd30b18",
+    "semantic_hash": "e31877fac19732aa3898f8216bd30b18"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\describeFenceParser.test.ts": {
+    "mtime": 1780405182.014164,
+    "ast_hash": "dad8c6134b2a652d8bbc8d325bcd81bd",
+    "semantic_hash": "dad8c6134b2a652d8bbc8d325bcd81bd"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\describeFenceParser.ts": {
+    "mtime": 1780405182.014164,
+    "ast_hash": "a8ca3841979c529f0bf2c85aa52f4f3d",
+    "semantic_hash": "a8ca3841979c529f0bf2c85aa52f4f3d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\displayNames.ts": {
+    "mtime": 1780405182.014164,
+    "ast_hash": "8fbda28cff3ac1d4d966fc812f2c3baa",
+    "semantic_hash": "8fbda28cff3ac1d4d966fc812f2c3baa"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\displayText.ts": {
+    "mtime": 1780405182.015163,
+    "ast_hash": "2e2e2aad96b67ab46b0dbf8bb3551ed8",
+    "semantic_hash": "2e2e2aad96b67ab46b0dbf8bb3551ed8"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\gapChoices.test.ts": {
+    "mtime": 1780405182.015163,
+    "ast_hash": "b868b59df234d84435993dee66f9fcd8",
+    "semantic_hash": "b868b59df234d84435993dee66f9fcd8"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\gapChoices.ts": {
+    "mtime": 1780405182.015163,
+    "ast_hash": "cbff1a3c34ff4d71684a474e897655ff",
+    "semantic_hash": "cbff1a3c34ff4d71684a474e897655ff"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\gateConstraints.ts": {
+    "mtime": 1780405182.015163,
+    "ast_hash": "714ce9d7713412e0895e1890e1804549",
+    "semantic_hash": "714ce9d7713412e0895e1890e1804549"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\gateDiagramHover.ts": {
+    "mtime": 1780405182.015163,
+    "ast_hash": "49e19866b2ffb106f6b3f23ef7ab5063",
+    "semantic_hash": "49e19866b2ffb106f6b3f23ef7ab5063"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\gateDiagramMapping.ts": {
+    "mtime": 1780405182.015163,
+    "ast_hash": "44cc8379d20d04e2a2a0906dba033b31",
+    "semantic_hash": "44cc8379d20d04e2a2a0906dba033b31"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\gateFenceResolve.ts": {
+    "mtime": 1780405182.0161629,
+    "ast_hash": "0f8701f956e7736b691cb0ee73e784a3",
+    "semantic_hash": "0f8701f956e7736b691cb0ee73e784a3"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\gateHardware.ts": {
+    "mtime": 1780405182.0161629,
+    "ast_hash": "bd3bfefade3afe6a27266395fab9b457",
+    "semantic_hash": "bd3bfefade3afe6a27266395fab9b457"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\gateOptionRules.ts": {
+    "mtime": 1780405182.0161629,
+    "ast_hash": "134cd6d122710da5cbd9bf1c7b8400eb",
+    "semantic_hash": "134cd6d122710da5cbd9bf1c7b8400eb"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\geo\\canvasGeometry.ts": {
+    "mtime": 1780405182.017163,
+    "ast_hash": "349280baecc41d6ca0d46348178c062d",
+    "semantic_hash": "349280baecc41d6ca0d46348178c062d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\geo\\coordinates.test.ts": {
+    "mtime": 1780405182.017163,
+    "ast_hash": "27dd8143980692c3d14596512c8ee69d",
+    "semantic_hash": "27dd8143980692c3d14596512c8ee69d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\geo\\coordinates.ts": {
+    "mtime": 1780405182.017163,
+    "ast_hash": "c8773c24d812b385f1dd0e0bba79daf5",
+    "semantic_hash": "c8773c24d812b385f1dd0e0bba79daf5"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\googleMaps\\loader.ts": {
+    "mtime": 1780405182.017163,
+    "ast_hash": "15cede39450476ea45c3d8d83c944689",
+    "semantic_hash": "15cede39450476ea45c3d8d83c944689"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\googleMaps\\staticSnapshot.test.ts": {
+    "mtime": 1780405182.018163,
+    "ast_hash": "33369945db6b20ed0140f60ad248c2dc",
+    "semantic_hash": "33369945db6b20ed0140f60ad248c2dc"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\googleMaps\\staticSnapshot.ts": {
+    "mtime": 1780405182.018163,
+    "ast_hash": "e7f18778565e90e5c1b9d906bc8e1356",
+    "semantic_hash": "e7f18778565e90e5c1b9d906bc8e1356"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\heights.ts": {
+    "mtime": 1780405182.018163,
+    "ast_hash": "98adef2f276c00ff73e33647f8a38de1",
+    "semantic_hash": "98adef2f276c00ff73e33647f8a38de1"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\imports\\__tests__\\cin7-parser.test.ts": {
+    "mtime": 1780864636.6250582,
+    "ast_hash": "9526a7983381a3dcd920d88fd27d8a24",
+    "semantic_hash": "9526a7983381a3dcd920d88fd27d8a24"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\imports\\__tests__\\diff.test.ts": {
+    "mtime": 1780864641.8126209,
+    "ast_hash": "53ee8ad0950a1ad9275215852126359b",
+    "semantic_hash": "53ee8ad0950a1ad9275215852126359b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\imports\\diff.ts": {
+    "mtime": 1780864776.9754343,
+    "ast_hash": "c404458a16160ff69625818f4eac100f",
+    "semantic_hash": "c404458a16160ff69625818f4eac100f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\imports\\parsers\\cin7-mass-download.ts": {
+    "mtime": 1780864596.9920347,
+    "ast_hash": "d2ba74685ffb4a0fb4eaf184e59f19d2",
+    "semantic_hash": "d2ba74685ffb4a0fb4eaf184e59f19d2"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\imports\\parsers\\generic-csv.ts": {
+    "mtime": 1780864781.3648527,
+    "ast_hash": "488483fbb3fe4da8c1ca9397a804a3d6",
+    "semantic_hash": "488483fbb3fe4da8c1ca9397a804a3d6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\imports\\parsers\\index.ts": {
+    "mtime": 1780864606.1145568,
+    "ast_hash": "dd303bb1d73ba3e79a8e67aced8010ee",
+    "semantic_hash": "dd303bb1d73ba3e79a8e67aced8010ee"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\imports\\types.ts": {
+    "mtime": 1780864586.0176995,
+    "ast_hash": "206561266944300cdd6c9c63ef25edde",
+    "semantic_hash": "206561266944300cdd6c9c63ef25edde"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\index.ts": {
+    "mtime": 1780405182.018163,
+    "ast_hash": "bc478e95f0d393cbfcfbc78238d51d32",
+    "semantic_hash": "bc478e95f0d393cbfcfbc78238d51d32"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\installVideos.ts": {
+    "mtime": 1780405182.019163,
+    "ast_hash": "1bd53df76ef43a7f91ab2eefb35769d6",
+    "semantic_hash": "1bd53df76ef43a7f91ab2eefb35769d6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\layoutBreakpoints.ts": {
+    "mtime": 1780405182.019163,
+    "ast_hash": "494cf19eb0b71cf2ff1cacae5cc771f7",
+    "semantic_hash": "494cf19eb0b71cf2ff1cacae5cc771f7"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\localBomCalculator.test.ts": {
+    "mtime": 1780405182.019163,
+    "ast_hash": "6dbec7f66db65dfe62b68ee8725849ee",
+    "semantic_hash": "6dbec7f66db65dfe62b68ee8725849ee"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\localBomCalculator.ts": {
+    "mtime": 1780846243.2192016,
+    "ast_hash": "4a0c638af250489cb971c2068de535a4",
+    "semantic_hash": "4a0c638af250489cb971c2068de535a4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\localPriceBreaks.ts": {
+    "mtime": 1780405182.0211623,
+    "ast_hash": "4662fae983e9bad633d131278a2c6966",
+    "semantic_hash": "4662fae983e9bad633d131278a2c6966"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\localSeedData.ts": {
+    "mtime": 1780845985.5610986,
+    "ast_hash": "9c7cf355b75ab655115353af8918d053",
+    "semantic_hash": "9c7cf355b75ab655115353af8918d053"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\manifestAssets.test.ts": {
+    "mtime": 1780405182.0211623,
+    "ast_hash": "7094ddc7940cc127fd39f41a5ebfb44a",
+    "semantic_hash": "7094ddc7940cc127fd39f41a5ebfb44a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\masterFenceSegment.ts": {
+    "mtime": 1780405182.0211623,
+    "ast_hash": "e1bef103708f29a41daa5eaf264d24b7",
+    "semantic_hash": "e1bef103708f29a41daa5eaf264d24b7"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\measurementParser.test.ts": {
+    "mtime": 1780405182.0221791,
+    "ast_hash": "146646dc3c3f35a0304e59c95a2f3577",
+    "semantic_hash": "146646dc3c3f35a0304e59c95a2f3577"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\measurementParser.ts": {
+    "mtime": 1780405182.0221791,
+    "ast_hash": "891e08a4f1186671fde78df15e2e074a",
+    "semantic_hash": "891e08a4f1186671fde78df15e2e074a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\mobileShell.test.ts": {
+    "mtime": 1780405182.0221791,
+    "ast_hash": "6fe942af017fac67527f4680c94296ef",
+    "semantic_hash": "6fe942af017fac67527f4680c94296ef"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\mobileShell.ts": {
+    "mtime": 1780405182.0221791,
+    "ast_hash": "5819e24414a9f8e88021a6dd76728e5a",
+    "semantic_hash": "5819e24414a9f8e88021a6dd76728e5a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\multiSupplier\\__tests__\\schemas.test.ts": {
+    "mtime": 1780847564.0014882,
+    "ast_hash": "a1a1465fab58d23d33f885d30c834922",
+    "semantic_hash": "a1a1465fab58d23d33f885d30c834922"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\multiSupplier\\index.ts": {
+    "mtime": 1780724908.6696453,
+    "ast_hash": "84ea431f5fd201e9b23a834153514a83",
+    "semantic_hash": "84ea431f5fd201e9b23a834153514a83"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\multiSupplier\\mutations.ts": {
+    "mtime": 1780724908.6696453,
+    "ast_hash": "13b6516adb27421854a00377de07bf1f",
+    "semantic_hash": "13b6516adb27421854a00377de07bf1f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\multiSupplier\\queries.ts": {
+    "mtime": 1780724908.6713538,
+    "ast_hash": "b9618798a9e07a271823ee32e93e5167",
+    "semantic_hash": "b9618798a9e07a271823ee32e93e5167"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\multiSupplier\\schemas.ts": {
+    "mtime": 1780724908.6713538,
+    "ast_hash": "4358997948ed13d24b38fb8a984a6315",
+    "semantic_hash": "4358997948ed13d24b38fb8a984a6315"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\persistV3Quote.ts": {
+    "mtime": 1780405182.0231621,
+    "ast_hash": "3625b33e22a330fd0f1dceb0b940ba5f",
+    "semantic_hash": "3625b33e22a330fd0f1dceb0b940ba5f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\postFixingOptions.ts": {
+    "mtime": 1780405182.0231621,
+    "ast_hash": "7eb404d9b90f060999f6a27e06965cff",
+    "semantic_hash": "7eb404d9b90f060999f6a27e06965cff"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\pricingMetadata.ts": {
+    "mtime": 1780405182.0231621,
+    "ast_hash": "82b84cabb9ec9b60798668482a3c6506",
+    "semantic_hash": "82b84cabb9ec9b60798668482a3c6506"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\pricing\\__tests__\\schemas.test.ts": {
+    "mtime": 1780849443.1200132,
+    "ast_hash": "3bd6c61ccb53964db9b63d14ef4b2f54",
+    "semantic_hash": "3bd6c61ccb53964db9b63d14ef4b2f54"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\pricing\\index.ts": {
+    "mtime": 1780849438.06524,
+    "ast_hash": "1d20a152c5d5d5a37120af298f522666",
+    "semantic_hash": "1d20a152c5d5d5a37120af298f522666"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\pricing\\queries.ts": {
+    "mtime": 1780849434.023949,
+    "ast_hash": "b9d4669e78e216ffaed00aee82d21e7b",
+    "semantic_hash": "b9d4669e78e216ffaed00aee82d21e7b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\pricing\\schemas.ts": {
+    "mtime": 1780849429.7892392,
+    "ast_hash": "806efa95f7a87e6e01b711662deffc61",
+    "semantic_hash": "806efa95f7a87e6e01b711662deffc61"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\productOptionRules.ts": {
+    "mtime": 1780796120.3482292,
+    "ast_hash": "04a1e8579dfab3a1a95ba2da6424150f",
+    "semantic_hash": "04a1e8579dfab3a1a95ba2da6424150f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\queryClient.ts": {
+    "mtime": 1780405182.0241637,
+    "ast_hash": "6c44789608df494382dc91127c18c2bf",
+    "semantic_hash": "6c44789608df494382dc91127c18c2bf"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\quoteListMeta.ts": {
+    "mtime": 1780405182.0241637,
+    "ast_hash": "58b53e3d9a3aabf80f4d60602ced68bc",
+    "semantic_hash": "58b53e3d9a3aabf80f4d60602ced68bc"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\quotePayload.ts": {
+    "mtime": 1780405182.0241637,
+    "ast_hash": "83d232e894f6eebf3f37bd7d31e4e30b",
+    "semantic_hash": "83d232e894f6eebf3f37bd7d31e4e30b"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\registerServiceWorker.test.ts": {
+    "mtime": 1780405182.0251644,
+    "ast_hash": "075f8d6d9ccac6e2321d5cafe1c8ef03",
+    "semantic_hash": "075f8d6d9ccac6e2321d5cafe1c8ef03"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\registerServiceWorker.ts": {
+    "mtime": 1780405182.0251644,
+    "ast_hash": "06944475ec887883c6dd435d62cec1a3",
+    "semantic_hash": "06944475ec887883c6dd435d62cec1a3"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\runLineColors.ts": {
+    "mtime": 1780405182.0251644,
+    "ast_hash": "96ac5cb519799f27bf54edfeb96e66a5",
+    "semantic_hash": "96ac5cb519799f27bf54edfeb96e66a5"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\runSegmentRemove.ts": {
+    "mtime": 1780405182.0251644,
+    "ast_hash": "d4d555c6286c9ad85403598ae20a8056",
+    "semantic_hash": "d4d555c6286c9ad85403598ae20a8056"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\runStats.ts": {
+    "mtime": 1780405182.0261629,
+    "ast_hash": "a060d972d3f874802994712aed45686c",
+    "semantic_hash": "a060d972d3f874802994712aed45686c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\savedBomToEngineResult.ts": {
+    "mtime": 1780405182.0261629,
+    "ast_hash": "1a73e1878bffb8aab71869465fa641f3",
+    "semantic_hash": "1a73e1878bffb8aab71869465fa641f3"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\segmentCollapsedSpecs.ts": {
+    "mtime": 1780405182.0261629,
+    "ast_hash": "ff9ab72a9473e75d8a8e2e424cd4e227",
+    "semantic_hash": "ff9ab72a9473e75d8a8e2e424cd4e227"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\segmentRunDeviation.ts": {
+    "mtime": 1780405182.0261629,
+    "ast_hash": "3054866590340608a933ef1f6202b4e8",
+    "semantic_hash": "3054866590340608a933ef1f6202b4e8"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\segmentTermination.ts": {
+    "mtime": 1780405182.0271654,
+    "ast_hash": "312779f6300c62e1a0f722b7f3f1ae50",
+    "semantic_hash": "312779f6300c62e1a0f722b7f3f1ae50"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\sharePdf.test.ts": {
+    "mtime": 1780405182.0271654,
+    "ast_hash": "e24d88722fd1f525b913cbd307310eb7",
+    "semantic_hash": "e24d88722fd1f525b913cbd307310eb7"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\sharePdf.ts": {
+    "mtime": 1780405182.0271654,
+    "ast_hash": "0c50170010ddb790a8fde92dc101215d",
+    "semantic_hash": "0c50170010ddb790a8fde92dc101215d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\slugLabels.ts": {
+    "mtime": 1780405182.0281665,
+    "ast_hash": "6f0b1dd229dd5e061b139379e507427c",
+    "semantic_hash": "6f0b1dd229dd5e061b139379e507427c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\suggestedAccessories.ts": {
+    "mtime": 1780405182.0281665,
+    "ast_hash": "9574b90ad12672cffa4a8a4361565227",
+    "semantic_hash": "9574b90ad12672cffa4a8a4361565227"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\supabase.ts": {
+    "mtime": 1780405182.0281665,
+    "ast_hash": "d968d77525d9a825fe79b46bd411c130",
+    "semantic_hash": "d968d77525d9a825fe79b46bd411c130"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\systemDisplay.ts": {
+    "mtime": 1780724908.6723583,
+    "ast_hash": "3b789a5ee07a6f49e48982d8e9bd7669",
+    "semantic_hash": "3b789a5ee07a6f49e48982d8e9bd7669"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\targetHeightOptions.ts": {
+    "mtime": 1780405182.0291624,
+    "ast_hash": "5a810a65bcee7a3a3c384ac50ad2e8bf",
+    "semantic_hash": "5a810a65bcee7a3a3c384ac50ad2e8bf"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\tenantThemes.ts": {
+    "mtime": 1780405182.0291624,
+    "ast_hash": "3894d4e591bf014f1208bbc1415493b6",
+    "semantic_hash": "3894d4e591bf014f1208bbc1415493b6"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\terminationDisplay.ts": {
+    "mtime": 1780405182.0291624,
+    "ast_hash": "e7a68a32c8bfa0f907d8f42a8066c24a",
+    "semantic_hash": "e7a68a32c8bfa0f907d8f42a8066c24a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\uiCopy.ts": {
+    "mtime": 1780405182.0291624,
+    "ast_hash": "0223f3216a9552e6f80aa18aefdbb1d2",
+    "semantic_hash": "0223f3216a9552e6f80aa18aefdbb1d2"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\userPrefs.ts": {
+    "mtime": 1780405182.0301638,
+    "ast_hash": "7e5ee97f0a380b7238051056d0a4de3a",
+    "semantic_hash": "7e5ee97f0a380b7238051056d0a4de3a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\v4DraftStorage.ts": {
+    "mtime": 1780405182.0301638,
+    "ast_hash": "68d37dc681c669e19601bb176c943f96",
+    "semantic_hash": "68d37dc681c669e19601bb176c943f96"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\voiceFillers.ts": {
+    "mtime": 1780405182.0301638,
+    "ast_hash": "ae937ac52185c136ccf5a57985c6f592",
+    "semantic_hash": "ae937ac52185c136ccf5a57985c6f592"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\lib\\voiceInput.ts": {
+    "mtime": 1780405182.0301638,
+    "ast_hash": "dff4d7abe427bfef25f5d638540ec429",
+    "semantic_hash": "dff4d7abe427bfef25f5d638540ec429"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\main.tsx": {
+    "mtime": 1780405182.0311627,
+    "ast_hash": "5268edc952ed5b8a6e142be2dbc75ca4",
+    "semantic_hash": "5268edc952ed5b8a6e142be2dbc75ca4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\AnyfenceCalculatorPage.tsx": {
+    "mtime": 1780846074.0906618,
+    "ast_hash": "918f5281ac18596499bca639a94d29c9",
+    "semantic_hash": "918f5281ac18596499bca639a94d29c9"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\CalculatorBuilderPage.tsx": {
+    "mtime": 1780913406.3416333,
+    "ast_hash": "2e63598b74ed3cc52f684e5686cd4f86",
+    "semantic_hash": "2e63598b74ed3cc52f684e5686cd4f86"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\CalculatorV3Page.tsx": {
+    "mtime": 1780846104.2273211,
+    "ast_hash": "6cbc0d936fdffca0818f17bf42b34564",
+    "semantic_hash": "6cbc0d936fdffca0818f17bf42b34564"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\CalculatorV4Page.smoke.test.tsx": {
+    "mtime": 1780405182.032163,
+    "ast_hash": "62bba5d4ed09b96983e8b742c679ebea",
+    "semantic_hash": "62bba5d4ed09b96983e8b742c679ebea"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\CalculatorV4Page.tsx": {
+    "mtime": 1780405182.032163,
+    "ast_hash": "38eace7c6518778f401b86401bee40ad",
+    "semantic_hash": "38eace7c6518778f401b86401bee40ad"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\ContractorEmbedQuotePage.tsx": {
+    "mtime": 1780724908.6751473,
+    "ast_hash": "ca9f7c6ff458ff34e36cf1c765079f26",
+    "semantic_hash": "ca9f7c6ff458ff34e36cf1c765079f26"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\ContractorPortalPage.tsx": {
+    "mtime": 1780724908.6759233,
+    "ast_hash": "9ee3346c3180e2d249c264c9bb38d5cc",
+    "semantic_hash": "9ee3346c3180e2d249c264c9bb38d5cc"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\LoginPage.tsx": {
+    "mtime": 1780724908.6759233,
+    "ast_hash": "3bb756f089c2bc71927a773cf24ced4d",
+    "semantic_hash": "3bb756f089c2bc71927a773cf24ced4d"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\MarketplacePage.tsx": {
+    "mtime": 1780724908.6769288,
+    "ast_hash": "2736a4697a99f82ebea933ad80964460",
+    "semantic_hash": "2736a4697a99f82ebea933ad80964460"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\NotFoundPage.tsx": {
+    "mtime": 1780724908.6769288,
+    "ast_hash": "f0d40304b779e082dc6d262ba30af19c",
+    "semantic_hash": "f0d40304b779e082dc6d262ba30af19c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\OnboardingPage.tsx": {
+    "mtime": 1780724908.6769288,
+    "ast_hash": "c0e62373e4abe6802025a7a6d12f56cc",
+    "semantic_hash": "c0e62373e4abe6802025a7a6d12f56cc"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\QuotesHistoryPage.tsx": {
+    "mtime": 1780405182.0331633,
+    "ast_hash": "07a52e0e23bdfe0d4c57da141df14e4f",
+    "semantic_hash": "07a52e0e23bdfe0d4c57da141df14e4f"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\SupplierPortalPage.tsx": {
+    "mtime": 1780724908.6769288,
+    "ast_hash": "8987f42a7796fff1879de947156e4a2e",
+    "semantic_hash": "8987f42a7796fff1879de947156e4a2e"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\AdminModerationPage.tsx": {
+    "mtime": 1780724908.6784341,
+    "ast_hash": "b35afc25d777f5a56acbd636f30ec3b0",
+    "semantic_hash": "b35afc25d777f5a56acbd636f30ec3b0"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\AdminPortalPage.tsx": {
+    "mtime": 1780724908.6784341,
+    "ast_hash": "b8e8ea6f57fe8359ca09dae5f8a249fc",
+    "semantic_hash": "b8e8ea6f57fe8359ca09dae5f8a249fc"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\ColoursAdminPage.tsx": {
+    "mtime": 1780405182.0331633,
+    "ast_hash": "7d0ed7fabfbbe845e416e6bf868a4825",
+    "semantic_hash": "7d0ed7fabfbbe845e416e6bf868a4825"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\ComponentsIndexPage.tsx": {
+    "mtime": 1780405182.034164,
+    "ast_hash": "6da286f4536a0054a96a17131ef7b88a",
+    "semantic_hash": "6da286f4536a0054a96a17131ef7b88a"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\ImportPage.tsx": {
+    "mtime": 1780864785.8743787,
+    "ast_hash": "7fbc7d473c047bb820d8a37ede251704",
+    "semantic_hash": "7fbc7d473c047bb820d8a37ede251704"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\ProductDetailPage.tsx": {
+    "mtime": 1780405182.034164,
+    "ast_hash": "53a6b3e08e3688c335533811ac068671",
+    "semantic_hash": "53a6b3e08e3688c335533811ac068671"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\ProductEditPage.tsx": {
+    "mtime": 1780864700.532859,
+    "ast_hash": "ab18e69222cd4d27401d3b1a0f3af147",
+    "semantic_hash": "ab18e69222cd4d27401d3b1a0f3af147"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\ProductsIndexPage.tsx": {
+    "mtime": 1780405182.034164,
+    "ast_hash": "3f37234a9fe19ac0b11f4dd6c4c592d4",
+    "semantic_hash": "3f37234a9fe19ac0b11f4dd6c4c592d4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\ProductsListPage.tsx": {
+    "mtime": 1780864679.7308283,
+    "ast_hash": "20a03e97835b66a04c3efd93a3d83449",
+    "semantic_hash": "20a03e97835b66a04c3efd93a3d83449"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\SupplierEditPage.tsx": {
+    "mtime": 1780724908.6794415,
+    "ast_hash": "75369f29b49012fb76e62ed607789458",
+    "semantic_hash": "75369f29b49012fb76e62ed607789458"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\SuppliersListPage.tsx": {
+    "mtime": 1780724908.6794415,
+    "ast_hash": "fc356ce813cfaad0625278943abd5ad9",
+    "semantic_hash": "fc356ce813cfaad0625278943abd5ad9"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\SystemInstanceEditPage.tsx": {
+    "mtime": 1780724908.6794415,
+    "ast_hash": "539f5bddb0d96f8240c57172690daa50",
+    "semantic_hash": "539f5bddb0d96f8240c57172690daa50"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\pages\\admin\\SystemInstancesListPage.tsx": {
+    "mtime": 1780724908.6804416,
+    "ast_hash": "b0b10afe11779b20866307a6022d5aab",
+    "semantic_hash": "b0b10afe11779b20866307a6022d5aab"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\schemas\\canonical.schema.ts": {
+    "mtime": 1780405182.0351665,
+    "ast_hash": "82d27ed773d84ab8131fbaf3eaf50a96",
+    "semantic_hash": "82d27ed773d84ab8131fbaf3eaf50a96"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\schemas\\contact.schema.ts": {
+    "mtime": 1780405182.0351665,
+    "ast_hash": "c38ec92ce7c984a3a9f8fcd4c6855304",
+    "semantic_hash": "c38ec92ce7c984a3a9f8fcd4c6855304"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\schemas\\fence.schema.ts": {
+    "mtime": 1780405182.0351665,
+    "ast_hash": "f6bab73f046fbafa27b1cfd5184dd812",
+    "semantic_hash": "f6bab73f046fbafa27b1cfd5184dd812"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\schemas\\gate.schema.ts": {
+    "mtime": 1780405182.0361621,
+    "ast_hash": "8ebad162e853715a4e4e222b4861d739",
+    "semantic_hash": "8ebad162e853715a4e4e222b4861d739"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\schemas\\quote.schema.ts": {
+    "mtime": 1780405182.0361621,
+    "ast_hash": "3ab62d0aeb93ef1fcd7c1c4f04f89f04",
+    "semantic_hash": "3ab62d0aeb93ef1fcd7c1c4f04f89f04"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\types\\bom.types.ts": {
+    "mtime": 1780846066.134899,
+    "ast_hash": "6f80a8d2a79094437db8c1eb5f04c511",
+    "semantic_hash": "6f80a8d2a79094437db8c1eb5f04c511"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\types\\canonical.types.ts": {
+    "mtime": 1780405182.0361621,
+    "ast_hash": "599efbadeff70d8354de6fb47eff6268",
+    "semantic_hash": "599efbadeff70d8354de6fb47eff6268"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\types\\color-contrast.d.ts": {
+    "mtime": 1780405182.0371633,
+    "ast_hash": "d9e4314ae3e1ac9088f4e0308dfc879c",
+    "semantic_hash": "d9e4314ae3e1ac9088f4e0308dfc879c"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\types\\gate.types.ts": {
+    "mtime": 1780405182.0371633,
+    "ast_hash": "d9cf940939859286d2b82192cb3604d7",
+    "semantic_hash": "d9cf940939859286d2b82192cb3604d7"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\types\\multiSupplier.ts": {
+    "mtime": 1780724908.6804416,
+    "ast_hash": "a466b00b3124496413a4e898f7f7dbb4",
+    "semantic_hash": "a466b00b3124496413a4e898f7f7dbb4"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\types\\pricing.ts": {
+    "mtime": 1780724908.6804416,
+    "ast_hash": "e1114f290e4f6c7e919a052b79a23e62",
+    "semantic_hash": "e1114f290e4f6c7e919a052b79a23e62"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\types\\quote.types.ts": {
+    "mtime": 1780405182.0371633,
+    "ast_hash": "77a5bb00af6a1ef7284536dc682b08cb",
+    "semantic_hash": "77a5bb00af6a1ef7284536dc682b08cb"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\vite-env.d.ts": {
+    "mtime": 1780405182.0371633,
+    "ast_hash": "8f68c27c3fc38817b2726b20e2d4f1ee",
+    "semantic_hash": "8f68c27c3fc38817b2726b20e2d4f1ee"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\HorizontalGateDiagram.svg": {
+    "mtime": 1780405181.9721632,
+    "ast_hash": "dc3c8adaba3c03b0afdeab0338c45649",
+    "semantic_hash": "dc3c8adaba3c03b0afdeab0338c45649"
+  },
+  "C:\\Users\\Liam\\Documents\\GitHub\\quickscreen-colorbond-bom-generator\\src\\components\\calculator-v3\\VerticalGateDiagram.svg": {
+    "mtime": 1780405181.978163,
+    "ast_hash": "48b958701fa6a4745817d9b95677290a",
+    "semantic_hash": "48b958701fa6a4745817d9b95677290a"
+  }
+}

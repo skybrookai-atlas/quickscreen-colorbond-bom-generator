@@ -124,6 +124,18 @@ export function postColourOptionsForSystem(variables: Variables) {
 }
 
 export function initialVariablesForSystem(productCode: string): Variables {
+  if (productCode === "AF_RETAINING_WALL") {
+    return {
+      product_line: "superpost",
+      max_panel_width_mm: 2400,
+      target_height_mm: 600,
+      sleeper_height_mm: 200,
+      colour: "Grey",
+      include_plinth: true,
+      include_brackets: true,
+      corner_count: 0,
+    };
+  }
   if (productCode === "AF_TIMBER_PALING") {
     return {
       timber_type: "treated_pine",
@@ -146,7 +158,6 @@ export function initialVariablesForSystem(productCode: string): Variables {
       mounting_type: "concreted-in-ground",
     };
   }
-
   const maxPanelWidth = maxPanelWidthForSystem(productCode);
   return normaliseVariablesForSystem(productCode, {
     finish_family: "standard",
@@ -167,6 +178,19 @@ export function normaliseVariablesForSystem(
   productCode: string,
   variables: Variables,
 ): Variables {
+  if (productCode === "AF_RETAINING_WALL") {
+    return {
+      product_line: "superpost",
+      max_panel_width_mm: 2400,
+      target_height_mm: 600,
+      sleeper_height_mm: 200,
+      colour: "Grey",
+      include_plinth: true,
+      include_brackets: true,
+      corner_count: 0,
+      ...variables,
+    };
+  }
   if (productCode === "AF_TIMBER_PALING") {
     return {
       timber_type: "treated_pine",

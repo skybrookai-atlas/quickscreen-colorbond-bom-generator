@@ -2,35 +2,1134 @@
   "org_slug": "amazing-fencing",
   "supplier_slug": "amazing-fencing",
   "system_instance_slug": "amazing-retaining-wall",
-  "_format_note": "Timber retaining wall sleepers from Amazing Fencing's Cin7 export 2026-05-26. Retaining walls are not fences but use the same supply pipeline (sleepers + posts). Modelled as a timber-fence archetype instance with metadata flagging 'retaining' use_case until a dedicated retaining-wall archetype is added in a future architectural iteration. Prices are TRADE (tier2 in our convention) from Cin7 BuyPriceEx.",
-  "_source": "Amazing Fencing Cin7 export (MassDownloadProducts_20260526_0305PM.xlsx) + amazingfencing.com.au/products/retaining-walls/",
+  "_format_note": "Composite Retaining Wall (SuperPost & TUFFPOLY) rules, variables, and selectors mapped to Cin7 products.",
+  "_source": "Amazing Fencing Cin7 composite pricing + composite retaining wall spec",
   "products": [
     {
       "system_type": "AF_RETAINING_WALL",
-      "product_type": "other",
-      "name": "Amazing Fencing — Timber Retaining Wall",
-      "description": "Timber retaining walls using treated pine OR hardwood sleepers with corresponding posts. Plantation-grown CCA pine + H4 hardwood. Compliant with QLD zoning and similar state regulations.",
+      "product_type": "fence",
+      "name": "Amazing Fencing — Retaining Wall",
+      "description": "Composite retaining walls using SuperPost or TUFFPOLY post-and-sleeper systems. Extremely durable, rot-proof, and designed to reclaim sloped land.",
       "active": true,
       "sort_order": 250,
       "metadata": {
-        "_provenance": {"supplier_slug": "amazing-fencing", "system_instance_slug": "amazing-retaining-wall"},
-        "_archetype_note": "Modelled as timber-fence archetype with use_case='retaining_wall'. The fence_runs_v1 geometry isn't a perfect fit (retaining walls are typically single-segment linear runs) but works for v1. Future architecture: dedicated 'retaining-wall' archetype.",
-        "use_cases": ["correct_uneven_terrain", "garden_protection", "walkway_protection", "reclaim_sloped_land"],
-        "materials": ["treated_pine_H4", "treated_hardwood_H4"],
-        "compliance_notes": ["QLD zoning regulations (varies by state)", "AS 1604 for treated timber"]
+        "_provenance": {
+          "supplier_slug": "amazing-fencing",
+          "system_instance_slug": "amazing-retaining-wall"
+        },
+        "use_cases": [
+          "correct_uneven_terrain",
+          "garden_protection",
+          "walkway_protection",
+          "reclaim_sloped_land"
+        ],
+        "materials": [
+          "SuperPost",
+          "TUFFPOLY"
+        ]
       }
     }
   ],
   "product_components": [
-    {"sku": "AF-RW-SLEEPER-PINE-200x50-2400", "name": "CCA Pine Sleeper 200×50×2400mm", "description": "CCA treated pine retaining-wall sleeper, 200×50mm × 2400mm", "category": "sleeper", "unit": "each", "default_price": null, "system_types": ["AF_RETAINING_WALL"], "metadata": {"length_mm": 2400, "width_mm": 200, "thickness_mm": 50, "material": "CCA Pine", "treatment": "H4", "_pricing_note": "BuyPriceEx in Cin7 for pine sleepers needs separate lookup; defer until pricing run-2"}, "active": true, "subCategory": "sleepers", "sortPriority": 10},
-    {"sku": "AF-RW-SLEEPER-PINE-200x50-3000", "name": "CCA Pine Sleeper 200×50×3000mm", "description": "CCA treated pine retaining-wall sleeper, 200×50mm × 3000mm", "category": "sleeper", "unit": "each", "default_price": null, "system_types": ["AF_RETAINING_WALL"], "metadata": {"length_mm": 3000, "width_mm": 200, "thickness_mm": 50, "material": "CCA Pine", "treatment": "H4"}, "active": true, "subCategory": "sleepers", "sortPriority": 10},
-    {"sku": "AF-RW-SLEEPER-PINE-200x75-2400", "name": "CCA Pine Sleeper 200×75×2400mm", "description": "CCA treated pine retaining-wall sleeper, 200×75mm × 2400mm", "category": "sleeper", "unit": "each", "default_price": null, "system_types": ["AF_RETAINING_WALL"], "metadata": {"length_mm": 2400, "width_mm": 200, "thickness_mm": 75, "material": "CCA Pine", "treatment": "H4"}, "active": true, "subCategory": "sleepers", "sortPriority": 10},
-    {"sku": "AF-RW-SLEEPER-PINE-200x75-3000", "name": "CCA Pine Sleeper 200×75×3000mm", "description": "CCA treated pine retaining-wall sleeper, 200×75mm × 3000mm", "category": "sleeper", "unit": "each", "default_price": null, "system_types": ["AF_RETAINING_WALL"], "metadata": {"length_mm": 3000, "width_mm": 200, "thickness_mm": 75, "material": "CCA Pine", "treatment": "H4"}, "active": true, "subCategory": "sleepers", "sortPriority": 10},
-
-    {"sku": "AF-RW-SLEEPER-HWD-200x50-2400", "name": "H4 Hardwood Sleeper 200×50×2400mm", "description": "H4 treated hardwood retaining-wall sleeper, 200×50mm × 2400mm", "category": "sleeper", "unit": "each", "default_price": 24.98, "system_types": ["AF_RETAINING_WALL"], "metadata": {"length_mm": 2400, "width_mm": 200, "thickness_mm": 50, "material": "hardwood", "treatment": "H4", "manufacturer_sku": "HS200x50x2400"}, "active": true, "subCategory": "sleepers", "sortPriority": 20},
-    {"sku": "AF-RW-SLEEPER-HWD-200x50-3000", "name": "H4 Hardwood Sleeper 200×50×3000mm", "description": "H4 treated hardwood retaining-wall sleeper, 200×50mm × 3000mm", "category": "sleeper", "unit": "each", "default_price": 31.40, "system_types": ["AF_RETAINING_WALL"], "metadata": {"length_mm": 3000, "width_mm": 200, "thickness_mm": 50, "material": "hardwood", "treatment": "H4", "manufacturer_sku": "HS200x50x3000"}, "active": true, "subCategory": "sleepers", "sortPriority": 20},
-    {"sku": "AF-RW-SLEEPER-HWD-200x75-1800", "name": "H4 Hardwood Sleeper 200×75×1800mm", "description": "H4 treated hardwood retaining-wall sleeper, 200×75mm × 1800mm", "category": "sleeper", "unit": "each", "default_price": 30.00, "system_types": ["AF_RETAINING_WALL"], "metadata": {"length_mm": 1800, "width_mm": 200, "thickness_mm": 75, "material": "hardwood", "treatment": "H4", "manufacturer_sku": "HS200x75x1800"}, "active": true, "subCategory": "sleepers", "sortPriority": 20},
-    {"sku": "AF-RW-SLEEPER-HWD-200x75-2400", "name": "H4 Hardwood Sleeper 200×75×2400mm", "description": "H4 treated hardwood retaining-wall sleeper, 200×75mm × 2400mm", "category": "sleeper", "unit": "each", "default_price": 37.49, "system_types": ["AF_RETAINING_WALL"], "metadata": {"length_mm": 2400, "width_mm": 200, "thickness_mm": 75, "material": "hardwood", "treatment": "H4", "manufacturer_sku": "HS200x75x2400"}, "active": true, "subCategory": "sleepers", "sortPriority": 20},
-    {"sku": "AF-RW-SLEEPER-HWD-200x75-3000", "name": "H4 Hardwood Sleeper 200×75×3000mm", "description": "H4 treated hardwood retaining-wall sleeper, 200×75mm × 3000mm", "category": "sleeper", "unit": "each", "default_price": 48.61, "system_types": ["AF_RETAINING_WALL"], "metadata": {"length_mm": 3000, "width_mm": 200, "thickness_mm": 75, "material": "hardwood", "treatment": "H4", "manufacturer_sku": "HS200x75x3000"}, "active": true, "subCategory": "sleepers", "sortPriority": 20}
+    {
+      "sku": "AF-RW-SLEEPER-PINE-200x50-2400",
+      "name": "CCA Pine Sleeper 200×50×2400mm",
+      "description": "CCA treated pine retaining-wall sleeper, 200×50mm × 2400mm",
+      "category": "sleeper",
+      "unit": "each",
+      "default_price": null,
+      "system_types": [
+        "AF_RETAINING_WALL"
+      ],
+      "metadata": {
+        "length_mm": 2400,
+        "width_mm": 200,
+        "thickness_mm": 50,
+        "material": "CCA Pine",
+        "treatment": "H4"
+      },
+      "active": true,
+      "subCategory": "sleepers",
+      "sortPriority": 10
+    },
+    {
+      "sku": "AF-RW-SLEEPER-PINE-200x50-3000",
+      "name": "CCA Pine Sleeper 200×50×3000mm",
+      "description": "CCA treated pine retaining-wall sleeper, 200×50mm × 3000mm",
+      "category": "sleeper",
+      "unit": "each",
+      "default_price": null,
+      "system_types": [
+        "AF_RETAINING_WALL"
+      ],
+      "metadata": {
+        "length_mm": 3000,
+        "width_mm": 200,
+        "thickness_mm": 50,
+        "material": "CCA Pine",
+        "treatment": "H4"
+      },
+      "active": true,
+      "subCategory": "sleepers",
+      "sortPriority": 10
+    },
+    {
+      "sku": "AF-RW-SLEEPER-PINE-200x75-2400",
+      "name": "CCA Pine Sleeper 200×75×2400mm",
+      "description": "CCA treated pine retaining-wall sleeper, 200×75mm × 2400mm",
+      "category": "sleeper",
+      "unit": "each",
+      "default_price": null,
+      "system_types": [
+        "AF_RETAINING_WALL"
+      ],
+      "metadata": {
+        "length_mm": 2400,
+        "width_mm": 200,
+        "thickness_mm": 75,
+        "material": "CCA Pine",
+        "treatment": "H4"
+      },
+      "active": true,
+      "subCategory": "sleepers",
+      "sortPriority": 10
+    },
+    {
+      "sku": "AF-RW-SLEEPER-PINE-200x75-3000",
+      "name": "CCA Pine Sleeper 200×75×3000mm",
+      "description": "CCA treated pine retaining-wall sleeper, 200×75mm × 3000mm",
+      "category": "sleeper",
+      "unit": "each",
+      "default_price": null,
+      "system_types": [
+        "AF_RETAINING_WALL"
+      ],
+      "metadata": {
+        "length_mm": 3000,
+        "width_mm": 200,
+        "thickness_mm": 75,
+        "material": "CCA Pine",
+        "treatment": "H4"
+      },
+      "active": true,
+      "subCategory": "sleepers",
+      "sortPriority": 10
+    },
+    {
+      "sku": "AF-RW-SLEEPER-HWD-200x50-2400",
+      "name": "H4 Hardwood Sleeper 200×50×2400mm",
+      "description": "H4 treated hardwood retaining-wall sleeper, 200×50mm × 2400mm",
+      "category": "sleeper",
+      "unit": "each",
+      "default_price": 24.98,
+      "system_types": [
+        "AF_RETAINING_WALL"
+      ],
+      "metadata": {
+        "length_mm": 2400,
+        "width_mm": 200,
+        "thickness_mm": 50,
+        "material": "hardwood",
+        "treatment": "H4",
+        "manufacturer_sku": "HS200x50x2400"
+      },
+      "active": true,
+      "subCategory": "sleepers",
+      "sortPriority": 20
+    },
+    {
+      "sku": "AF-RW-SLEEPER-HWD-200x50-3000",
+      "name": "H4 Hardwood Sleeper 200×50×3000mm",
+      "description": "H4 treated hardwood retaining-wall sleeper, 200×50mm × 3000mm",
+      "category": "sleeper",
+      "unit": "each",
+      "default_price": 31.40,
+      "system_types": [
+        "AF_RETAINING_WALL"
+      ],
+      "metadata": {
+        "length_mm": 3000,
+        "width_mm": 200,
+        "thickness_mm": 50,
+        "material": "hardwood",
+        "treatment": "H4",
+        "manufacturer_sku": "HS200x50x3000"
+      },
+      "active": true,
+      "subCategory": "sleepers",
+      "sortPriority": 20
+    },
+    {
+      "sku": "AF-RW-SLEEPER-HWD-200x75-1800",
+      "name": "H4 Hardwood Sleeper 200×75×1800mm",
+      "description": "H4 treated hardwood retaining-wall sleeper, 200×75mm × 1800mm",
+      "category": "sleeper",
+      "unit": "each",
+      "default_price": 30.00,
+      "system_types": [
+        "AF_RETAINING_WALL"
+      ],
+      "metadata": {
+        "length_mm": 1800,
+        "width_mm": 200,
+        "thickness_mm": 75,
+        "material": "hardwood",
+        "treatment": "H4",
+        "manufacturer_sku": "HS200x75x1800"
+      },
+      "active": true,
+      "subCategory": "sleepers",
+      "sortPriority": 20
+    },
+    {
+      "sku": "AF-RW-SLEEPER-HWD-200x75-2400",
+      "name": "H4 Hardwood Sleeper 200×75×2400mm",
+      "description": "H4 treated hardwood retaining-wall sleeper, 200×75mm × 2400mm",
+      "category": "sleeper",
+      "unit": "each",
+      "default_price": 37.49,
+      "system_types": [
+        "AF_RETAINING_WALL"
+      ],
+      "metadata": {
+        "length_mm": 2400,
+        "width_mm": 200,
+        "thickness_mm": 75,
+        "material": "hardwood",
+        "treatment": "H4",
+        "manufacturer_sku": "HS200x75x2400"
+      },
+      "active": true,
+      "subCategory": "sleepers",
+      "sortPriority": 20
+    },
+    {
+      "sku": "AF-RW-SLEEPER-HWD-200x75-3000",
+      "name": "H4 Hardwood Sleeper 200×75×3000mm",
+      "description": "H4 treated hardwood retaining-wall sleeper, 200×75mm × 3000mm",
+      "category": "sleeper",
+      "unit": "each",
+      "default_price": 48.61,
+      "system_types": [
+        "AF_RETAINING_WALL"
+      ],
+      "metadata": {
+        "length_mm": 3000,
+        "width_mm": 200,
+        "thickness_mm": 75,
+        "material": "hardwood",
+        "treatment": "H4",
+        "manufacturer_sku": "HS200x75x3000"
+      },
+      "active": true,
+      "subCategory": "sleepers",
+      "sortPriority": 20
+    }
+  ],
+  "rule_sets": [
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "Amazing Retaining Wall Rules",
+      "description": "Engine rules for SuperPost and TUFFPOLY composite retaining walls",
+      "active": true
+    }
+  ],
+  "rule_versions": [
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "is_current": true,
+      "effective_from": "2026-06-09",
+      "notes": "Initial composite retaining wall ruleset"
+    }
+  ],
+  "product_variables": [
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "product_line",
+      "label": "Product Line",
+      "data_type": "enum",
+      "required": true,
+      "default_value_json": "superpost",
+      "options_json": [
+        "superpost",
+        "tuffpoly"
+      ],
+      "scope": "job",
+      "options_group": "style",
+      "sort_order": 10,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "max_panel_width_mm",
+      "label": "Post Spacing",
+      "data_type": "number",
+      "required": true,
+      "default_value_json": 2400,
+      "options_json": [],
+      "scope": "run",
+      "sort_order": 20,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "target_height_mm",
+      "label": "Target Height",
+      "data_type": "enum",
+      "required": true,
+      "default_value_json": 600,
+      "options_json": [
+        300,
+        600,
+        900,
+        1200,
+        1500,
+        1800
+      ],
+      "scope": "segment",
+      "options_group": "style",
+      "sort_order": 30,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "sleeper_height_mm",
+      "label": "Sleeper Height",
+      "data_type": "enum",
+      "required": true,
+      "default_value_json": 200,
+      "options_json": [
+        150,
+        200,
+        250
+      ],
+      "scope": "job",
+      "options_group": "style",
+      "sort_order": 40,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "colour",
+      "label": "Colour",
+      "data_type": "enum",
+      "required": true,
+      "default_value_json": "Grey",
+      "options_json": [
+        "Grey",
+        "Charcoal",
+        "Drift"
+      ],
+      "scope": "job",
+      "options_group": "style",
+      "sort_order": 50,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "include_plinth",
+      "label": "Include Bottom Plinth",
+      "data_type": "boolean",
+      "required": false,
+      "default_value_json": true,
+      "options_json": [],
+      "scope": "job",
+      "options_group": "extras",
+      "sort_order": 60,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "include_brackets",
+      "label": "Include End/Corner Brackets",
+      "data_type": "boolean",
+      "required": false,
+      "default_value_json": true,
+      "options_json": [],
+      "scope": "job",
+      "options_group": "extras",
+      "sort_order": 70,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "corner_count",
+      "label": "Corner Count",
+      "data_type": "number",
+      "required": false,
+      "default_value_json": 0,
+      "options_json": [],
+      "scope": "run",
+      "options_group": "geometry",
+      "sort_order": 80,
+      "active": true
+    }
+  ],
+  "product_constraints": [
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "min_height",
+      "constraint_type": "min",
+      "value_text": "300",
+      "unit": "mm",
+      "severity": "error",
+      "applies_when_json": {},
+      "message": "Retaining wall height must be at least 300mm.",
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "max_height",
+      "constraint_type": "max",
+      "value_text": "1800",
+      "unit": "mm",
+      "severity": "error",
+      "applies_when_json": {},
+      "message": "Retaining wall height cannot exceed 1800mm.",
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "min_spacing",
+      "constraint_type": "min",
+      "value_text": "100",
+      "unit": "mm",
+      "severity": "error",
+      "applies_when_json": {},
+      "message": "Post spacing must be at least 100mm.",
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "max_spacing",
+      "constraint_type": "max",
+      "value_text": "2400",
+      "unit": "mm",
+      "severity": "error",
+      "applies_when_json": {},
+      "message": "Post spacing cannot exceed 2400mm.",
+      "active": true
+    }
+  ],
+  "product_validations": [
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "height_validation",
+      "expression": "target_height_mm <= 1800",
+      "severity": "error",
+      "message": "Retaining wall height cannot exceed 1800mm.",
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "spacing_validation",
+      "expression": "max_panel_width_mm <= 2400",
+      "severity": "error",
+      "message": "Post spacing cannot exceed 2400mm.",
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "name": "spacing_min_validation",
+      "expression": "max_panel_width_mm >= 100",
+      "severity": "error",
+      "message": "Post spacing must be at least 100mm.",
+      "active": true
+    }
+  ],
+  "product_rules": [
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "actual_height_mm",
+      "expression": "target_height_mm",
+      "output_key": "actual_height_mm",
+      "priority": 10,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "post_in_ground_mm",
+      "expression": "max(target_height_mm * 0.5, 600)",
+      "output_key": "post_in_ground_mm",
+      "priority": 20,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "post_total_length_mm",
+      "expression": "target_height_mm + post_in_ground_mm",
+      "output_key": "post_total_length_mm",
+      "priority": 30,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "post_stock_length_mm",
+      "expression": "equalStrings(product_line, \"superpost\") ? 2400 : (post_total_length_mm <= 1200 ? 1200 : (post_total_length_mm <= 1600 ? 1600 : (post_total_length_mm <= 2000 ? 2000 : (post_total_length_mm <= 2400 ? 2400 : 2400))))",
+      "output_key": "post_stock_length_mm",
+      "priority": 40,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "h_post_count",
+      "expression": "2 + corner_count",
+      "output_key": "h_post_count",
+      "priority": 50,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "c_post_count",
+      "expression": "max(0, num_posts - h_post_count)",
+      "output_key": "c_post_count",
+      "priority": 60,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "post_caps",
+      "expression": "num_posts",
+      "output_key": "post_caps",
+      "priority": 70,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "concrete_bags",
+      "expression": "num_posts * 2",
+      "output_key": "concrete_bags",
+      "priority": 80,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "sleepers_per_bay",
+      "expression": "ceil(target_height_mm / sleeper_height_mm)",
+      "output_key": "sleepers_per_bay",
+      "priority": 90,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "total_sleepers",
+      "expression": "num_panels * sleepers_per_bay",
+      "output_key": "total_sleepers",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "sleepers_with_wastage",
+      "expression": "ceil(total_sleepers * 1.05)",
+      "output_key": "sleepers_with_wastage",
+      "priority": 110,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "plinth_pieces",
+      "expression": "include_plinth ? num_panels : 0",
+      "output_key": "plinth_pieces",
+      "priority": 120,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "bracket_pairs",
+      "expression": "include_brackets ? h_post_count : 0",
+      "output_key": "bracket_pairs",
+      "priority": 130,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "rule_set_name": "Amazing Retaining Wall Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "bracket_qty",
+      "expression": "bracket_pairs * 2",
+      "output_key": "bracket_qty",
+      "priority": 140,
+      "active": true
+    }
+  ],
+  "product_component_selectors": [
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "superpost_c_post",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "superpost"
+      },
+      "qty_key": "c_post_count",
+      "sku_pattern": "21T000",
+      "priority": 10,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "superpost_h_post",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "superpost"
+      },
+      "qty_key": "h_post_count",
+      "sku_pattern": "21T001",
+      "priority": 15,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "superpost_sleeper_1950",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "superpost",
+        "max_panel_width_mm": {
+          "lte": 2000
+        }
+      },
+      "qty_key": "sleepers_with_wastage",
+      "sku_pattern": "21T007",
+      "priority": 20,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "superpost_sleeper_2350",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "superpost"
+      },
+      "qty_key": "sleepers_with_wastage",
+      "sku_pattern": "21T008",
+      "priority": 25,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "superpost_plinth_2380",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "superpost",
+        "max_panel_width_mm": {
+          "lte": 2400
+        }
+      },
+      "qty_key": "plinth_pieces",
+      "sku_pattern": "21T005",
+      "priority": 30,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "superpost_plinth_3160",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "superpost"
+      },
+      "qty_key": "plinth_pieces",
+      "sku_pattern": "21T006",
+      "priority": 35,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "superpost_bracket",
+      "component_category": "bracket",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "superpost"
+      },
+      "qty_key": "bracket_qty",
+      "sku_pattern": "21T002",
+      "priority": 40,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "superpost_cap_2040",
+      "component_category": "cap",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "superpost",
+        "max_panel_width_mm": {
+          "lte": 2000
+        }
+      },
+      "qty_key": "post_caps",
+      "sku_pattern": "21T009",
+      "priority": 45,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "superpost_cap_2425",
+      "component_category": "cap",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "superpost"
+      },
+      "qty_key": "post_caps",
+      "sku_pattern": "21T010",
+      "priority": 50,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_h_post_1200",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 1200
+      },
+      "qty_key": "h_post_count",
+      "sku_pattern": "TP100HPCH12",
+      "priority": 60,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_h_post_1600",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 1600
+      },
+      "qty_key": "h_post_count",
+      "sku_pattern": "TP100HPCH16",
+      "priority": 65,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_h_post_2000",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 2000
+      },
+      "qty_key": "h_post_count",
+      "sku_pattern": "TP100HPCH20",
+      "priority": 70,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_h_post_2400",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 2400
+      },
+      "qty_key": "h_post_count",
+      "sku_pattern": "TP100HPCH224",
+      "priority": 75,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_c_post_1200_ch",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 1200,
+        "colour": "Charcoal"
+      },
+      "qty_key": "c_post_count",
+      "sku_pattern": "TP100CPCH12",
+      "priority": 80,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_c_post_1600_ch",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 1600,
+        "colour": "Charcoal"
+      },
+      "qty_key": "c_post_count",
+      "sku_pattern": "TP100CPCH16",
+      "priority": 85,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_c_post_2000_ch",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 2000,
+        "colour": "Charcoal"
+      },
+      "qty_key": "c_post_count",
+      "sku_pattern": "TP100CPCH20",
+      "priority": 90,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_c_post_2400_ch",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 2400,
+        "colour": "Charcoal"
+      },
+      "qty_key": "c_post_count",
+      "sku_pattern": "TP100CPCH24",
+      "priority": 95,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_c_post_1200_dr",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 1200,
+        "colour": "Drift"
+      },
+      "qty_key": "c_post_count",
+      "sku_pattern": "TP100CPDR12",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_c_post_1600_dr",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 1600,
+        "colour": "Drift"
+      },
+      "qty_key": "c_post_count",
+      "sku_pattern": "TP100CPDR16",
+      "priority": 105,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_c_post_2000_dr",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 2000,
+        "colour": "Drift"
+      },
+      "qty_key": "c_post_count",
+      "sku_pattern": "TP100CPDR20",
+      "priority": 110,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_c_post_2400_dr",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "post_stock_length_mm": 2400,
+        "colour": "Drift"
+      },
+      "qty_key": "c_post_count",
+      "sku_pattern": "TP100CPDR24",
+      "priority": 115,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_sleeper_1585_ch",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "max_panel_width_mm": {
+          "lte": 1600
+        },
+        "colour": "Charcoal"
+      },
+      "qty_key": "sleepers_with_wastage",
+      "sku_pattern": "TP200SLCH16",
+      "priority": 120,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_sleeper_1985_ch",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "max_panel_width_mm": {
+          "lte": 2000
+        },
+        "colour": "Charcoal"
+      },
+      "qty_key": "sleepers_with_wastage",
+      "sku_pattern": "TP200SLCH120",
+      "priority": 125,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_sleeper_2385_ch",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "colour": "Charcoal"
+      },
+      "qty_key": "sleepers_with_wastage",
+      "sku_pattern": "TP200SLCH124",
+      "priority": 130,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_sleeper_1585_dr",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "max_panel_width_mm": {
+          "lte": 1600
+        },
+        "colour": "Drift"
+      },
+      "qty_key": "sleepers_with_wastage",
+      "sku_pattern": "TP200SLDR16",
+      "priority": 135,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_sleeper_1985_dr",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "max_panel_width_mm": {
+          "lte": 2000
+        },
+        "colour": "Drift"
+      },
+      "qty_key": "sleepers_with_wastage",
+      "sku_pattern": "TP200SLDR20",
+      "priority": 140,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_sleeper_2385_dr",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "colour": "Drift"
+      },
+      "qty_key": "sleepers_with_wastage",
+      "sku_pattern": "TP200SLDR24",
+      "priority": 145,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_plinth_1585_ch",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "max_panel_width_mm": {
+          "lte": 1600
+        },
+        "colour": "Charcoal"
+      },
+      "qty_key": "plinth_pieces",
+      "sku_pattern": "TP200SLCH16",
+      "priority": 150,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_plinth_1985_ch",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "max_panel_width_mm": {
+          "lte": 2000
+        },
+        "colour": "Charcoal"
+      },
+      "qty_key": "plinth_pieces",
+      "sku_pattern": "TP200SLCH120",
+      "priority": 155,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_plinth_2385_ch",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "colour": "Charcoal"
+      },
+      "qty_key": "plinth_pieces",
+      "sku_pattern": "TP200SLCH124",
+      "priority": 160,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_plinth_1585_dr",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "max_panel_width_mm": {
+          "lte": 1600
+        },
+        "colour": "Drift"
+      },
+      "qty_key": "plinth_pieces",
+      "sku_pattern": "TP200SLDR16",
+      "priority": 165,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_plinth_1985_dr",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "max_panel_width_mm": {
+          "lte": 2000
+        },
+        "colour": "Drift"
+      },
+      "qty_key": "plinth_pieces",
+      "sku_pattern": "TP200SLDR20",
+      "priority": 170,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_plinth_2385_dr",
+      "component_category": "sleeper",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly",
+        "colour": "Drift"
+      },
+      "qty_key": "plinth_pieces",
+      "sku_pattern": "TP200SLDR24",
+      "priority": 175,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "tuffpoly_bracket",
+      "component_category": "bracket",
+      "selector_type": "exact",
+      "match_json": {
+        "product_line": "tuffpoly"
+      },
+      "qty_key": "bracket_qty",
+      "sku_pattern": "TPFBGAL3",
+      "priority": 180,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "selector_key": "retaining_concrete",
+      "component_category": "fixing",
+      "selector_type": "exact",
+      "match_json": {},
+      "qty_key": "concrete_bags",
+      "sku_pattern": "AF-CON-RAPID-30",
+      "priority": 190,
+      "active": true
+    }
+  ],
+  "product_warnings": [
+    {
+      "product_system_type": "AF_RETAINING_WALL",
+      "warning_key": "retaining_wall_tight_spacing",
+      "severity": "warning",
+      "condition_json": {
+        "target_height_mm": {
+          "gt": 1000
+        },
+        "max_panel_width_mm": {
+          "gt": 2100
+        }
+      },
+      "message": "Recommended maximum post spacing narrows above 1m wall height.",
+      "active": true
+    }
   ]
 }

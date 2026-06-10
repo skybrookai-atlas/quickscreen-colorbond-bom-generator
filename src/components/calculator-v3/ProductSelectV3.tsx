@@ -18,6 +18,13 @@ interface FenceProduct {
   suppliers?: { slug: string } | null;
 }
 
+const SYSTEM_IMAGES: Record<string, string> = {
+  QSHS: "/images/products/qshs_fence.png",
+  VS: "/images/products/vs_fence.png",
+  XPL: "/images/products/xpl_fence.png",
+  BAYG: "/images/products/bayg_fence.png",
+};
+
 function mergeFenceProducts(products: FenceProduct[]): FenceProduct[] {
   const bySystem = new Map<string, FenceProduct>();
   for (const product of products) {
@@ -263,8 +270,18 @@ export function ProductSelectV3({
                 title={product.description ?? product.name}
               >
                 <span className="flex items-center gap-3 min-w-0">
-                  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded ${selected ? "bg-[#FCF1E6] text-[#DD6E1B]" : "bg-gray-50 text-gray-500"}`}>
-                    {getSystemIcon(product.system_type)}
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded overflow-hidden bg-gray-50 border border-gray-100">
+                    {SYSTEM_IMAGES[product.system_type] ? (
+                      <img
+                        src={SYSTEM_IMAGES[product.system_type]}
+                        alt={product.name}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <span className={`flex h-full w-full items-center justify-center ${selected ? "bg-[#FCF1E6] text-[#DD6E1B]" : "text-gray-500"}`}>
+                        {getSystemIcon(product.system_type)}
+                      </span>
+                    )}
                   </span>
                   <span className="grid min-w-0">
                     <span className="text-[13.5px] font-semibold text-[#11161D]">

@@ -1,8 +1,9 @@
-import { MessageSquareText, Mic, MicOff } from "lucide-react";
+import { MessageSquareText, Mic, MicOff, Sparkles, Loader2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { parseDescription, type ParseResult } from "../../lib/describeFenceParser";
 import { createVoiceInput, supportsVoiceInput } from "../../lib/voiceInput";
+import { isSupabaseConfigured, supabase } from "../../lib/supabase";
 
 function hasUsableParseResult(result: ParseResult) {
   const attrs = result.attributes;
@@ -29,6 +30,7 @@ export function DescribeFenceBox({
   const [text, setText] = useState(initialDescription);
   const [message, setMessage] = useState<string | null>(null);
   const [listening, setListening] = useState(false);
+  const [parsing, setParsing] = useState(false);
   const voiceRef = useRef<ReturnType<typeof createVoiceInput> | null>(null);
   const canUseVoice = useMemo(() => supportsVoiceInput(), []);
 
@@ -43,21 +45,69 @@ export function DescribeFenceBox({
     };
   }, []);
 
-  function parseNow() {
+  async function parseNow() {
     if (!text.trim()) {
       const nextMessage = "Add a short fence description first.";
       setMessage(nextMessage);
       toast.error(nextMessage);
       return;
     }
-    const parsed = parseDescription(text);
-    if (!hasUsableParseResult(parsed)) {
-      setMessage("I could not find a usable fence length, gate, system, or setting in that description.");
-      return;
-    }
-    onApply(parsed);
+
+    setParsing(true);
     setMessage(null);
-    if (compact) setOpen(false);
+
+    try {
+      if (isSupabaseConfigured) {
+        const { data: { session } } = await supabase.auth.getSession();
+        const headers: Record<string, string> = {};
+        if (session?.access_token) {
+          headers["Authorization"] = `Bearer ${session.access_token}`;
+        }
+
+        const { data, error } = await supabase.functions.invoke("parse-job-description", {
+          body: { description: text },
+          headers,
+        });
+
+        if (error) {
+          console.warn("AI parser error, falling back to local:", error);
+          runLocalFallback();
+        } else if (data) {
+          if (data.error) {
+            console.warn("AI parser returned error, falling back:", data.error);
+            runLocalFallback();
+          } else if (!hasUsableParseResult(data)) {
+            setMessage("AI Parser: I could not find a usable fence length, gate, system, or setting in that description.");
+          } else {
+            onApply(data);
+            setMessage(null);
+            if (compact) setOpen(false);
+            toast.success("AI parsed fence configuration!");
+          }
+        } else {
+          runLocalFallback();
+        }
+      } else {
+        runLocalFallback();
+      }
+    } catch (err) {
+      console.warn("AI Parser exception, falling back:", err);
+      runLocalFallback();
+    } finally {
+      setParsing(false);
+    }
+
+    function runLocalFallback() {
+      const parsed = parseDescription(text);
+      if (!hasUsableParseResult(parsed)) {
+        setMessage("I could not find a usable fence length, gate, system, or setting in that description.");
+        return;
+      }
+      onApply(parsed);
+      setMessage(null);
+      if (compact) setOpen(false);
+      toast.success("Parsed fence configuration (offline mode).");
+    }
   }
 
   function toggleMic() {
@@ -123,11 +173,13 @@ export function DescribeFenceBox({
               onChange={(event) => setText(event.target.value)}
               placeholder="e.g. 30m of 1.8m slat fence in Monument with one gate"
               className="min-h-28 w-full resize-y rounded-xl border border-brand-border bg-brand-bg px-3 py-3 pr-11 text-sm font-semibold text-brand-text outline-none transition-colors focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20"
+              disabled={parsing}
             />
             {canUseVoice && (
               <button
                 type="button"
                 onClick={toggleMic}
+                disabled={parsing}
                 className={`absolute right-2 top-2 rounded-lg border p-2 ${listening ? "border-brand-danger text-brand-danger" : "border-brand-border text-brand-muted hover:text-brand-primary"}`}
                 title={listening ? "Stop dictation" : "Dictate description"}
               >
@@ -138,9 +190,20 @@ export function DescribeFenceBox({
           <button
             type="button"
             onClick={parseNow}
-            className="rounded-lg bg-brand-primary px-3 py-2 text-sm font-black text-white hover:bg-brand-primary/90"
+            disabled={parsing}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-brand-primary px-3 py-2 text-sm font-black text-white hover:bg-brand-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Apply
+            {parsing ? (
+              <>
+                <Loader2 size={14} className="animate-spin" />
+                Parsing...
+              </>
+            ) : (
+              <>
+                <Sparkles size={14} />
+                Apply AI Parse
+              </>
+            )}
           </button>
           {message && (
             <p className="rounded-lg border border-brand-border/70 bg-brand-bg px-3 py-2 text-xs font-bold text-brand-muted">
