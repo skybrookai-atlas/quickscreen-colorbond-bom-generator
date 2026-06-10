@@ -172,6 +172,35 @@ export const describeFenceParserTestCases: ParserTestCase[] = [
       colourCode: { value: "SM", confidence: "stated" },
     },
   },
+  {
+    id: "TC-13",
+    input: "20m of timber paling fence, 1.8m high",
+    expected: {
+      systemType: { value: "AF_TIMBER_PALING", confidence: "stated" },
+      runLengthMm: { value: 20000, confidence: "stated" },
+      heightMm: { value: 1800, confidence: "stated" },
+    },
+    unparsed: [],
+  },
+  {
+    id: "TC-14",
+    input: "Colorbond fence in monument matt, 30m long",
+    expected: {
+      systemType: { value: "AF_COLORBOND", confidence: "stated" },
+      runLengthMm: { value: 30000, confidence: "stated" },
+      colourCode: { value: "MN", confidence: "stated" },
+    },
+    unparsed: [],
+  },
+  {
+    id: "TC-15",
+    input: "Retaining wall, 12 meters",
+    expected: {
+      systemType: { value: "AF_RETAINING_WALL", confidence: "stated" },
+      runLengthMm: { value: 12000, confidence: "stated" },
+    },
+    unparsed: [],
+  },
 ];
 
 function assertEqual(actual: unknown, expected: unknown, label: string) {

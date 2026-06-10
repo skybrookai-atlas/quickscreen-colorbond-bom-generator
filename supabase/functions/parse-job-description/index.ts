@@ -11,6 +11,9 @@ Fencing Systems:
 - "VS" (Vertical Slats): Vertical slats or screen.
 - "XPL" (Xpress Plus): Premium heavy-duty slat screening. Mentioned as "xpress" or "xpl".
 - "BAYG" (Build As You Go): Slat screen where gaps or panel configurations are highly custom.
+- "AF_TIMBER_PALING" (Timber Paling): Timber boundary fence. Mentioned as "timber", "wood", "pine", "hardwood", "paling", "lapped & capped".
+- "AF_COLORBOND" (Colorbond): Sheet steel boundary fence. Mentioned as "colorbond", "colourbond", "sheet steel", "steel fence".
+- "AF_RETAINING_WALL" (Retaining Wall): Retaining wall structure. Mentioned as "retaining wall", "sleeper wall", "sleepers".
 
 Color Codes:
 - "B" (Black Satin / Black)
@@ -56,7 +59,7 @@ Gates:
 Output Schema (must be valid JSON):
 {
   "attributes": {
-    "systemType": { "value": "QSHS" | "VS" | "XPL" | "BAYG", "confidence": "stated" | "inferred" | "default", "note": "string" },
+    "systemType": { "value": "QSHS" | "VS" | "XPL" | "BAYG" | "AF_TIMBER_PALING" | "AF_COLORBOND" | "AF_RETAINING_WALL", "confidence": "stated" | "inferred" | "default", "note": "string" },
     "runLengthMm": { "value": number, "confidence": "stated" | "inferred" | "default" },
     "heightMm": { "value": number, "confidence": "stated" | "inferred" | "default" },
     "slatSizeMm": { "value": 65 | 90, "confidence": "stated" | "inferred" | "default" },
@@ -98,7 +101,7 @@ Deno.serve(async (req: Request) => {
 
     // Call Gemini API via native Deno fetch
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: {

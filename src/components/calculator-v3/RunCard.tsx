@@ -285,12 +285,17 @@ export function RunCard({ run, runIdx, autoOpenFirstSection = false, onAutoOpenC
           type="button"
           onClick={() => {
             if (state.payload) {
+              const { supplier_id, supplier_slug } = state.payload.variables ?? {};
               dispatch({
                 type: "SET_PAYLOAD",
                 payload: {
                   ...state.payload,
                   runs: [],
                   productCode: "",
+                  variables: {
+                    supplier_id,
+                    supplier_slug,
+                  } as any,
                 },
               });
             }

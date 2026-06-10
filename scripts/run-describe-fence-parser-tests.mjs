@@ -28,4 +28,4 @@ for (const file of files) {
 
 const testModule = await import(pathToFileURL(path.join(outDir, "describeFenceParser.test.mjs")).href);
 testModule.runDescribeFenceParserTestCases();
-console.log("Describe fence parser corpus passed: TC-01 through TC-12");
+console.log(`Describe fence parser corpus passed: TC-01 through TC-${testModule.describeFenceParserTestCases.length}`);
