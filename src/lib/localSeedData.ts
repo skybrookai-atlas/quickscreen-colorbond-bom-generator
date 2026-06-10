@@ -8,6 +8,7 @@ import ccaPinePalingRaw from "../../supabase/seeds/discount-fencing/products/cca
 import timberPalingRaw from "../../supabase/seeds/amazing-fencing/products/timber-paling.json?raw";
 import colorbondRaw from "../../supabase/seeds/amazing-fencing/products/colorbond.json?raw";
 import retainingWallRaw from "../../supabase/seeds/amazing-fencing/products/retaining-wall.json?raw";
+import amazingPriceCatalogueRaw from "../../supabase/seeds/amazing-fencing/products/price_catalogue.json?raw";
 import type { Product } from "../hooks/useProducts";
 import type { SchemaField } from "../components/calculator-v3/SchemaDrivenForm";
 import type { ProductSearchItem } from "../hooks/useProductSearch";
@@ -75,6 +76,7 @@ const seedFiles: SeedFile[] = [
   JSON.parse(timberPalingRaw) as SeedFile,
   JSON.parse(colorbondRaw) as SeedFile,
   JSON.parse(retainingWallRaw) as SeedFile,
+  JSON.parse(amazingPriceCatalogueRaw) as SeedFile,
 ];
 
 function component(
