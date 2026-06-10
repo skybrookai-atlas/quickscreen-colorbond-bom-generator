@@ -9,6 +9,7 @@ import { LayoutCanvasV3 } from "../components/calculator-v3/LayoutCanvasV3";
 import { ClearJobConfirmDialog } from "../components/calculator-v3/ClearJobConfirmDialog";
 import { SaveJobDialog } from "../components/calculator-v3/SaveJobDialog";
 import { RightPaneTabs, type RightPaneView } from "../components/calculator-v3/RightPaneTabs";
+import { ExportDropdown } from "../components/calculator-v3/ExportDropdown";
 import { PwaStatusBanners } from "../components/pwa/PwaStatusBanners";
 import { BomV3PDFTemplate } from "../components/quote/BomV3PDFTemplate";
 import { CalculatorV3Page } from "./CalculatorV3Page";
@@ -46,11 +47,8 @@ import {
 import { queryClient } from "../lib/queryClient";
 import { LegacyQuoteError } from "../types/quote.types";
 import {
-  Download,
   Keyboard,
   Loader2,
-  Printer,
-  Share2,
   X,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -1992,45 +1990,15 @@ function AnyfenceCalculatorContent({ quoteId }: { quoteId?: string }) {
       </div>
       {rightPaneView === "bom" && (
         <div className="flex min-w-0 flex-wrap items-center justify-end gap-1.5">
-          <button
-            type="button"
-            onClick={handlePrintBom}
+          <ExportDropdown
+            onPrintBom={handlePrintBom}
+            onExportCsv={handleExportCsv}
+            onSharePdf={() => void handleSharePdf()}
+            includeMap={includeMapInBomPrint}
+            onIncludeMapChange={setIncludeMapInBomPrint}
             disabled={!bomResultForTabs}
-            title="Print BOM"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <Printer size={16} />
-            Print BOM
-          </button>
-          <label className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted">
-            <input
-              type="checkbox"
-              checked={includeMapInBomPrint}
-              onChange={(event) => setIncludeMapInBomPrint(event.target.checked)}
-              className="accent-brand-primary"
-            />
-            Include map
-          </label>
-          <button
-            type="button"
-            onClick={handleExportCsv}
-            disabled={!bomResultForTabs}
-            title="Export CSV (Ctrl+E)"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <Download size={16} />
-            Export CSV
-          </button>
-          <button
-            type="button"
-            onClick={() => void handleSharePdf()}
-            disabled={!bomResultForTabs || sharingPdf}
-            title="Share PDF"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-brand-border px-3 py-2 text-xs font-bold text-brand-muted transition-colors hover:border-brand-primary hover:text-brand-primary hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            {sharingPdf ? <Loader2 size={16} className="animate-spin" /> : <Share2 size={16} />}
-            Share PDF
-          </button>
+            sharingPdf={sharingPdf}
+          />
           <button
             type="button"
             onClick={() => setShortcutsOpen(true)}
