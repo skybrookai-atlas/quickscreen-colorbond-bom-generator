@@ -1,6 +1,6 @@
 import { Eye, EyeOff, LogOut, Menu, Moon, Plus, PlayCircle, Sun, Trash2, WifiOff, X, Shield, ChevronDown } from 'lucide-react';
 import { useEffect, useState, useRef, type ReactNode } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useParams } from 'react-router-dom';
 
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../hooks/useAuth';
@@ -10,6 +10,8 @@ import type { TenantBranding } from '../../lib/tenantThemes';
 import { INSTALL_VIDEOS, type InstallVideoKey } from '../../lib/installVideos';
 import { InstallVideoQR } from '../calculator-v3/InstallVideoQR';
 import { AmazingFencingLogo } from '../brand/AmazingFencingLogo';
+import { GlassOutletLogo } from '../brand/GlassOutletLogo';
+import { ByronBeyondFencingLogo } from '../brand/ByronBeyondFencingLogo';
 
 interface HeaderProps {
   branding?: TenantBranding;
@@ -67,6 +69,7 @@ export function Header({
   const { user } = useAuth();
   const { role } = useProfile();
   const { theme, toggle } = useTheme();
+  const { supplierSlug } = useParams<{ supplierSlug?: string }>();
   const [installVideosOpen, setInstallVideosOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [offline, setOffline] = useState(() => navigator.onLine === false);
@@ -135,7 +138,15 @@ export function Header({
             </div>
           ) : (
             <div className="flex items-center gap-3">
-              <AmazingFencingLogo className="scale-75 origin-left" />
+              {supplierSlug === "glass-outlet" ? (
+                <GlassOutletLogo className="scale-75 origin-left" showThe={false} textClassName="text-white" />
+              ) : supplierSlug === "byron-and-beyond-fencing" ? (
+                <ByronBeyondFencingLogo className="scale-75 origin-left" />
+              ) : _brandLogoSrc ? (
+                <img src={_brandLogoSrc} alt={_brandLogoAlt} className="h-10 object-contain" />
+              ) : (
+                <AmazingFencingLogo className="scale-75 origin-left" />
+              )}
             </div>
           )}
         </div>

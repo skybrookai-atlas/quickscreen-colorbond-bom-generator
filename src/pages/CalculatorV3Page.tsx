@@ -680,6 +680,27 @@ function CalculatorV3Content({ quoteId }: { quoteId?: string }) {
         supplier_slug: supplierSlug || "",
         system_instance_id: systemInstance.id || "",
       };
+
+      // Set property address and map zoom calibration if passed from landing page
+      const incomingState = location.state as { address?: string; lat?: number; lng?: number } | null;
+      if (incomingState?.address && incomingState?.lat && incomingState?.lng) {
+        initialPayload.propertyAnchor = {
+          lat: incomingState.lat,
+          lng: incomingState.lng,
+          address: incomingState.address,
+        };
+        const metresPerPixel = (156543.03392 * Math.cos((incomingState.lat * Math.PI) / 180)) / Math.pow(2, 20);
+        initialPayload.snapshot = {
+          centerLat: incomingState.lat,
+          centerLng: incomingState.lng,
+          zoom: 20,
+          width: 640,
+          height: 400,
+          metresPerPixel,
+          capturedAt: new Date().toISOString(),
+        };
+      }
+
       dispatch({ type: "SET_PAYLOAD", payload: initialPayload });
       dispatch({ type: "SET_ENTRY_METHOD", entryMethod: "select" });
       setIntroDismissed(true);

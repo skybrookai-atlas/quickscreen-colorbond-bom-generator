@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useBranding } from "../hooks/useBranding";
 import { listSystemInstances } from "../lib/multiSupplier/queries";
 import { AppShell } from "../components/layout/AppShell";
@@ -29,6 +29,7 @@ export function SupplierPortalPage() {
   const navigate = useNavigate();
   const { supplier, isLoading, branding, logoUrl, bannerUrl } = useBranding();
   const { user, userType, orgSlug } = useProfile();
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState<"builder" | "contractors" | "prices">("builder");
 
   const canManage = !!user && (userType === 'admin' || (userType === 'supplier_staff' && orgSlug === supplier?.slug));
@@ -271,6 +272,7 @@ export function SupplierPortalPage() {
             <Link
               key={calc.id}
               to={calc.link}
+              state={location.state}
               className="group bg-brand-card hover:bg-brand-border/5 border border-brand-border/60 hover:border-brand-primary/50 transition-all rounded-xl p-5 shadow-sm hover:shadow flex flex-col justify-between"
             >
               <div>
@@ -308,6 +310,7 @@ export function SupplierPortalPage() {
           <Link
             key={instance.id}
             to={`/s/${supplier!.slug}/calculator/${instance.slug}`}
+            state={location.state}
             className="group premium-card hover-lift p-5 flex flex-col justify-between"
           >
             <div>
