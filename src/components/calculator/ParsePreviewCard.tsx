@@ -25,7 +25,7 @@ const LABELS: Record<EditableKey | "gates", string> = {
   gates: "Gates",
 };
 
-const SYSTEMS: ParsedSystemType[] = ["QSHS", "VS", "XPL", "BAYG", "SLIDING", "PEDESTRIAN"];
+const SYSTEMS: ParsedSystemType[] = ["QSHS", "VS", "XPL", "BAYG", "SLIDING", "PEDESTRIAN", "AF_TIMBER_PALING", "AF_COLORBOND", "AF_RETAINING_WALL"];
 const COLOURS = ["B", "MN", "G", "SM", "W", "BS", "D", "M", "P", "PB", "S"] as const;
 
 function chipClass(confidence: Confidence) {
