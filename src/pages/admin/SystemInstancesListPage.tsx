@@ -4,9 +4,10 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Search, Plus, Edit2, Trash2 } from 'lucide-react';
 import { AdminLayout } from '../../components/admin/AdminLayout';
 import { listSystemInstances, listAllSuppliers, listArchetypes } from '../../lib/multiSupplier/queries';
-import { deleteSystemInstance } from '../../lib/multiSupplier/mutations';
+import { deleteSystemInstance, updateSystemInstanceStatus } from '../../lib/multiSupplier/mutations';
 import { Button } from '../../components/ui/Button';
 import { toast } from 'sonner';
+import { useProfile } from '../../context/ProfileContext';
 
 const TIER_BADGES: Record<string, string> = {
   platform: 'text-brand-accent bg-brand-accent/10 border-brand-accent/30',
@@ -34,6 +35,7 @@ const READINESS_BADGES: Record<string, string> = {
 export function SystemInstancesListPage() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { isAdmin, userType, orgId } = useProfile();
 
   const [search, setSearch] = useState('');
   const [supplierFilter, setSupplierFilter] = useState('');
@@ -50,10 +52,23 @@ export function SystemInstancesListPage() {
     queryFn: listArchetypes,
   });
 
+  // For supplier staff, preset supplier filter to their own supplier id if resolved
+  const userSupplier = useMemo(() => {
+    if (isAdmin) return null;
+    return suppliers.find((s) => s.orgId === orgId);
+  }, [suppliers, orgId, isAdmin]);
+
+  const effectiveSupplierFilter = useMemo(() => {
+    if (!isAdmin && userType === 'supplier_staff') {
+      return userSupplier?.id || 'NO_SUPPLIER_FOUND';
+    }
+    return supplierFilter;
+  }, [isAdmin, userType, userSupplier, supplierFilter]);
+
   const { data: instances = [], isLoading, error } = useQuery({
-    queryKey: ['admin', 'instances', supplierFilter, archetypeFilter],
+    queryKey: ['admin', 'instances', effectiveSupplierFilter, archetypeFilter],
     queryFn: () => listSystemInstances({
-      supplierId: supplierFilter || undefined,
+      supplierId: effectiveSupplierFilter || undefined,
       archetypeId: archetypeFilter || undefined,
     }),
   });
@@ -69,12 +84,32 @@ export function SystemInstancesListPage() {
     },
   });
 
+  const toggleStatusMutation = useMutation({
+    mutationFn: ({ id, status }: { id: string; status: any }) => updateSystemInstanceStatus(id, status),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['admin', 'instances'] });
+      toast.success('Calculator status updated successfully');
+    },
+    onError: (err: any) => {
+      toast.error(`Failed to update calculator status: ${err.message}`);
+    },
+  });
+
+  const handleToggleStatus = (id: string, currentStatus: string) => {
+    const newStatus = currentStatus === 'active' ? 'hidden' : 'active';
+    toggleStatusMutation.mutate({ id, status: newStatus });
+  };
+
   // Pre-calculate maps for fast name resolving
   const supplierMap = useMemo(() => new Map(suppliers.map((s) => [s.id, s.name])), [suppliers]);
   const archetypeMap = useMemo(() => new Map(archetypes.map((a) => [a.id, a.name])), [archetypes]);
 
   const filteredInstances = useMemo(() => {
-    return instances.filter((inst) => {
+    let result = instances;
+    if (!isAdmin && userType === 'supplier_staff' && orgId) {
+      result = instances.filter((inst) => inst.orgId === orgId);
+    }
+    return result.filter((inst) => {
       const term = search.toLowerCase();
       const supplierName = inst.supplierId ? (supplierMap.get(inst.supplierId) || '') : '';
       const archetypeName = archetypeMap.get(inst.archetypeId) || '';
@@ -86,7 +121,7 @@ export function SystemInstancesListPage() {
         archetypeName.toLowerCase().includes(term)
       );
     });
-  }, [instances, search, supplierMap, archetypeMap]);
+  }, [instances, search, supplierMap, archetypeMap, isAdmin, userType, orgId]);
 
   const handleDelete = async (id: string, name: string) => {
     if (window.confirm(`Are you sure you want to delete system instance "${name}"? This action cannot be undone.`)) {
@@ -113,19 +148,21 @@ export function SystemInstancesListPage() {
             />
           </div>
 
-          <select
-            value={supplierFilter}
-            onChange={(e) => setSupplierFilter(e.target.value)}
-            className="text-sm bg-brand-card border border-brand-border rounded-lg px-3 py-2 text-brand-text focus:outline-none focus:border-brand-accent min-w-[150px]"
-            data-testid="instance-supplier-filter"
-          >
-            <option value="">All Suppliers</option>
-            {suppliers.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.name}
-              </option>
-            ))}
-          </select>
+          {isAdmin && (
+            <select
+              value={supplierFilter}
+              onChange={(e) => setSupplierFilter(e.target.value)}
+              className="text-sm bg-brand-card border border-brand-border rounded-lg px-3 py-2 text-brand-text focus:outline-none focus:border-brand-accent min-w-[150px]"
+              data-testid="instance-supplier-filter"
+            >
+              <option value="">All Suppliers</option>
+              {suppliers.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+          )}
 
           <select
             value={archetypeFilter}
@@ -142,14 +179,16 @@ export function SystemInstancesListPage() {
           </select>
         </div>
 
-        <Button
-          onClick={() => navigate('/admin/system-instances/new')}
-          variant="primary"
-          icon={Plus}
-          data-testid="create-instance-btn"
-        >
-          New Instance
-        </Button>
+        {isAdmin && (
+          <Button
+            onClick={() => navigate('/admin/system-instances/new')}
+            variant="primary"
+            icon={Plus}
+            data-testid="create-instance-btn"
+          >
+            New Instance
+          </Button>
+        )}
       </div>
 
       {isLoading ? (
@@ -200,9 +239,25 @@ export function SystemInstancesListPage() {
                     </td>
                     <td className="px-4 py-3 font-mono text-brand-muted">{inst.visibility}</td>
                     <td className="px-4 py-3">
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded border uppercase tracking-wider font-semibold ${STATUS_BADGES[inst.status]}`}>
-                        {inst.status}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => handleToggleStatus(inst.id, inst.status)}
+                          disabled={toggleStatusMutation.isPending}
+                          className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                            inst.status === 'active' ? 'bg-brand-accent' : 'bg-brand-border/40'
+                          } disabled:opacity-50`}
+                          title={inst.status === 'active' ? 'Click to hide this calculator' : 'Click to activate this calculator'}
+                        >
+                          <span
+                            className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                              inst.status === 'active' ? 'translate-x-4' : 'translate-x-0'
+                            }`}
+                          />
+                        </button>
+                        <span className={`text-[10px] px-1.5 py-0.5 rounded border uppercase tracking-wider font-semibold ${STATUS_BADGES[inst.status]}`}>
+                          {inst.status}
+                        </span>
+                      </div>
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">
@@ -214,15 +269,17 @@ export function SystemInstancesListPage() {
                         >
                           <Edit2 size={13} />
                         </Link>
-                        <button
-                          onClick={() => handleDelete(inst.id, inst.name)}
-                          className="p-1 text-brand-muted hover:text-brand-danger transition-colors disabled:opacity-40"
-                          title="Delete Instance"
-                          disabled={deleteMutation.isPending}
-                          data-testid="delete-instance-btn"
-                        >
-                          <Trash2 size={13} />
-                        </button>
+                        {isAdmin && (
+                          <button
+                            onClick={() => handleDelete(inst.id, inst.name)}
+                            className="p-1 text-brand-muted hover:text-brand-danger transition-colors disabled:opacity-40"
+                            title="Delete Instance"
+                            disabled={deleteMutation.isPending}
+                            data-testid="delete-instance-btn"
+                          >
+                            <Trash2 size={13} />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>

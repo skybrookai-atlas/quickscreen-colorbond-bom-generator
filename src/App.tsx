@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import { queryClient } from "./lib/queryClient";
 import { AuthGuard } from "./components/auth/AuthGuard";
 import { AdminGuard } from "./components/auth/AdminGuard";
+import { SupplierOrAdminGuard } from "./components/auth/SupplierOrAdminGuard";
 import { LoginPage } from "./pages/LoginPage";
 import { QuotesHistoryPage } from "./pages/QuotesHistoryPage";
 import { CalculatorV3Page } from "./pages/CalculatorV3Page";
@@ -245,9 +246,9 @@ const router = createBrowserRouter([
       {
         path: "/admin/system-instances",
         element: (
-          <AdminGuard>
+          <SupplierOrAdminGuard>
             <SystemInstancesListPage />
-          </AdminGuard>
+          </SupplierOrAdminGuard>
         ),
       },
       {
@@ -261,9 +262,9 @@ const router = createBrowserRouter([
       {
         path: "/admin/system-instances/:id/edit",
         element: (
-          <AdminGuard>
+          <SupplierOrAdminGuard>
             <SystemInstanceEditPage />
-          </AdminGuard>
+          </SupplierOrAdminGuard>
         ),
       },
       { path: "*", element: <NotFoundPage asNotFound /> },

@@ -1,0 +1,112 @@
+{
+  "id": "AF_COLORBOND-gate",
+  "description": "AF_COLORBOND 10m run with 1m single gate: fence(4.5m) + gate(1m) + fence(4.5m). Checks that exactly two 65x65 steel posts, stiles, sheet, rail, and Magna Latch kit are generated.",
+  "input": {
+    "pricingTier": "tier1",
+    "supplierSlug": "amazing-fencing",
+    "payload": {
+      "productCode": "AF_COLORBOND",
+      "schemaVersion": "v2",
+      "variables": {
+        "colour": "Monument",
+        "mounting_type": "concreted-in-ground",
+        "max_panel_width_mm": 2365
+      },
+      "runs": [
+        {
+          "runId": "run-001",
+          "segments": [
+            {
+              "segmentId": "seg-001",
+              "sortOrder": 0,
+              "kind": "fence",
+              "productCode": "AF_COLORBOND",
+              "segmentWidthMm": 4500,
+              "targetHeightMm": 1800,
+              "leftTermination": {
+                "kind": "system"
+              },
+              "rightTermination": {
+                "kind": "segment_join",
+                "angleDeg": 0
+              }
+            },
+            {
+              "segmentId": "seg-002",
+              "sortOrder": 1,
+              "kind": "gate",
+              "productCode": "QS_GATE",
+              "segmentWidthMm": 1000,
+              "targetHeightMm": 1800,
+              "leftTermination": {
+                "kind": "segment_join",
+                "angleDeg": 0
+              },
+              "rightTermination": {
+                "kind": "segment_join",
+                "angleDeg": 0
+              },
+              "variables": {
+                "colour": "Monument",
+                "gate_movement": "single_swing",
+                "hinge_type": "standard",
+                "latch_type": "dd-magna-latch-top-pull"
+              }
+            },
+            {
+              "segmentId": "seg-003",
+              "sortOrder": 2,
+              "kind": "fence",
+              "productCode": "AF_COLORBOND",
+              "segmentWidthMm": 4500,
+              "targetHeightMm": 1800,
+              "leftTermination": {
+                "kind": "segment_join",
+                "angleDeg": 0
+              },
+              "rightTermination": {
+                "kind": "system"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "expect": {
+    "errors": [],
+    "suggestions": [],
+    "lines": [
+      {
+        "sku": "65x65postWithPlasticCap2400PreGalMONUMENT",
+        "qty": 2,
+        "category": "post",
+        "name": "65x65 post"
+      },
+      {
+        "sku": "1820OriginalGateStyleStripPreGalSetMONUMENT",
+        "qty": 1,
+        "category": "gate",
+        "name": "Original Gate Style Strip Pre Gal Set"
+      },
+      {
+        "sku": "FZSMO17",
+        "qty": 13,
+        "category": "sheet",
+        "name": "Metzag Colorbond® Infill Sheet 1790 MONUMENT"
+      },
+      {
+        "sku": "FRMMO23",
+        "qty": 9,
+        "category": "rail",
+        "name": "Colorbond® Fence Rail 2365 MONUMENT"
+      },
+      {
+        "sku": "SKU-190525032711",
+        "qty": 1,
+        "category": "gate_latch",
+        "name": "D&D Magna Latch Kit"
+      }
+    ]
+  }
+}
