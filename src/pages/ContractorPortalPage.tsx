@@ -88,55 +88,55 @@ export function ContractorPortalPage() {
 
           {/* Quick Stats / Actions */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="bg-brand-card border border-brand-border/60 rounded-2xl p-6 hover:border-brand-primary/40 transition-all shadow-sm flex flex-col justify-between">
+            <div className="premium-card hover-lift p-6 shadow-sm flex flex-col justify-between">
               <div>
-                <span className="text-xs font-semibold text-brand-primary uppercase tracking-widest">Pricing Strategy</span>
-                <h3 className="text-xl font-bold mt-2">Dynamic Switcher</h3>
-                <p className="text-xs text-brand-muted mt-1 leading-relaxed">
+                <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider bg-brand-primary/10 border border-brand-primary/20 px-2.5 py-0.5 rounded-full inline-block">Pricing Strategy</span>
+                <h3 className="text-lg font-black text-brand-text mt-3">Dynamic Switcher</h3>
+                <p className="text-xs text-brand-muted mt-1.5 leading-relaxed">
                   Swap pricing books on any active quote instantly. Select another supplier inside the sidebar to compare margins.
                 </p>
               </div>
-              <Link to="/quotes" className="mt-4 block">
-                <Button className="w-full" variant="secondary" size="small">View Quotes List</Button>
+              <Link to="/quotes" className="mt-5 block">
+                <Button className="w-full justify-center" variant="secondary" size="small">View Quotes List</Button>
               </Link>
             </div>
 
-            <div className="bg-brand-card border border-brand-border/60 rounded-2xl p-6 hover:border-brand-primary/40 transition-all shadow-sm flex flex-col justify-between">
+            <div className="premium-card hover-lift p-6 shadow-sm flex flex-col justify-between">
               <div>
-                <span className="text-xs font-semibold text-brand-accent uppercase tracking-widest">Shared Network</span>
-                <h3 className="text-xl font-bold mt-2">National Marketplace</h3>
-                <p className="text-xs text-brand-muted mt-1 leading-relaxed">
+                <span className="text-[10px] font-extrabold text-brand-accent uppercase tracking-wider bg-brand-accent/10 border border-brand-accent/20 px-2.5 py-0.5 rounded-full inline-block">Shared Network</span>
+                <h3 className="text-lg font-black text-brand-text mt-3">National Marketplace</h3>
+                <p className="text-xs text-brand-muted mt-1.5 leading-relaxed">
                   Browse custom calculators, templates, and layouts created by community builders. Clone to your sandbox.
                 </p>
               </div>
-              <Link to="/marketplace" className="mt-4 block">
-                <Button className="w-full" variant="secondary" size="small">Browse Marketplace</Button>
+              <Link to="/marketplace" className="mt-5 block">
+                <Button className="w-full justify-center" variant="secondary" size="small">Browse Marketplace</Button>
               </Link>
             </div>
 
-            <div className="bg-brand-card border border-brand-border/60 rounded-2xl p-6 hover:border-brand-primary/40 transition-all shadow-sm flex flex-col justify-between">
+            <div className="premium-card hover-lift p-6 shadow-sm flex flex-col justify-between">
               <div>
-                <span className="text-xs font-semibold text-green-500 uppercase tracking-widest">Calculators Creator</span>
-                <h3 className="text-xl font-bold mt-2">Calculator Builder</h3>
-                <p className="text-xs text-brand-muted mt-1 leading-relaxed">
+                <span className="text-[10px] font-extrabold text-green-500 uppercase tracking-wider bg-green-500/10 border border-green-500/20 px-2.5 py-0.5 rounded-full inline-block">Calculators Creator</span>
+                <h3 className="text-lg font-black text-brand-text mt-3">Calculator Builder</h3>
+                <p className="text-xs text-brand-muted mt-1.5 leading-relaxed">
                   Build variables, algebraic rules, SKU selector matrices, and test suites visually. Keep private or publish.
                 </p>
               </div>
-              <Link to="/builder" className="mt-4 block">
-                <Button className="w-full" variant="primary" size="small" icon={Plus}>Create Calculator</Button>
+              <Link to="/builder" className="mt-5 block">
+                <Button className="w-full justify-center" variant="primary" size="small" icon={Plus}>Create Calculator</Button>
               </Link>
             </div>
 
-            <div className="bg-brand-card border border-brand-border/60 rounded-2xl p-6 hover:border-brand-primary/40 transition-all shadow-sm flex flex-col justify-between">
+            <div className="premium-card hover-lift p-6 shadow-sm flex flex-col justify-between">
               <div>
-                <span className="text-xs font-semibold text-amber-500 uppercase tracking-widest">Client Engagement</span>
-                <h3 className="text-xl font-bold mt-2">Embeddable Portal</h3>
-                <p className="text-xs text-brand-muted mt-1 leading-relaxed">
+                <span className="text-[10px] font-extrabold text-amber-500 uppercase tracking-wider bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 rounded-full inline-block">Client Engagement</span>
+                <h3 className="text-lg font-black text-brand-text mt-3">Embeddable Portal</h3>
+                <p className="text-xs text-brand-muted mt-1.5 leading-relaxed">
                   Share this interactive estimator with clients so they can map runs, upload videos, and generate rough estimates.
                 </p>
               </div>
-              <Link to="/embed/skybrook-fencing" className="mt-4 block">
-                <Button className="w-full" variant="secondary" size="small">Preview Client Embed</Button>
+              <Link to="/embed/skybrook-fencing" className="mt-5 block">
+                <Button className="w-full justify-center" variant="secondary" size="small">Preview Client Embed</Button>
               </Link>
             </div>
           </div>
@@ -155,7 +155,7 @@ export function ContractorPortalPage() {
               </div>
 
               {systemInstances.filter(inst => !inst.supplierId).length === 0 ? (
-                <div className="p-8 bg-brand-card/40 border border-dashed border-brand-border rounded-2xl text-center text-brand-muted text-sm">
+                <div className="p-8 bg-brand-card/40 border border-dashed border-brand-border rounded-2xl text-center text-brand-muted text-sm animate-fade-in-scale">
                   No generic templates currently configured.
                 </div>
               ) : (
@@ -166,15 +166,15 @@ export function ContractorPortalPage() {
                       <Link
                         key={calc.id}
                         to={`/calculator/${calc.slug}`}
-                        className="group bg-brand-card border border-brand-border/60 hover:border-brand-primary/50 hover:shadow-md rounded-2xl p-5 flex flex-col justify-between transition-all"
+                        className="group premium-card hover-lift p-5 flex flex-col justify-between transition-all"
                       >
                         <div>
-                          <div className="flex items-center justify-between mb-3">
-                            <span className="text-[10px] bg-brand-primary/10 border border-brand-primary/20 text-brand-primary font-bold px-2 py-0.5 rounded-full">
+                          <div className="flex items-center justify-between mb-3.5">
+                            <span className="text-[9px] bg-brand-primary/10 border border-brand-primary/20 text-brand-primary font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wide">
                               Generic Template
                             </span>
                             {calc.aiVettingStatus === "passed" && (
-                              <span className="text-[10px] bg-green-500/10 border border-green-500/20 text-green-400 font-bold px-2 py-0.5 rounded-full">
+                              <span className="text-[9px] bg-green-500/10 border border-green-500/20 text-green-500 dark:text-green-400 font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wide">
                                 Vetted
                               </span>
                             )}
@@ -182,11 +182,11 @@ export function ContractorPortalPage() {
                           <h3 className="font-bold text-base text-brand-text group-hover:text-brand-primary transition-colors">
                             {calc.name}
                           </h3>
-                          <p className="text-xs text-brand-muted mt-1 leading-relaxed">
+                          <p className="text-xs text-brand-muted mt-1.5 leading-relaxed">
                             {calc.description || "Supplier-agnostic parameter & BOM estimator."}
                           </p>
                         </div>
-                        <div className="flex items-center gap-1 text-xs font-bold text-brand-primary mt-4 group-hover:gap-1.5 transition-all">
+                        <div className="flex items-center gap-1 text-xs font-bold text-brand-primary mt-5 group-hover:gap-1.5 transition-all">
                           Open Template
                           <ChevronRight size={14} />
                         </div>

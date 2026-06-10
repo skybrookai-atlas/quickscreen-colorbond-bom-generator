@@ -276,35 +276,35 @@ function BOMTable({
       customerMode={customerMode}
       bunningsEnabled={bunningsEnabled}
     />
-    <div className="hidden overflow-x-auto md:block" data-testid="bom-desktop-table">
+    <div className="hidden overflow-x-auto md:block border border-brand-border/60 rounded-xl shadow-sm bg-brand-card" data-testid="bom-desktop-table">
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="bg-brand-bg/80">
-            <th className="py-2.5 px-3 text-xs font-semibold text-brand-muted uppercase tracking-wider whitespace-nowrap">
+          <tr className="bg-brand-bg/65 border-b border-brand-border/50">
+            <th className="py-3.5 px-4 text-[10px] font-extrabold text-brand-muted uppercase tracking-wider whitespace-nowrap">
               Code
             </th>
-            <th className="py-2.5 px-3 text-xs font-semibold text-brand-muted uppercase tracking-wider">
+            <th className="py-3.5 px-4 text-[10px] font-extrabold text-brand-muted uppercase tracking-wider">
               Description
             </th>
-            <th className="hidden py-2.5 px-3 text-xs font-semibold text-brand-muted uppercase tracking-wider text-center sm:table-cell">
+            <th className="hidden py-3.5 px-4 text-[10px] font-extrabold text-brand-muted uppercase tracking-wider text-center sm:table-cell">
               Unit
             </th>
-            <th className="py-2.5 px-3 text-xs font-semibold text-brand-muted uppercase tracking-wider text-right">
+            <th className="py-3.5 px-4 text-[10px] font-extrabold text-brand-muted uppercase tracking-wider text-right">
               Qty
             </th>
             {!customerMode && (
               <>
-                <th className="hidden py-2.5 px-3 text-xs font-semibold text-brand-muted uppercase tracking-wider text-right whitespace-nowrap sm:table-cell">
+                <th className="hidden py-3.5 px-4 text-[10px] font-extrabold text-brand-muted uppercase tracking-wider text-right whitespace-nowrap sm:table-cell">
                   Unit $
                 </th>
-                <th className="py-2.5 px-3 text-xs font-semibold text-brand-muted uppercase tracking-wider text-right">
+                <th className="py-3.5 px-4 text-[10px] font-extrabold text-brand-muted uppercase tracking-wider text-right">
                   Line $
                 </th>
               </>
             )}
             {editable && (
-              <th className="py-2.5 px-3 text-xs font-semibold text-brand-muted uppercase tracking-wider text-right print:hidden">
-                Edit
+              <th className="py-3.5 px-4 text-[10px] font-extrabold text-brand-muted uppercase tracking-wider text-right print:hidden">
+                Actions
               </th>
             )}
           </tr>
@@ -594,10 +594,10 @@ function ItemGroup({
   let lastSubCategory = "";
   return (
     <>
-      <tr className="border-t border-brand-border">
+      <tr className="border-t border-brand-border/60">
         <td
           colSpan={editable ? (customerMode ? 5 : 7) : (customerMode ? 4 : 6)}
-          className="px-3 py-1.5 bg-slate-300/15 border-b border-brand-border capitalize text-xs font-semibold text-brand-muted tracking-wider"
+          className="px-4 py-2 bg-brand-bg/40 border-b border-brand-border/40 capitalize text-[11px] font-bold text-brand-muted tracking-wide"
         >
           {humanizeCategory(category)}
         </td>
@@ -628,7 +628,7 @@ function ItemGroup({
               <tr key={`${category}-${subCategory}-heading`}>
                 <td
                   colSpan={editable ? (customerMode ? 5 : 7) : (customerMode ? 4 : 6)}
-                  className="px-3 pt-3 pb-1 text-[11px] font-extrabold uppercase tracking-wide text-brand-muted"
+                  className="px-4 pt-3.5 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-brand-muted/80 bg-brand-card"
                 >
                   {humanizeSubCategory(subCategory)}
                 </td>
@@ -645,31 +645,31 @@ function ItemGroup({
           onMouseLeave={() => {
             if (diagramNumbers.length > 0) setGateDiagramHover(null);
           }}
-          className={`border-b border-brand-border last:border-0 transition-colors ${
+          className={`border-b border-brand-border/40 last:border-0 transition-colors ${
             diagramHighlighted
-              ? "bg-brand-warning/15 ring-1 ring-inset ring-brand-warning/50"
+              ? "bg-brand-warning/10 ring-1 ring-inset ring-brand-warning/30"
               : "hover:bg-brand-accent/5"
           } ${
-            isFallback ? "border-l-4 border-l-brand-warning bg-brand-warning/5" : ""
+            isFallback ? "border-l-2 border-l-brand-warning bg-brand-warning/5" : ""
           }`}
         >
-          <td className="py-2.5 px-3 text-xs font-mono text-brand-accent whitespace-nowrap">
+          <td className="py-3 px-4 text-xs font-mono text-brand-accent whitespace-nowrap">
             <span className="inline-flex flex-wrap items-center gap-1.5">
               <GateDiagramBadges numbers={diagramNumbers} />
               {item.sku}
               <PageChip sku={item.sku} />
             </span>
           </td>
-          <td className="py-2.5 px-3 text-sm text-brand-text">
+          <td className="py-3 px-4 text-sm text-brand-text">
             <div className="flex flex-wrap items-center gap-1.5">
-              <span>{stripParentheticalDispatchCode(item.description)}</span>
+              <span className="font-medium">{stripParentheticalDispatchCode(item.description)}</span>
               {item.unitPrice !== null && item.unitPrice <= 0 && (
-                <span className="rounded-full border border-brand-warning/40 bg-brand-warning/10 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-warning print:hidden">
+                <span className="rounded-full border border-brand-warning/30 bg-brand-warning/10 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-brand-warning print:hidden">
                   Price not set
                 </span>
               )}
               {item.notes && (
-                <span className="text-xs text-brand-warning print:hidden">
+                <span className="text-xs text-brand-warning font-semibold print:hidden">
                   {item.notes}
                 </span>
               )}
@@ -677,7 +677,7 @@ function ItemGroup({
                 <button
                   type="button"
                   onClick={() => onSwitchEconomyToStandard?.(item)}
-                  className="rounded-full border border-brand-warning/40 bg-brand-warning/10 px-2 py-0.5 text-[11px] font-bold text-brand-warning transition-colors hover:bg-brand-warning/20"
+                  className="rounded-lg border border-brand-warning/30 bg-brand-warning/10 px-2.5 py-0.5 text-[10px] font-extrabold text-brand-warning transition-colors hover:bg-brand-warning/20"
                 >
                   Switch
                 </button>
@@ -734,43 +734,45 @@ function ItemGroup({
                 </button>
               </div>
             )}
-            {hint && (
-              <p className="mt-1 text-[11px] font-semibold text-brand-success print:hidden">
-                {hint.more} more to unlock a lower unit price
-                {hint.savingPct ? ` (save ${hint.savingPct}%)` : ""}
-              </p>
-            )}
-            {cartonHint && (
-              <p className="mt-1 inline-flex rounded-full border border-brand-success/30 bg-brand-success/10 px-2 py-0.5 text-[11px] font-bold text-brand-success print:hidden">
-                {cartonHint.more} more for a carton ({cartonHint.cartonQty} {cartonHint.label})
-                {cartonHint.saving > 0 ? ` - save ~$${cartonHint.saving}` : ""}
-              </p>
-            )}
-            {bulkBuySku && (
-              <p
-                className={`mt-1 inline-flex rounded-full border px-2 py-0.5 text-[11px] font-bold print:hidden ${
-                  bulkBuySaving > 0
-                    ? "border-brand-success/30 bg-brand-success/10 text-brand-success"
-                    : "border-brand-border bg-brand-bg text-brand-muted"
-                }`}
-                title={`Bulk-buy variant: ${bulkBuySku}`}
-              >
-                Bulk buy {bulkBuySku}
-                {bulkBuySaving > 0
-                  ? ` saves $${formatMoney(bulkBuySaving)} each`
-                  : " available"}
-              </p>
-            )}
+            <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
+              {hint && (
+                <span className="inline-flex items-center rounded border border-green-500/20 bg-green-500/10 px-1.5 py-0.5 text-[10px] font-medium text-brand-success print:hidden">
+                  {hint.more} more to unlock lower price
+                  {hint.savingPct ? ` (save ${hint.savingPct}%)` : ""}
+                </span>
+              )}
+              {cartonHint && (
+                <span className="inline-flex items-center rounded border border-brand-success/20 bg-brand-success/10 px-1.5 py-0.5 text-[10px] font-medium text-brand-success print:hidden">
+                  {cartonHint.more} more for carton ({cartonHint.cartonQty} {cartonHint.label})
+                  {cartonHint.saving > 0 ? ` - save ~$${cartonHint.saving}` : ""}
+                </span>
+              )}
+              {bulkBuySku && (
+                <span
+                  className={`inline-flex items-center rounded border px-1.5 py-0.5 text-[10px] font-medium print:hidden ${
+                    bulkBuySaving > 0
+                      ? "border-brand-success/20 bg-brand-success/10 text-brand-success"
+                      : "border-brand-border/60 bg-brand-bg/60 text-brand-muted"
+                  }`}
+                  title={`Bulk-buy variant: ${bulkBuySku}`}
+                >
+                  Bulk buy {bulkBuySku}
+                  {bulkBuySaving > 0
+                    ? ` saves $${formatMoney(bulkBuySaving)} each`
+                    : " available"}
+                </span>
+              )}
+            </div>
             {sourceText && item.sources && item.sources.length > 1 && (
-              <p className="mt-1 text-[11px] font-semibold text-brand-muted print:hidden">
+              <p className="mt-1.5 text-[10px] font-medium text-brand-muted print:hidden">
                 Sources: {sourceText}
               </p>
             )}
           </td>
-          <td className="hidden py-2.5 px-3 text-sm text-brand-muted text-center sm:table-cell">
+          <td className="hidden py-3 px-4 text-sm text-brand-muted text-center sm:table-cell">
             {unitLabel(item)}
           </td>
-          <td className="py-2.5 px-3 text-sm text-brand-text text-right tabular-nums">
+          <td className="py-3 px-4 text-sm text-brand-text text-right tabular-nums">
             {editable ? (
               <>
                 <input
@@ -781,7 +783,7 @@ function ItemGroup({
                   onChange={(event) =>
                     onQuantityChange?.(item, Number(event.target.value))
                   }
-                  className="w-20 rounded-lg border border-brand-border bg-brand-card px-2 py-1 text-right text-sm font-semibold text-brand-text shadow-sm outline-none transition-colors focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 print:hidden"
+                  className="w-16 rounded-lg border border-brand-border bg-brand-card px-2 py-0.5 text-right text-xs font-bold text-brand-text outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 print:hidden"
                   aria-label={`Quantity for ${item.sku}`}
                 />
                 <span className="hidden print:inline">{item.quantity}</span>
@@ -792,20 +794,20 @@ function ItemGroup({
           </td>
           {!customerMode && (
             <>
-              <td className="hidden py-2.5 px-3 text-sm text-brand-muted text-right tabular-nums sm:table-cell">
+              <td className="hidden py-3 px-4 text-sm text-brand-muted text-right tabular-nums sm:table-cell">
                 {item.unitPrice !== null && item.unitPrice !== undefined ? `$${formatMoney(item.unitPrice)}` : "Price TBC"}
               </td>
-              <td className="py-2.5 px-3 text-sm text-brand-text font-medium text-right tabular-nums">
+              <td className="py-3 px-4 text-sm text-brand-text font-bold text-right tabular-nums">
                 {item.lineTotal !== null && item.lineTotal !== undefined ? `$${formatMoney(item.lineTotal)}` : "Price TBC"}
               </td>
             </>
           )}
           {editable && (
-            <td className="py-2.5 px-3 text-right print:hidden">
+            <td className="py-3 px-4 text-right print:hidden">
               <button
                 type="button"
                 onClick={() => onRemoveLine?.(item)}
-                className="rounded px-2 py-1 text-xs font-medium text-brand-danger transition-colors hover:bg-brand-danger/10"
+                className="rounded-lg px-2 py-1 text-xs font-semibold text-brand-danger border border-transparent hover:border-brand-danger/25 hover:bg-brand-danger/10 transition-all"
               >
                 Remove
               </button>
@@ -900,24 +902,24 @@ export function BOMResultTabs({
   return (
     <div>
       {/* Tab bar */}
-      <div className="flex border-b border-brand-border mb-4 overflow-x-auto print:hidden">
+      <div className="flex border-b border-brand-border/50 mb-5 overflow-x-auto print:hidden gap-1.5 custom-scrollbar">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             type="button"
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2.5 text-sm font-medium border-b-2 -mb-px transition-colors flex items-center gap-1.5 whitespace-nowrap ${
+            className={`px-4 py-3 text-xs font-bold border-b-2 -mb-px transition-all flex items-center gap-2 whitespace-nowrap ${
               activeTab === tab.id
-                ? "border-brand-accent text-brand-accent"
-                : "border-transparent text-brand-muted hover:text-brand-text hover:border-brand-border"
+                ? "border-brand-accent text-brand-accent shadow-[inset_0_-2px_0_0_rgba(var(--brand-primary),1)]"
+                : "border-transparent text-brand-muted hover:text-brand-text hover:border-brand-border/40"
             }`}
           >
-            {tab.label}
+            <span>{tab.label}</span>
             <span
-              className={`text-xs px-1.5 py-0.5 rounded-full font-medium leading-none ${
+              className={`text-[10px] px-2 py-0.5 rounded-full font-bold leading-none transition-colors ${
                 activeTab === tab.id
                   ? "bg-brand-accent/15 text-brand-accent"
-                  : "bg-brand-border/60 text-brand-muted"
+                  : "bg-brand-bg text-brand-muted"
               }`}
             >
               {tab.count}

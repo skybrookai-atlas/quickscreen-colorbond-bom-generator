@@ -147,7 +147,7 @@ export async function runFixtures(): Promise<void> {
     let email = defaultEmail;
 
     if (productCode.startsWith("AF_") || fixture.id.startsWith("AF_")) {
-      email = "test@amazing-fencing.com";
+      email = "admin@amazing-fencing.com";
     }
 
     if (tokenCache.has(email)) {

@@ -19,14 +19,19 @@ import {
   ChevronLeft, 
   ChevronRight,
   Database,
-  Users
+  Users,
+  Sliders
 } from "lucide-react";
 import { toast } from "sonner";
+import { useProfile } from "../context/ProfileContext";
 
 export function SupplierPortalPage() {
   const navigate = useNavigate();
   const { supplier, isLoading, branding, logoUrl, bannerUrl } = useBranding();
+  const { user, userType, orgSlug } = useProfile();
   const [activeTab, setActiveTab] = useState<"builder" | "contractors" | "prices">("builder");
+
+  const canManage = !!user && (userType === 'admin' || (userType === 'supplier_staff' && orgSlug === supplier?.slug));
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
@@ -140,6 +145,18 @@ export function SupplierPortalPage() {
                 {supplier.metadata?.description as string ?? "Fencing and screening calculators customized for your layout requirements."}
               </p>
             </div>
+            {canManage && (
+              <div className="flex shrink-0">
+                <Button
+                  onClick={() => navigate('/admin/system-instances')}
+                  variant="secondary"
+                  className="bg-brand-card/90 hover:bg-brand-card text-brand-text border-brand-border/60 font-bold text-xs shadow-md hover:shadow-lg transition-all"
+                >
+                  <Sliders size={14} className="mr-1.5 text-brand-accent" />
+                  Manage Calculators
+                </Button>
+              </div>
+            )}
             {isAmazing && (
               <div className="sm:hidden flex justify-start">
                 <AmazingFencingLogo className="scale-75 origin-left" />
@@ -291,7 +308,7 @@ export function SupplierPortalPage() {
           <Link
             key={instance.id}
             to={`/s/${supplier!.slug}/calculator/${instance.slug}`}
-            className="group bg-brand-card hover:bg-brand-border/5 border border-brand-border/60 hover:border-brand-primary/50 transition-all rounded-xl p-5 shadow-sm hover:shadow flex flex-col justify-between"
+            className="group premium-card hover-lift p-5 flex flex-col justify-between"
           >
             <div>
               <h3 className="text-base font-black text-brand-text group-hover:text-brand-primary transition-colors">
@@ -302,10 +319,10 @@ export function SupplierPortalPage() {
               </p>
             </div>
             <div className="mt-4 flex items-center justify-between text-xs font-semibold text-brand-primary pt-2 border-t border-brand-border/30">
-              <span className="text-[10px] px-1.5 py-0.5 rounded border border-brand-primary/30 uppercase tracking-wider font-semibold bg-brand-primary/10">
+              <span className="text-[9px] px-2 py-0.5 rounded border border-brand-primary/30 uppercase tracking-wider font-extrabold bg-brand-primary/10">
                 {instance.trustTier}
               </span>
-              <span className="inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              <span className="inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform font-bold">
                 Open Calculator
                 <ArrowRight size={14} />
               </span>
@@ -459,30 +476,30 @@ export function SupplierPortalPage() {
             <p className="text-xs text-brand-muted mt-1">Try adjusting your search terms.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border-collapse">
+          <div className="overflow-x-auto border border-brand-border/60 rounded-xl shadow-sm bg-brand-card">
+            <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-brand-border/60 text-brand-muted uppercase font-bold tracking-wider">
-                  <th className="py-3 px-4">SKU</th>
-                  <th className="py-3 px-4">Description</th>
-                  <th className="py-3 px-4">Category</th>
-                  <th className="py-3 px-4">Unit</th>
-                  <th className="py-3 px-4 text-right">Trade (T2)</th>
-                  <th className="py-3 px-4 text-right">Retail (T1)</th>
-                  <th className="py-3 px-4 text-right">Wholesale (T3)</th>
+                <tr className="bg-brand-bg/65 border-b border-brand-border/50 text-[10px] font-extrabold text-brand-muted uppercase tracking-wider">
+                  <th className="py-3.5 px-4">SKU</th>
+                  <th className="py-3.5 px-4">Description</th>
+                  <th className="py-3.5 px-4">Category</th>
+                  <th className="py-3.5 px-4">Unit</th>
+                  <th className="py-3.5 px-4 text-right">Trade (T2)</th>
+                  <th className="py-3.5 px-4 text-right">Retail (T1)</th>
+                  <th className="py-3.5 px-4 text-right">Wholesale (T3)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-brand-border/40 font-medium text-brand-text">
                 {pricingData.items.map((item, idx) => (
-                  <tr key={idx} className="hover:bg-brand-border/5 transition-colors">
+                  <tr key={idx} className="hover:bg-brand-accent/5 transition-colors border-b border-brand-border/40 last:border-0">
                     <td className="py-3.5 px-4 font-mono font-bold text-brand-primary">{item.sku}</td>
                     <td className="py-3.5 px-4 max-w-xs sm:max-w-md truncate" title={item.name}>{item.name}</td>
                     <td className="py-3.5 px-4">
-                      <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-brand-bg border border-brand-border/50 uppercase text-brand-muted">
+                      <span className="inline-block px-2 py-0.5 rounded text-[9px] font-extrabold bg-brand-bg border border-brand-border/50 uppercase text-brand-muted tracking-wide">
                         {item.category.replace("_", " ")}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 capitalize">{item.unit}</td>
+                    <td className="py-3.5 px-4 capitalize text-brand-muted">{item.unit}</td>
                     <td className="py-3.5 px-4 text-right font-bold text-brand-text font-mono">
                       ${item.tradePrice.toFixed(2)}
                     </td>

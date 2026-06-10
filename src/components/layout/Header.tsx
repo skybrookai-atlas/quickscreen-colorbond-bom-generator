@@ -105,15 +105,15 @@ export function Header({
   const isPrivileged = Boolean(user && (role === 'admin' || role === 'contractor'));
 
   const navLinkCls = ({ isActive }: { isActive: boolean }) =>
-    `text-xs font-medium px-3 py-1.5 rounded-md transition-colors ${isActive
-      ? 'text-brand-text bg-brand-border/40'
-      : 'text-brand-muted hover:text-brand-text hover:bg-brand-border/20'
+    `text-xs font-bold px-3 py-1.5 rounded-lg border transition-all duration-200 ${isActive
+      ? 'text-brand-text bg-brand-border/30 border-brand-border/60 shadow-sm'
+      : 'text-brand-muted border-transparent hover:text-brand-text hover:bg-brand-border/20'
     }`;
 
   const newQuoteLinkCls = ({ isActive }: { isActive: boolean }) =>
-    `flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-md transition-colors ml-1 ${isActive
-      ? 'text-brand-accent bg-brand-accent/15'
-      : 'text-brand-accent hover:bg-brand-accent/10'
+    `flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg border transition-all duration-200 ml-1 ${isActive
+      ? 'text-brand-accent bg-brand-accent/10 border-brand-accent/25 shadow-sm'
+      : 'text-brand-accent border-transparent hover:bg-brand-accent/10 hover:border-brand-accent/25'
     }`;
 
   const showCypressMinimal = isCypressSmokeTest();
@@ -181,27 +181,27 @@ export function Header({
                 <button
                   type="button"
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-1.5 rounded-lg border border-brand-border bg-brand-bg/50 px-2 py-1.5 hover:border-brand-primary transition-colors focus:outline-none"
+                  className="flex items-center gap-1.5 rounded-xl border border-brand-border bg-brand-bg/40 px-2 py-1.5 hover:border-brand-primary/60 hover:bg-brand-bg/75 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
                   aria-haspopup="true"
                   aria-expanded={userMenuOpen}
                 >
                   <div
                     title={user.email ?? ''}
-                    className="h-7 w-7 select-none items-center justify-center rounded-full border border-brand-accent/30 bg-brand-accent/15 text-xs font-semibold text-brand-accent flex"
+                    className="h-7 w-7 select-none items-center justify-center rounded-full border border-brand-accent/30 bg-brand-accent/15 text-xs font-bold text-brand-accent flex transition-transform hover:scale-105"
                   >
                     {initials}
                   </div>
-                  <ChevronDown size={14} className="text-brand-muted" />
+                  <ChevronDown size={14} className="text-brand-muted transition-transform duration-200" style={{ transform: userMenuOpen ? 'rotate(180deg)' : 'none' }} />
                 </button>
 
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-56 rounded-xl border border-brand-border bg-brand-card py-2 shadow-xl z-50 text-xs text-brand-text">
-                    <div className="px-3 py-2 border-b border-brand-border/60">
-                      <p className="font-semibold truncate text-brand-text" title={user.email}>{user.email}</p>
-                      <p className="text-[10px] text-brand-muted uppercase font-bold tracking-wider mt-0.5">{role || 'User'}</p>
+                  <div className="absolute right-0 mt-2 w-56 rounded-xl border border-brand-border/60 glass-panel py-2.5 shadow-2xl z-50 text-xs text-brand-text animate-fade-in-scale">
+                    <div className="px-3 py-2 border-b border-brand-border/60 mb-1">
+                      <p className="font-bold truncate text-brand-text" title={user.email}>{user.email}</p>
+                      <p className="text-[10px] text-brand-muted uppercase font-extrabold tracking-wider mt-0.5">{role || 'User'}</p>
                     </div>
 
-                    <div className="py-1">
+                    <div className="py-1 space-y-0.5 px-1">
                       {onCustomerModeChange && (
                         <button
                           type="button"
@@ -209,9 +209,9 @@ export function Header({
                             onCustomerModeChange(!customerMode);
                             setUserMenuOpen(false);
                           }}
-                          className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-brand-border/20 transition-colors"
+                          className="flex w-full items-center gap-2.5 px-2.5 py-2 text-left rounded-lg text-brand-text hover:bg-brand-accent/10 hover:text-brand-accent transition-colors font-medium"
                         >
-                          {customerMode ? <EyeOff size={16} className="text-brand-muted" /> : <Eye size={16} className="text-brand-muted" />}
+                          {customerMode ? <EyeOff size={15} className="text-brand-muted shrink-0" /> : <Eye size={15} className="text-brand-muted shrink-0" />}
                           <span>{customerMode ? "Switch to Cost Mode" : "Switch to Customer Mode"}</span>
                         </button>
                       )}
@@ -223,9 +223,9 @@ export function Header({
                             setInstallVideosOpen(true);
                             setUserMenuOpen(false);
                           }}
-                          className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-brand-border/20 transition-colors"
+                          className="flex w-full items-center gap-2.5 px-2.5 py-2 text-left rounded-lg text-brand-text hover:bg-brand-accent/10 hover:text-brand-accent transition-colors font-medium"
                         >
-                          <PlayCircle size={16} className="text-brand-muted" />
+                          <PlayCircle size={15} className="text-brand-muted shrink-0" />
                           <span>Install Videos</span>
                         </button>
                       )}
@@ -237,9 +237,9 @@ export function Header({
                             toggle();
                             setUserMenuOpen(false);
                           }}
-                          className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-brand-border/20 transition-colors"
+                          className="flex w-full items-center gap-2.5 px-2.5 py-2 text-left rounded-lg text-brand-text hover:bg-brand-accent/10 hover:text-brand-accent transition-colors font-medium"
                         >
-                          {theme === 'light' ? <Moon size={16} className="text-brand-muted" /> : <Sun size={16} className="text-brand-muted" />}
+                          {theme === 'light' ? <Moon size={15} className="text-brand-muted shrink-0" /> : <Sun size={15} className="text-brand-muted shrink-0" />}
                           <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
                         </button>
                       )}
@@ -248,24 +248,24 @@ export function Header({
                         <Link
                           to="/admin/portal"
                           onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2 px-3 py-2 text-left hover:bg-brand-border/20 transition-colors text-brand-accent font-medium"
+                          className="flex items-center gap-2.5 px-2.5 py-2 text-left rounded-lg text-brand-accent hover:bg-brand-accent/15 transition-colors font-semibold"
                         >
-                          <Shield size={16} className="text-brand-accent" />
+                          <Shield size={15} className="text-brand-accent shrink-0" />
                           <span>Admin Portal</span>
                         </Link>
                       )}
                     </div>
 
-                    <div className="border-t border-brand-border/60 mt-1 pt-1">
+                    <div className="border-t border-brand-border/60 mt-1.5 pt-1.5 px-1">
                       <button
                         type="button"
                         onClick={() => {
                           handleSignOut();
                           setUserMenuOpen(false);
                         }}
-                        className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-brand-danger/10 text-brand-danger transition-colors font-medium"
+                        className="flex w-full items-center gap-2.5 px-2.5 py-2 text-left rounded-lg hover:bg-brand-danger/10 text-brand-danger transition-colors font-semibold"
                       >
-                        <LogOut size={16} className="text-brand-danger" />
+                        <LogOut size={15} className="text-brand-danger shrink-0" />
                         <span>Sign Out</span>
                       </button>
                     </div>

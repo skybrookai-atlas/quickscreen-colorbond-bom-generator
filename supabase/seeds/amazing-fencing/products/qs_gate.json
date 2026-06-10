@@ -1,5 +1,6 @@
 {
   "org_slug": "amazing-fencing",
+  "supplier_slug": "amazing-fencing",
   "products": [
     {
       "system_type": "QS_GATE",
@@ -8,6 +9,9 @@
       "description": "Amazing Fencing Colorbond Pedestrian Gate",
       "active": true,
       "sort_order": 300,
+      "compatible_with_system_types": [
+        "AF_COLORBOND"
+      ],
       "metadata": {
         "_provenance": {
           "supplier_slug": "amazing-fencing",
@@ -43,8 +47,36 @@
       "value_text": "1200",
       "unit": "mm",
       "severity": "error",
-      "applies_when_json": {},
-      "message": "Gate width cannot exceed 1200mm.",
+      "applies_when_json": {
+        "gate_movement": "single_swing"
+      },
+      "message": "Single gate width cannot exceed 1200mm.",
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "name": "max_gate_width_double_mm",
+      "constraint_type": "max",
+      "value_text": "2400",
+      "unit": "mm",
+      "severity": "error",
+      "applies_when_json": {
+        "gate_movement": "double_swing"
+      },
+      "message": "Double gate width cannot exceed 2400mm.",
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "name": "max_gate_width_sliding_mm",
+      "constraint_type": "max",
+      "value_text": "3000",
+      "unit": "mm",
+      "severity": "error",
+      "applies_when_json": {
+        "gate_movement": "sliding"
+      },
+      "message": "Sliding gate width cannot exceed 3000mm.",
       "active": true
     }
   ],
@@ -104,6 +136,54 @@
       "scope": "segment",
       "sort_order": 30,
       "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "name": "gate_movement",
+      "label": "Gate Movement",
+      "data_type": "enum",
+      "required": true,
+      "default_value_json": "single_swing",
+      "options_json": [
+        "single_swing",
+        "double_swing",
+        "sliding"
+      ],
+      "scope": "segment",
+      "sort_order": 40,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "name": "hinge_type",
+      "label": "Hinge Type",
+      "data_type": "enum",
+      "required": true,
+      "default_value_json": "standard",
+      "options_json": [
+        "standard",
+        "none"
+      ],
+      "scope": "run",
+      "sort_order": 50,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "name": "latch_type",
+      "label": "Latch Type",
+      "data_type": "enum",
+      "required": true,
+      "default_value_json": "dd-magna-latch-top-pull",
+      "options_json": [
+        "dd-magna-latch-top-pull",
+        "dd-magna-latch-lock-box",
+        "drop-bolt",
+        "none"
+      ],
+      "scope": "run",
+      "sort_order": 60,
+      "active": true
     }
   ],
   "product_validations": [],
@@ -123,26 +203,288 @@
       "product_system_type": "QS_GATE",
       "rule_set_name": "QS Gate Rules",
       "version_label": "v1.0.0",
-      "stage": "component",
-      "name": "qty_gate",
-      "expression": "1",
-      "output_key": "qty_gate",
-      "priority": 10,
+      "stage": "derive",
+      "name": "leaf_count",
+      "expression": "equalStrings(gate_movement, \"double_swing\") ? 2 : 1",
+      "output_key": "leaf_count",
+      "priority": 20,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "qty_gate_post",
+      "expression": "2",
+      "output_key": "qty_gate_post",
+      "priority": 30,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "post_length",
+      "expression": "gate_height_mm <= 1800 ? 2400 : 3000",
+      "output_key": "post_length",
+      "priority": 40,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "post_colour_suffix",
+      "expression": "(post_length == 2400) ? (equalStrings(colour, \"MO\") ? \"MONUMENT\" : (equalStrings(colour, \"WG\") ? \"WOODLAND GREY\" : (equalStrings(colour, \"SM\") ? \"SURFMIST\" : (equalStrings(colour, \"BA\") ? \"BASALT\" : (equalStrings(colour, \"DU\") ? \"DUNE\" : (equalStrings(colour, \"RS\") ? \"RIVERSAND\" : (equalStrings(colour, \"CG\") ? \"COTTAGEGREEN\" : (equalStrings(colour, \"PB\") ? \" PAPERBARK\" : (equalStrings(colour, \"SG\") ? \"SHALE GREY\" : (equalStrings(colour, \"JA\") ? \"JASPER\" : (equalStrings(colour, \"WS\") ? \"WINDSPRAY\" : (equalStrings(colour, \"EH\") ? \"EVENING HAZE\" : (equalStrings(colour, \"PE\") ? \"PALEEUCALYPT\" : (equalStrings(colour, \"DO\") ? \"DEEP OCEAN\" : (equalStrings(colour, \"MR\") ? \"MANOR RED\" : (equalStrings(colour, \"DM\") ? \"DOMAIN\" : (equalStrings(colour, \"WI\") ? \"WILDERNESS\" : (equalStrings(colour, \"NS\") ? \"NIGHTSKY\" : (equalStrings(colour, \"M\") ? \"Mill\" : colour))))))))))))))))))) : (equalStrings(colour, \"MO\") ? \"MONUMENT\" : (equalStrings(colour, \"WG\") ? \"WOODLAND GREY\" : (equalStrings(colour, \"SM\") ? \"SURFMIST\" : (equalStrings(colour, \"BA\") ? \"BASALT\" : (equalStrings(colour, \"DU\") ? \"DUNE\" : (equalStrings(colour, \"RS\") ? \"RIVERSAND\" : (equalStrings(colour, \"CG\") ? \"COTTAGE GREEN\" : (equalStrings(colour, \"PB\") ? \"PAPERBARK\" : (equalStrings(colour, \"SG\") ? \"SHALE GREY\" : (equalStrings(colour, \"JA\") ? \"Jasper\" : (equalStrings(colour, \"WS\") ? \"WINDSPRAY\" : (equalStrings(colour, \"EH\") ? \"EVENING HAZE\" : (equalStrings(colour, \"PE\") ? \"PALE EUCALYPT\" : (equalStrings(colour, \"DO\") ? \"DEEP OCEAN\" : (equalStrings(colour, \"MR\") ? \"MANOR RED\" : (equalStrings(colour, \"DM\") ? \"DOMAIN\" : (equalStrings(colour, \"WI\") ? \"WILDERNESS\" : (equalStrings(colour, \"NS\") ? \"NIGHT SKY\" : (equalStrings(colour, \"M\") ? \"MILL\" : colour)))))))))))))))))))",
+      "output_key": "post_colour_suffix",
+      "priority": 50,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "gate_post_sku",
+      "expression": "concat(\"65x65postWithPlasticCap\", string(post_length), \"PreGal\", post_colour_suffix)",
+      "output_key": "gate_post_sku",
+      "priority": 60,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "stiles_height",
+      "expression": "gate_height_mm <= 1200 ? 1220 : (gate_height_mm <= 1500 ? 1520 : (gate_height_mm <= 1800 ? 1820 : 2120))",
+      "output_key": "stiles_height",
+      "priority": 70,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "stiles_colour_suffix",
+      "expression": "(stiles_height == 1520) ? (equalStrings(colour, \"MO\") ? \"MONUMENT\" : (equalStrings(colour, \"WG\") ? \"WOODLANDGREY\" : (equalStrings(colour, \"SM\") ? \"SURFMIST\" : (equalStrings(colour, \"BA\") ? \"BASALT\" : (equalStrings(colour, \"DU\") ? \"DUNE\" : (equalStrings(colour, \"RS\") ? \"RIVERSAND\" : (equalStrings(colour, \"CG\") ? \"COTTAGE GREEN\" : (equalStrings(colour, \"PB\") ? \"PAPERBARK\" : (equalStrings(colour, \"SG\") ? \"SHALEGREY\" : (equalStrings(colour, \"JA\") ? \"Jasper\" : (equalStrings(colour, \"WS\") ? \"WINDSPRAY\" : (equalStrings(colour, \"EH\") ? \"EVENINGHAZE\" : (equalStrings(colour, \"PE\") ? \"PALEEUCALYPT\" : (equalStrings(colour, \"DO\") ? \"DEEP OCEAN\" : (equalStrings(colour, \"MR\") ? \"MANOR RED\" : (equalStrings(colour, \"DM\") ? \"DOMAIN\" : (equalStrings(colour, \"WI\") ? \" WILDERNESS\" : (equalStrings(colour, \"NS\") ? \"NIGHTSKY\" : (equalStrings(colour, \"M\") ? \"Mill Finish\" : colour))))))))))))))))))) : (equalStrings(colour, \"MO\") ? \"MONUMENT\" : (equalStrings(colour, \"WG\") ? \"WOODLANDGREY\" : (equalStrings(colour, \"SM\") ? \"SURFMIST\" : (equalStrings(colour, \"BA\") ? \"BASALT\" : (equalStrings(colour, \"DU\") ? \"DUNE\" : (equalStrings(colour, \"RS\") ? \"RIVERSAND\" : (equalStrings(colour, \"CG\") ? \"COTTAGEGREEN\" : (equalStrings(colour, \"PB\") ? \"PAPERBARK\" : (equalStrings(colour, \"SG\") ? \"SHALEGREY\" : (equalStrings(colour, \"JA\") ? (stiles_height == 2120 ? \"Jasper\" : \"JASPER\") : (equalStrings(colour, \"WS\") ? \"WINDSPRAY\" : (equalStrings(colour, \"EH\") ? \"EVENINGHAZE\" : (equalStrings(colour, \"PE\") ? \"PALEEUCALYPT\" : (equalStrings(colour, \"DO\") ? \"DEEPOCEAN\" : (equalStrings(colour, \"MR\") ? (stiles_height == 2120 ? \"MANOR RED\" : \"MANORRED\") : (equalStrings(colour, \"DM\") ? \"DOMAIN\" : (equalStrings(colour, \"WI\") ? \"WILDERNESS\" : (equalStrings(colour, \"NS\") ? \"NIGHTSKY\" : (equalStrings(colour, \"M\") ? (stiles_height == 2120 ? \"Mill Finish\" : \"Mill\") : colour)))))))))))))))))))",
+      "output_key": "stiles_colour_suffix",
+      "priority": 80,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "stiles_sku",
+      "expression": "concat(string(stiles_height), \"OriginalGateStyleStripPreGalSet\", stiles_colour_suffix)",
+      "output_key": "stiles_sku",
+      "priority": 90,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "leaf_width_mm",
+      "expression": "equalStrings(gate_movement, \"double_swing\") ? (gate_width_mm - 60) / 2 : (gate_width_mm - 40)",
+      "output_key": "leaf_width_mm",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "qty_gate_rail",
+      "expression": "leaf_count * (leaf_width_mm * 2 > 2350 ? 2 : 1)",
+      "output_key": "qty_gate_rail",
+      "priority": 110,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "sheet_height_suffix",
+      "expression": "gate_height_mm == 1200 ? 11 : (gate_height_mm == 1500 ? 15 : (gate_height_mm == 1800 ? 17 : (gate_height_mm == 2100 ? 21 : 24)))",
+      "output_key": "sheet_height_suffix",
+      "priority": 120,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "rail_suffix",
+      "expression": "leaf_width_mm <= 2400 ? 23 : 31",
+      "output_key": "rail_suffix",
+      "priority": 125,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "qty_sheet",
+      "expression": "leaf_count",
+      "output_key": "qty_sheet",
+      "priority": 130,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "qty_gate_stiles",
+      "expression": "leaf_count",
+      "output_key": "qty_gate_stiles",
+      "priority": 140,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "qty_magna_latch_kit",
+      "expression": "equalStrings(latch_type, \"dd-magna-latch-top-pull\") ? 1 : 0",
+      "output_key": "qty_magna_latch_kit",
+      "priority": 150,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "qty_lokk_latch",
+      "expression": "equalStrings(latch_type, \"dd-magna-latch-lock-box\") ? 1 : 0",
+      "output_key": "qty_lokk_latch",
+      "priority": 160,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "qty_hinge_pack",
+      "expression": "(equalStrings(gate_movement, \"single_swing\") or equalStrings(gate_movement, \"double_swing\")) ? (equalStrings(latch_type, \"dd-magna-latch-top-pull\") ? leaf_count - 1 : leaf_count) : 0",
+      "output_key": "qty_hinge_pack",
+      "priority": 170,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "rule_set_name": "QS Gate Rules",
+      "version_label": "v1.0.0",
+      "stage": "derive",
+      "name": "qty_drop_bolt",
+      "expression": "equalStrings(gate_movement, \"double_swing\") ? 1 : (equalStrings(latch_type, \"drop-bolt\") ? 1 : 0)",
+      "output_key": "qty_drop_bolt",
+      "priority": 180,
       "active": true
     }
   ],
   "product_component_selectors": [
     {
       "product_system_type": "QS_GATE",
-      "selector_key": "af_gate_monument",
+      "selector_key": "gate_post_selector",
+      "component_category": "post",
+      "selector_type": "exact",
+      "match_json": {},
+      "qty_key": "qty_gate_post",
+      "sku_pattern": "{gate_post_sku}",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "selector_key": "gate_stiles_selector",
       "component_category": "gate",
       "selector_type": "exact",
-      "match_json": {
-        "colour": "MO"
-      },
-      "qty_key": "qty_gate",
-      "sku_pattern": "0001",
-      "priority": 10,
+      "match_json": {},
+      "qty_key": "qty_gate_stiles",
+      "sku_pattern": "{stiles_sku}",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "selector_key": "gate_sheet_selector",
+      "component_category": "sheet",
+      "selector_type": "exact",
+      "match_json": {},
+      "qty_key": "qty_sheet",
+      "sku_pattern": "FZS{colour}{sheet_height_suffix}",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "selector_key": "gate_rail_selector",
+      "component_category": "rail",
+      "selector_type": "exact",
+      "match_json": {},
+      "qty_key": "qty_gate_rail",
+      "sku_pattern": "FRM{colour}{rail_suffix}",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "selector_key": "gate_magna_latch_selector",
+      "component_category": "gate_latch",
+      "selector_type": "exact",
+      "match_json": {},
+      "qty_key": "qty_magna_latch_kit",
+      "sku_pattern": "SKU-190525032711",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "selector_key": "gate_lokk_latch_selector",
+      "component_category": "gate_latch",
+      "selector_type": "exact",
+      "match_json": {},
+      "qty_key": "qty_lokk_latch",
+      "sku_pattern": "LLD3LD",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "selector_key": "gate_hinge_selector",
+      "component_category": "gate_hinge",
+      "selector_type": "exact",
+      "match_json": {},
+      "qty_key": "qty_hinge_pack",
+      "sku_pattern": "SKU-140425044522",
+      "priority": 100,
+      "active": true
+    },
+    {
+      "product_system_type": "QS_GATE",
+      "selector_key": "gate_drop_bolt_selector",
+      "component_category": "drop_bolt",
+      "selector_type": "exact",
+      "match_json": {},
+      "qty_key": "qty_drop_bolt",
+      "sku_pattern": "HeavyDutyDropbolt",
+      "priority": 100,
       "active": true
     }
   ],

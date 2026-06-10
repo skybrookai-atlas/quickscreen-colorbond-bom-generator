@@ -188,6 +188,7 @@ export function suggestAccessories(
 ): SuggestedAccessory[] {
   const suggestions: SuggestedAccessory[] = [];
   const bomSkus = new Set(bomLines.map((line) => line.sku));
+  const isAF = payload.runs.some((run) => run.productCode.startsWith("AF_"));
 
   for (const run of payload.runs) {
     const vars = mergedVars(payload, run);
@@ -195,12 +196,99 @@ export function suggestAccessories(
     const mountingType = String(
       vars.mounting_type ?? vars.mounting_method ?? "in_ground",
     );
-    const postSize = Number(vars.post_size ?? 50);
     const postColour = postColourFromVars(vars);
     const finishFamily = String(vars.finish_family ?? "standard");
     const firstFenceSegment = run.segments.find((segment) => segment.segmentKind !== "gate_opening");
     const postHeight = Number(firstFenceSegment?.targetHeightMm ?? vars.target_height_mm ?? 1800);
     const gateCount = run.segments.filter((segment) => segment.segmentKind === "gate_opening").length;
+
+    if (isAF) {
+      if (run.productCode === "AF_COLORBOND" || run.productCode === "AF_PERMASTEEL") {
+        suggestions.push(
+          componentSuggestion(
+            "AF-CBD-TOUCHUP-PAINT",
+            1,
+            "finish",
+            "Suggested for colour-matched touch-ups after cutting and installation.",
+            "Touch-up Paint"
+          )
+        );
+        suggestions.push(
+          componentSuggestion(
+            "AF-CBD-SCREW-COLOURED-SD10",
+            50,
+            "fixing",
+            "Coloured hex screws for steel panel and rail fixings.",
+            "Coloured Screw SD 10-16 × 16mm Hex"
+          )
+        );
+        if (mountingType === "in_ground" || mountingType === "concreted-in-ground" || mountingType === "in-ground") {
+          suggestions.push(
+            componentSuggestion(
+              "AF-CON-RAPID-30",
+              postCount * 2,
+              "fixing",
+              "Rapid set concrete for posts concreted in ground.",
+              "Rapid Set 30kg"
+            )
+          );
+        }
+      } else if (run.productCode === "AF_TIMBER_PALING" || run.productCode === "AF_TIMBER_SLAT") {
+        if (mountingType === "in_ground" || mountingType === "concreted-in-ground" || mountingType === "in-ground") {
+          suggestions.push(
+            componentSuggestion(
+              "AF-CON-RAPID-30",
+              postCount * 2,
+              "fixing",
+              "Rapid set concrete for timber posts concreted in ground.",
+              "Rapid Set 30kg"
+            )
+          );
+        }
+        suggestions.push(
+          componentSuggestion(
+            "AF-SCR-BB-14g-100-500",
+            1,
+            "fixing",
+            "Batten screws 14g × 100mm, galvanised, for framing.",
+            "Batten Screws 14g × 100mm Galv (500 pack)"
+          )
+        );
+        suggestions.push(
+          componentSuggestion(
+            "AF-NAIL-COIL-45-250",
+            1,
+            "fixing",
+            "Coil nails 45mm ring shank galvanised for paling installation.",
+            "Coil Nails 45mm Ring M Gal (250 pack)"
+          )
+        );
+        suggestions.push(
+          componentSuggestion(
+            "AF-NAIL-COIL-57-250",
+            1,
+            "fixing",
+            "Coil nails 57mm ring shank galvanised for rails/posts installation.",
+            "Coil Nails 57mm Ring M Gal (250 pack)"
+          )
+        );
+      } else {
+        if (mountingType === "in_ground" || mountingType === "concreted-in-ground" || mountingType === "in-ground") {
+          suggestions.push(
+            componentSuggestion(
+              "AF-CON-RAPID-30",
+              postCount * 2,
+              "fixing",
+              "Rapid set concrete for posts concreted in ground.",
+              "Rapid Set 30kg"
+            )
+          );
+        }
+      }
+      continue;
+    }
+
+    const postSize = Number(vars.post_size ?? 50);
 
     if (gateCount > 0) {
       suggestions.push(
@@ -417,78 +505,80 @@ export function suggestAccessories(
     }
   }
 
-  const finishColours = new Set<string>();
-  const fenceColour = String(payload.variables.colour_code ?? "B");
-  finishColours.add(fenceColour);
-  const postColour = postColourFromVars(payload.variables);
-  finishColours.add(postColour);
-  for (const run of payload.runs) {
-    for (const segment of run.segments) {
-      if (segment.segmentKind !== "gate_opening") continue;
-      const gateColour = String(segment.variables?.[GATE_SEGMENT_STUB_KEYS.colourCode] ?? "");
-      if (gateColour) finishColours.add(gateColour);
+  if (!isAF) {
+    const finishColours = new Set<string>();
+    const fenceColour = String(payload.variables.colour_code ?? "B");
+    finishColours.add(fenceColour);
+    const postColour = postColourFromVars(payload.variables);
+    finishColours.add(postColour);
+    for (const run of payload.runs) {
+      for (const segment of run.segments) {
+        if (segment.segmentKind !== "gate_opening") continue;
+        const gateColour = String(segment.variables?.[GATE_SEGMENT_STUB_KEYS.colourCode] ?? "");
+        if (gateColour) finishColours.add(gateColour);
+      }
     }
-  }
 
-  for (const colour of finishColours) {
-    const sku = `PAINT-${colour}`;
-    suggestions.push(
-      componentSuggestion(
-        sku,
-        1,
-        "finish",
-        "Suggested for colour-matched touch-ups after cutting and installation.",
-        `Touch up paint - ${colour}`,
-      ),
-    );
-  }
+    for (const colour of finishColours) {
+      const sku = `PAINT-${colour}`;
+      suggestions.push(
+        componentSuggestion(
+          sku,
+          1,
+          "finish",
+          "Suggested for colour-matched touch-ups after cutting and installation.",
+          `Touch up paint - ${colour}`,
+        ),
+      );
+    }
 
-  if (bomSkus.has("SOUD-CA1400")) {
-    suggestions.push(
-      componentSuggestion(
-        "SOUD-GUN",
-        1,
-        "fixing",
-        "Heavy duty cartridge gun for SOUD-CA1400.",
-        "Soudafix cartridge gun",
-      ),
-    );
-  }
+    if (bomSkus.has("SOUD-CA1400")) {
+      suggestions.push(
+        componentSuggestion(
+          "SOUD-GUN",
+          1,
+          "fixing",
+          "Heavy duty cartridge gun for SOUD-CA1400.",
+          "Soudafix cartridge gun",
+        ),
+      );
+    }
 
-  if (bomSkus.has("QSG-JOINER65-4PK") || bomSkus.has("QSG-JOINER90-4PK")) {
-    suggestions.push(
-      componentSuggestion(
-        "DB-PH3",
-        1,
-        "fixing",
-        "Phillips #3 driver bit suits QuickScreen gate joiner block screws.",
-        "Phillips #3 driver bit",
-      ),
-    );
-  }
+    if (bomSkus.has("QSG-JOINER65-4PK") || bomSkus.has("QSG-JOINER90-4PK")) {
+      suggestions.push(
+        componentSuggestion(
+          "DB-PH3",
+          1,
+          "fixing",
+          "Phillips #3 driver bit suits QuickScreen gate joiner block screws.",
+          "Phillips #3 driver bit",
+        ),
+      );
+    }
 
-  if (bomSkus.has("AR-SCR-BR-50PK")) {
-    suggestions.push(
-      componentSuggestion(
-        "DB-SQ3.4",
-        1,
-        "fixing",
-        "Square #3.4 driver bit suits gate rail screws.",
-        "Square #3.4 driver bit",
-      ),
-    );
-  }
+    if (bomSkus.has("AR-SCR-BR-50PK")) {
+      suggestions.push(
+        componentSuggestion(
+          "DB-SQ3.4",
+          1,
+          "fixing",
+          "Square #3.4 driver bit suits gate rail screws.",
+          "Square #3.4 driver bit",
+        ),
+      );
+    }
 
-  if (payload.runs.length > 0) {
-    suggestions.push(
-      componentSuggestion(
-        "FB-V60",
-        1,
-        "fixing",
-        "General-purpose glazing silicone for finishing and sealing on site.",
-        "Bostik V60 glazing silicone",
-      ),
-    );
+    if (payload.runs.length > 0) {
+      suggestions.push(
+        componentSuggestion(
+          "FB-V60",
+          1,
+          "fixing",
+          "General-purpose glazing silicone for finishing and sealing on site.",
+          "Bostik V60 glazing silicone",
+        ),
+      );
+    }
   }
 
   const deduped = new Map<string, SuggestedAccessory>();
