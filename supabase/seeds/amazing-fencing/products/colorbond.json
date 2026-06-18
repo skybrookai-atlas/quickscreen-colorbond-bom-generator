@@ -303,7 +303,7 @@
       "version_label": "v1.0.0",
       "stage": "component",
       "name": "qty_cap",
-      "expression": "num_posts",
+      "expression": "ceil(num_posts / 2)",
       "output_key": "qty_cap",
       "priority": 40,
       "active": true

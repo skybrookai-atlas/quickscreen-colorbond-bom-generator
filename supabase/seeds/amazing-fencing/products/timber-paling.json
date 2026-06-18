@@ -828,6 +828,7 @@
       "component_category": "fixing",
       "selector_type": "exact",
       "match_json": {
+        "paling_style": "lapped_capped",
         "timber_type": "treated_pine"
       },
       "qty_key": "qty_nails_front",
@@ -841,6 +842,7 @@
       "component_category": "fixing",
       "selector_type": "exact",
       "match_json": {
+        "paling_style": "lapped_capped",
         "timber_type": "hardwood"
       },
       "qty_key": "qty_nails_front",
@@ -874,6 +876,34 @@
       "qty_key": "qty_nails_back",
       "sku_pattern": "AF-NAIL-COIL-45-250",
       "priority": 35,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_TIMBER_PALING",
+      "selector_key": "af_nails_45_pine_butted",
+      "component_category": "fixing",
+      "selector_type": "exact",
+      "match_json": {
+        "paling_style": "butted",
+        "timber_type": "treated_pine"
+      },
+      "qty_key": "qty_nails_front",
+      "sku_pattern": "AF-NAIL-COIL-45-250",
+      "priority": 20,
+      "active": true
+    },
+    {
+      "product_system_type": "AF_TIMBER_PALING",
+      "selector_key": "af_nails_45_hwd_butted",
+      "component_category": "fixing",
+      "selector_type": "exact",
+      "match_json": {
+        "paling_style": "butted",
+        "timber_type": "hardwood"
+      },
+      "qty_key": "qty_nails_front",
+      "sku_pattern": "AF-NAIL-COIL-45-250",
+      "priority": 25,
       "active": true
     },
     {
